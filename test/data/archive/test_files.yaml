@@ -1,0 +1,89 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Connection: [close]
+      Host: [github.com]
+      User-Agent: [Python-urllib/2.7]
+    method: GET
+    uri: https://github.com/steinwurf/wurfapi/raw/intial-commit/test/data/archive/test_files.zip
+  response:
+    body: {string: !!python/unicode '<html><body>You are being <a href="https://raw.githubusercontent.com/steinwurf/wurfapi/intial-commit/test/data/archive/test_files.zip">redirected</a>.</body></html>'}
+    headers:
+      access-control-allow-origin: ['https://render.githubusercontent.com']
+      age: ['0']
+      cache-control: [no-cache]
+      connection: [close]
+      content-length: ['165']
+      content-security-policy: ['default-src ''none''; base-uri ''self''; block-all-mixed-content;
+          child-src render.githubusercontent.com; connect-src ''self'' uploads.github.com
+          status.github.com collector.githubapp.com api.github.com www.google-analytics.com
+          github-cloud.s3.amazonaws.com github-production-repository-file-5c1aeb.s3.amazonaws.com
+          github-production-upload-manifest-file-7fdce7.s3.amazonaws.com github-production-user-asset-6210df.s3.amazonaws.com
+          wss://live.github.com; font-src assets-cdn.github.com; form-action ''self''
+          github.com gist.github.com; frame-ancestors ''none''; img-src ''self'' data:
+          assets-cdn.github.com identicons.github.com collector.githubapp.com github-cloud.s3.amazonaws.com
+          *.githubusercontent.com; manifest-src ''self''; media-src ''none''; script-src
+          assets-cdn.github.com; style-src ''unsafe-inline'' assets-cdn.github.com']
+      content-type: [text/html; charset=utf-8]
+      date: ['Mon, 23 Apr 2018 08:08:14 GMT']
+      expect-ct: ['max-age=2592000, report-uri="https://api.github.com/_private/browser/errors"']
+      location: ['https://raw.githubusercontent.com/steinwurf/wurfapi/intial-commit/test/data/archive/test_files.zip']
+      server: [GitHub.com]
+      status: [302 Found]
+      strict-transport-security: [max-age=31536000; includeSubdomains; preload]
+      vary: [X-PJAX]
+      x-content-type-options: [nosniff]
+      x-frame-options: [deny]
+      x-github-request-id: ['DE40:055F:30D021C:5B91B94:5ADD946D']
+      x-ratelimit-limit: ['100']
+      x-ratelimit-remaining: ['100']
+      x-runtime: ['0.058621']
+      x-runtime-rack: ['0.063494']
+      x-xss-protection: [1; mode=block]
+    status: {code: 302, message: Found}
+- request:
+    body: null
+    headers:
+      Connection: [close]
+      Host: [raw.githubusercontent.com]
+      User-Agent: [Python-urllib/2.7]
+    method: GET
+    uri: https://raw.githubusercontent.com/steinwurf/wurfapi/intial-commit/test/data/archive/test_files.zip
+  response:
+    body:
+      string: !!binary |
+        UEsDBBQDAAAAAPNOl0wAAAAAAAAAAAAAAAALAAAAdGVzdF9maWxlcy9QSwMECgMAAAAA806XTAh4
+        oFwuAAAALgAAABwAAAB0ZXN0X2ZpbGVzL2hlbGxvX3d1cmZkb2NzLnB5IyEvdXNyL2Jpbi9lbnYg
+        cHl0aG9uCnByaW50KCJoZWxsbyB3dXJmZG9jcyIpClBLAQI/AxQDAAAAAPNOl0wAAAAAAAAAAAAA
+        AAALACQAAAAAAAAAEID9QQAAAAB0ZXN0X2ZpbGVzLwoAIAAAAAAAAQAYAAC5tHfY2tMBALm0d9ja
+        0wEAubR32NrTAVBLAQI/AwoDAAAAAPNOl0wIeKBcLgAAAC4AAAAcACQAAAAAAAAAIID0gSkAAAB0
+        ZXN0X2ZpbGVzL2hlbGxvX3d1cmZkb2NzLnB5CgAgAAAAAAABABgAALm0d9ja0wGAT0142NrTAQC5
+        tHfY2tMBUEsFBgAAAAACAAIAywAAAJEAAAAAAA==
+    headers:
+      accept-ranges: [bytes]
+      access-control-allow-origin: ['*']
+      cache-control: [max-age=300]
+      connection: [close]
+      content-length: ['370']
+      content-security-policy: [default-src 'none'; style-src 'unsafe-inline'; sandbox]
+      content-type: [application/zip]
+      date: ['Mon, 23 Apr 2018 08:08:14 GMT']
+      etag: ['"50d847313849a8be0c6169cdb1cedea66364aa81"']
+      expires: ['Mon, 23 Apr 2018 08:13:14 GMT']
+      source-age: ['0']
+      strict-transport-security: [max-age=31536000]
+      vary: ['Authorization,Accept-Encoding']
+      via: [1.1 varnish]
+      x-cache: [MISS]
+      x-cache-hits: ['0']
+      x-content-type-options: [nosniff]
+      x-fastly-request-id: [ee3f78da27aba015c2c60866927f6124418afc1a]
+      x-frame-options: [deny]
+      x-geo-block-list: ['']
+      x-github-request-id: ['7A92:4AD6:8BCB77:957B35:5ADD946D']
+      x-served-by: [cache-fra19128-FRA]
+      x-timer: ['S1524470894.465362,VS0,VE126']
+      x-xss-protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1

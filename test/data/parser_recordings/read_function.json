@@ -1,0 +1,25 @@
+{
+  "access": "protected",
+  "briefdescription": "Set the heat.",
+  "detaileddescription": "This function is use to set the head of the machine.",
+  "is_const": true,
+  "is_static": false,
+  "location": {
+    "file": "coffee/coffee.h",
+    "line": 27
+  },
+  "name": "set",
+  "parameters": [
+    {
+      "name": "h",
+      "type": "const heat &"
+    },
+    {
+      "name": "max",
+      "type": "int"
+    }
+  ],
+  "return_type": "void",
+  "scope": "project::coffee::machine",
+  "type": "function"
+}

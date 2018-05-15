@@ -1,0 +1,14 @@
+{
+  "project::coffee::machine::water_tank": {
+    "briefdescription": "The water thank.",
+    "detaileddescription": "",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line": 13
+    },
+    "members": [],
+    "name": "water_tank",
+    "scope": "project::coffee::machine",
+    "type": "struct"
+  }
+}

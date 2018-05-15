@@ -1,0 +1,14 @@
+{
+  "project::coffee::machine": {
+    "briefdescription": "",
+    "detaileddescription": "",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line": 9
+    },
+    "members": [],
+    "name": "machine",
+    "scope": "project::coffee",
+    "type": "class"
+  }
+}
