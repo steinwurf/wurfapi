@@ -1,3 +1,9 @@
+.. image:: https://img.shields.io/travis/steinwurf/wurfapi.svg?logo=travis
+    :target: https://travis-ci.org/steinwurf/wurfapi
+
+.. image:: https://img.shields.io/appveyor/ci/SteinwurfApS/wurfapi.svg?logo=appveyor
+  :target: https://ci.appveyor.com/project/SteinwurfApS/wurfapi
+  
 Introduction
 ============
 
