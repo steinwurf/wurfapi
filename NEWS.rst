@@ -10,5 +10,5 @@ Latest
 
 1.0.0
 -----
-* Initial release (still beta quality)
+* Initial release (still beta quality).
 
