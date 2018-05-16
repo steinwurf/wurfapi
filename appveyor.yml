@@ -11,7 +11,6 @@ environment:
 
 
 install:
-  # We need wheel installed to build wheels
   - "%PYTHON%\\python.exe waf configure"
 
 test_script:
