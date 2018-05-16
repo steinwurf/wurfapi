@@ -1,6 +1,7 @@
 
 .. image:: https://ci.appveyor.com/api/projects/status/github/steinwurf/wurfapi
   :target: https://ci.appveyor.com/project/SteinwurfApS/wurfapi
+
 Introduction
 ============
 
