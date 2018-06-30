@@ -1,8 +1,12 @@
-{%- macro create_heading(class, char='=') -%}
-{%- set name = class["type"] + " " + class["name"] -%}
+{%- macro create_heading(name, char='=') -%}
 {%- set size = name|length -%}
 {{name}}
 {% for n in range(size) %}{{char}}{% endfor %}
+{%- endmacro -%}
+
+{%- macro create_class_heading(class, char='=') -%}
+{%- set name = class["type"] + " " + class["name"] -%}
+{{ create_heading(name, char) }}
 {%- endmacro -%}
 
 {%- macro create_function_signature(unique_name, function) -%}
@@ -22,6 +26,9 @@
 {# First element is a label to the unique_name #}
 .. _{{unique_name}}:
 
+{% set function_name = function['return_type'] + create_function_signature(unique_name, function) -%}
+{{ create_heading(function_name, ".") }}
+
 - {{function['return_type']}} {{ create_function_signature(unique_name, function)}}
 
 {{function['briefdescription']}}
@@ -30,7 +37,7 @@
 {% endmacro -%}
 {% set class = api[selector] %}
 
-{{ create_heading(class, "=") }}
+{{ create_class_heading(class, "=") }}
 
 {% if class["scope"] is not none %}
 **Scope:** {{ class["scope"] }}
