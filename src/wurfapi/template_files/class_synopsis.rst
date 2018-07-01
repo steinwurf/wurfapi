@@ -22,14 +22,26 @@
 {{ signature|join("") -}}
 {%- endmacro -%}
 
+{%- macro create_function_heading(function) -%}
+{# We build the signature of a function as a list of strings #}
+{%- set signature = [function["return_type"], " ", function["name"]] -%}
+{%- do signature.append(" ( ") -%}
+{%- set parameters = [] -%}
+{%- for p in function["parameters"] -%}
+    {%- do parameters.append(p["type"] + " " + p["name"]) -%}
+{%- endfor -%}
+{%- do signature.append(parameters|join(', ')) -%}
+{%- do signature.append(" ) ") -%}
+{{ signature|join("") -}}
+{%- endmacro -%}
+
+
 {%- macro create_function_description(unique_name, function) -%}
 {# First element is a label to the unique_name #}
 .. _{{unique_name}}:
 
-{% set function_name = function['return_type'] + create_function_signature(unique_name, function) -%}
+{% set function_name = create_function_heading(function) -%}
 {{ create_heading(function_name, ".") }}
-
-- {{function['return_type']}} {{ create_function_signature(unique_name, function)}}
 
 {{function['briefdescription']}}
 {{function['detaileddescription']}}
