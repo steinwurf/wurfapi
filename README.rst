@@ -3,7 +3,7 @@
 
 .. image:: https://img.shields.io/appveyor/ci/SteinwurfApS/wurfapi.svg?logo=appveyor
   :target: https://ci.appveyor.com/project/SteinwurfApS/wurfapi
-  
+
 Introduction
 ============
 
@@ -350,8 +350,8 @@ Python dictionary representing a C++ function::
       'briefdescription: 'some text',
       'detaileddescription: 'some text
       'parameters': [
-        { 'type': 'sometype', 'name': 'somename' },
-        { 'type': 'sometype', 'name': 'somename' }
+        { 'type': 'sometype', 'name': 'somename', 'description': description },
+        { 'type': 'sometype', 'name': 'somename', 'description': description }
       ]
   }
 

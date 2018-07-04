@@ -56,6 +56,11 @@ def options(opt):
         '--run_ensure_doxygen', default=False, action='store_true',
         help='Ensure that doxygen is available (will retrieve a fresh copy)')
 
+    opt.add_option(
+        '--test_filter', default=None, action='store',
+        help='Runs all tests that include the substring specified.'
+             'Wildcards not allowed. (Used with --run_tests)')
+
 
 def configure(conf):
     pass
@@ -147,6 +152,10 @@ def _pytest(bld):
 
         # Skip the tests that have the "download_test" marker
         command += ' -m "not download_test and not ensure_doxygen"'
+
+        # Adds the test filter if specified
+        if bld.options.test_filter:
+            command += ' -k "{}"'.format(bld.options.test_filter)
 
         # Make python not write any .pyc files. These may linger around
         # in the file system and make some tests pass although their .py

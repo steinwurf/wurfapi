@@ -11,6 +11,62 @@ def parse_text(parser, xml):
     return xml.text()
 
 
+def parse_function_parameters(parser, xml):
+    """ Parse the parameters of a function.
+
+    :param parser: A DoxygenParser instance
+    :param xml: pyquery.PyQuery object representing the function
+    :return: List of function parameters
+    """
+    parser.log.debug('parsing function parameters')
+
+    # The type ane name of the parameters are in the <param>...</param>
+    # elements
+    parameters = []
+
+    for param in xml.items('param'):
+        parameter = {
+            # Trim off all newlines: https://stackoverflow.com/a/37001613/1717320
+            'type': " ".join(param('type').text().split()),
+            'name': " ".join(param('declname').text().split()),
+            'description': {'has_content': 'no'}
+        }
+
+        parameters.append(parameter)
+
+    # The description of each parameter is stored in the
+    # <detaileddescription>
+    #   <parameternamelist>
+    #     <parameteritem>
+    #       <parameternamelist>
+    #           <parametername>
+    #             .. the name ...
+    #           </parametername>
+    #       </parameternamelist>
+    #       <parameterdescription>
+    #         <para>
+    #           .. the description ..
+    #         </para>
+    #       </parameterdescription>
+    #     <parameteritem>
+    #     ...
+    #
+
+    detail = xml('detaileddescription')
+
+    parser.log.debug('%s', detail)
+
+    for parameteritem in detail.items('parameteritem'):
+        parser.log.debug("%s", parameteritem)
+
+        name = parameteritem('parametername').text()
+        description = parameteritem('parameterdescription').text()
+
+        parser.log.debug("%s : %s", name, description)
+
+    return parameters
+
+
 def parse_function(parser, xml, scope=None):
     """ Parses a function
 
@@ -28,16 +84,7 @@ def parse_function(parser, xml, scope=None):
     name = xml('name').text()
 
     # Extract the parameters
-    parameters = []
-
-    for param in xml.items('param'):
-        parameter = {
-            # Trim off all newlines: https://stackoverflow.com/a/37001613/1717320
-            'type': " ".join(param('type').text().split()),
-            'name': " ".join(param('declname').text().split())
-        }
-
-        parameters.append(parameter)
+    parameters = parse_function_parameters(parser=parser, xml=xml)
 
     # Construct the unique name
     unique_name = scope + '::' + name if scope else name

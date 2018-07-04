@@ -2,6 +2,7 @@ import pyquery
 import os
 import pprint
 import mock
+import logging
 
 import wurfapi
 import wurfapi.doxygen_parser
@@ -90,10 +91,12 @@ def test_read_struct(testdirectory):
     recorder.record(data=actual_api)
 
 
-def test_read_function(testdirectory):
+def test_read_function(testdirectory, caplog):
+
+    caplog.set_level(logging.DEBUG)
 
     src_dir, xml_dir = generate_coffee_xml(testdirectory)
-    log = mock.Mock()
+    log = logging.getLogger(name='test_read_function')
 
     parsers = {
         'parse_class': wurfapi.doxygen_parser.parse_class_or_struct,
