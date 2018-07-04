@@ -57,7 +57,6 @@ def parse_function_parameters(parser, xml):
     parser.log.debug('%s', detail)
 
     for parameteritem in detail.items('parameteritem'):
-        parser.log.debug("%s", parameteritem)
 
         name = parameteritem('parametername').text()
         description = parameteritem('parameterdescription').text()
