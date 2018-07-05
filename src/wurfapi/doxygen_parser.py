@@ -3,7 +3,7 @@ import os
 import pyquery
 
 
-def parse_text(parser, xml):
+def parse_description(parser, xml):
     # Sanity checks
     assert parser.element_type(xml=xml) in [
         'briefdescription', 'detaileddescription']
