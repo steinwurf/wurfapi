@@ -62,7 +62,8 @@ xml = """
 
 
 def parse_paragraphs(xml):
-    pass
+    
+
 
 
 def parse_descriptiontype(parser, xml):
@@ -76,7 +77,10 @@ def parse_descriptiontype(parser, xml):
       <xsd:element name="internal" type="docInternalType" minOccurs="0" />
     </xsd:sequence>
     </xsd:complexType>
-    ""
+    """
+
+    for nodes in xml:
+        
 
 
 
