@@ -361,14 +361,14 @@ Text information
 
 Text information is stored in a list of paragraphs::
 
-    description = {
-      'has_content': true | false,
-      'paragraphs' : [
+    paragraphs = [
         {
           "type": "text" | "code",
           ...
+        },
+        ...
       ]
-    }
+
 
     text = {
       'type': 'text',

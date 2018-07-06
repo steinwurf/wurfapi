@@ -6,7 +6,7 @@
   "is_static": false,
   "location": {
     "file": "coffee/coffee.h",
-    "line": 27
+    "line": 30
   },
   "name": "set",
   "parameters": [

@@ -28,8 +28,7 @@ def parse_function_parameters(parser, xml):
         parameter = {
             # Trim off all newlines: https://stackoverflow.com/a/37001613/1717320
             'type': " ".join(param('type').text().split()),
-            'name': " ".join(param('declname').text().split()),
-            'description': {'has_content': 'no'}
+            'name': " ".join(param('declname').text().split())
         }
 
         parameters.append(parameter)
@@ -124,9 +123,9 @@ def parse_function(parser, xml, scope=None):
         'is_static': xml.attr('static') == "yes",
         'access': xml.attr('prot'),
         'briefdescription':
-            parse_text(parser, xml.children('briefdescription')),
+            parse_description(parser, xml.children('briefdescription')),
         'detaileddescription':
-            parse_text(parser, xml.children('detaileddescription')),
+            parse_description(parser, xml.children('detaileddescription')),
         'parameters': parameters
     }
 
