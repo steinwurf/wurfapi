@@ -125,3 +125,54 @@ def test_read_function(testdirectory, caplog):
         mismatch_path=mismatch_path.path())
 
     recorder.record(data=actual_api)
+
+
+def generate_xml(testdirectory, source_file):
+    """ Test helper - generate the XML. """
+
+    output_dir = testdirectory.mkdir('xml_output')
+    source_dir = testdirectory.mkdir('sources')
+    source_dir.copy_file(source_file)
+
+    doxygen_executable = wurfapi.doxygen_downloader.ensure_doxygen()
+
+    generator = wurfapi.doxygen_generator.DoxygenGenerator(
+        doxygen_executable=doxygen_executable,
+        runner=wurfapi.run,
+        recursive=True,
+        source_path=source_dir.path(),
+        output_path=output_dir.path())
+
+    return source_dir.path(), generator.generate()
+
+
+def test_parser_input_function(testdirectory, caplog):
+
+    caplog.set_level(logging.DEBUG)
+
+    src_dir, xml_dir = generate_xml(
+        testdirectory,
+        source_file='test/data/parser_input/function.hpp')
+
+    log = logging.getLogger(name='test_parser_input_function')
+
+    parsers = {
+        'parse_class': wurfapi.doxygen_parser.parse_class_or_struct,
+        'parse_function': wurfapi.doxygen_parser.parse_function,
+    }
+
+    parser = wurfapi.doxygen_parser.DoxygenParser(
+        parsers=parsers, project_path=src_dir, log=log)
+
+    api = parser.parse_api(doxygen_path=xml_dir)
+
+    mismatch_path = testdirectory.mkdir('mismatch')
+
+    recorder = record.Record(
+        filename='parser_input_function.json',
+        recording_path='test/data/parser_recordings',
+        mismatch_path=mismatch_path.path())
+
+    recorder.record(data=api)
+
+    assert 0
