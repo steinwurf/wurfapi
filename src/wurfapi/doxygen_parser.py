@@ -1,6 +1,7 @@
 import glob
 import os
 import pyquery
+import lxml
 
 
 def parse_description(parser, xml):
@@ -187,10 +188,48 @@ def parse_class_or_struct(parser, xml):
     return api
 
 
+def parse_index(doxygen_path):
+    """ Read the generated Doxygen XML
+
+    :param doxygen_path: The path to the generated Doxygen XML as a
+        string
+    :return: A list of lxml.etree. objects representing the
+        different "compunddef" elements.
+    """
+    # Find the index XML file
+    index_path = os.path.join(doxygen_path, 'index.xml')
+
+    assert(os.path.isfile(index_path))
+
+    index_xml = lxml.etree.parse(source=index_path)
+
+    # We extract the compound definitions XML "compunddef" tag
+    # These contain the information we need.
+    compound_definitions = []
+
+    # Iterate thought the "compound" elements of the Doxygen index.xml
+    for compound in index_xml.findall('compound'):
+
+        # Each "compound" has it's own XML file - read it and extract the
+        # "compunddef" tags
+        compound_filename = compound.attrib['refid'] + '.xml'
+        compound_path = os.path.join(doxygen_path, compound_filename)
+
+        compound_xml = lxml.etree.parse(source=compound_path)
+
+        # There can be multiple "compunddef" tags in each XML file
+        # according to Doxygen's generated compound.xsd file
+
+        compound_definitions += compound_xml.findall('compounddef')
+
+    return compound_definitions
+
+
 default_parsers = {
-    'parse_class': parse_class_or_struct,
-    'parse_struct': parse_class_or_struct,
-    'parse_function': parse_function
+    'parse_compunddef_class': parse_class_or_struct,
+    'parse_compunddef_struct': parse_class_or_struct,
+    'parse_function': parse_function,
+    'parse_index': parse_index
 }
 
 
@@ -232,26 +271,33 @@ class DoxygenParser(object):
         :return: An API dictionary
         """
 
-        xml = self.xml_from_path(doxygen_path=doxygen_path)
+        parse_index = self.parsers['parse_index']
+
+        xml = parse_index(doxygen_path=doxygen_path)
         assert len(xml) > 0
 
         # The dictionary we will store the API in
         api = {}
 
-        for element in xml:
+        for compunddef in xml:
 
             # Sanity check
-            assert self.element_type(xml=element) == "compounddef"
+            assert compunddef.tag == "compounddef"
 
-            if self.supports(xml=element):
+            kind = compunddef.attrib['kind']
 
-                element_api = self.parse_element(xml=element)
+            parsername = 'parse_compunddef_{}'.format(kind)
+
+            if parsername in self.parsers:
+
+                compunddef_parser = self.parsers[parsername]
+
+                element_api = compunddef_parser(xml=compunddef)
                 assert len(element_api) > 0
 
                 api.update(element_api)
 
             else:
-                kind = element.attr('kind')
                 self.log.warning('Not supported {}'.format(kind))
 
         return api
@@ -304,42 +350,3 @@ class DoxygenParser(object):
         path = path.replace('\\', '/')
 
         return path
-
-    @staticmethod
-    def xml_from_path(doxygen_path):
-        """ Read the generated Doxygen XML
-
-        :param doxygen_path: The path to the generated Doxygen XML as a
-            string
-        :return: A list of pyquery.PyQuery objects representing the
-            different "compunddef" elements.
-        """
-        # Find the index XML file
-        index_path = os.path.join(doxygen_path, 'index.xml')
-
-        assert(os.path.isfile(index_path))
-
-        index_xml = pyquery.PyQuery(
-            filename=index_path, parser='xml', encoding='utf-8')
-
-        # We extract the compound definitions XML "compunddef" tag
-        # These contain the information we need.
-        compound_definitions = []
-
-        # Iterate thought the "compound" elements of the Doxygen index.xml
-        for compound in index_xml.items('compound'):
-
-            # Each "compound" has it's own XML file - read it and extract the
-            # "compunddef" tags
-            compound_filename = compound.attr('refid') + '.xml'
-            compound_path = os.path.join(doxygen_path, compound_filename)
-
-            compound_xml = pyquery.PyQuery(
-                filename=compound_path, parser='xml', encoding='utf-8')
-
-            # There can be multiple "compunddef" tags in each XML file
-            # according to Doxygen's generated compound.xsd file
-
-            compound_definitions += compound_xml.items('compounddef')
-
-        return compound_definitions
