@@ -188,6 +188,19 @@ def parse_class_or_struct(parser, xml):
     return api
 
 
+def parse_compounddef_file(parser, xml):
+    """ Parses a compounddef of kind "file" """
+
+    # If there are free functions they are in the the sectiondef tag
+    sectiondef = xml.find('sectiondef')
+
+    if sectiondef is not None:
+        parser.log.debug("Did not find any sectiondef tags")
+
+    for member in sectiondef.findall('memberdef'):
+        parser.log.debug(str(member))
+
+
 def parse_index(doxygen_path):
     """ Read the generated Doxygen XML
 
@@ -228,6 +241,7 @@ def parse_index(doxygen_path):
 default_parsers = {
     'parse_compunddef_class': parse_class_or_struct,
     'parse_compunddef_struct': parse_class_or_struct,
+    'parse_compunddef_file': parse_compounddef_file,
     'parse_function': parse_function,
     'parse_index': parse_index
 }
@@ -286,13 +300,13 @@ class DoxygenParser(object):
 
             kind = compunddef.attrib['kind']
 
-            parsername = 'parse_compunddef_{}'.format(kind)
+            parsername = 'parse_compounddef_{}'.format(kind)
 
             if parsername in self.parsers:
 
                 compunddef_parser = self.parsers[parsername]
 
-                element_api = compunddef_parser(xml=compunddef)
+                element_api = compunddef_parser(parser=self, xml=compunddef)
                 assert len(element_api) > 0
 
                 api.update(element_api)

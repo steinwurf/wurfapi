@@ -159,6 +159,7 @@ def test_parser_input_function(testdirectory, caplog):
     parsers = {
         'parse_index': wurfapi.doxygen_parser.parse_index,
         'parse_class': wurfapi.doxygen_parser.parse_class_or_struct,
+        'parse_compounddef_file': wurfapi.doxygen_parser.parse_compounddef_file,
         'parse_function': wurfapi.doxygen_parser.parse_function,
     }
 
