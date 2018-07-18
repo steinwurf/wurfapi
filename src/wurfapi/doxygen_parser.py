@@ -198,7 +198,7 @@ def parse_compounddef_file(parser, xml):
         parser.log.debug("Did not find any sectiondef tags")
 
     for member in sectiondef.findall('memberdef'):
-        parser.log.debug(str(member))
+        parser.log.debug(lxml.etree.tostring(member))
 
 
 def parse_index(doxygen_path):
@@ -244,6 +244,19 @@ default_parsers = {
     'parse_compunddef_file': parse_compounddef_file,
     'parse_function': parse_function,
     'parse_index': parse_index
+}
+
+
+def nada(parser, xml):
+    pass
+
+
+element_parsers = {
+    'compounddef': {
+        'class': nada,
+        'struct': nada,
+        'file': nada
+    }
 }
 
 
@@ -316,45 +329,36 @@ class DoxygenParser(object):
 
         return api
 
-    def parse_element(self, xml, **kwargs):
+    def parse_element(self, xml):
         """ Parse a specific Doxygen XML element
 
-        :param xml: A pyquery.PyQuery object representing a Doxygen XML element
-        :param kwargs: Optional keyword arguments passed between the diffferent
-            readers
+        :param xml: A lxml object representing a Doxygen XML element
         """
+
+        tag = xml.tag
+        kind = xml.attrib['kind']
+
+        try:
+            parser = self.element_parsers[tag][kind]
+        except KeyError:
+            self.log.exception("Did not support tag/kind")
+            return {}
+
+        if tag in self.element_parsers:
+            parser = self.element_parsers[tag]
+        else:
+            self.log.debug("No parser for element tag %s", tag)
+            return
+
+        if 'kind' in parser:
+
+            if 'kind' in xml.attrib:
+                kind
+
         parser = 'parse_' + xml.attr('kind')
         parser_function = self.parsers[parser]
 
         return parser_function(parser=self, xml=xml, **kwargs)
-
-    def supports(self, xml):
-        """ Check if we have a parser for the "kind" of element.
-
-        The Doxygen XML tags we are interested in all have "kind=xyz" as an
-        attribute. Here we check if we have a parser for the specific type.
-
-        :param xml: The Doxygen XML as a pyquery.PyQuery object
-        :return: True if we have a reader for the "kind" of element. Otherwise
-            False
-        """
-
-        parser = 'parse_' + xml.attr('kind')
-        return parser in self.parsers
-
-    def element_type(self, xml):
-        """ Return the XML element type. We use a bit of pyquery internals to
-        do this. But we need to perform some sanity checks in the parser
-        functions.
-
-        Example: If we are parsing a memberdef element the _element_type should
-        return "memberdef" when passing the pyquery.PyQuery object
-
-        :param xml: pyquery.PyQuery element we want to know the type of
-        :return: Element tag as a string
-        """
-        assert(xml.size() == 1)
-        return xml[0].tag
 
     def relative_path(self, path):
         """ Return the relative path from the project_path """
