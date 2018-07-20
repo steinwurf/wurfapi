@@ -251,15 +251,6 @@ def nada(parser, xml):
     pass
 
 
-element_parsers = {
-    'compounddef': {
-        'class': nada,
-        'struct': nada,
-        'file': nada
-    }
-}
-
-
 class DoxygenParser(object):
 
     def __init__(self, project_path, log, parsers=default_parsers):
