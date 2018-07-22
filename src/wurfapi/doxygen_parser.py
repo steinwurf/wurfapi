@@ -755,7 +755,7 @@ def parse(parser, log, xml):
 
         for key in attrib:
             try:
-                if self.attrib[key] != attrib[key]:
+                if xml.attrib[key] != attrib[key]:
                     return False
             except KeyError:
                 return False
