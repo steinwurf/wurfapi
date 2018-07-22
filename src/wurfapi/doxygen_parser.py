@@ -2,6 +2,8 @@ import glob
 import os
 import pyquery
 import lxml
+import inspect
+import contextlib
 
 
 def parse_description(parser, xml):
@@ -251,105 +253,166 @@ def nada(parser, xml):
     pass
 
 
+class ParserFunction(object):
+
+    def __init__(self, function, tag, attrib):
+        self.function = function
+        self.tag = tag
+        self.attrib = attrib if attrib else {}
+
+    def can_parse(self, tag, attrib):
+        if tag != self.tag:
+            return False
+
+        for key in self.attrib:
+            try:
+                if self.attrib[key] != attrib[key]:
+                    return False
+            except KeyError:
+                return False
+
+        return True
+
+    @property
+    def score(self):
+        """ The score is how "specilized" the parser function is.
+
+        If can_parse returns True the score can be used to select
+        one parser over another.
+
+        E.g. say we have two parsers:
+
+        1. For "compounddef" no attributes
+        2. For "compounddef" and kind "class"
+
+        Then if both returns True for can_parse then 2 will be
+        choosen since it has a score of 2 and the other has a score
+        of 1.
+        """
+        tag_score = 1
+        attrib_score = len(self.attrib) if self.attrib else 0
+
+        return tag_score + attrib_score
+
+    def __repr__(self):
+        return ("<{} tag='{}', attrib='{}'>".format(
+            self.__class__.__name__, self.tag, self.attrib))
+
+
 class DoxygenParser(object):
 
-    def __init__(self, project_path, log, parsers=default_parsers):
-        """ Create a new DoxygenReader
+    # Default parsers
+    default_parsers = []
 
+    def __init__(self, doxygen_path, project_path, log):
+        """ Create a new DoxygenParser
+
+        :param doxygen_path: The path to where the Doxygen XML is
+            located.
         :param project_path: The path to the project as a String. The path is
             important as we use it to compute the relative paths to the files
             indexed by Doxygen. So e.g. if we want to generate links to GitHub
             etc. we need the relative path to the files with root of the
             project.
         :param log: Log object
-        :param parsers: Dictionary with the following specific layout:
-            readers = {
-                "read_xyz": func1,
-                "read_abc": func2
-                }
-
-                The keys to the dict have the "parse_" prefix the postfix
-                part is the "kind" of XML element they parse. Doxygen uses
-                a "kind" attribute on the XML elements we are interested in.
-                The value in the dict a Python function or callable. Which
-                has the following signature f(parser, xml, **kwargs)
-
-                The parser parameter is a DoxygenParser object, the xml
-                parameter is the Doxygen XML element we are parsing. The
-                **kwargs are optional keyword arguments.
         """
-        self.parsers = parsers
+        self.doxygen_path = doxygen_path
         self.project_path = project_path
         self.log = log
 
-    def parse_api(self, doxygen_path):
-        """ Read the generated Doxygen XML
+        # The parser functions registered
+        self.parsers = DoxygenParser.default_parsers
 
-        :param doxygen_path: The path to the generated Doxygen XML as a string
-        :return: An API dictionary
+        # Scope variable used to track the C++ scope of member
+        # functions etc.
+        self.scope = None
+
+        # Doxygen has its own internal id mapping, these ids need
+        # to be translated to our unique-names. We do this as the
+        # last step in the parsing. We track the id to unique-name
+        # mapping with the following dict
+        self.id_mapping = {}
+
+    @contextlib.contextmanager
+    def set_scope(self, scope):
+        assert self.scope is None
+
+        self.scope = scope
+        yield
+        self.scope = None
+
+    def parse_index(self):
+        """ Start parsing from the doxygen index.xml file
+
+        :return: API dictionary
         """
 
-        parse_index = self.parsers['parse_index']
+        # Find the index XML file
+        index_path = os.path.join(self.doxygen_path, 'index.xml')
 
-        xml = parse_index(doxygen_path=doxygen_path)
-        assert len(xml) > 0
+        assert(os.path.isfile(index_path))
 
-        # The dictionary we will store the API in
+        index_xml = lxml.etree.parse(source=index_path)
+
         api = {}
 
-        for compunddef in xml:
+        # Iterate thought the "compound" elements of the Doxygen index.xml
+        for compound in index_xml.findall('compound'):
 
-            # Sanity check
-            assert compunddef.tag == "compounddef"
+            compound_api = self.parse_element(xml=compound)
 
-            kind = compunddef.attrib['kind']
+            api.update(compound_api)
 
-            parsername = 'parse_compounddef_{}'.format(kind)
+        return self._map_ids(api)
 
-            if parsername in self.parsers:
+    def _map_ids(self, value):
 
-                compunddef_parser = self.parsers[parsername]
+        if isinstance(value, dict):
+            for k, v in value.iteritems():
+                value[k] = self._map_ids(v)
 
-                element_api = compunddef_parser(parser=self, xml=compunddef)
-                assert len(element_api) > 0
+            return value
 
-                api.update(element_api)
+        if isinstance(value, list):
+            return [self._map_ids(v) for v in value]
 
-            else:
-                self.log.warning('Not supported {}'.format(kind))
-
-        return api
+        if value in self.id_mapping:
+            return self.id_mapping[value]
+        else:
+            return value
 
     def parse_element(self, xml):
-        """ Parse a specific Doxygen XML element
+        """ Parse an XML element """
 
-        :param xml: A lxml object representing a Doxygen XML element
-        """
+        parser = self._find_in_list(tag=xml.tag, attrib=xml.attrib)
 
-        tag = xml.tag
-        kind = xml.attrib['kind']
+        # Inject needed arguments
+        args = {'xml': xml}
+
+        require_arguments = inspect.getargspec(parser.function)[0]
+
+        for argument in require_arguments:
+            if argument == "parser":
+                args["parser"] = self
+            elif argument == "log":
+                args["log"] = self.log
+            elif argument == "scope":
+                args["scope"] = self.scope
+            elif argument == "xml":
+                continue
+            else:
+                raise RuntimeError("Not injectable arg {}".format(argument))
+
+        return parser.function(**args)
+
+    def supports(self, xml):
 
         try:
-            parser = self.element_parsers[tag][kind]
-        except KeyError:
-            self.log.exception("Did not support tag/kind")
-            return {}
-
-        if tag in self.element_parsers:
-            parser = self.element_parsers[tag]
+            self._find_in_list(tag=xml.tag, attrib=xml.attrib)
+        except RuntimeError:
+            return False
         else:
-            self.log.debug("No parser for element tag %s", tag)
-            return
-
-        if 'kind' in parser:
-
-            if 'kind' in xml.attrib:
-                kind
-
-        parser = 'parse_' + xml.attr('kind')
-        parser_function = self.parsers[parser]
-
-        return parser_function(parser=self, xml=xml, **kwargs)
+            return True
 
     def relative_path(self, path):
         """ Return the relative path from the project_path """
@@ -359,3 +422,356 @@ class DoxygenParser(object):
         path = path.replace('\\', '/')
 
         return path
+
+    def _find_in_list(self, tag, attrib):
+        """ Find the parser function for a specific XML element. """
+
+        candidate = None
+
+        for parser in self.parsers:
+
+            if parser.can_parse(tag=tag, attrib=attrib):
+
+                if candidate is None:
+                    candidate = parser
+                elif candidate.score < parser.score:
+                    candidate = parser
+                elif candidate.score == parser.score:
+                    raise RuntimeError("Two ambigious parsers")
+                else:
+                    continue
+
+        if candidate is None:
+            raise RuntimeError(
+                "No parser for tag {} attrib {}\nCandidates are: {}".format(
+                    tag, attrib, self.parsers))
+
+        return candidate
+
+    @staticmethod
+    def register(tag, attrib=None):
+        """ Decorator for registering parser functions.
+
+        The decorator will take an XML tag and optional attributes and
+        use that to register a parser function.
+        """
+        def _register(function):
+
+            for parser in DoxygenParser.default_parsers:
+
+                if parser.tag != tag:
+                    continue
+
+                if parser.attrib != attrib:
+                    continue
+
+                raise RuntimeError("Parser {} {} Already exists".format(
+                    tag, attrib))
+
+            else:
+                # If the parser does not already exist we add it
+                parser = ParserFunction(
+                    function=function, tag=tag, attrib=attrib)
+
+                DoxygenParser.default_parsers.append(parser)
+
+            return function
+
+        return _register
+
+
+@DoxygenParser.register(tag='compound')
+def parse(parser, log, xml):
+    """ Parses Doxygen CompoundType
+
+    :return: API dictionary
+    """
+
+    # Each "compound" has it's own XML file - read it and extract
+    # the "compunddef" tags
+    compound_filename = xml.attrib['refid'] + '.xml'
+    compound_path = os.path.join(
+        parser.doxygen_path, compound_filename)
+
+    compound_xml = lxml.etree.parse(source=compound_path)
+
+    api = {}
+
+    # There can be multiple "compunddef" tags in each XML file
+    # according to Doxygen's generated compound.xsd file
+    for compounddef in compound_xml.findall('compounddef'):
+
+        compunddef_api = parser.parse_element(xml=compounddef)
+        api.update(compunddef_api)
+
+    return api
+
+
+@DoxygenParser.register(tag='sectiondef', attrib={'kind': 'func'})
+def parse(parser, xml):
+    """ Parses Doxygen sectiondefType of kind 'func' """
+
+    api = {}
+
+    for memberdef in xml.findall('memberdef'):
+        api.update(parser.parse_element(xml=memberdef))
+
+    return api
+
+
+@DoxygenParser.register(tag='compounddef')
+def parse(log, xml):
+    """ Parses Doxygen compounddefType of kind unknown
+
+    :return: API dictionary
+    """
+    log.debug("No parser for %s attrib %s", xml.tag, xml.attrib)
+
+    return {}
+
+
+@DoxygenParser.register(tag='compounddef', attrib={'kind': 'file'})
+def parse(parser, xml):
+    """ Parses Doxygen compounddefType of kind 'file'
+
+    :return: API dictionary
+    """
+
+    # In this tag we find
+    #  - free functions in sectiondef tags
+    api = {}
+
+    for sectiondef in xml.findall('sectiondef'):
+        api.update(parser.parse_element(xml=sectiondef))
+
+    return api
+
+
+@DoxygenParser.register(tag='compounddef', attrib={'kind': 'struct'})
+@DoxygenParser.register(tag='compounddef', attrib={'kind': 'class'})
+def parse(parser, xml):
+    """ Parses Doxygen compounddefType of kind 'class'
+
+    :return: API dictionary
+    """
+
+    api = {}
+
+    # The output from Doxygen will have have the full scope
+    # qualifier i.g. namespace etc.
+    scoped_name = xml.findtext('compoundname')
+
+    # https://docs.python.org/3/library/stdtypes.html#str.rpartition
+    scope, _, name = scoped_name.rpartition('::')
+
+    # Get the location
+    location = xml.find('location')
+    file_path = location.attrib["file"]
+    file_path = parser.relative_path(path=file_path)
+
+    file_line_start = int(location.attrib["line"])
+
+    # Build the result
+    result = {
+        'type': xml.attrib['kind'],
+        'name': name,
+        'location': {'file': file_path, 'line': file_line_start},
+        'scope': scope,
+        'briefdescription': parser.parse_element(
+            xml=xml.find("briefdescription")),
+        'detaileddescription': parser.parse_element(
+            xml=xml.find("detaileddescription")),
+        'members': []
+    }
+
+    api = {}
+
+    with parser.set_scope(scoped_name):
+
+        for member in xml.findall('.//memberdef'):
+            member_api = parser.parse_element(xml=member)
+            api.update(member_api)
+
+            result['members'] += member_api.keys()
+
+    api[scoped_name] = result
+    return api
+
+
+@DoxygenParser.register(tag='memberdef')
+def parse(log, xml):
+    """ Parses Doxygen memberdefType of kind unknown
+
+    :return: API dictionary
+    """
+    log.debug("No parser for %s attrib %s", xml.tag, xml.attrib)
+
+    return {}
+
+
+@DoxygenParser.register(tag="memberdef", attrib={"kind": "function"})
+def parse(xml, parser, log, scope):
+    """ Parses Doxygen memberdefType
+
+    :return: API dictionary
+    """
+
+    result = {}
+
+    # First we get the name and type of the parameters
+    parameters = []
+    for param in xml.findall('param'):
+
+        assert param.tag == 'param'
+
+        parameter = {}
+
+        parameter['type'] = param.findtext('type')
+        parameter['name'] = param.findtext('declname')
+        parameter['description'] = ''
+
+        parameters.append(parameter)
+
+    # The description of the parameter is in the
+    # detaileddescription section
+
+    detaileddescription = xml.find("detaileddescription")
+
+    # The description of each parameter is stored
+    # in parameteritem tags
+    #
+    # The strange looking .// is a ElementPath expression:
+    # http://effbot.org/zone/element-xpath.htm
+
+    for item in detaileddescription.findall('.//parameteritem'):
+
+        name = item.find("parameternamelist/parametername").text
+
+        for parameter in parameters:
+
+            if name == parameter['name']:
+
+                description = item.find("parameterdescription")
+
+                parameter['description'] = parser.parse_element(
+                    xml=description)
+
+                break
+
+    # Description of the return type
+    return_xml = detaileddescription.find('.//simplesect[@kind = "return"]')
+
+    if return_xml is not None:
+        return_description = parser.parse_element(xml=return_xml)
+    else:
+        return_description = []
+
+    result["type"] = "function"
+    result["scope"] = scope
+    result["name"] = xml.find("name").text
+    result["return_type"] = xml.find("type").text
+    result["return_description"] = return_description
+    result["is_const"] = xml.attrib["const"] == "yes"
+    result["is_static"] = xml.attrib["static"] == "yes"
+    result["access"] = xml.attrib["prot"]
+    result["briefdescription"] = parser.parse_element(
+        xml=xml.find("briefdescription"))
+    result["detaileddescription"] = parser.parse_element(
+        xml=xml.find("detaileddescription"))
+    result["parameters"] = parameters
+
+    # Construct the unique name
+    unique_name = scope + '::' + result["name"] if scope else result["name"]
+
+    unique_name += '('
+    types = [parameter['type'] for parameter in parameters]
+    unique_name += ','.join(types)
+    unique_name += ')'
+
+    if result["is_const"]:
+        unique_name += 'const'
+
+    # Remove all whitespace - this is also done in standardes. See the README
+    # on the problems of unique-name
+    unique_name = unique_name.replace(" ", "")
+
+    # Save mapping from doxygen id to unique name
+    parser.id_mapping[xml.attrib["id"]] = unique_name
+
+    return {unique_name: result}
+
+
+@DoxygenParser.register(tag='simplesect', attrib={'kind': 'return'})
+@DoxygenParser.register(tag="parameterdescription")
+@DoxygenParser.register(tag="detaileddescription")
+@DoxygenParser.register(tag="briefdescription")
+def parse(xml, log, parser):
+    """ Parses Doxygen descriptionType and docSimpleSectType
+
+    :return: List of "Text information" paragraphs
+    """
+
+    paragraphs = []
+
+    for child in xml.getchildren():
+
+        if child.tag == 'para':
+            paragraphs += parser.parse_element(xml=child)
+
+        else:
+            log.debug("Not parsing %s", child.tag)
+
+    return paragraphs
+
+
+@DoxygenParser.register(tag='verbatim')
+def parse(log, xml):
+    """ Parses Doxygen verbatim tag
+
+    :return: List of "Text information" paragraphs
+    """
+    return [{"type": "code", "content": xml.text}]
+
+
+@DoxygenParser.register(tag='para')
+def parse(parser, log, xml):
+    """ Parses Doxygen docParaType
+
+    :return: List of "Text information" paragraphs
+    """
+
+    paragraphs = []
+
+    def append_text(content):
+        if not content or content.isspace():
+            return
+        else:
+            paragraphs.append(
+                {"type": "text", "content": content.strip()})
+
+    def match(xml, tag, attrib={}):
+        if tag != xml.tag:
+            return False
+
+        for key in attrib:
+            try:
+                if self.attrib[key] != attrib[key]:
+                    return False
+            except KeyError:
+                return False
+        return True
+
+    append_text(xml.text)
+
+    for child in xml.getchildren():
+
+        if match(child, tag="verbatim"):
+            paragraphs += parser.parse_element(xml=child)
+        else:
+            log.debug("Not parsing %s attrib %s", child.tag, child.attrib)
+
+        append_text(child.tail)
+
+    append_text(xml.tail)
+
+    return paragraphs

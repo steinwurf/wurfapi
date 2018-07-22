@@ -32,7 +32,7 @@ def generate_coffee_xml(testdirectory):
     return src_dir.path(), generator.generate()
 
 
-def test_index_file(testdirectory):
+def _test_index_file(testdirectory):
 
     src_dir, xml_dir = generate_coffee_xml(testdirectory)
     index = wurfapi.doxygen_parser.DoxygenParser.xml_from_path(
@@ -43,19 +43,17 @@ def test_index_file(testdirectory):
     assert len(index) > 0
 
 
-def test_read_class(testdirectory):
+def test_read_class(testdirectory, caplog):
+
+    caplog.set_level(logging.DEBUG)
 
     src_dir, xml_dir = generate_coffee_xml(testdirectory)
-    log = mock.Mock()
+    log = logging.getLogger(name='test_read_class')
 
-    parsers = {
-        'parse_class': wurfapi.doxygen_parser.parse_class_or_struct,
-    }
+    parser = wurfapi.doxygen_parser.DoxygenParser(
+        doxygen_path=xml_dir, project_path=src_dir, log=log)
 
-    reader = wurfapi.doxygen_parser.DoxygenParser(
-        parsers=parsers, project_path=src_dir, log=log)
-
-    actual_api = reader.parse_api(doxygen_path=xml_dir)
+    api = parser.parse_index()
 
     mismatch_path = testdirectory.mkdir('mismatch')
 
@@ -64,7 +62,7 @@ def test_read_class(testdirectory):
         recording_path='test/data/parser_recordings',
         mismatch_path=mismatch_path.path())
 
-    recorder.record(data=actual_api)
+    recorder.record(data=api)
 
 
 def _test_read_struct(testdirectory):
@@ -85,42 +83,6 @@ def _test_read_struct(testdirectory):
 
     recorder = record.Record(
         filename='read_struct.json',
-        recording_path='test/data/parser_recordings',
-        mismatch_path=mismatch_path.path())
-
-    recorder.record(data=actual_api)
-
-
-def _test_read_function(testdirectory, caplog):
-
-    caplog.set_level(logging.DEBUG)
-
-    src_dir, xml_dir = generate_coffee_xml(testdirectory)
-    log = logging.getLogger(name='test_read_function')
-
-    parsers = {
-        'parse_class': wurfapi.doxygen_parser.parse_class_or_struct,
-        'parse_function': wurfapi.doxygen_parser.parse_function,
-    }
-
-    parser = wurfapi.doxygen_parser.DoxygenParser(
-        parsers=parsers, project_path=src_dir, log=log)
-
-    api = parser.parse_api(doxygen_path=xml_dir)
-
-    assert "project::coffee::machine::set_number_cups(uint32_t)" in api
-    assert "project::coffee::machine::set_number_cups(std::string)" in api
-    assert "project::coffee::machine::number_cups()const" in api
-    assert "project::coffee::machine::set(constheat&,int)const" in api
-    assert "project::coffee::machine::help_brew()" in api
-
-    # Lets check the api of our set function
-    actual_api = api['project::coffee::machine::set(constheat&,int)const']
-
-    mismatch_path = testdirectory.mkdir('mismatch')
-
-    recorder = record.Record(
-        filename='read_function.json',
         recording_path='test/data/parser_recordings',
         mismatch_path=mismatch_path.path())
 
@@ -156,17 +118,10 @@ def test_parser_input_function(testdirectory, caplog):
 
     log = logging.getLogger(name='test_parser_input_function')
 
-    parsers = {
-        'parse_index': wurfapi.doxygen_parser.parse_index,
-        'parse_class': wurfapi.doxygen_parser.parse_class_or_struct,
-        'parse_compounddef_file': wurfapi.doxygen_parser.parse_compounddef_file,
-        'parse_function': wurfapi.doxygen_parser.parse_function,
-    }
-
     parser = wurfapi.doxygen_parser.DoxygenParser(
-        parsers=parsers, project_path=src_dir, log=log)
+        doxygen_path=xml_dir, project_path=src_dir, log=log)
 
-    api = parser.parse_api(doxygen_path=xml_dir)
+    api = parser.parse_index()
 
     mismatch_path = testdirectory.mkdir('mismatch')
 
@@ -176,5 +131,3 @@ def test_parser_input_function(testdirectory, caplog):
         mismatch_path=mismatch_path.path())
 
     recorder.record(data=api)
-
-    assert 0

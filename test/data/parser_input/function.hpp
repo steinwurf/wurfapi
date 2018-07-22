@@ -19,4 +19,5 @@
 ///     }
 ///
 /// And then some text
+///
 uint32_t set(const heat& h, int max) const;

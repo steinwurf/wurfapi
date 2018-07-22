@@ -344,6 +344,7 @@ Python dictionary representing a C++ function::
       'location' { 'file': 'filename.h', 'line': 10},
       'scope': 'unique-name' | None,
       'return_type': 'sometype',
+      'return_description': paragraphs,
       'is_const': True | False,
       'is_static': True | False,
       'access': 'public' | 'protected' | 'private',

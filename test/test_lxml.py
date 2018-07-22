@@ -65,215 +65,215 @@ xml = """
 </memberdef>"""
 
 
-def parse_paragraphs(log, xml):
-    """ Parses Doxygen docParaType
+# def parse_paragraphs(log, xml):
+#     """ Parses Doxygen docParaType
 
-    XML Schema:
-        <xsd:complexType name="docParaType" mixed="true">
-        <xsd:group ref="docCmdGroup" minOccurs="0" maxOccurs="unbounded" />
-        </xsd:complexType>
+#     XML Schema:
+#         <xsd:complexType name="docParaType" mixed="true">
+#         <xsd:group ref="docCmdGroup" minOccurs="0" maxOccurs="unbounded" />
+#         </xsd:complexType>
 
-    XML Schema:
+#     XML Schema:
 
-        <xsd:group name="docCmdGroup">
-        <xsd:choice>
-        <xsd:group ref="docTitleCmdGroup"/>
-        <xsd:element name="linebreak" type="docEmptyType" />
-        <xsd:element name="hruler" type="docEmptyType" />
-        <xsd:element name="preformatted" type="docMarkupType" />
-        <xsd:element name="programlisting" type="listingType" />
-        <xsd:element name="verbatim" type="xsd:string" />
-        <xsd:element name="indexentry" type="docIndexEntryType" />
-        <xsd:element name="orderedlist" type="docListType" />
-        <xsd:element name="itemizedlist" type="docListType" />
-        <xsd:element name="simplesect" type="docSimpleSectType" />
-        <xsd:element name="title" type="docTitleType" />
-        <xsd:element name="variablelist" type="docVariableListType" />
-        <xsd:element name="table" type="docTableType" />
-        <xsd:element name="heading" type="docHeadingType" />
-        <xsd:element name="image" type="docImageType" />
-        <xsd:element name="dotfile" type="docFileType" />
-        <xsd:element name="mscfile" type="docFileType" />
-        <xsd:element name="diafile" type="docFileType" />
-        <xsd:element name="toclist" type="docTocListType" />
-        <xsd:element name="language" type="docLanguageType" />
-        <xsd:element name="parameterlist" type="docParamListType" />
-        <xsd:element name="xrefsect" type="docXRefSectType" />
-        <xsd:element name="copydoc" type="docCopyType" />
-        <xsd:element name="blockquote" type="docBlockQuoteType" />
-        <xsd:element name="parblock" type="docParBlockType" />
-        </xsd:choice>
-    </xsd:group>
+#         <xsd:group name="docCmdGroup">
+#         <xsd:choice>
+#         <xsd:group ref="docTitleCmdGroup"/>
+#         <xsd:element name="linebreak" type="docEmptyType" />
+#         <xsd:element name="hruler" type="docEmptyType" />
+#         <xsd:element name="preformatted" type="docMarkupType" />
+#         <xsd:element name="programlisting" type="listingType" />
+#         <xsd:element name="verbatim" type="xsd:string" />
+#         <xsd:element name="indexentry" type="docIndexEntryType" />
+#         <xsd:element name="orderedlist" type="docListType" />
+#         <xsd:element name="itemizedlist" type="docListType" />
+#         <xsd:element name="simplesect" type="docSimpleSectType" />
+#         <xsd:element name="title" type="docTitleType" />
+#         <xsd:element name="variablelist" type="docVariableListType" />
+#         <xsd:element name="table" type="docTableType" />
+#         <xsd:element name="heading" type="docHeadingType" />
+#         <xsd:element name="image" type="docImageType" />
+#         <xsd:element name="dotfile" type="docFileType" />
+#         <xsd:element name="mscfile" type="docFileType" />
+#         <xsd:element name="diafile" type="docFileType" />
+#         <xsd:element name="toclist" type="docTocListType" />
+#         <xsd:element name="language" type="docLanguageType" />
+#         <xsd:element name="parameterlist" type="docParamListType" />
+#         <xsd:element name="xrefsect" type="docXRefSectType" />
+#         <xsd:element name="copydoc" type="docCopyType" />
+#         <xsd:element name="blockquote" type="docBlockQuoteType" />
+#         <xsd:element name="parblock" type="docParBlockType" />
+#         </xsd:choice>
+#     </xsd:group>
 
-    """
+#     """
 
-    paragraphs = []
+#     paragraphs = []
 
-    def append_text(content):
-        if not content or content.isspace():
-            return
-        else:
-            paragraphs.append(
-                {"type": "text", "content": content.strip()})
+#     def append_text(content):
+#         if not content or content.isspace():
+#             return
+#         else:
+#             paragraphs.append(
+#                 {"type": "text", "content": content.strip()})
 
-    append_text(xml.text)
+#     append_text(xml.text)
 
-    for child in xml.getchildren():
+#     for child in xml.getchildren():
 
-        if child.tag == 'verbatim':
-            paragraphs.append(
-                {"type": "code", "content": child.text})
-        else:
-            log.debug("Not parsing %s", child.tag)
+#         if child.tag == 'verbatim':
+#             paragraphs.append(
+#                 {"type": "code", "content": child.text})
+#         else:
+#             log.debug("Not parsing %s", child.tag)
 
-        append_text(child.tail)
+#         append_text(child.tail)
 
-    append_text(xml.tail)
+#     append_text(xml.tail)
 
-    return paragraphs
-
-
-def parse_descriptiontype(log, xml):
-    """ Parses Doxygen descriptionType
-
-    XML Schema:
-
-        <xsd:complexType name="descriptionType" mixed="true">
-        <xsd:sequence>
-        <xsd:element name="title" type="xsd:string" minOccurs="0"/>
-        <xsd:element name="para" type="docParaType" minOccurs="0" maxOccurs="unbounded" />
-        <xsd:element name="sect1" type="docSect1Type" minOccurs="0" maxOccurs="unbounded" />
-        <xsd:element name="internal" type="docInternalType" minOccurs="0" />
-        </xsd:sequence>
-        </xsd:complexType>
-    """
-
-    paragraphs = []
-
-    for child in xml.getchildren():
-
-        if child.tag == 'para':
-            paragraphs += parse_paragraphs(log=log, xml=child)
-
-        else:
-            log.debug("Not parsing %s", child.tag)
-
-    return paragraphs
+#     return paragraphs
 
 
-def parse_function_parameters(log, xml):
-    """ Parse the parameters of a function.
+# def parse_descriptiontype(log, xml):
+#     """ Parses Doxygen descriptionType
 
-    XML Schema:
+#     XML Schema:
 
-    <xsd:complexType name="memberdefType">
-        <xsd:sequence>
-            ...
-            <xsd:element name="param" type="paramType" minOccurs="0" maxOccurs="unbounded" />
-            ...
-            <xsd:element name="detaileddescription" type="descriptionType" minOccurs="0" />
-            ...
-        </xsd:sequence>
-        <xsd:attribute name="kind" type="DoxMemberKind" />
-        ...
-    </xsd:complexType>
+#         <xsd:complexType name="descriptionType" mixed="true">
+#         <xsd:sequence>
+#         <xsd:element name="title" type="xsd:string" minOccurs="0"/>
+#         <xsd:element name="para" type="docParaType" minOccurs="0" maxOccurs="unbounded" />
+#         <xsd:element name="sect1" type="docSect1Type" minOccurs="0" maxOccurs="unbounded" />
+#         <xsd:element name="internal" type="docInternalType" minOccurs="0" />
+#         </xsd:sequence>
+#         </xsd:complexType>
+#     """
 
-    """
-    assert xml.tag == 'memberdef'
-    assert xml.attrib['kind'] == 'function'
+#     paragraphs = []
 
-    parameters = []
+#     for child in xml.getchildren():
 
-    # First we get the name and type of the parameters
+#         if child.tag == 'para':
+#             paragraphs += parse_paragraphs(log=log, xml=child)
 
-    for param in xml.findall('param'):
+#         else:
+#             log.debug("Not parsing %s", child.tag)
 
-        assert param.tag == 'param'
-
-        parameter = {}
-
-        parameter['type'] = param.findtext('type')
-        parameter['name'] = param.findtext('declname')
-        parameter['description'] = ''
-
-        parameters.append(parameter)
-
-    # The description of the parameter is in the
-    # detaileddescription section
-
-    detaileddescription = xml.find("detaileddescription")
-
-    # The description of each parameter is stored
-    # in parameteritem tags
-    #
-    # The strange looking .// is a ElementPath expression:
-    # http://effbot.org/zone/element-xpath.htm
-
-    for item in detaileddescription.findall('.//parameteritem'):
-
-        name = item.find("parameternamelist/parametername").text
-
-        for parameter in parameters:
-
-            if name == parameter['name']:
-
-                description = item.find("parameterdescription")
-
-                parameter['description'] = parse_descriptiontype(
-                    log=log, xml=description)
-
-                break
-
-    return parameters
+#     return paragraphs
 
 
-def _test_pyquery_text():
+# def parse_function_parameters(log, xml):
+#     """ Parse the parameters of a function.
 
-    pq = pyquery.PyQuery(xml, parser='xml')
+#     XML Schema:
 
-    # pq.tag
+#     <xsd:complexType name="memberdefType">
+#         <xsd:sequence>
+#             ...
+#             <xsd:element name="param" type="paramType" minOccurs="0" maxOccurs="unbounded" />
+#             ...
+#             <xsd:element name="detaileddescription" type="descriptionType" minOccurs="0" />
+#             ...
+#         </xsd:sequence>
+#         <xsd:attribute name="kind" type="DoxMemberKind" />
+#         ...
+#     </xsd:complexType>
 
-    for node in pq:
-        print("tag = %s" % node.tag)
+#     """
+#     assert xml.tag == 'memberdef'
+#     assert xml.attrib['kind'] == 'function'
 
-        for child in node.getchildren():
-            node.remove(child)
+#     parameters = []
 
-    print(unicode(pq))
+#     # First we get the name and type of the parameters
 
-    # print(pq.text())
+#     for param in xml.findall('param'):
 
-    assert 0
+#         assert param.tag == 'param'
+
+#         parameter = {}
+
+#         parameter['type'] = param.findtext('type')
+#         parameter['name'] = param.findtext('declname')
+#         parameter['description'] = ''
+
+#         parameters.append(parameter)
+
+#     # The description of the parameter is in the
+#     # detaileddescription section
+
+#     detaileddescription = xml.find("detaileddescription")
+
+#     # The description of each parameter is stored
+#     # in parameteritem tags
+#     #
+#     # The strange looking .// is a ElementPath expression:
+#     # http://effbot.org/zone/element-xpath.htm
+
+#     for item in detaileddescription.findall('.//parameteritem'):
+
+#         name = item.find("parameternamelist/parametername").text
+
+#         for parameter in parameters:
+
+#             if name == parameter['name']:
+
+#                 description = item.find("parameterdescription")
+
+#                 parameter['description'] = parse_descriptiontype(
+#                     log=log, xml=description)
+
+#                 break
+
+#     return parameters
 
 
-def test_lxml(caplog):
+# def _test_pyquery_text():
 
-    caplog.set_level(logging.DEBUG)
+#     pq = pyquery.PyQuery(xml, parser='xml')
 
-    root = lxml.etree.fromstring(xml)
+#     # pq.tag
 
-    parser = mock.Mock()
-    parser.log = logging.getLogger("test")
-    log = parser.log
+#     for node in pq:
+#         print("tag = %s" % node.tag)
 
-    result = {}
+#         for child in node.getchildren():
+#             node.remove(child)
 
-    result["type"] = "function"
-    result["name"] = root.find("name").text
-    result["return_type"] = root.find("type").text
-    result["is_const"] = root.attrib["const"] == "yes"
-    result["is_static"] = root.attrib["const"] == "yes"
-    result["access"] = root.attrib["prot"]
-    result["briefdescription"] = parse_descriptiontype(
-        log=log, xml=root.find("briefdescription"))
-    result["detaileddescription"] = parse_descriptiontype(
-        log=log, xml=root.find("detaileddescription"))
-    result["parameters"] = parse_function_parameters(
-        log=log, xml=root)
+#     print(unicode(pq))
 
-    print(result)
+#     # print(pq.text())
 
-    # assert 0
+#     assert 0
+
+
+# def test_lxml(caplog):
+
+#     caplog.set_level(logging.DEBUG)
+
+#     root = lxml.etree.fromstring(xml)
+
+#     parser = mock.Mock()
+#     parser.log = logging.getLogger("test")
+#     log = parser.log
+
+#     result = {}
+
+#     result["type"] = "function"
+#     result["name"] = root.find("name").text
+#     result["return_type"] = root.find("type").text
+#     result["is_const"] = root.attrib["const"] == "yes"
+#     result["is_static"] = root.attrib["const"] == "yes"
+#     result["access"] = root.attrib["prot"]
+#     result["briefdescription"] = parse_descriptiontype(
+#         log=log, xml=root.find("briefdescription"))
+#     result["detaileddescription"] = parse_descriptiontype(
+#         log=log, xml=root.find("detaileddescription"))
+#     result["parameters"] = parse_function_parameters(
+#         log=log, xml=root)
+
+#     print(result)
+
+# assert 0
 
 
 class ParserFunction(object):
@@ -295,6 +295,10 @@ class ParserFunction(object):
                 return False
 
         return True
+
+    def __repr__(self):
+        return ("<{} tag='{}', attrib='{}'>".format(
+            self.__class__.__name__, self.tag, self.attrib))
 
 
 class ParserList(object):
@@ -363,6 +367,15 @@ class ParserList(object):
 
         return parser.function(**args)
 
+    def relative_path(self, path):
+        """ Return the relative path from the project_path """
+        path = os.path.relpath(path=path, start=self.project_path)
+
+        # Make sure we use unix / linux style paths - also on windows
+        path = path.replace('\\', '/')
+
+        return path
+
     @staticmethod
     def _find_in_list(parser_list, tag, attrib):
         """ Find the parser function for a specific XML element. """
@@ -411,6 +424,7 @@ class ParserList(object):
         return _register
 
 
+@ParserList.register(tag="parameterdescription")
 @ParserList.register(tag="detaileddescription")
 @ParserList.register(tag="briefdescription")
 def parse(xml, log, parser):
@@ -474,6 +488,46 @@ def parse(xml, parser, log, scope):
 
     result = {}
 
+    # First we get the name and type of the parameters
+    parameters = []
+    for param in xml.findall('param'):
+
+        assert param.tag == 'param'
+
+        parameter = {}
+
+        parameter['type'] = param.findtext('type')
+        parameter['name'] = param.findtext('declname')
+        parameter['description'] = ''
+
+        parameters.append(parameter)
+
+    # The description of the parameter is in the
+    # detaileddescription section
+
+    detaileddescription = xml.find("detaileddescription")
+
+    # The description of each parameter is stored
+    # in parameteritem tags
+    #
+    # The strange looking .// is a ElementPath expression:
+    # http://effbot.org/zone/element-xpath.htm
+
+    for item in detaileddescription.findall('.//parameteritem'):
+
+        name = item.find("parameternamelist/parametername").text
+
+        for parameter in parameters:
+
+            if name == parameter['name']:
+
+                description = item.find("parameterdescription")
+
+                parameter['description'] = parser.parse_element(
+                    xml=description)
+
+                break
+
     result["type"] = "function"
     result["scope"] = scope if scope else "global"
     result["name"] = xml.find("name").text
@@ -485,8 +539,7 @@ def parse(xml, parser, log, scope):
         xml=xml.find("briefdescription"))
     result["detaileddescription"] = parser.parse_element(
         xml=xml.find("detaileddescription"))
-    result["parameters"] = parse_function_parameters(
-        log=log, xml=xml)
+    result["parameters"] = parameters
 
     return result
 

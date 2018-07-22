@@ -1,1 +1,71 @@
-{}
+{
+  "set(constheat&,int)const": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "Set the heat.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [
+      {
+        "content": "This function is use to set the head of the machine.",
+        "type": "text"
+      },
+      {
+        "content": "void yes();\n",
+        "type": "code"
+      },
+      {
+        "content": "But maybe it also does other things?",
+        "type": "text"
+      },
+      {
+        "content": "Test this break",
+        "type": "text"
+      },
+      {
+        "content": "And then some text",
+        "type": "text"
+      }
+    ],
+    "is_const": true,
+    "is_static": false,
+    "name": "set",
+    "parameters": [
+      {
+        "description": [
+          {
+            "content": "Set the heat object.",
+            "type": "text"
+          }
+        ],
+        "name": "h",
+        "type": "const heat &"
+      },
+      {
+        "description": [
+          {
+            "content": "The maximum heat value.",
+            "type": "text"
+          }
+        ],
+        "name": "max",
+        "type": "int"
+      }
+    ],
+    "return_description": [
+      {
+        "content": "The current heat.",
+        "type": "text"
+      },
+      {
+        "content": "for (uint64_t i = 0; i < 3; ++i)\n{\n    std::cout << i << \"\\n\";\n}\n",
+        "type": "code"
+      }
+    ],
+    "return_type": "uint32_t",
+    "scope": null,
+    "type": "function"
+  }
+}
