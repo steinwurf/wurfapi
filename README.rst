@@ -345,11 +345,12 @@ Python dictionary representing a C++ function::
       'scope': 'unique-name' | None,
       'return_type': 'sometype',
       'return_description': paragraphs,
+      'signature': 'text',
       'is_const': True | False,
       'is_static': True | False,
       'access': 'public' | 'protected' | 'private',
-      'briefdescription: 'some text',
-      'detaileddescription: 'some text
+      'briefdescription: paragraphs,
+      'detaileddescription: paragraphs,
       'parameters': [
         { 'type': 'sometype', 'name': 'somename', 'description': description },
         { 'type': 'sometype', 'name': 'somename', 'description': description }

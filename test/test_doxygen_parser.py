@@ -32,23 +32,12 @@ def generate_coffee_xml(testdirectory):
     return src_dir.path(), generator.generate()
 
 
-def _test_index_file(testdirectory):
-
-    src_dir, xml_dir = generate_coffee_xml(testdirectory)
-    index = wurfapi.doxygen_parser.DoxygenParser.xml_from_path(
-        doxygen_path=xml_dir)
-
-    # There should be multiple "compounddef" elements in the generated
-    # XML
-    assert len(index) > 0
-
-
-def test_read_class(testdirectory, caplog):
+def test_coffee(testdirectory, caplog):
 
     caplog.set_level(logging.DEBUG)
 
     src_dir, xml_dir = generate_coffee_xml(testdirectory)
-    log = logging.getLogger(name='test_read_class')
+    log = logging.getLogger(name='test_coffee')
 
     parser = wurfapi.doxygen_parser.DoxygenParser(
         doxygen_path=xml_dir, project_path=src_dir, log=log)
@@ -58,35 +47,11 @@ def test_read_class(testdirectory, caplog):
     mismatch_path = testdirectory.mkdir('mismatch')
 
     recorder = record.Record(
-        filename='read_class.json',
+        filename='coffee.json',
         recording_path='test/data/parser_recordings',
         mismatch_path=mismatch_path.path())
 
     recorder.record(data=api)
-
-
-def _test_read_struct(testdirectory):
-
-    src_dir, xml_dir = generate_coffee_xml(testdirectory)
-    log = mock.Mock()
-
-    parsers = {
-        'parse_struct': wurfapi.doxygen_parser.parse_class_or_struct,
-    }
-
-    parser = wurfapi.doxygen_parser.DoxygenParser(
-        parsers=parsers, project_path=src_dir, log=log)
-
-    actual_api = parser.parse_api(doxygen_path=xml_dir)
-
-    mismatch_path = testdirectory.mkdir('mismatch')
-
-    recorder = record.Record(
-        filename='read_struct.json',
-        recording_path='test/data/parser_recordings',
-        mismatch_path=mismatch_path.path())
-
-    recorder.record(data=actual_api)
 
 
 def generate_xml(testdirectory, source_file):
@@ -131,3 +96,20 @@ def test_parser_input_function(testdirectory, caplog):
         mismatch_path=mismatch_path.path())
 
     recorder.record(data=api)
+
+
+def test_parser_replace_with():
+
+    data_in = {
+        'a': {'b': 'replace', 'c': ['replace', {'a': 'replace'}]}
+    }
+
+    data_out = wurfapi.doxygen_parser.replace_with(
+        {'replace': 'with'}, data_in
+    )
+
+    data_expect = {
+        'a': {'b': 'with', 'c': ['with', {'a': 'with'}]}
+    }
+
+    assert data_out == data_expect

@@ -31,9 +31,10 @@ def generate_coffee_api(testdirectory):
     log = mock.Mock()
 
     reader = wurfapi.doxygen_parser.DoxygenParser(
+        doxygen_path=xml_dir,
         project_path=src_dir.path(), log=log)
 
-    return reader.parse_api(doxygen_path=xml_dir)
+    return reader.parse_index()
 
 
 def test_template_finder_builtin(testdirectory):

@@ -15,8 +15,9 @@ public:
         void fill();
     };
 
-    /// @brief Set the number of cups to brew. @see number_cups() for how many
-    ///        cups
+    /// @brief Set the number of cups to brew.
+    ///
+    /// You can see number_cups() for how many cups
     void set_number_cups(uint32_t cups);
     void set_number_cups(std::string cups);
 

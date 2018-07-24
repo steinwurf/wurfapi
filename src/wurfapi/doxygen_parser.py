@@ -4,6 +4,7 @@ import pyquery
 import lxml
 import inspect
 import contextlib
+import copy
 
 
 def parse_description(parser, xml):
@@ -253,25 +254,62 @@ def nada(parser, xml):
     pass
 
 
+def match(xml, tag, attrib={}):
+    """ Matches whether the XML has the specified tag and attributes.
+
+    :return: True if there is a match otherwise False
+    """
+
+    if tag != xml.tag:
+        return False
+
+    for key in attrib:
+        try:
+            if xml.attrib[key] != attrib[key]:
+                return False
+        except KeyError:
+            return False
+
+    return True
+
+
+def replace_with(replace, data):
+    """ Replaces values in the data using the mapping provided in the
+        replace dict.
+
+    :param replace: Dictionary where all keys found in the input should
+        be replaced with the corresponding value.
+    :param data: Dictionary of list of values that should be replaced.
+
+    return The updated copy with values replaced.
+    """
+
+    def _replace(value):
+        if isinstance(value, dict):
+            for k, v in value.iteritems():
+                value[k] = _replace(v)
+
+            return value
+
+        if isinstance(value, list):
+            return [_replace(v) for v in value]
+
+        if value in replace:
+            return replace[value]
+        else:
+            return value
+
+    data = copy.deepcopy(data)
+
+    return _replace(data)
+
+
 class ParserFunction(object):
 
     def __init__(self, function, tag, attrib):
         self.function = function
         self.tag = tag
         self.attrib = attrib if attrib else {}
-
-    def can_parse(self, tag, attrib):
-        if tag != self.tag:
-            return False
-
-        for key in self.attrib:
-            try:
-                if self.attrib[key] != attrib[key]:
-                    return False
-            except KeyError:
-                return False
-
-        return True
 
     @property
     def score(self):
@@ -286,13 +324,11 @@ class ParserFunction(object):
         2. For "compounddef" and kind "class"
 
         Then if both returns True for can_parse then 2 will be
-        choosen since it has a score of 2 and the other has a score
-        of 1.
+        choosen since it has a score of 1 and the other has a score
+        of 0.
         """
-        tag_score = 1
-        attrib_score = len(self.attrib) if self.attrib else 0
 
-        return tag_score + attrib_score
+        return len(self.attrib)
 
     def __repr__(self):
         return ("<{} tag='{}', attrib='{}'>".format(
@@ -363,28 +399,12 @@ class DoxygenParser(object):
 
             api.update(compound_api)
 
-        return self._map_ids(api)
-
-    def _map_ids(self, value):
-
-        if isinstance(value, dict):
-            for k, v in value.iteritems():
-                value[k] = self._map_ids(v)
-
-            return value
-
-        if isinstance(value, list):
-            return [self._map_ids(v) for v in value]
-
-        if value in self.id_mapping:
-            return self.id_mapping[value]
-        else:
-            return value
+        return replace_with(replace=self.id_mapping, data=api)
 
     def parse_element(self, xml):
         """ Parse an XML element """
 
-        parser = self._find_in_list(tag=xml.tag, attrib=xml.attrib)
+        parser = self._find_in_list(xml=xml)
 
         # Inject needed arguments
         args = {'xml': xml}
@@ -423,14 +443,18 @@ class DoxygenParser(object):
 
         return path
 
-    def _find_in_list(self, tag, attrib):
-        """ Find the parser function for a specific XML element. """
+    def _find_in_list(self, xml):
+        """ Find the parser function for a specific XML element.
+
+        :param xml: The XML element
+        :return: A ParserFunction object
+        """
 
         candidate = None
 
         for parser in self.parsers:
 
-            if parser.can_parse(tag=tag, attrib=attrib):
+            if match(xml=xml, tag=parser.tag, attrib=parser.attrib):
 
                 if candidate is None:
                     candidate = parser
@@ -444,7 +468,7 @@ class DoxygenParser(object):
         if candidate is None:
             raise RuntimeError(
                 "No parser for tag {} attrib {}\nCandidates are: {}".format(
-                    tag, attrib, self.parsers))
+                    xml.tag, xml.attrib, self.parsers))
 
         return candidate
 
@@ -668,8 +692,9 @@ def parse(xml, parser, log, scope):
 
     result["type"] = "function"
     result["scope"] = scope
-    result["name"] = xml.find("name").text
-    result["return_type"] = xml.find("type").text
+    result["name"] = xml.findtext("name")
+    result["return_type"] = xml.findtext("type")
+    result["signature"] = result["name"] + xml.findtext("argsstring")
     result["return_description"] = return_description
     result["is_const"] = xml.attrib["const"] == "yes"
     result["is_static"] = xml.attrib["static"] == "yes"
@@ -733,6 +758,29 @@ def parse(log, xml):
     return [{"type": "code", "content": xml.text}]
 
 
+@DoxygenParser.register(tag='ref')
+def parse(log, xml):
+    """ Parses Doxygen ref tag
+
+    :return: List of "Text information" paragraphs
+    """
+    link = xml.attrib["refid"]
+    return [{"type": "text", "content": xml.text, "link": link}]
+
+
+@DoxygenParser.register(tag='simplesect', attrib={'kind': 'see'})
+def parse(parser, log, xml):
+    """ Parses Doxygen verbatim tag
+
+    :return: List of "Text information" paragraphs
+    """
+    paragraphs = []
+    for child in xml.getchildren():
+        paragraphs += parser.parse_element(xml=child)
+
+    return paragraphs
+
+
 @DoxygenParser.register(tag='para')
 def parse(parser, log, xml):
     """ Parses Doxygen docParaType
@@ -749,26 +797,22 @@ def parse(parser, log, xml):
             paragraphs.append(
                 {"type": "text", "content": content.strip()})
 
-    def match(xml, tag, attrib={}):
-        if tag != xml.tag:
-            return False
-
-        for key in attrib:
-            try:
-                if xml.attrib[key] != attrib[key]:
-                    return False
-            except KeyError:
-                return False
-        return True
-
     append_text(xml.text)
 
     for child in xml.getchildren():
 
-        if match(child, tag="verbatim"):
+        if match(xml=child, tag="verbatim"):
             paragraphs += parser.parse_element(xml=child)
+
+        elif match(xml=child, tag="ref"):
+            paragraphs += parser.parse_element(xml=child)
+
+        elif match(xml=child, tag="simplesect", attrib={"kind": "see"}):
+            paragraphs += parser.parse_element(xml=child)
+
         else:
-            log.debug("Not parsing %s attrib %s", child.tag, child.attrib)
+            log.debug("For %s not parsing %s attrib %s",
+                      xml.tag, child.tag, child.attrib)
 
         append_text(child.tail)
 

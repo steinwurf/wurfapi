@@ -19,20 +19,30 @@
 {%- endfor -%}
 {%- do signature.append(parameters|join(', ')) -%}
 {%- do signature.append(" **)** ") -%}
+{%- if function["is_const"] -%}
+{%- do signature.append("const") -%}
+{%- endif -%}
 {{ signature|join("") -}}
 {%- endmacro -%}
 
 {%- macro create_function_heading(function) -%}
 {# We build the signature of a function as a list of strings #}
-{%- set signature = [function["return_type"], " ", function["name"]] -%}
-{%- do signature.append(" ( ") -%}
-{%- set parameters = [] -%}
-{%- for p in function["parameters"] -%}
-    {%- do parameters.append(p["type"] + " " + p["name"]) -%}
+{{ function["return_type"] + " " + function["signature"] + " ``[static]``" }}
+{%- endmacro -%}
+
+{%- macro print_description(description) -%}
+{%- set output = [] -%}
+{%- for para in description -%}
+    {% if para["type"] == "text" -%}
+        {%- if "link" in para -%}
+            {%- set link = ":ref:`"+para["content"]+"<" +para["link"] +">`" -%}
+            {%- do output.append(link) -%}
+        {% else %}
+            {%- do output.append(para["content"]) -%}
+        {%- endif -%}
+    {%- endif -%}
 {%- endfor -%}
-{%- do signature.append(parameters|join(', ')) -%}
-{%- do signature.append(" ) ") -%}
-{{ signature|join("") -}}
+{{ output|join(" ") -}}
 {%- endmacro -%}
 
 
@@ -43,8 +53,9 @@
 {% set function_name = create_function_heading(function) -%}
 {{ create_heading(function_name, ".") }}
 
-{{function['briefdescription']}}
-{{function['detaileddescription']}}
+{{ print_description(function['briefdescription']) }}
+
+{{ print_description(function['detaileddescription']) }}
 
 {% endmacro -%}
 {% set class = api[selector] %}
@@ -57,7 +68,7 @@
 
 **In header:** {{ class["location"]["file"] }}
 
-{% if class["briefdescription"] != "" %}
+{% if class["briefdescription"] !=  []%}
 Brief description
 -----------------
 {{class["briefdescription"]}}
