@@ -9,6 +9,13 @@
 {{ create_heading(name, char) }}
 {%- endmacro -%}
 
+{%- macro create_function_heading(function) -%}
+{%- set name = function["return_type"] + " " + function["signature"] -%}
+{%- if function["is_static"] %} {%- set name = name + " ``[static]``" %}{%endif%}
+{%- if function["is_virtual"] %} {%- set name = name + " ``[virtual]``" %}{%endif%}
+{{ create_heading(name, ".") }}
+{%- endmacro -%}
+
 {%- macro create_function_signature(unique_name, function) -%}
 {# We build the signature of a function as a list of strings #}
 {%- set signature = [":ref:`", function["name"], "<", unique_name, ">`"] -%}
@@ -25,40 +32,109 @@
 {{ signature|join("") -}}
 {%- endmacro -%}
 
-{%- macro create_function_heading(function) -%}
-{# We build the signature of a function as a list of strings #}
-{{ function["return_type"] + " " + function["signature"] + " ``[static]``" }}
+{%- macro format_code_block(paragraph) %}
+
+.. code-block:: c++
+
+{{ paragraph["content"] | indent(first=true) }}
+
+{% endmacro -%}
+
+{%- macro format_code_inline(paragraph) -%}
+``{{ paragraph["content"] }}``{{ " " }}
 {%- endmacro -%}
 
+{%- macro format_code(paragraph) -%}
+{%- if paragraph["is_block"] -%}
+    {{ format_code_block(paragraph) }}
+{%- else -%}
+    {{ format_code_inline(paragraph) }}
+{%- endif -%}
+{%- endmacro -%}
+
+{# FORMAT_TEXT_LINK #}
+
+{%- macro format_text_link(paragraph) -%}
+:ref:`{{ paragraph["content"] }}<{{ paragraph["link"] }}>`
+{%- endmacro -%}
+
+{# FORMAT_TEXT #}
+
+{%- macro format_text(paragraph) -%}
+
+{%- if "link" in paragraph -%}
+    {{ format_text_link(paragraph) }}
+{%- else -%}
+    {{ paragraph["content"] }}
+{%- endif -%}
+{{ " " }}
+{%- endmacro -%}
+
+{# PRINT_DESCRIPTION #}
 {%- macro print_description(description) -%}
-{%- set output = [] -%}
 {%- for para in description -%}
     {% if para["type"] == "text" -%}
-        {%- if "link" in para -%}
-            {%- set link = ":ref:`"+para["content"]+"<" +para["link"] +">`" -%}
-            {%- do output.append(link) -%}
-        {% else %}
-            {%- do output.append(para["content"]) -%}
-        {%- endif -%}
+        {{ format_text(para) }}
+    {%- endif -%}
+    {%- if para["type"] == "code" -%}
+        {{ format_code(para) }}
     {%- endif -%}
 {%- endfor -%}
-{{ output|join(" ") -}}
+{%- endmacro -%}
+
+{# FORMAT_MEMBER_FUNCTIONS #}
+{%- macro format_member_functions(type, static) -%}
+
+{%- set members = [] -%}
+
+{%- for member_selector in type["members"] -%}
+    {% set member = api[member_selector] -%}
+    {%- if member["type"] in ["function"] -%}
+    {%- if member["access"] in ["public"] -%}
+    {%- if member["is_static"] == static -%}
+        {%- do members.append(member_selector) -%}
+    {%- endif -%}
+    {%- endif -%}
+    {%- endif -%}
+{%- endfor %}
+{%- if members|length -%}
+
+.. csv-table::
+    :widths: auto
+
+{% for member_selector in members -%}
+    {% set member = api[member_selector] %}
+    "{% if member["is_virtual"] -%}{{"virtual "}}{%- endif -%}{{member["return_type"]}}", "{{- create_function_signature(member_selector, member) }}"
+{%- endfor %}
+{%- endif -%}
+{%- endmacro -%}
+
+{# FORMAT_RETURN_DESCRIPTION #}
+{%- macro format_return_description(type, description) -%}
+{%- if description|length -%}
+{% set description = "Returns: "+ print_description(description) %}
+{{ description }}
+{%- endif -%}
 {%- endmacro -%}
 
 
+{# CREATE_FUNCTION_DESCRIPTION #}
 {%- macro create_function_description(unique_name, function) -%}
 {# First element is a label to the unique_name #}
 .. _{{unique_name}}:
 
-{% set function_name = create_function_heading(function) -%}
-{{ create_heading(function_name, ".") }}
+{{ create_function_heading(function) }}
 
 {{ print_description(function['briefdescription']) }}
 
 {{ print_description(function['detaileddescription']) }}
 
+{{ format_return_description(function['return_type'], function['return_description']) }}
+
 {% endmacro -%}
 {% set class = api[selector] %}
+
+.. _{{selector}}:
 
 {{ create_class_heading(class, "=") }}
 
@@ -66,29 +142,44 @@
 **Scope:** {{ class["scope"] }}
 {% endif %}
 
-**In header:** {{ class["location"]["file"] }}
+**In header:** ``#include<{{ class["location"]["file"] }}>``
 
-{% if class["briefdescription"] !=  []%}
+{% if class["briefdescription"] %}
 Brief description
 -----------------
-{{class["briefdescription"]}}
+{{ print_description(class["briefdescription"]) }}
 {% endif %}
 
+{% set member_description %}
+{{ format_member_functions(api[selector], static=false) }}
+{% endset %}
+
+{% if member_description %}
 Member functions (public)
 -------------------------
 
-.. csv-table::
-    :widths: auto
+{{ member_description }}
 
-{% for member_selector in class["members"] -%}
-{% set member = api[member_selector] %}
-    {%- if member["type"] in ["function"] %}
-    "{{member["return_type"]}}", "{{- create_function_signature(member_selector, member) }}"
-    {%- endif -%}
-{%- endfor %}
+{% endif %}
 
+{% set member_description %}
+{{ format_member_functions(api[selector], static=true) }}
+{% endset %}
+
+{% if member_description | length %}
+Static member functions (public)
+--------------------------------
+
+ok
+{{ member_description | length }}
+
+{% endif %}
+
+{% if class["detaileddescription"] %}
 Description
 -----------
+{{ print_description(class["detaileddescription"]) }}
+{% endif %}
 
 
 Member Function Description
@@ -96,5 +187,7 @@ Member Function Description
 
 {% for member_selector in class["members"] -%}
 {% set member = api[member_selector] %}
+{%- if member["access"] in ["public"] %}
 {{- create_function_description(member_selector, member) }}
+{%- endif -%}
 {%- endfor %}

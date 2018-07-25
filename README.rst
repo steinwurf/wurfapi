@@ -348,6 +348,9 @@ Python dictionary representing a C++ function::
       'signature': 'text',
       'is_const': True | False,
       'is_static': True | False,
+      'is_virtual': True | False,
+      'is_explicit': True | False,
+      'is_inline': True | False,
       'access': 'public' | 'protected' | 'private',
       'briefdescription: paragraphs,
       'detaileddescription: paragraphs,
@@ -383,6 +386,7 @@ Text information is stored in a list of paragraphs::
     code = {
       'type': 'code',
       'content': 'void print();',
+      'is_block': true | false
     }
 
 

@@ -619,6 +619,10 @@ def parse(parser, xml):
             result['members'] += member_api.keys()
 
     api[scoped_name] = result
+
+    # Save mapping from doxygen id to unique name
+    parser.id_mapping[xml.attrib["id"]] = scoped_name
+
     return api
 
 
@@ -698,6 +702,9 @@ def parse(xml, parser, log, scope):
     result["return_description"] = return_description
     result["is_const"] = xml.attrib["const"] == "yes"
     result["is_static"] = xml.attrib["static"] == "yes"
+    result["is_explicit"] = xml.attrib["explicit"] == "yes"
+    result["is_inline"] = xml.attrib["inline"] == "yes"
+    result["is_virtual"] = xml.attrib["virt"] == "virtual"
     result["access"] = xml.attrib["prot"]
     result["briefdescription"] = parser.parse_element(
         xml=xml.find("briefdescription"))
@@ -749,13 +756,17 @@ def parse(xml, log, parser):
     return paragraphs
 
 
+@DoxygenParser.register(tag='computeroutput')
 @DoxygenParser.register(tag='verbatim')
 def parse(log, xml):
-    """ Parses Doxygen verbatim tag
+    """ Parses Doxygen code tags
 
     :return: List of "Text information" paragraphs
     """
-    return [{"type": "code", "content": xml.text}]
+
+    code = xml.text
+
+    return [{"type": "code", "content": code, "is_block": "\n" in code}]
 
 
 @DoxygenParser.register(tag='ref')
@@ -802,6 +813,9 @@ def parse(parser, log, xml):
     for child in xml.getchildren():
 
         if match(xml=child, tag="verbatim"):
+            paragraphs += parser.parse_element(xml=child)
+
+        elif match(xml=child, tag="computeroutput"):
             paragraphs += parser.parse_element(xml=child)
 
         elif match(xml=child, tag="ref"):
