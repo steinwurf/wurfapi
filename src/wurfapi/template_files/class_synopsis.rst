@@ -112,11 +112,20 @@
 {# FORMAT_RETURN_DESCRIPTION #}
 {%- macro format_return_description(type, description) -%}
 {%- if description|length -%}
-{% set description = "Returns: "+ print_description(description) %}
-{{ description }}
+{% set description = print_description(description) %}
+Returns:
+{{ description | indent(first=true) }}
 {%- endif -%}
 {%- endmacro -%}
 
+{# FORMAT_PARAMETER_DESCRIPTION #}
+{%- macro format_parameter_description(parameter) -%}
+{%- if parameter["description"]|length -%}
+{% set description = print_description(parameter["description"]) %}
+``{{parameter["name"]}}``:
+{{ description | indent(first=true) }}
+{%- endif -%}
+{%- endmacro -%}
 
 {# CREATE_FUNCTION_DESCRIPTION #}
 {%- macro create_function_description(unique_name, function) -%}
@@ -128,6 +137,10 @@
 {{ print_description(function['briefdescription']) }}
 
 {{ print_description(function['detaileddescription']) }}
+
+{% for parameter in function["parameters"] -%}
+    {{ format_parameter_description(parameter) }}
+{%- endfor %}
 
 {{ format_return_description(function['return_type'], function['return_description']) }}
 
@@ -150,9 +163,9 @@ Brief description
 {{ print_description(class["briefdescription"]) }}
 {% endif %}
 
-{% set member_description %}
+{% set member_description -%}
 {{ format_member_functions(api[selector], static=false) }}
-{% endset %}
+{%- endset %}
 
 {% if member_description %}
 Member functions (public)
@@ -162,16 +175,15 @@ Member functions (public)
 
 {% endif %}
 
-{% set member_description %}
+{% set member_description -%}
 {{ format_member_functions(api[selector], static=true) }}
-{% endset %}
+{%- endset %}
 
 {% if member_description | length %}
 Static member functions (public)
 --------------------------------
 
-ok
-{{ member_description | length }}
+{{member_description}}
 
 {% endif %}
 
@@ -191,3 +203,5 @@ Member Function Description
 {{- create_function_description(member_selector, member) }}
 {%- endif -%}
 {%- endfor %}
+
+

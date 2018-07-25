@@ -16,8 +16,16 @@ public:
     /// @brief The water thank
     struct water_tank
     {
+        /// @return `true` if the water tank is full otherwise `false`.
         bool is_full() const;
-        void fill();
+
+        /// @param number_of_cups Fill the water tank with the specified number
+        ///     number of cups.
+        /// @param safety_valve Set `true` to enable the safety valve this will
+        ///    sound and alarm if the water tank is too full. To disable the
+        ///    safety valve set `false`.
+        /// @return `true` if filling was successfull otherwise `false`
+        bool fill(const cups& number_of_cups, bool safety_valve);
     };
 
     /// @brief Set the number of cups to brew.
@@ -42,7 +50,12 @@ public:
     /// Remember to use `\n` rather than `std::endl` it is more
     /// efficient.
     ///
-    /// @return The version of the machine
+    /// @return The version of the machine.
+    /// Example:
+    ///
+    ///     std::cout << machine::version();
+    ///     std::cout << "\n";
+    ///
     static std::string version();
 
 protected:

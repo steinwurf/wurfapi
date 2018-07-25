@@ -571,6 +571,40 @@ def parse(parser, xml):
     return api
 
 
+@DoxygenParser.register(tag='compounddef', attrib={'kind': 'namespace'})
+def parse(parser, xml):
+    """ Parses Doxygen compounddefType of kind 'namespace'
+
+    :return: API dictionary
+    """
+
+    # The output from Doxygen will have have the full scope
+    # qualifier i.g. namespace etc.
+    scoped_name = xml.findtext('compoundname')
+
+    # https://docs.python.org/3/library/stdtypes.html#str.rpartition
+    scope, _, name = scoped_name.rpartition('::')
+
+    result = {}
+
+    result["type"] = "namespace"
+    result["name"] = name
+    result['briefdescription'] = parser.parse_element(
+        xml=xml.find("briefdescription"))
+    result['detaileddescription'] = parser.parse_element(
+        xml=xml.find("detaileddescription"))
+    result['members'] = []
+
+    for member in xml.findall('.//innerclass'):
+        refid = member.attrib["refid"]
+        result["members"].append(refid)
+
+    # Save mapping from doxygen id to unique name
+    parser.id_mapping[xml.attrib["id"]] = scoped_name
+
+    return {scoped_name: result}
+
+
 @DoxygenParser.register(tag='compounddef', attrib={'kind': 'struct'})
 @DoxygenParser.register(tag='compounddef', attrib={'kind': 'class'})
 def parse(parser, xml):
