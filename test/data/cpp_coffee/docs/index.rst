@@ -13,6 +13,7 @@ Welcome to Coffee's documentation!
    api_machine
    api_water_tank
    api_namespace
+   examples
 
 
 

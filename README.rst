@@ -313,7 +313,7 @@ Python dictionary representing a C++ namespace::
     info = {
       'type': 'namespace',
       'name': 'unqualified-name',
-      'parent': 'unique-name' | None,
+      'scope': 'unique-name' | None,
       'members: [ 'unique-name', 'unique-name' ]
     }
 

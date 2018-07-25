@@ -589,6 +589,7 @@ def parse(parser, xml):
 
     result["type"] = "namespace"
     result["name"] = name
+    result["scope"] = scope
     result['briefdescription'] = parser.parse_element(
         xml=xml.find("briefdescription"))
     result['detaileddescription'] = parser.parse_element(
@@ -599,10 +600,26 @@ def parse(parser, xml):
         refid = member.attrib["refid"]
         result["members"].append(refid)
 
+    for member in xml.findall('.//innernamespace'):
+        refid = member.attrib["refid"]
+        result["members"].append(refid)
+
+    # In this tag we find
+    #  - free functions in sectiondef tags
+    api = {}
+
+    with parser.set_scope(scoped_name):
+
+        for sectiondef in xml.findall('sectiondef'):
+            sectiondef_api = parser.parse_element(xml=sectiondef)
+            result["members"] += sectiondef_api.keys()
+            api.update(sectiondef_api)
+
     # Save mapping from doxygen id to unique name
     parser.id_mapping[xml.attrib["id"]] = scoped_name
 
-    return {scoped_name: result}
+    api[scoped_name] = result
+    return api
 
 
 @DoxygenParser.register(tag='compounddef', attrib={'kind': 'struct'})

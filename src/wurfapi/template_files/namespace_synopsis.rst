@@ -18,11 +18,14 @@
 {%- endmacro -%}
 
 {% set namespace = api[selector] %}
-{{ create_heading(namespace["name"]) }}
+
+.. _{{selector}}:
+
+{{ create_heading("Namespace: " + namespace["name"]) }}
+
+{% if namespace["scope"] %}
+**Scope:** {{ namespace["scope"] }}
+{% endif %}
 
 {{ format_members(namespace) }}
 
-{% set scope = selector.split('::') -%}
-{% for s in scope -%}
-{{s}}
-{% endfor -%}

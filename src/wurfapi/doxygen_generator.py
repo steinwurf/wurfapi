@@ -65,8 +65,15 @@ class DoxygenGenerator(object):
         # @todo: Doxygen generates a bunch of warnings. We should
         #        propagate these somehow - if you want to know what
         #        has not been documented etc.
-        self.runner.run(command=self.doxygen_executable + ' Doxyfile',
-                        cwd=self.output_path)
+        result = self.runner.run(
+            command=self.doxygen_executable + ' Doxyfile',
+            cwd=self.output_path)
+
+        # Doxygen reports warnings on stderr. So if we have some output
+        # there raise it.
+        if result.stderr.output:
+            raise RuntimeError(
+                "Error in doxygen\n{}".format(str(result.stderr.output)))
 
         # The Doxygen XML is written to the 'xml' subfolder of the
         # output directory
