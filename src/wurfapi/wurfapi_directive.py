@@ -162,7 +162,8 @@ def generate_doxygen(app):
         runner=run,
         recursive=True,
         source_path=source_path,
-        output_path=output_path)
+        output_path=output_path,
+        warnings_as_error=parser['warnings_as_error'])
 
     output = generator.generate()
 

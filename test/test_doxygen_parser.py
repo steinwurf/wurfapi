@@ -27,7 +27,8 @@ def generate_coffee_xml(testdirectory):
         runner=wurfapi.run,
         recursive=True,
         source_path=src_dir.path(),
-        output_path=output_dir.path())
+        output_path=output_dir.path(),
+        warnings_as_error=True)
 
     return src_dir.path(), generator.generate()
 
@@ -68,7 +69,8 @@ def generate_xml(testdirectory, source_file):
         runner=wurfapi.run,
         recursive=True,
         source_path=source_dir.path(),
-        output_path=output_dir.path())
+        output_path=output_dir.path(),
+        warnings_as_error=True)
 
     return source_dir.path(), generator.generate()
 

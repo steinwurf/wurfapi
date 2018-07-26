@@ -52,7 +52,7 @@ author = u'Coffee'
 # wurfapi options
 wurfapi = {
     'source_path': '../src',
-    'parser': {'type': 'doxygen', 'download': True}
+    'parser': {'type': 'doxygen', 'download': True, 'warnings_as_error': True}
 }
 
 # The version info for the project you're documenting, acts as replacement for

@@ -3,6 +3,7 @@
     "briefdescription": [],
     "detaileddescription": [],
     "members": [
+      "project::coffee",
       "project::print(double)",
       "project::print(int)"
     ],

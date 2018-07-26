@@ -1,5 +1,8 @@
 import os
 import shutil
+import pprint
+
+import wurfapi.doxygen_error
 
 # Doxygen uses the Doxyfile as configuration file. You can read more
 # about it here:
@@ -29,12 +32,24 @@ ALIASES += "endrst=\endverbatim"
 class DoxygenGenerator(object):
 
     def __init__(self, doxygen_executable, runner, recursive,
-                 source_path, output_path):
+                 source_path, output_path, warnings_as_error):
+        """ Generate the doxygen XML.
+
+        :param doxygen_executable: Path to the Doxygen executable.
+        :param runner: The subprocess run wrapper.
+        :param recursive: Doxygen option
+        :param source_path: Doxygen option
+        :param output_path: Doxygen option
+        :param warnings_as_errors: If True we raise an error if Doxygen
+            produces any warnings. If False we ignore any Doxygen
+            warnings.
+        """
         self.doxygen_executable = doxygen_executable
         self.runner = runner
         self.recursive = recursive
         self.source_path = source_path
         self.output_path = output_path
+        self.warnings_as_error = warnings_as_error
 
         assert(os.path.isdir(self.source_path))
         assert(os.path.isdir(self.output_path))
@@ -71,9 +86,9 @@ class DoxygenGenerator(object):
 
         # Doxygen reports warnings on stderr. So if we have some output
         # there raise it.
-        if result.stderr.output:
-            raise RuntimeError(
-                "Error in doxygen\n{}".format(str(result.stderr.output)))
+        if result.stderr.output and self.warnings_as_error:
+            raise wurfapi.doxygen_error.DoxygenError(
+                result.stderr.output)
 
         # The Doxygen XML is written to the 'xml' subfolder of the
         # output directory
