@@ -531,6 +531,7 @@ def parse(parser, log, xml):
     return api
 
 
+@DoxygenParser.register(tag='sectiondef', attrib={'kind': 'enum'})
 @DoxygenParser.register(tag='sectiondef', attrib={'kind': 'func'})
 def parse(parser, xml):
     """ Parses Doxygen sectiondefType of kind 'func' """
@@ -677,15 +678,57 @@ def parse(parser, xml):
     return api
 
 
+@DoxygenParser.register(tag='sectiondef')
 @DoxygenParser.register(tag='memberdef')
 def parse(log, xml):
-    """ Parses Doxygen memberdefType of kind unknown
+    """ Parses Doxygen memberdefType and sectiondefType of
+    kind unknown
 
     :return: API dictionary
     """
     log.debug("No parser for %s attrib %s", xml.tag, xml.attrib)
 
     return {}
+
+
+@DoxygenParser.register(tag="memberdef", attrib={"kind": "enum"})
+def parse(xml, parser, log, scope):
+    """ Parses Doxygen memberdefType
+
+    :return: API dictionary
+    """
+
+    result = {}
+
+    result["type"] = "function"
+    result["scope"] = scope
+    result["name"] = xml.findtext("name")
+    result["briefdescription"] = parser.parse_element(
+        xml=xml.find("briefdescription"))
+    result["detaileddescription"] = parser.parse_element(
+        xml=xml.find("detaileddescription"))
+
+    # Lets get all the values of the num
+    values = []
+    for enumvalue in xml.findall('enumvalue'):
+
+        value = {}
+
+        value['name'] = enumvalue.findtext('name')
+        value["briefdescription"] = parser.parse_element(
+            xml=enumvalue.find("briefdescription"))
+        value["detaileddescription"] = parser.parse_element(
+            xml=enumvalue.find("detaileddescription"))
+        value["value"] = enumvalue.findtext("initializer", default="")
+
+        values.append(value)
+
+    result["values"] = values
+
+    # Construct the unique name
+    unique_name = scope + '::' + result["name"] if scope else result["name"]
+
+    return {unique_name: result}
 
 
 @DoxygenParser.register(tag="memberdef", attrib={"kind": "function"})

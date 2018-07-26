@@ -1,0 +1,75 @@
+{
+  "coffee": {
+    "briefdescription": [],
+    "detaileddescription": [],
+    "members": [
+      "coffee::mug_size"
+    ],
+    "name": "coffee",
+    "scope": "",
+    "type": "namespace"
+  },
+  "coffee::mug_size": {
+    "briefdescription": [
+      {
+        "content": "Different size coffee mugs.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [
+      {
+        "content": "This lets you choose the size of your coffee mug",
+        "type": "text"
+      }
+    ],
+    "name": "mug_size",
+    "scope": "coffee",
+    "type": "function",
+    "values": [
+      {
+        "briefdescription": [
+          {
+            "content": "The Short version.",
+            "type": "text"
+          }
+        ],
+        "detaileddescription": [],
+        "name": "Short",
+        "value": "= 8"
+      },
+      {
+        "briefdescription": [
+          {
+            "content": "The Tall version.",
+            "type": "text"
+          }
+        ],
+        "detaileddescription": [],
+        "name": "Tall",
+        "value": ""
+      },
+      {
+        "briefdescription": [
+          {
+            "content": "The Grande version.",
+            "type": "text"
+          }
+        ],
+        "detaileddescription": [],
+        "name": "Grande",
+        "value": ""
+      },
+      {
+        "briefdescription": [
+          {
+            "content": "The Venti version 20 ounces.",
+            "type": "text"
+          }
+        ],
+        "detaileddescription": [],
+        "name": "Venti",
+        "value": "= 20"
+      }
+    ]
+  }
+}

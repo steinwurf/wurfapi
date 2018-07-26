@@ -333,6 +333,28 @@ Python dictionary representing a C++ class or struct::
     }
 
 
+Type ``enum`` | ``enum class``
+...........................
+
+Python dictionary representing a C++ enum or enum class::
+
+    info = {
+      'type': 'enum',
+      'name': 'unqualified-name',
+      'location' { 'file': 'filename.h', 'line-start': 10, 'line-end': 23 },
+      'scope': 'unique-name' | None,
+      'values: [
+        {
+          'name': 'somename',
+          'briefdescription': paragraphs,
+          'detaileddescription': paragraphs
+          'value': 'some value' | none
+        }
+       ],
+      'briefdescription': paragraphs,
+      'detaileddescription': paragraphs
+    }
+
 Type ``function``
 .................
 

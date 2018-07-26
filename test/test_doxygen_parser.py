@@ -100,6 +100,31 @@ def test_parser_input_function(testdirectory, caplog):
     recorder.record(data=api)
 
 
+def test_parser_input_enum_class(testdirectory, caplog):
+
+    caplog.set_level(logging.DEBUG)
+
+    src_dir, xml_dir = generate_xml(
+        testdirectory,
+        source_file='test/data/parser_input/enum_class.hpp')
+
+    log = logging.getLogger(name='test_parser_input_enum_class')
+
+    parser = wurfapi.doxygen_parser.DoxygenParser(
+        doxygen_path=xml_dir, project_path=src_dir, log=log)
+
+    api = parser.parse_index()
+
+    mismatch_path = testdirectory.mkdir('mismatch')
+
+    recorder = record.Record(
+        filename='parser_input_enum_class.json',
+        recording_path='test/data/parser_recordings',
+        mismatch_path=mismatch_path.path())
+
+    recorder.record(data=api)
+
+
 def test_parser_replace_with():
 
     data_in = {

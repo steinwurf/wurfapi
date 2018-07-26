@@ -86,6 +86,8 @@ class DoxygenGenerator(object):
 
         # Doxygen reports warnings on stderr. So if we have some output
         # there raise it.
+        self._suppress_incorrect_warnings(result.stderr)
+
         if result.stderr.output and self.warnings_as_error:
             raise wurfapi.doxygen_error.DoxygenError(
                 result.stderr.output)
@@ -93,3 +95,21 @@ class DoxygenGenerator(object):
         # The Doxygen XML is written to the 'xml' subfolder of the
         # output directory
         return os.path.join(self.output_path, 'xml')
+
+    def _suppress_incorrect_warnings(self, stderr):
+
+        # Sadly Doxygen outputs some incorrect warnings,
+        # hopefully we won't break stuff.
+
+        # Doxygen outputs a warning for enum class
+        # Others report the same https://bit.ly/2uR2t5Z
+
+        output = []
+
+        for line in stderr.output:
+            if 'warning: Internal inconsistency:' in line:
+                continue
+            else:
+                output.append(line)
+
+        stderr.output = output
