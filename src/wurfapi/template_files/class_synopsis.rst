@@ -198,10 +198,26 @@ Member Function Description
 ---------------------------
 
 {% for member_selector in class["members"] -%}
-{% set member = api[member_selector] %}
-{%- if member["access"] in ["public"] %}
-{{- create_function_description(member_selector, member) }}
-{%- endif -%}
+    {% set member = api[member_selector] %}
+    {%- if member["access"] in ["public"] %}
+    {{- create_function_description(member_selector, member) }}
+    {%- endif -%}
 {%- endfor %}
 
+{% set member_description = api_filter(
+      api, class["members"], type="function", is_static=False,
+      access="public", is_explicit=True)
+%}
 
+{% if member_description %}
+Sure, lots of stuff
+{% else %}
+Nahh, this gave nothing
+
+{% endif %}
+
+{% from 'function_synopsis.rst' import format_function %}
+
+{% for member_selector in class["members"] -%}
+    {{ format_function(api, member_selector) }}
+{% endfor %}
