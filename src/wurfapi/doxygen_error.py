@@ -10,6 +10,6 @@ class DoxygenError(wurfapi_error.WurfapiError):
         for error in errors:
             message += "\n{}\n".format(error)
 
-        message += "Total errors {}".format(len(errors))
+        message += "\nTotal errors {}\n".format(len(errors))
 
         super(DoxygenError, self).__init__(message)
