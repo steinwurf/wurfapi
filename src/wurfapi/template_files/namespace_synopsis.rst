@@ -1,8 +1,3 @@
-{%- macro create_heading(name, char='=') -%}
-{%- set size = name|length -%}
-{{name}}
-{% for n in range(size) %}{{char}}{% endfor %}
-{%- endmacro -%}
 
 {%- macro format_members(namespace) -%}
 {%- if namespace["members"]|length -%}

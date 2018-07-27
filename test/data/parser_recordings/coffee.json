@@ -4,8 +4,8 @@
     "detaileddescription": [],
     "members": [
       "project::coffee",
-      "project::print(double)",
-      "project::print(int)"
+      "project::print(int,bool)",
+      "project::print(double,int)"
     ],
     "name": "project",
     "scope": "",
@@ -421,33 +421,69 @@
     "signature": "is_full() const",
     "type": "function"
   },
-  "project::print(double)": {
+  "project::print(double,int)": {
     "access": "public",
-    "briefdescription": [],
-    "detaileddescription": [],
-    "is_const": false,
-    "is_explicit": false,
-    "is_inline": false,
-    "is_static": false,
-    "is_virtual": false,
-    "name": "print",
-    "parameters": [
+    "briefdescription": [
       {
-        "description": "",
-        "name": "a",
-        "type": "double"
+        "content": "Prints the",
+        "type": "text"
+      },
+      {
+        "content": "a",
+        "is_block": false,
+        "type": "code"
+      },
+      {
+        "content": "and then the",
+        "type": "text"
+      },
+      {
+        "content": "b",
+        "is_block": false,
+        "type": "code"
+      },
+      {
+        "content": ".",
+        "type": "text"
       }
     ],
-    "return_description": [],
-    "return_type": "void",
-    "scope": "project",
-    "signature": "print(double a)",
-    "type": "function"
-  },
-  "project::print(int)": {
-    "access": "public",
-    "briefdescription": [],
-    "detaileddescription": [],
+    "detaileddescription": [
+      {
+        "content": "This is really handy in case you need to see them.",
+        "type": "text"
+      },
+      {
+        "content": "Example:",
+        "type": "text"
+      },
+      {
+        "content": "std::cout << project::coffee::print(2.0, 1) << \"\\n\";\n",
+        "is_block": true,
+        "type": "code"
+      },
+      {
+        "content": "Remember to use",
+        "type": "text"
+      },
+      {
+        "content": "\\n",
+        "is_block": false,
+        "type": "code"
+      },
+      {
+        "content": "rather than",
+        "type": "text"
+      },
+      {
+        "content": "std::endl",
+        "is_block": false,
+        "type": "code"
+      },
+      {
+        "content": "it is more efficient.",
+        "type": "text"
+      }
+    ],
     "is_const": false,
     "is_explicit": false,
     "is_inline": false,
@@ -456,15 +492,100 @@
     "name": "print",
     "parameters": [
       {
-        "description": "",
+        "description": [
+          {
+            "content": "A is actually a double.",
+            "type": "text"
+          }
+        ],
         "name": "a",
+        "type": "double"
+      },
+      {
+        "description": [
+          {
+            "content": "Whereas b is an int.",
+            "type": "text"
+          }
+        ],
+        "name": "b",
         "type": "int"
       }
     ],
+    "return_description": [
+      {
+        "content": "This does not really return anything because it is",
+        "type": "text"
+      },
+      {
+        "content": "void",
+        "is_block": false,
+        "type": "code"
+      },
+      {
+        "content": "but it could!",
+        "type": "text"
+      }
+    ],
+    "return_type": "void",
+    "scope": "project",
+    "signature": "print(double a, int b)",
+    "type": "function"
+  },
+  "project::print(int,bool)": {
+    "access": "public",
+    "briefdescription": [],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "name": "print",
+    "parameters": [
+      {
+        "description": [
+          {
+            "content": "This is the most important parameter. Without it the function will not work. Example:",
+            "type": "text"
+          },
+          {
+            "content": "project::coffee::print(3);\n",
+            "is_block": true,
+            "type": "code"
+          },
+          {
+            "content": "Does this work",
+            "type": "text"
+          }
+        ],
+        "name": "a_number",
+        "type": "int"
+      },
+      {
+        "description": [
+          {
+            "content": "If",
+            "type": "text"
+          },
+          {
+            "content": "true",
+            "is_block": false,
+            "type": "code"
+          },
+          {
+            "content": "print on some actual paper.",
+            "type": "text"
+          }
+        ],
+        "name": "on_paper",
+        "type": "bool"
+      }
+    ],
     "return_description": [],
     "return_type": "void",
     "scope": "project",
-    "signature": "print(int a)",
+    "signature": "print(int a_number, bool on_paper)",
     "type": "function"
   },
   "version()": {

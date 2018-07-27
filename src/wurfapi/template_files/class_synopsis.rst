@@ -127,24 +127,7 @@ Returns:
 {%- endif -%}
 {%- endmacro -%}
 
-{# CREATE_FUNCTION_DESCRIPTION #}
-{%- macro create_function_description(unique_name, function) -%}
-{# First element is a label to the unique_name #}
-.. _{{unique_name}}:
 
-{{ create_function_heading(function) }}
-
-{{ print_description(function['briefdescription']) }}
-
-{{ print_description(function['detaileddescription']) }}
-
-{% for parameter in function["parameters"] -%}
-    {{ format_parameter_description(parameter) }}
-{%- endfor %}
-
-{{ format_return_description(function['return_type'], function['return_description']) }}
-
-{% endmacro -%}
 {% set class = api[selector] %}
 
 .. _{{selector}}:
