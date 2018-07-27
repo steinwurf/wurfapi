@@ -1,5 +1,7 @@
 
 
+
+
 .. _project:
 
 Namespace: project
@@ -14,11 +16,6 @@ Namespace: project
     "namespace", ":ref:`coffee <project::coffee>`"
     "function", ":ref:`print <project::print(int,bool)>`"
     "function", ":ref:`print <project::print(double,int)>`"
-
-
-
-
-
 
 
 

@@ -1,19 +1,15 @@
-{%- macro create_heading(name, char='=') -%}
-{%- set size = name|length -%}
-{{name}}
-{% for n in range(size) %}{{char}}{% endfor %}
-{%- endmacro -%}
+{% from 'macros.rst' import format_heading %}
 
 {%- macro create_class_heading(class, char='=') -%}
 {%- set name = class["type"] + " " + class["name"] -%}
-{{ create_heading(name, char) }}
+{{ format_heading(name, char) }}
 {%- endmacro -%}
 
 {%- macro create_function_heading(function) -%}
 {%- set name = function["return_type"] + " " + function["signature"] -%}
 {%- if function["is_static"] %} {%- set name = name + " ``[static]``" %}{%endif%}
 {%- if function["is_virtual"] %} {%- set name = name + " ``[virtual]``" %}{%endif%}
-{{ create_heading(name, ".") }}
+{{ format_heading(name, ".") }}
 {%- endmacro -%}
 
 {%- macro create_function_signature(unique_name, function) -%}

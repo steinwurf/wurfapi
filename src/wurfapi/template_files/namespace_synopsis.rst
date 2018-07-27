@@ -1,4 +1,7 @@
 
+{% from 'function_synopsis.rst' import format_function %}
+{% from 'macros.rst' import format_heading %}
+
 {%- macro format_members(namespace) -%}
 {%- if namespace["members"]|length -%}
 
@@ -16,18 +19,13 @@
 
 .. _{{selector}}:
 
-{{ create_heading("Namespace: " + namespace["name"]) }}
+{{ format_heading("Namespace: " + namespace["name"]) }}
 
 {% if namespace["scope"] %}
 **Scope:** {{ namespace["scope"] }}
 {% endif %}
 
 {{ format_members(namespace) }}
-
-
-
-
-{% from 'function_synopsis.rst' import format_function %}
 
 {% set functions = api_filter(
        api, namespace["members"], type="function")

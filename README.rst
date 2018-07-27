@@ -334,7 +334,7 @@ Python dictionary representing a C++ class or struct::
 
 
 Type ``enum`` | ``enum class``
-...........................
+..............................
 
 Python dictionary representing a C++ enum or enum class::
 

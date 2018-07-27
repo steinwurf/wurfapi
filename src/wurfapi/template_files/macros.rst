@@ -60,3 +60,11 @@
     {%- endif -%}
 {%- endfor -%}
 {%- endmacro -%}
+
+{# FORMAT_HEADING #}
+
+{%- macro format_heading(name, char='=') -%}
+{%- set size = name|length -%}
+{{name}}
+{% for n in range(size) %}{{char}}{% endfor %}
+{%- endmacro -%}
