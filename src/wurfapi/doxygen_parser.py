@@ -700,7 +700,7 @@ def parse(xml, parser, log, scope):
 
     result = {}
 
-    result["type"] = "function"
+    result["type"] = "enum"
     result["scope"] = scope
     result["name"] = xml.findtext("name")
     result["briefdescription"] = parser.parse_element(

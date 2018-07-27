@@ -11,6 +11,7 @@ Welcome to Coffee's documentation!
    :caption: Contents:
 
    api_machine
+   api_mug_size
    api_water_tank
    api_namespace
    examples

@@ -1,0 +1,9 @@
+.lock-waf*
+.pytest_cache/
+.vscode/
+.waf-*
+build/
+build_current
+dist/
+pytest_temp/
+resolve_symlinks/

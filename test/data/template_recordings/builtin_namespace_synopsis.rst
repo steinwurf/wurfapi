@@ -4,8 +4,8 @@
 
 .. _project:
 
-Namespace: project
-==================
+namespace project
+=================
 
 
 
@@ -51,7 +51,6 @@ void **print** (int a_number, bool on_paper)
 
 
 
-
 -----
 
 .. _project::print(double,int):
@@ -79,10 +78,6 @@ void **print** (double a, int b)
 
     Returns:
         This does not really return anything because it is ``void`` but it could! 
-
-
-
-
 
 
 

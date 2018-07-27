@@ -24,7 +24,7 @@
     ],
     "name": "mug_size",
     "scope": "coffee",
-    "type": "function",
+    "type": "enum",
     "values": [
       {
         "briefdescription": [

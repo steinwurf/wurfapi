@@ -79,7 +79,6 @@ void **set_number_cups** (uint32_t cups)
 
 
 
-
 -----
 
 .. _project::coffee::machine::set_number_cups(std::string):
@@ -99,7 +98,6 @@ void **set_number_cups** (std::string cups)
 
 
 
-
 -----
 
 .. _project::coffee::machine::number_cups()const:
@@ -114,7 +112,6 @@ uint32_t **number_cups** ()
 
     Returns:
         The number of cups 
-
 
 
 
@@ -145,7 +142,6 @@ std::string **version** ()
 
             std::cout << machine::version();
             std::cout << "\n";
-
 
 
 

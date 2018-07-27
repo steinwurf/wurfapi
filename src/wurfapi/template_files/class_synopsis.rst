@@ -1,6 +1,6 @@
 {% from 'macros.rst' import format_heading %}
 
-{%- macro create_class_heading(class, char='=') -%}
+{%- macro format_class_heading(class, char='=') -%}
 {%- set name = class["type"] + " " + class["name"] -%}
 {{ format_heading(name, char) }}
 {%- endmacro -%}
@@ -128,7 +128,7 @@ Returns:
 
 .. _{{selector}}:
 
-{{ create_class_heading(class, "=") }}
+{{ format_class_heading(class, "=") }}
 
 {% if class["scope"] is not none %}
 **Scope:** {{ class["scope"] }}

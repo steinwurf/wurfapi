@@ -22,6 +22,7 @@ Returns:
 {%- endif -%}
 {%- endmacro -%}
 
+
 {# FORMAT_PARAMETER_DESCRIPTION #}
 
 {%- macro format_parameter_description(parameter) -%}
@@ -30,6 +31,7 @@ Parameter ``{{parameter["name"]}}``:
     {{ format_description(parameter["description"]) | indent }}
 {%- endif -%}
 {%- endmacro -%}
+
 
 {# FORMAT_PARAMETERS_DESCRIPTION #}
 
@@ -40,6 +42,9 @@ Parameter ``{{parameter["name"]}}``:
 {% endfor %}
 {%- endif -%}
 {%- endmacro -%}
+
+
+{# FORMAT_FUNCTION #}
 
 {%- macro format_function(api, selector) -%}
 
@@ -62,7 +67,6 @@ Parameter ``{{parameter["name"]}}``:
     {{ format_parameters_description(api[selector]["parameters"])|indent }}
 
     {{ format_return_description(return_description) | indent }}
-
 
 {% endmacro -%}
 

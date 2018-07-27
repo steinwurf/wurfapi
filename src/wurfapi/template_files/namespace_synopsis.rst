@@ -19,7 +19,7 @@
 
 .. _{{selector}}:
 
-{{ format_heading("Namespace: " + namespace["name"]) }}
+{{ format_heading("namespace " + namespace["name"]) }}
 
 {% if namespace["scope"] %}
 **Scope:** {{ namespace["scope"] }}
@@ -45,6 +45,3 @@ Namespace Function Description
 
 
 {% endif %}
-
-
-
