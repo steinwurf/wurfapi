@@ -70,7 +70,6 @@ def build(bld):
 
     # Create a virtualenv in the source folder and build universal wheel
     # Make sure the virtualenv Python module is in path
-
     with _create_virtualenv(bld=bld) as venv:
         venv.pip_install(packages=['wheel'])
         venv.run(cmd='python setup.py bdist_wheel --universal', cwd=bld.path)

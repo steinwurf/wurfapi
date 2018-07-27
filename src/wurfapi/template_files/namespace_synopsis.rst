@@ -33,8 +33,8 @@
 
 {% if functions %}
 
-Namespace Function Description
-------------------------------
+Functions
+---------
 
 {% for function in functions -%}
     {{ format_function(api, function) }}

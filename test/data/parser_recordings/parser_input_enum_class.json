@@ -22,6 +22,11 @@
         "type": "text"
       }
     ],
+    "location": {
+      "file": "enum_class.hpp",
+      "line-start": 7,
+      "line-stop": 17
+    },
     "name": "mug_size",
     "scope": "coffee",
     "type": "enum",
@@ -35,7 +40,7 @@
         ],
         "detaileddescription": [],
         "name": "Short",
-        "value": "= 8"
+        "value": "8"
       },
       {
         "briefdescription": [
@@ -68,7 +73,7 @@
         ],
         "detaileddescription": [],
         "name": "Venti",
-        "value": "= 20"
+        "value": "20"
       }
     ]
   }

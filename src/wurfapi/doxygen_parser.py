@@ -7,253 +7,6 @@ import contextlib
 import copy
 
 
-def parse_description(parser, xml):
-    # Sanity checks
-    assert parser.element_type(xml=xml) in [
-        'briefdescription', 'detaileddescription']
-
-    return xml.text()
-
-
-def parse_function_parameters(parser, xml):
-    """ Parse the parameters of a function.
-
-    :param parser: A DoxygenParser instance
-    :param xml: pyquery.PyQuery object representing the function
-    :return: List of function parameters
-    """
-    parser.log.debug('parsing function parameters')
-
-    # The type ane name of the parameters are in the <param>...</param>
-    # elements
-    parameters = []
-
-    for param in xml.items('param'):
-        parameter = {
-            # Trim off all newlines: https://stackoverflow.com/a/37001613/1717320
-            'type': " ".join(param('type').text().split()),
-            'name': " ".join(param('declname').text().split())
-        }
-
-        parameters.append(parameter)
-
-    # The description of each parameter is stored in the
-    # <detaileddescription>
-    #   <parameternamelist>
-    #     <parameteritem>
-    #       <parameternamelist>
-    #           <parametername>
-    #             .. the name ...
-    #           </parametername>
-    #       </parameternamelist>
-    #       <parameterdescription>
-    #         <para>
-    #           .. the description ..
-    #         </para>
-    #       </parameterdescription>
-    #     <parameteritem>
-    #     ...
-    #
-
-    detail = xml('detaileddescription')
-
-    parser.log.debug('%s', detail)
-
-    for parameteritem in detail.items('parameteritem'):
-
-        name = parameteritem('parametername').text()
-        description = parameteritem('parameterdescription').text()
-
-        parser.log.debug("%s : %s", name, description)
-
-    return parameters
-
-
-def parse_function(parser, xml, scope=None):
-    """ Parses a function
-
-    :param parser: A DoxygenParser instance
-    :param xml: pyquery.PyQuery object representing the function
-    :param scope: The enclosing scope as a string or None if the
-        function is not enclosed in a scope.
-    :return: The API where there function type will be stored
-    """
-    # Sanity checks
-    assert parser.element_type(xml=xml) == 'memberdef'
-    assert xml.attr('kind') == 'function'
-
-    # The name of the function
-    name = xml('name').text()
-
-    # Extract the parameters
-    parameters = parse_function_parameters(parser=parser, xml=xml)
-
-    # Construct the unique name
-    unique_name = scope + '::' + name if scope else name
-
-    unique_name += '('
-    types = [parameter['type'] for parameter in parameters]
-    unique_name += ','.join(types)
-    unique_name += ')'
-
-    if xml.attr('const') == "yes":
-        unique_name += 'const'
-
-    # Remove all whitespace - this is also done in standardes. See the README
-    # on the problems of unique-name
-    unique_name = unique_name.replace(" ", "")
-
-    # Get the location
-    file_path = xml('location').attr("file")
-    file_path = parser.relative_path(path=file_path)
-
-    file_line_start = int(xml('location').attr("line"))
-
-    # Build the result
-    result = {
-        'type': 'function',
-        'name': name,
-        'location': {'file': file_path, 'line': file_line_start},
-        'scope': scope,
-        # We using the children selector of pyquery to only get
-        # direct children of the "memberdef" element. There are nested
-        # "type" elements in the "param" elements
-        #
-        # PyQuery insert newlines when there are nested "ref" elements
-        # in the "type" element. We replace these with spaces
-        'return_type':
-            xml.children('type').text().replace('\n', ' '),
-        'is_const': xml.attr('const') == "yes",
-        'is_static': xml.attr('static') == "yes",
-        'access': xml.attr('prot'),
-        'briefdescription':
-            parse_description(parser, xml.children('briefdescription')),
-        'detaileddescription':
-            parse_description(parser, xml.children('detaileddescription')),
-        'parameters': parameters
-    }
-
-    # Store the information in the API
-    api = {unique_name: result}
-
-    return api
-
-
-def parse_class_or_struct(parser, xml):
-    """ Parses a class or struct
-
-    :param parser: A DoxygenParser instance
-    :param xml: pyquery.PyQuery object representing the function
-    :return: The API where there class/struct and it's members will be stored
-    """
-
-    # Sanity check
-    assert parser.element_type(xml=xml) == 'compounddef'
-    assert xml.attr('kind') in ['class', 'struct']
-
-    # The output from Doxygen will have have the full scope
-    # qualifier i.g. namespace etc.
-    scoped_name = xml('compoundname').text()
-
-    # https://docs.python.org/3/library/stdtypes.html#str.rpartition
-    scope, _, name = scoped_name.rpartition('::')
-
-    # Get the location
-    location = xml.children('location')
-    file_path = location.attr("file")
-    file_path = parser.relative_path(path=file_path)
-
-    file_line_start = int(location.attr("line"))
-
-    # Build the result
-    result = {
-        'type': xml.attr('kind'),
-        'name': name,
-        'location': {'file': file_path, 'line': file_line_start},
-        'scope': scope,
-        'briefdescription': xml.children('briefdescription').text(),
-        'detaileddescription': xml.children('detaileddescription').text(),
-        'members': []
-    }
-
-    api = {}
-
-    for member in xml.items('memberdef'):
-
-        if parser.supports(xml=member):
-
-            member_api = parser.parse_element(xml=member, scope=scoped_name)
-            api.update(member_api)
-
-            result['members'] += member_api.keys()
-
-    api[scoped_name] = result
-    return api
-
-
-def parse_compounddef_file(parser, xml):
-    """ Parses a compounddef of kind "file" """
-
-    # If there are free functions they are in the the sectiondef tag
-    sectiondef = xml.find('sectiondef')
-
-    if sectiondef is not None:
-        parser.log.debug("Did not find any sectiondef tags")
-
-    for member in sectiondef.findall('memberdef'):
-        parser.log.debug(lxml.etree.tostring(member))
-
-
-def parse_index(doxygen_path):
-    """ Read the generated Doxygen XML
-
-    :param doxygen_path: The path to the generated Doxygen XML as a
-        string
-    :return: A list of lxml.etree. objects representing the
-        different "compunddef" elements.
-    """
-    # Find the index XML file
-    index_path = os.path.join(doxygen_path, 'index.xml')
-
-    assert(os.path.isfile(index_path))
-
-    index_xml = lxml.etree.parse(source=index_path)
-
-    # We extract the compound definitions XML "compunddef" tag
-    # These contain the information we need.
-    compound_definitions = []
-
-    # Iterate thought the "compound" elements of the Doxygen index.xml
-    for compound in index_xml.findall('compound'):
-
-        # Each "compound" has it's own XML file - read it and extract the
-        # "compunddef" tags
-        compound_filename = compound.attrib['refid'] + '.xml'
-        compound_path = os.path.join(doxygen_path, compound_filename)
-
-        compound_xml = lxml.etree.parse(source=compound_path)
-
-        # There can be multiple "compunddef" tags in each XML file
-        # according to Doxygen's generated compound.xsd file
-
-        compound_definitions += compound_xml.findall('compounddef')
-
-    return compound_definitions
-
-
-default_parsers = {
-    'parse_compunddef_class': parse_class_or_struct,
-    'parse_compunddef_struct': parse_class_or_struct,
-    'parse_compunddef_file': parse_compounddef_file,
-    'parse_function': parse_function,
-    'parse_index': parse_index
-}
-
-
-def nada(parser, xml):
-    pass
-
-
 def match(xml, tag, attrib={}):
     """ Matches whether the XML has the specified tag and attributes.
 
@@ -640,18 +393,11 @@ def parse(parser, xml):
     # https://docs.python.org/3/library/stdtypes.html#str.rpartition
     scope, _, name = scoped_name.rpartition('::')
 
-    # Get the location
-    location = xml.find('location')
-    file_path = location.attrib["file"]
-    file_path = parser.relative_path(path=file_path)
-
-    file_line_start = int(location.attrib["line"])
-
     # Build the result
     result = {
         'type': xml.attrib['kind'],
         'name': name,
-        'location': {'file': file_path, 'line': file_line_start},
+        'location': parser.parse_element(xml=xml.find('location')),
         'scope': scope,
         'briefdescription': parser.parse_element(
             xml=xml.find("briefdescription")),
@@ -697,11 +443,10 @@ def parse(xml, parser, log, scope):
 
     :return: API dictionary
     """
-
     result = {}
-
     result["type"] = "enum"
     result["scope"] = scope
+    result['location'] = parser.parse_element(xml=xml.find('location'))
     result["name"] = xml.findtext("name")
     result["briefdescription"] = parser.parse_element(
         xml=xml.find("briefdescription"))
@@ -719,7 +464,10 @@ def parse(xml, parser, log, scope):
             xml=enumvalue.find("briefdescription"))
         value["detaileddescription"] = parser.parse_element(
             xml=enumvalue.find("detaileddescription"))
-        value["value"] = enumvalue.findtext("initializer", default="")
+        v = enumvalue.findtext("initializer", default="")
+        if v.startswith('= '):
+            v = v[2:]
+        value["value"] = v
 
         values.append(value)
 
@@ -729,6 +477,21 @@ def parse(xml, parser, log, scope):
     unique_name = scope + '::' + result["name"] if scope else result["name"]
 
     return {unique_name: result}
+
+@DoxygenParser.register(tag="location")
+def parse(xml, parser):
+    """ Parses Doxygen memberdefType
+
+    :return: Location dict
+    """
+    result = {}
+    file_path = xml.attrib["file"]
+    result['file'] = parser.relative_path(path=file_path)
+
+    result['line-start'] = int(xml.attrib["bodystart"])
+    result['line-stop'] = int(xml.attrib["bodyend"])
+
+    return result
 
 
 @DoxygenParser.register(tag="memberdef", attrib={"kind": "function"})
@@ -858,7 +621,8 @@ def parse(log, xml):
     :return: List of "Text information" paragraphs
     """
 
-    code = xml.text
+    # code = xml.text.strip()
+    code = xml.text.rstrip(' ')
 
     return [{"type": "code", "content": code, "is_block": "\n" in code}]
 

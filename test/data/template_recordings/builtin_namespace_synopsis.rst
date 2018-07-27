@@ -21,8 +21,8 @@ namespace project
 
 
 
-Namespace Function Description
-------------------------------
+Functions
+---------
 
 .. _project::print(int,bool):
 

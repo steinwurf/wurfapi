@@ -46,7 +46,8 @@
     ],
     "location": {
       "file": "coffee/coffee.h",
-      "line": 14
+      "line-start": 13,
+      "line-stop": 70
     },
     "members": [
       "project::coffee::machine::set_number_cups(uint32_t)",
@@ -305,7 +306,8 @@
     "detaileddescription": [],
     "location": {
       "file": "coffee/coffee.h",
-      "line": 18
+      "line-start": 17,
+      "line-stop": 29
     },
     "members": [
       "project::coffee::machine::water_tank::is_full()const",
@@ -435,6 +437,11 @@
         "type": "text"
       }
     ],
+    "location": {
+      "file": "coffee/mug_size.h",
+      "line-start": 10,
+      "line-stop": 30
+    },
     "name": "mug_size",
     "scope": "project::coffee",
     "type": "enum",
@@ -448,7 +455,7 @@
         ],
         "detaileddescription": [],
         "name": "Short",
-        "value": "= 8"
+        "value": "8"
       },
       {
         "briefdescription": [
@@ -462,13 +469,18 @@
         "value": ""
       },
       {
-        "briefdescription": [
+        "briefdescription": [],
+        "detaileddescription": [
           {
-            "content": "The Grande version.",
+            "content": "The Grande version Use it like so:",
             "type": "text"
+          },
+          {
+            "content": "std::cout << mug_size::Grande << std::endl;",
+            "is_block": false,
+            "type": "code"
           }
         ],
-        "detaileddescription": [],
         "name": "Grande",
         "value": ""
       },
@@ -479,9 +491,23 @@
             "type": "text"
           }
         ],
-        "detaileddescription": [],
+        "detaileddescription": [
+          {
+            "content": "This one will keep you up all night!",
+            "type": "text"
+          },
+          {
+            "content": "std::cout << mug_size::Venti << std::endl;\n",
+            "is_block": true,
+            "type": "code"
+          },
+          {
+            "content": "I hope you enjoy.",
+            "type": "text"
+          }
+        ],
         "name": "Venti",
-        "value": "= 20"
+        "value": "20"
       }
     ]
   },

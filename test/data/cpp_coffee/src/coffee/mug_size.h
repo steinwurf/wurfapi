@@ -14,8 +14,18 @@ enum class mug_size
     /// The Tall version
     Tall,
     /// The Grande version
+    /// Use it like so:
+    ///
+    ///     std::cout << mug_size::Grande << std::endl;
     Grande,
-    /// The Venti version 20 ounces
+    /// @brief The Venti version 20 ounces.
+    ///
+    /// This one will keep you up
+    /// all night!
+    ///
+    ///     std::cout << mug_size::Venti << std::endl;
+    ///
+    /// I hope you enjoy.
     Venti = 20
 };
 }

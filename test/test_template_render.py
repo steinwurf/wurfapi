@@ -92,3 +92,21 @@ def test_template_render_namespace(testdirectory):
         mismatch_path=mismatch_path.path())
 
     recorder.record(data=data)
+
+def test_template_render_namespace(testdirectory):
+
+    template = wurfapi.template_render.TemplateRender(user_path=None)
+
+    api = generate_coffee_api(testdirectory=testdirectory)
+
+    data = template.render(selector='project::coffee::mug_size', api=api,
+                           filename='enum_synopsis.rst')
+
+    mismatch_path = testdirectory.mkdir('mismatch')
+
+    recorder = record.Record(
+        filename='builtin_enum_synopsis.rst',
+        recording_path='test/data/template_recordings',
+        mismatch_path=mismatch_path.path())
+
+    recorder.record(data=data)
