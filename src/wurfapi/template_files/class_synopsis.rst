@@ -193,31 +193,25 @@ Description
 {{ print_description(class["detaileddescription"]) }}
 {% endif %}
 
+{% from 'function_synopsis.rst' import format_function %}
+
+{% set functions = api_filter(
+       api, class["members"], type="function", access="public")
+%}
+
+{% if functions %}
 
 Member Function Description
 ---------------------------
 
-{% for member_selector in class["members"] -%}
-    {% set member = api[member_selector] %}
-    {%- if member["access"] in ["public"] %}
-    {{- create_function_description(member_selector, member) }}
-    {%- endif -%}
-{%- endfor %}
+{% for function in functions -%}
+    {{ format_function(api, function) }}
 
-{% set member_description = api_filter(
-      api, class["members"], type="function", is_static=False,
-      access="public", is_explicit=True)
-%}
+{{ "-----" if not loop.last }}
 
-{% if member_description %}
-Sure, lots of stuff
-{% else %}
-Nahh, this gave nothing
+{% endfor %}
+
 
 {% endif %}
 
-{% from 'function_synopsis.rst' import format_function %}
 
-{% for member_selector in class["members"] -%}
-    {{ format_function(api, member_selector) }}
-{% endfor %}

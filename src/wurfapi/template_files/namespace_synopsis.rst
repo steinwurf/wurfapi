@@ -12,7 +12,7 @@
 
 {% for member_selector in namespace["members"] -%}
     {% set member = api[member_selector] %}
-    "{{member["type"]}}", ":ref:`{{ member["name"] }}<{{member_selector}}>`"
+    "{{member["type"]}}", ":ref:`{{ member["name"] }} <{{member_selector}}>`"
 {%- endfor %}
 {%- endif -%}
 {%- endmacro -%}
@@ -28,4 +28,30 @@
 {% endif %}
 
 {{ format_members(namespace) }}
+
+
+
+
+{% from 'function_synopsis.rst' import format_function %}
+
+{% set functions = api_filter(
+       api, namespace["members"], type="function")
+%}
+
+{% if functions %}
+
+Namespace Function Description
+------------------------------
+
+{% for function in functions -%}
+    {{ format_function(api, function) }}
+
+{{ "-----" if not loop.last }}
+
+{% endfor %}
+
+
+{% endif %}
+
+
 

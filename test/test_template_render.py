@@ -79,15 +79,9 @@ def test_template_render_namespace(testdirectory):
 
     template = wurfapi.template_render.TemplateRender(user_path=None)
 
-    api = {
-        "test::ok": {
-            "briefdescription": "",
-            "name": "ok",
-            "location": {"file": "ok"}
-        }
-    }
+    api = generate_coffee_api(testdirectory=testdirectory)
 
-    data = template.render(selector='test::ok', api=api,
+    data = template.render(selector='project', api=api,
                            filename='namespace_synopsis.rst')
 
     mismatch_path = testdirectory.mkdir('mismatch')
