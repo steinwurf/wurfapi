@@ -39,7 +39,7 @@ def replace_with(replace, data):
 
     def _replace(value):
         if isinstance(value, dict):
-            for k, v in value.iteritems():
+            for k, v in value.items():
                 value[k] = _replace(v)
 
             return value
@@ -477,6 +477,7 @@ def parse(xml, parser, log, scope):
     unique_name = scope + '::' + result["name"] if scope else result["name"]
 
     return {unique_name: result}
+
 
 @DoxygenParser.register(tag="location")
 def parse(xml, parser):

@@ -27,7 +27,7 @@ def api_filter(api, selectors, **attributes):
     result = []
 
     def match(element):
-        for key, value in attributes.iteritems():
+        for key, value in attributes.items():
             try:
                 if value != element[key]:
                     return False

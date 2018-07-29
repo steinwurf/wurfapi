@@ -1,5 +1,11 @@
 
 
+
+
+
+
+
+
 .. _project::coffee::machine:
 
 class machine
@@ -18,18 +24,26 @@ A machine to brew your coffee.
 
 
 
-
-
 Member functions (public)
 -------------------------
 
-.. csv-table::
-    :widths: auto
+.. list-table::
+   :header-rows: 0
+   :widths: auto
 
 
-    "void", ":ref:`set_number_cups<project::coffee::machine::set_number_cups(uint32_t)>` **(** uint32_t cups **)** "
-    "void", ":ref:`set_number_cups<project::coffee::machine::set_number_cups(std::string)>` **(** std::string cups **)** "
-    "virtual uint32_t", ":ref:`number_cups<project::coffee::machine::number_cups()const>` **(**  **)** const"
+
+   * - void
+     - :ref:`set_number_cups<project::coffee::machine::set_number_cups(uint32_t)>` (uint32_t cups)
+
+
+   * - void
+     - :ref:`set_number_cups<project::coffee::machine::set_number_cups(std::string)>` (std::string cups)
+
+
+   * - virtual uint32_t
+     - :ref:`number_cups<project::coffee::machine::number_cups()const>` () const
+
 
 
 
@@ -39,19 +53,20 @@ Member functions (public)
 Static member functions (public)
 --------------------------------
 
-.. csv-table::
-    :widths: auto
+.. list-table::
+   :header-rows: 0
+   :widths: auto
 
 
-    "std::string", ":ref:`version<project::coffee::machine::version()>` **(**  **)** "
 
+   * - std::string
+     - :ref:`version<project::coffee::machine::version()>` ()
 
 
 
 Description
 -----------
 The coffee machine object serves as your applications entry point for brewing coffee. You have to remember to fill the :ref:`project::coffee::machine::water_tank<project::coffee::machine::water_tank>` though. 
-
 
 
 
