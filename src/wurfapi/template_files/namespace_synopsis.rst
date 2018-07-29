@@ -1,19 +1,23 @@
 
-{% from 'function_synopsis.rst' import format_function %}
 {% from 'macros.rst' import format_heading %}
+{% from 'function_synopsis.rst' import format_function %}
 
-{%- macro format_members(namespace) -%}
-{%- if namespace["members"]|length -%}
 
-.. csv-table::
-    :widths: auto
+{# FORMAT_MEMBER_TABLE #}
 
-{% for member_selector in namespace["members"] -%}
-    {% set member = api[member_selector] %}
-    "{{member["type"]}}", ":ref:`{{ member["name"] }} <{{member_selector}}>`"
-{%- endfor %}
-{%- endif -%}
-{%- endmacro -%}
+{%- macro format_member_table(selectors) -%}
+.. list-table::
+   :header-rows: 0
+   :widths: auto
+
+{% for selector in selectors %}
+   {%- set member = api[selector] %}
+
+   * - {{ member["type"] }}
+     - :ref:`{{ member["name"] }}<{{selector}}>`
+{% endfor %}
+
+{% endmacro -%}
 
 {% set namespace = api[selector] %}
 
@@ -25,7 +29,11 @@
 **Scope:** {{ namespace["scope"] }}
 {% endif %}
 
-{{ format_members(namespace) }}
+{% if namespace["members"] %}
+
+{{ format_member_table(namespace["members"]) }}
+
+{% endif %}
 
 {% set functions = api_filter(
        api, namespace["members"], type="function")

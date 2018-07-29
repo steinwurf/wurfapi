@@ -1,136 +1,39 @@
 {% from 'macros.rst' import format_heading %}
+{% from 'macros.rst' import format_description %}
+{% from 'function_synopsis.rst' import format_function %}
+{% from 'function_synopsis.rst' import format_parameters %}
 
-{%- macro format_class_heading(class, char='=') -%}
-{%- set name = class["type"] + " " + class["name"] -%}
-{{ format_heading(name, char) }}
-{%- endmacro -%}
 
-{%- macro create_function_heading(function) -%}
-{%- set name = function["return_type"] + " " + function["signature"] -%}
-{%- if function["is_static"] %} {%- set name = name + " ``[static]``" %}{%endif%}
-{%- if function["is_virtual"] %} {%- set name = name + " ``[virtual]``" %}{%endif%}
-{{ format_heading(name, ".") }}
-{%- endmacro -%}
+{# FORMAT_MEMBER_TABLE #}
 
-{%- macro create_function_signature(unique_name, function) -%}
-{# We build the signature of a function as a list of strings #}
-{%- set signature = [":ref:`", function["name"], "<", unique_name, ">`"] -%}
-{%- do signature.append(" **(** ") -%}
-{%- set parameters = [] -%}
-{%- for p in function["parameters"] -%}
-    {%- do parameters.append(p["type"] + " " + p["name"]) -%}
-{%- endfor -%}
-{%- do signature.append(parameters|join(', ')) -%}
-{%- do signature.append(" **)** ") -%}
-{%- if function["is_const"] -%}
-{%- do signature.append("const") -%}
-{%- endif -%}
-{{ signature|join("") -}}
-{%- endmacro -%}
+{%- macro format_member_table(selectors) -%}
+.. list-table::
+   :header-rows: 0
+   :widths: auto
 
-{%- macro format_code_block(paragraph) %}
+{% for selector in selectors %}
+   {%- set function = api[selector] %}
+   {%- set signature = format_parameters(function["parameters"]) %}
+   {%- set signature = signature + " const" if function["is_const"]
+           else signature %}
+   {%- set return_type = function["return_type"] %}
+   {%- set return_type = "virtual " + return_type if function["is_virtual"]
+           else return_type %}
 
-.. code-block:: c++
-
-{{ paragraph["content"] | indent(first=true) }}
+   * - {{ return_type }}
+     - :ref:`{{ function["name"] }}<{{selector}}>` {{ signature }}
+{% endfor %}
 
 {% endmacro -%}
-
-{%- macro format_code_inline(paragraph) -%}
-``{{ paragraph["content"] }}``{{ " " }}
-{%- endmacro -%}
-
-{%- macro format_code(paragraph) -%}
-{%- if paragraph["is_block"] -%}
-    {{ format_code_block(paragraph) }}
-{%- else -%}
-    {{ format_code_inline(paragraph) }}
-{%- endif -%}
-{%- endmacro -%}
-
-{# FORMAT_TEXT_LINK #}
-
-{%- macro format_text_link(paragraph) -%}
-:ref:`{{ paragraph["content"] }}<{{ paragraph["link"] }}>`
-{%- endmacro -%}
-
-{# FORMAT_TEXT #}
-
-{%- macro format_text(paragraph) -%}
-
-{%- if "link" in paragraph -%}
-    {{ format_text_link(paragraph) }}
-{%- else -%}
-    {{ paragraph["content"] }}
-{%- endif -%}
-{{ " " }}
-{%- endmacro -%}
-
-{# PRINT_DESCRIPTION #}
-{%- macro print_description(description) -%}
-{%- for para in description -%}
-    {% if para["type"] == "text" -%}
-        {{ format_text(para) }}
-    {%- endif -%}
-    {%- if para["type"] == "code" -%}
-        {{ format_code(para) }}
-    {%- endif -%}
-{%- endfor -%}
-{%- endmacro -%}
-
-{# FORMAT_MEMBER_FUNCTIONS #}
-{%- macro format_member_functions(type, static) -%}
-
-{%- set members = [] -%}
-
-{%- for member_selector in type["members"] -%}
-    {% set member = api[member_selector] -%}
-    {%- if member["type"] in ["function"] -%}
-    {%- if member["access"] in ["public"] -%}
-    {%- if member["is_static"] == static -%}
-        {%- do members.append(member_selector) -%}
-    {%- endif -%}
-    {%- endif -%}
-    {%- endif -%}
-{%- endfor %}
-{%- if members|length -%}
-
-.. csv-table::
-    :widths: auto
-
-{% for member_selector in members -%}
-    {% set member = api[member_selector] %}
-    "{% if member["is_virtual"] -%}{{"virtual "}}{%- endif -%}{{member["return_type"]}}", "{{- create_function_signature(member_selector, member) }}"
-{%- endfor %}
-{%- endif -%}
-{%- endmacro -%}
-
-{# FORMAT_RETURN_DESCRIPTION #}
-{%- macro format_return_description(type, description) -%}
-{%- if description|length -%}
-{% set description = print_description(description) %}
-Returns:
-{{ description | indent(first=true) }}
-{%- endif -%}
-{%- endmacro -%}
-
-{# FORMAT_PARAMETER_DESCRIPTION #}
-{%- macro format_parameter_description(parameter) -%}
-{%- if parameter["description"]|length -%}
-{% set description = print_description(parameter["description"]) %}
-``{{parameter["name"]}}``:
-{{ description | indent(first=true) }}
-{%- endif -%}
-{%- endmacro -%}
 
 
 {% set class = api[selector] %}
 
 .. _{{selector}}:
 
-{{ format_class_heading(class, "=") }}
+{{ format_heading(class["type"] + " " + class["name"]) }}
 
-{% if class["scope"] is not none %}
+{% if class["scope"] %}
 **Scope:** {{ class["scope"] }}
 {% endif %}
 
@@ -139,40 +42,42 @@ Returns:
 {% if class["briefdescription"] %}
 Brief description
 -----------------
-{{ print_description(class["briefdescription"]) }}
+{{ format_description(class["briefdescription"]) }}
 {% endif %}
 
-{% set member_description -%}
-{{ format_member_functions(api[selector], static=false) }}
-{%- endset %}
 
-{% if member_description %}
+{% set functions = api_filter(
+       api, class["members"], type="function", access="public", is_static=false)
+%}
+
+{%- if functions -%}
 Member functions (public)
 -------------------------
 
-{{ member_description }}
+{{ format_member_table(functions) }}
 
 {% endif %}
 
-{% set member_description -%}
-{{ format_member_functions(api[selector], static=true) }}
-{%- endset %}
 
-{% if member_description | length %}
+{% set functions = api_filter(
+       api, class["members"], type="function", access="public", is_static=true)
+%}
+
+{%- if functions -%}
 Static member functions (public)
 --------------------------------
 
-{{member_description}}
+{{ format_member_table(functions) }}
 
-{% endif %}
+{%- endif -%}
+
 
 {% if class["detaileddescription"] %}
 Description
 -----------
-{{ print_description(class["detaileddescription"]) }}
+{{ format_description(class["detaileddescription"]) }}
 {% endif %}
 
-{% from 'function_synopsis.rst' import format_function %}
 
 {% set functions = api_filter(
        api, class["members"], type="function", access="public")
