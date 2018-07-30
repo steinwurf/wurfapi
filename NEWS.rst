@@ -6,6 +6,10 @@ of every change, see the Git log.
 
 Latest
 ------
+* tbd
+
+2.0.0
+-----
 * Minor: Added support for enum
 * Minor: Added warnings_as_error option to allow failure if Doxygen
          produces any warnings.
