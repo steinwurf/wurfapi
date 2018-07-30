@@ -54,10 +54,10 @@ To use the extension, the following steps are needed:
 
     pip install wurfapi
 
-2. If you already have ``Shinx`` documentation setup go to setup 4
+2. If you already have ``Sphinx`` documentation setup go to setup 4
    otherwise go to setup 3.
 
-3. Generate the initial ``Shinx`` documentation by running::
+3. Generate the initial ``Sphinx`` documentation by running::
 
       mkdir docs
       cd docs
