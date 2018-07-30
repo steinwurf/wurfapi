@@ -1,0 +1,698 @@
+{
+  "project": {
+    "briefdescription": [],
+    "detaileddescription": [],
+    "members": [
+      "project::coffee",
+      "project::print(double,int)",
+      "project::print(int,bool)"
+    ],
+    "name": "project",
+    "scope": "",
+    "type": "namespace"
+  },
+  "project::coffee": {
+    "briefdescription": [],
+    "detaileddescription": [],
+    "members": [
+      "project::coffee::machine",
+      "project::coffee::mug_size"
+    ],
+    "name": "coffee",
+    "scope": "project",
+    "type": "namespace"
+  },
+  "project::coffee::machine": {
+    "briefdescription": [
+      {
+        "content": "A machine to brew your coffee.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [
+      {
+        "content": "The coffee machine object serves as your applications entry point for brewing coffee. You have to remember to fill the",
+        "type": "text"
+      },
+      {
+        "content": "project::coffee::machine::water_tank",
+        "link": "project::coffee::machine::water_tank",
+        "type": "text"
+      },
+      {
+        "content": "though.",
+        "type": "text"
+      }
+    ],
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 13,
+      "line-stop": 70
+    },
+    "members": [
+      "project::coffee::machine::help_brew()",
+      "project::coffee::machine::number_cups()const",
+      "project::coffee::machine::set(constheat&,int)const",
+      "project::coffee::machine::set_number_cups(std::string)",
+      "project::coffee::machine::set_number_cups(uint32_t)",
+      "project::coffee::machine::version()"
+    ],
+    "name": "machine",
+    "scope": "project::coffee",
+    "type": "class"
+  },
+  "project::coffee::machine::help_brew()": {
+    "access": "private",
+    "briefdescription": [],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "name": "help_brew",
+    "parameters": [],
+    "return_description": [],
+    "return_type": "void",
+    "scope": "project::coffee::machine",
+    "signature": "help_brew()",
+    "type": "function"
+  },
+  "project::coffee::machine::number_cups()const": {
+    "access": "public",
+    "briefdescription": [],
+    "detaileddescription": [],
+    "is_const": true,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": true,
+    "name": "number_cups",
+    "parameters": [],
+    "return_description": [
+      {
+        "content": "The number of cups",
+        "type": "text"
+      }
+    ],
+    "return_type": "uint32_t",
+    "scope": "project::coffee::machine",
+    "signature": "number_cups() const",
+    "type": "function"
+  },
+  "project::coffee::machine::set(constheat&,int)const": {
+    "access": "protected",
+    "briefdescription": [
+      {
+        "content": "Set the heat.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [
+      {
+        "content": "This function is use to set the head of the machine.",
+        "type": "text"
+      }
+    ],
+    "is_const": true,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "name": "set",
+    "parameters": [
+      {
+        "description": "",
+        "name": "h",
+        "type": "const heat &"
+      },
+      {
+        "description": "",
+        "name": "max",
+        "type": "int"
+      }
+    ],
+    "return_description": [],
+    "return_type": "void",
+    "scope": "project::coffee::machine",
+    "signature": "set(const heat &h, int max) const",
+    "type": "function"
+  },
+  "project::coffee::machine::set_number_cups(std::string)": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "Set the number of cups to brew.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [
+      {
+        "content": "You can see",
+        "type": "text"
+      },
+      {
+        "content": "number_cups()",
+        "link": "project::coffee::machine::number_cups()const",
+        "type": "text"
+      },
+      {
+        "content": "for how many cups",
+        "type": "text"
+      }
+    ],
+    "is_const": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "name": "set_number_cups",
+    "parameters": [
+      {
+        "description": [
+          {
+            "content": "The number of cups",
+            "type": "text"
+          }
+        ],
+        "name": "cups",
+        "type": "std::string"
+      }
+    ],
+    "return_description": [],
+    "return_type": "void",
+    "scope": "project::coffee::machine",
+    "signature": "set_number_cups(std::string cups)",
+    "type": "function"
+  },
+  "project::coffee::machine::set_number_cups(uint32_t)": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "Set the number of cups to brew.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [
+      {
+        "content": "You can see",
+        "type": "text"
+      },
+      {
+        "content": "number_cups()",
+        "link": "project::coffee::machine::number_cups()const",
+        "type": "text"
+      },
+      {
+        "content": "for how many cups",
+        "type": "text"
+      }
+    ],
+    "is_const": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "name": "set_number_cups",
+    "parameters": [
+      {
+        "description": [
+          {
+            "content": "The number of cups",
+            "type": "text"
+          }
+        ],
+        "name": "cups",
+        "type": "uint32_t"
+      }
+    ],
+    "return_description": [],
+    "return_type": "void",
+    "scope": "project::coffee::machine",
+    "signature": "set_number_cups(uint32_t cups)",
+    "type": "function"
+  },
+  "project::coffee::machine::version()": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "The version of the machine.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [
+      {
+        "content": "Example:",
+        "type": "text"
+      },
+      {
+        "content": "std::cout << \"The version\";\n           << project::coffee::machine::version() << \"\\n\";\n",
+        "is_block": true,
+        "type": "code"
+      },
+      {
+        "content": "Remember to use",
+        "type": "text"
+      },
+      {
+        "content": "\\n",
+        "is_block": false,
+        "type": "code"
+      },
+      {
+        "content": "rather than",
+        "type": "text"
+      },
+      {
+        "content": "std::endl",
+        "is_block": false,
+        "type": "code"
+      },
+      {
+        "content": "it is more efficient.",
+        "type": "text"
+      }
+    ],
+    "is_const": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": true,
+    "is_virtual": false,
+    "name": "version",
+    "parameters": [],
+    "return_description": [
+      {
+        "content": "The version of the machine. Example:",
+        "type": "text"
+      },
+      {
+        "content": "std::cout << machine::version();\nstd::cout << \"\\n\";",
+        "is_block": true,
+        "type": "code"
+      }
+    ],
+    "return_type": "std::string",
+    "scope": "project::coffee::machine",
+    "signature": "version()",
+    "type": "function"
+  },
+  "project::coffee::machine::water_tank": {
+    "briefdescription": [
+      {
+        "content": "The water thank.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 17,
+      "line-stop": 29
+    },
+    "members": [
+      "project::coffee::machine::water_tank::fill(constcups&,bool)",
+      "project::coffee::machine::water_tank::is_full()const"
+    ],
+    "name": "water_tank",
+    "scope": "project::coffee::machine",
+    "type": "struct"
+  },
+  "project::coffee::machine::water_tank::fill(constcups&,bool)": {
+    "access": "public",
+    "briefdescription": [],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "name": "fill",
+    "parameters": [
+      {
+        "description": [
+          {
+            "content": "Fill the water tank with the specified number number of cups.",
+            "type": "text"
+          }
+        ],
+        "name": "number_of_cups",
+        "type": "const cups &"
+      },
+      {
+        "description": [
+          {
+            "content": "Set",
+            "type": "text"
+          },
+          {
+            "content": "true",
+            "is_block": false,
+            "type": "code"
+          },
+          {
+            "content": "to enable the safety valve this will sound and alarm if the water tank is too full. To disable the safety valve set",
+            "type": "text"
+          },
+          {
+            "content": "false",
+            "is_block": false,
+            "type": "code"
+          },
+          {
+            "content": ".",
+            "type": "text"
+          }
+        ],
+        "name": "safety_valve",
+        "type": "bool"
+      }
+    ],
+    "return_description": [
+      {
+        "content": "true",
+        "is_block": false,
+        "type": "code"
+      },
+      {
+        "content": "if filling was successfull otherwise",
+        "type": "text"
+      },
+      {
+        "content": "false",
+        "is_block": false,
+        "type": "code"
+      }
+    ],
+    "return_type": "bool",
+    "scope": "project::coffee::machine::water_tank",
+    "signature": "fill(const cups &number_of_cups, bool safety_valve)",
+    "type": "function"
+  },
+  "project::coffee::machine::water_tank::is_full()const": {
+    "access": "public",
+    "briefdescription": [],
+    "detaileddescription": [],
+    "is_const": true,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "name": "is_full",
+    "parameters": [],
+    "return_description": [
+      {
+        "content": "true",
+        "is_block": false,
+        "type": "code"
+      },
+      {
+        "content": "if the water tank is full otherwise",
+        "type": "text"
+      },
+      {
+        "content": "false",
+        "is_block": false,
+        "type": "code"
+      },
+      {
+        "content": ".",
+        "type": "text"
+      }
+    ],
+    "return_type": "bool",
+    "scope": "project::coffee::machine::water_tank",
+    "signature": "is_full() const",
+    "type": "function"
+  },
+  "project::coffee::mug_size": {
+    "briefdescription": [
+      {
+        "content": "Different size coffee mugs.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [
+      {
+        "content": "This lets you choose the size of your coffee mug",
+        "type": "text"
+      }
+    ],
+    "location": {
+      "file": "coffee/mug_size.h",
+      "line-start": 10,
+      "line-stop": 30
+    },
+    "name": "mug_size",
+    "scope": "project::coffee",
+    "type": "enum",
+    "values": [
+      {
+        "briefdescription": [
+          {
+            "content": "The Short version.",
+            "type": "text"
+          }
+        ],
+        "detaileddescription": [],
+        "name": "Short",
+        "value": "8"
+      },
+      {
+        "briefdescription": [
+          {
+            "content": "The Tall version.",
+            "type": "text"
+          }
+        ],
+        "detaileddescription": [],
+        "name": "Tall",
+        "value": ""
+      },
+      {
+        "briefdescription": [],
+        "detaileddescription": [
+          {
+            "content": "The Grande version Use it like so:",
+            "type": "text"
+          },
+          {
+            "content": "std::cout << mug_size::Grande << std::endl;",
+            "is_block": false,
+            "type": "code"
+          }
+        ],
+        "name": "Grande",
+        "value": ""
+      },
+      {
+        "briefdescription": [
+          {
+            "content": "The Venti version 20 ounces.",
+            "type": "text"
+          }
+        ],
+        "detaileddescription": [
+          {
+            "content": "This one will keep you up all night!",
+            "type": "text"
+          },
+          {
+            "content": "std::cout << mug_size::Venti << std::endl;\n",
+            "is_block": true,
+            "type": "code"
+          },
+          {
+            "content": "I hope you enjoy.",
+            "type": "text"
+          }
+        ],
+        "name": "Venti",
+        "value": "20"
+      }
+    ]
+  },
+  "project::print(double,int)": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "Prints the",
+        "type": "text"
+      },
+      {
+        "content": "a",
+        "is_block": false,
+        "type": "code"
+      },
+      {
+        "content": "and then the",
+        "type": "text"
+      },
+      {
+        "content": "b",
+        "is_block": false,
+        "type": "code"
+      },
+      {
+        "content": ".",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [
+      {
+        "content": "This is really handy in case you need to see them.",
+        "type": "text"
+      },
+      {
+        "content": "Example:",
+        "type": "text"
+      },
+      {
+        "content": "std::cout << project::coffee::print(2.0, 1) << \"\\n\";\n",
+        "is_block": true,
+        "type": "code"
+      },
+      {
+        "content": "Remember to use",
+        "type": "text"
+      },
+      {
+        "content": "\\n",
+        "is_block": false,
+        "type": "code"
+      },
+      {
+        "content": "rather than",
+        "type": "text"
+      },
+      {
+        "content": "std::endl",
+        "is_block": false,
+        "type": "code"
+      },
+      {
+        "content": "it is more efficient.",
+        "type": "text"
+      }
+    ],
+    "is_const": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "name": "print",
+    "parameters": [
+      {
+        "description": [
+          {
+            "content": "A is actually a double.",
+            "type": "text"
+          }
+        ],
+        "name": "a",
+        "type": "double"
+      },
+      {
+        "description": [
+          {
+            "content": "Whereas b is an int.",
+            "type": "text"
+          }
+        ],
+        "name": "b",
+        "type": "int"
+      }
+    ],
+    "return_description": [
+      {
+        "content": "This does not really return anything because it is",
+        "type": "text"
+      },
+      {
+        "content": "void",
+        "is_block": false,
+        "type": "code"
+      },
+      {
+        "content": "but it could!",
+        "type": "text"
+      }
+    ],
+    "return_type": "void",
+    "scope": "project",
+    "signature": "print(double a, int b)",
+    "type": "function"
+  },
+  "project::print(int,bool)": {
+    "access": "public",
+    "briefdescription": [],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "name": "print",
+    "parameters": [
+      {
+        "description": [
+          {
+            "content": "This is the most important parameter. Without it the function will not work. Example:",
+            "type": "text"
+          },
+          {
+            "content": "project::coffee::print(3);\n",
+            "is_block": true,
+            "type": "code"
+          },
+          {
+            "content": "Does this work",
+            "type": "text"
+          }
+        ],
+        "name": "a_number",
+        "type": "int"
+      },
+      {
+        "description": [
+          {
+            "content": "If",
+            "type": "text"
+          },
+          {
+            "content": "true",
+            "is_block": false,
+            "type": "code"
+          },
+          {
+            "content": "print on some actual paper.",
+            "type": "text"
+          }
+        ],
+        "name": "on_paper",
+        "type": "bool"
+      }
+    ],
+    "return_description": [],
+    "return_type": "void",
+    "scope": "project",
+    "signature": "print(int a_number, bool on_paper)",
+    "type": "function"
+  },
+  "version()": {
+    "access": "public",
+    "briefdescription": [],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "name": "version",
+    "parameters": [],
+    "return_description": [],
+    "return_type": "std::string",
+    "scope": null,
+    "signature": "version()",
+    "type": "function"
+  }
+}

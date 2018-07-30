@@ -56,6 +56,11 @@ def options(opt):
         '--run_ensure_doxygen', default=False, action='store_true',
         help='Ensure that doxygen is available (will retrieve a fresh copy)')
 
+    opt.add_option(
+        '--test_filter', default=None, action='store',
+        help='Runs all tests that include the substring specified.'
+             'Wildcards not allowed. (Used with --run_tests)')
+
 
 def configure(conf):
     pass
@@ -65,7 +70,6 @@ def build(bld):
 
     # Create a virtualenv in the source folder and build universal wheel
     # Make sure the virtualenv Python module is in path
-
     with _create_virtualenv(bld=bld) as venv:
         venv.pip_install(packages=['wheel'])
         venv.run(cmd='python setup.py bdist_wheel --universal', cwd=bld.path)
@@ -73,8 +77,7 @@ def build(bld):
     # Delete the egg-info directory, do not understand why this is created
     # when we build a wheel. But, it is - perhaps in the future there will
     # be some way to disable its creation.
-    egg_info = os.path.join(
-        bld.path.abspath(), 'pytest_testdirectory.egg-info')
+    egg_info = os.path.join('src', 'wurfapi.egg-info')
 
     if os.path.isdir(egg_info):
         waflib.extras.wurf.directory.remove_directory(path=egg_info)
@@ -147,6 +150,10 @@ def _pytest(bld):
 
         # Skip the tests that have the "download_test" marker
         command += ' -m "not download_test and not ensure_doxygen"'
+
+        # Adds the test filter if specified
+        if bld.options.test_filter:
+            command += ' -k "{}"'.format(bld.options.test_filter)
 
         # Make python not write any .pyc files. These may linger around
         # in the file system and make some tests pass although their .py

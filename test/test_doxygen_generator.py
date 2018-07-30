@@ -21,7 +21,8 @@ def test_doxygen_generator(testdirectory):
         runner=wurfapi.run,
         recursive=True,
         source_path=coffee_dir.path(),
-        output_path=output_dir.path())
+        output_path=output_dir.path(),
+        warnings_as_error=True)
 
     xml_output = generator.generate()
 

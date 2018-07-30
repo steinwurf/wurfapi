@@ -1,5 +1,13 @@
 
 
+
+
+
+
+
+
+.. _project::coffee::machine:
+
 class machine
 =============
 
@@ -7,66 +15,156 @@ class machine
 **Scope:** project::coffee
 
 
-**In header:** coffee/coffee.h
+**In header:** ``#include <coffee/coffee.h>``
+
+
+Brief description
+-----------------
+A machine to brew your coffee. 
 
 
 
 Member functions (public)
 -------------------------
 
-.. csv-table::
-    :widths: auto
+.. list-table::
+   :header-rows: 0
+   :widths: auto
 
 
-    "void", ":ref:`set_number_cups<project::coffee::machine::set_number_cups(uint32_t)>` **(** uint32_t cups **)** "
-    "void", ":ref:`set_number_cups<project::coffee::machine::set_number_cups(std::string)>` **(** std::string cups **)** "
-    "uint32_t", ":ref:`number_cups<project::coffee::machine::number_cups()const>` **(**  **)** "
-    "void", ":ref:`set<project::coffee::machine::set(constheat&,int)const>` **(** const heat & h, int max **)** "
-    "void", ":ref:`help_brew<project::coffee::machine::help_brew()>` **(**  **)** "
+
+   * - virtual uint32_t
+     - :ref:`number_cups<project::coffee::machine::number_cups()const>` () const
+
+
+   * - void
+     - :ref:`set_number_cups<project::coffee::machine::set_number_cups(std::string)>` (std::string cups)
+
+
+   * - void
+     - :ref:`set_number_cups<project::coffee::machine::set_number_cups(uint32_t)>` (uint32_t cups)
+
+
+
+
+
+
+
+Static member functions (public)
+--------------------------------
+
+.. list-table::
+   :header-rows: 0
+   :widths: auto
+
+
+
+   * - std::string
+     - :ref:`version<project::coffee::machine::version()>` ()
+
+
 
 Description
 -----------
+The coffee machine object serves as your applications entry point for brewing coffee. You have to remember to fill the :ref:`project::coffee::machine::water_tank<project::coffee::machine::water_tank>` though. 
+
+
+
+
+
 
 
 Member Function Description
 ---------------------------
 
+.. _project::coffee::machine::number_cups()const:
 
-.. _project::coffee::machine::set_number_cups(uint32_t):
+uint32_t **number_cups** ()
 
-- void :ref:`set_number_cups<project::coffee::machine::set_number_cups(uint32_t)>` **(** uint32_t cups **)** 
+    
 
-Set the number of cups to brew.
+    
+
+    
+
+    Returns:
+        The number of cups 
 
 
+
+-----
 
 .. _project::coffee::machine::set_number_cups(std::string):
 
-- void :ref:`set_number_cups<project::coffee::machine::set_number_cups(std::string)>` **(** std::string cups **)** 
+void **set_number_cups** (std::string cups)
+
+    Set the number of cups to brew. 
+
+    You can see :ref:`number_cups()<project::coffee::machine::number_cups()const>` for how many cups 
+
+    
+    Parameter ``cups``:
+        The number of cups 
+
+
+    
+
+
+
+-----
+
+.. _project::coffee::machine::set_number_cups(uint32_t):
+
+void **set_number_cups** (uint32_t cups)
+
+    Set the number of cups to brew. 
+
+    You can see :ref:`number_cups()<project::coffee::machine::number_cups()const>` for how many cups 
+
+    
+    Parameter ``cups``:
+        The number of cups 
+
+
+    
+
+
+
+-----
+
+.. _project::coffee::machine::version():
+
+std::string **version** ()
+
+    The version of the machine. 
+
+    Example: 
+
+    .. code-block:: c++
+
+        std::cout << "The version";
+                   << project::coffee::machine::version() << "\n";
+
+
+    Remember to use ``\n`` rather than ``std::endl`` it is more efficient. 
+
+    
+
+    Returns:
+        The version of the machine. Example: 
+
+        .. code-block:: c++
+
+            std::cout << machine::version();
+            std::cout << "\n";
 
 
 
 
 
-.. _project::coffee::machine::number_cups()const:
-
-- uint32_t :ref:`number_cups<project::coffee::machine::number_cups()const>` **(**  **)** 
 
 
 
-
-
-.. _project::coffee::machine::set(constheat&,int)const:
-
-- void :ref:`set<project::coffee::machine::set(constheat&,int)const>` **(** const heat & h, int max **)** 
-
-Set the heat.
-This function is use to set the head of the machine.
-
-
-.. _project::coffee::machine::help_brew():
-
-- void :ref:`help_brew<project::coffee::machine::help_brew()>` **(**  **)** 
 
 
 

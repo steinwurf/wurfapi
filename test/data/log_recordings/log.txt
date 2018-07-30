@@ -1,5 +1,0 @@
-WARNING: Not supported namespace
-WARNING: Not supported namespace
-WARNING: Not supported file
-WARNING: Not supported dir
-WARNING: Not supported dir

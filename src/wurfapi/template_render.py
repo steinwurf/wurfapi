@@ -22,6 +22,28 @@ def rst_create_signature(unique_name, function):
     return signature
 
 
+def api_filter(api, selectors, **attributes):
+
+    result = []
+
+    def match(element):
+        for key, value in attributes.items():
+            try:
+                if value != element[key]:
+                    return False
+            except KeyError:
+                return False
+        return True
+
+    for selector in selectors:
+        element = api[selector]
+
+        if match(element):
+            result.append(selector)
+
+    return result
+
+
 class TemplateRender(object):
     """ Finds the template on the file system with a given name. """
 
@@ -55,7 +77,8 @@ class TemplateRender(object):
 
         self.environment.globals.update(
             rst_create_heading=rst_create_heading,
-            rst_create_signature=rst_create_signature)
+            rst_create_signature=rst_create_signature,
+            api_filter=api_filter)
 
     def render(self, selector, api, filename):
         """ Render the template

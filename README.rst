@@ -3,7 +3,7 @@
 
 .. image:: https://img.shields.io/appveyor/ci/SteinwurfApS/wurfapi.svg?logo=appveyor
   :target: https://ci.appveyor.com/project/SteinwurfApS/wurfapi
-  
+
 Introduction
 ============
 
@@ -54,10 +54,10 @@ To use the extension, the following steps are needed:
 
     pip install wurfapi
 
-2. If you already have ``Shinx`` documentation setup go to setup 4
+2. If you already have ``Sphinx`` documentation setup go to setup 4
    otherwise go to setup 3.
 
-3. Generate the initial ``Shinx`` documentation by running::
+3. Generate the initial ``Sphinx`` documentation by running::
 
       mkdir docs
       cd docs
@@ -313,7 +313,7 @@ Python dictionary representing a C++ namespace::
     info = {
       'type': 'namespace',
       'name': 'unqualified-name',
-      'parent': 'unique-name' | None,
+      'scope': 'unique-name' | None,
       'members: [ 'unique-name', 'unique-name' ]
     }
 
@@ -333,6 +333,28 @@ Python dictionary representing a C++ class or struct::
     }
 
 
+Type ``enum`` | ``enum class``
+..............................
+
+Python dictionary representing a C++ enum or enum class::
+
+    info = {
+      'type': 'enum',
+      'name': 'unqualified-name',
+      'location' { 'file': 'filename.h', 'line-start': 10, 'line-end': 23 },
+      'scope': 'unique-name' | None,
+      'values: [
+        {
+          'name': 'somename',
+          'briefdescription': paragraphs,
+          'detaileddescription': paragraphs
+          'value': 'some value' | none
+        }
+       ],
+      'briefdescription': paragraphs,
+      'detaileddescription': paragraphs
+    }
+
 Type ``function``
 .................
 
@@ -344,14 +366,19 @@ Python dictionary representing a C++ function::
       'location' { 'file': 'filename.h', 'line': 10},
       'scope': 'unique-name' | None,
       'return_type': 'sometype',
+      'return_description': paragraphs,
+      'signature': 'text',
       'is_const': True | False,
       'is_static': True | False,
+      'is_virtual': True | False,
+      'is_explicit': True | False,
+      'is_inline': True | False,
       'access': 'public' | 'protected' | 'private',
-      'briefdescription: 'some text',
-      'detaileddescription: 'some text
+      'briefdescription: paragraphs,
+      'detaileddescription: paragraphs,
       'parameters': [
-        { 'type': 'sometype', 'name': 'somename' },
-        { 'type': 'sometype', 'name': 'somename' }
+        { 'type': 'sometype', 'name': 'somename', 'description': description },
+        { 'type': 'sometype', 'name': 'somename', 'description': description }
       ]
   }
 
@@ -361,14 +388,14 @@ Text information
 
 Text information is stored in a list of paragraphs::
 
-    description = {
-      'has_content': true | false,
-      'paragraphs' : [
+    paragraphs = [
         {
           "type": "text" | "code",
           ...
+        },
+        ...
       ]
-    }
+
 
     text = {
       'type': 'text',
@@ -381,6 +408,7 @@ Text information is stored in a list of paragraphs::
     code = {
       'type': 'code',
       'content': 'void print();',
+      'is_block': true | false
     }
 
 

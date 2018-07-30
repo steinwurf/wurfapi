@@ -162,15 +162,17 @@ def generate_doxygen(app):
         runner=run,
         recursive=True,
         source_path=source_path,
-        output_path=output_path)
+        output_path=output_path,
+        warnings_as_error=parser['warnings_as_error'])
 
     output = generator.generate()
 
     logger.info('wurfapi doxygen XML {}'.format(output))
 
-    parser = doxygen_parser.DoxygenParser(project_path=source_path, log=logger)
+    parser = doxygen_parser.DoxygenParser(
+        doxygen_path=output, project_path=source_path, log=logger)
 
-    app.wurfapi_api = parser.parse_api(doxygen_path=output)
+    app.wurfapi_api = parser.parse_index()
 
     with open(os.path.join(output_path, 'wurfapi_api.json'), 'w') as f:
         json.dump(app.wurfapi_api, f)

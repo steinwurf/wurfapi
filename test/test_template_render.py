@@ -24,16 +24,18 @@ def generate_coffee_api(testdirectory):
         runner=wurfapi.run,
         recursive=True,
         source_path=src_dir.path(),
-        output_path=output_dir.path())
+        output_path=output_dir.path(),
+        warnings_as_error=True)
 
     xml_dir = generator.generate()
 
     log = mock.Mock()
 
     reader = wurfapi.doxygen_parser.DoxygenParser(
+        doxygen_path=xml_dir,
         project_path=src_dir.path(), log=log)
 
-    return reader.parse_api(doxygen_path=xml_dir)
+    return reader.parse_index()
 
 
 def test_template_finder_builtin(testdirectory):
@@ -77,21 +79,33 @@ def test_template_render_namespace(testdirectory):
 
     template = wurfapi.template_render.TemplateRender(user_path=None)
 
-    api = {
-        "test::ok": {
-            "briefdescription": "",
-            "name": "ok",
-            "location": {"file": "ok"}
-        }
-    }
+    api = generate_coffee_api(testdirectory=testdirectory)
 
-    data = template.render(selector='test::ok', api=api,
+    data = template.render(selector='project', api=api,
                            filename='namespace_synopsis.rst')
 
     mismatch_path = testdirectory.mkdir('mismatch')
 
     recorder = record.Record(
         filename='builtin_namespace_synopsis.rst',
+        recording_path='test/data/template_recordings',
+        mismatch_path=mismatch_path.path())
+
+    recorder.record(data=data)
+
+def test_template_render_namespace(testdirectory):
+
+    template = wurfapi.template_render.TemplateRender(user_path=None)
+
+    api = generate_coffee_api(testdirectory=testdirectory)
+
+    data = template.render(selector='project::coffee::mug_size', api=api,
+                           filename='enum_synopsis.rst')
+
+    mismatch_path = testdirectory.mkdir('mismatch')
+
+    recorder = record.Record(
+        filename='builtin_enum_synopsis.rst',
         recording_path='test/data/template_recordings',
         mismatch_path=mismatch_path.path())
 

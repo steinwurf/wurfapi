@@ -10,8 +10,12 @@ Welcome to Coffee's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-.. wurfapi:: class_synopsis.rst
-    :selector: project::coffee::machine
+   api_machine
+   api_mug_size
+   api_water_tank
+   api_namespace
+   examples
+
 
 
 Indices and tables
