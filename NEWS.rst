@@ -8,6 +8,10 @@ Latest
 ------
 * tbd
 
+2.1.0
+-----
+* Minor: Fix broken 2.0.0 version number in wurfapi_directive.
+
 2.0.0
 -----
 * Minor: Added support for enum
