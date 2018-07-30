@@ -372,6 +372,10 @@ def parse(parser, xml):
     # Save mapping from doxygen id to unique name
     parser.id_mapping[xml.attrib["id"]] = scoped_name
 
+    # Sort the members list such that they always appear in
+    # the same order
+    result["members"].sort()
+
     api[scoped_name] = result
     return api
 
@@ -415,6 +419,10 @@ def parse(parser, xml):
             api.update(member_api)
 
             result['members'] += member_api.keys()
+
+    # Sort the members list such that they always appear in
+    # the same order
+    result["members"].sort()
 
     api[scoped_name] = result
 

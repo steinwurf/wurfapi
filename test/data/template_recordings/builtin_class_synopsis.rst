@@ -33,16 +33,16 @@ Member functions (public)
 
 
 
-   * - void
-     - :ref:`set_number_cups<project::coffee::machine::set_number_cups(uint32_t)>` (uint32_t cups)
+   * - virtual uint32_t
+     - :ref:`number_cups<project::coffee::machine::number_cups()const>` () const
 
 
    * - void
      - :ref:`set_number_cups<project::coffee::machine::set_number_cups(std::string)>` (std::string cups)
 
 
-   * - virtual uint32_t
-     - :ref:`number_cups<project::coffee::machine::number_cups()const>` () const
+   * - void
+     - :ref:`set_number_cups<project::coffee::machine::set_number_cups(uint32_t)>` (uint32_t cups)
 
 
 
@@ -77,20 +77,18 @@ The coffee machine object serves as your applications entry point for brewing co
 Member Function Description
 ---------------------------
 
-.. _project::coffee::machine::set_number_cups(uint32_t):
+.. _project::coffee::machine::number_cups()const:
 
-void **set_number_cups** (uint32_t cups)
-
-    Set the number of cups to brew. 
-
-    You can see :ref:`number_cups()<project::coffee::machine::number_cups()const>` for how many cups 
+uint32_t **number_cups** ()
 
     
-    Parameter ``cups``:
+
+    
+
+    
+
+    Returns:
         The number of cups 
-
-
-    
 
 
 
@@ -115,18 +113,20 @@ void **set_number_cups** (std::string cups)
 
 -----
 
-.. _project::coffee::machine::number_cups()const:
+.. _project::coffee::machine::set_number_cups(uint32_t):
 
-uint32_t **number_cups** ()
+void **set_number_cups** (uint32_t cups)
+
+    Set the number of cups to brew. 
+
+    You can see :ref:`number_cups()<project::coffee::machine::number_cups()const>` for how many cups 
 
     
-
-    
-
-    
-
-    Returns:
+    Parameter ``cups``:
         The number of cups 
+
+
+    
 
 
 

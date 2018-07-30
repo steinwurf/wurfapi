@@ -4,8 +4,8 @@
     "detaileddescription": [],
     "members": [
       "project::coffee",
-      "project::print(int,bool)",
-      "project::print(double,int)"
+      "project::print(double,int)",
+      "project::print(int,bool)"
     ],
     "name": "project",
     "scope": "",
@@ -50,12 +50,12 @@
       "line-stop": 70
     },
     "members": [
-      "project::coffee::machine::set_number_cups(uint32_t)",
-      "project::coffee::machine::set_number_cups(std::string)",
+      "project::coffee::machine::help_brew()",
       "project::coffee::machine::number_cups()const",
-      "project::coffee::machine::version()",
       "project::coffee::machine::set(constheat&,int)const",
-      "project::coffee::machine::help_brew()"
+      "project::coffee::machine::set_number_cups(std::string)",
+      "project::coffee::machine::set_number_cups(uint32_t)",
+      "project::coffee::machine::version()"
     ],
     "name": "machine",
     "scope": "project::coffee",
@@ -310,8 +310,8 @@
       "line-stop": 29
     },
     "members": [
-      "project::coffee::machine::water_tank::is_full()const",
-      "project::coffee::machine::water_tank::fill(constcups&,bool)"
+      "project::coffee::machine::water_tank::fill(constcups&,bool)",
+      "project::coffee::machine::water_tank::is_full()const"
     ],
     "name": "water_tank",
     "scope": "project::coffee::machine",
