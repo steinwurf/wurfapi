@@ -23,7 +23,7 @@ from . import run
 from . import template_render
 from . import wurfapi_error
 
-VERSION = '2.1.0'
+VERSION = '2.2.0'
 
 
 class WurfapiDirective(docutils.parsers.rst.Directive):

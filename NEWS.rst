@@ -6,6 +6,10 @@ of every change, see the Git log.
 
 Latest
 ------
+* tbd
+
+2.2.0
+-----
 * Minor: Fix missing return_type when Doxygen put it in a nested
          ref tag
 
