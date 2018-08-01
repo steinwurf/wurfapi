@@ -563,7 +563,12 @@ def parse(xml, parser, log, scope):
     result["type"] = "function"
     result["scope"] = scope
     result["name"] = xml.findtext("name")
-    result["return_type"] = xml.findtext("type")
+
+    # The return type can be as just text in the type
+    # tag or in a nested ref tag. We use the approach
+    # mentioned here to get it:
+    # https://lxml.de/1.3/tutorial.html#elements-contain-text
+    result["return_type"] = xml.find("type").xpath("string()")
     result["signature"] = result["name"] + xml.findtext("argsstring")
     result["return_description"] = return_description
     result["is_const"] = xml.attrib["const"] == "yes"

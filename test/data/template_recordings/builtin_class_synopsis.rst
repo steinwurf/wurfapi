@@ -45,6 +45,10 @@ Member functions (public)
      - :ref:`set_number_cups<project::coffee::machine::set_number_cups(uint32_t)>` (uint32_t cups)
 
 
+   * - water_tank
+     - :ref:`tank<project::coffee::machine::tank()>` ()
+
+
 
 
 
@@ -125,6 +129,22 @@ void **set_number_cups** (uint32_t cups)
     Parameter ``cups``:
         The number of cups 
 
+
+    
+
+
+
+-----
+
+.. _project::coffee::machine::tank():
+
+water_tank **tank** ()
+
+    Get the water tank. 
+
+    
+
+    
 
     
 

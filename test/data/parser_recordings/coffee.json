@@ -47,7 +47,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-start": 13,
-      "line-stop": 70
+      "line-stop": 73
     },
     "members": [
       "project::coffee::machine::help_brew()",
@@ -55,6 +55,7 @@
       "project::coffee::machine::set(constheat&,int)const",
       "project::coffee::machine::set_number_cups(std::string)",
       "project::coffee::machine::set_number_cups(uint32_t)",
+      "project::coffee::machine::tank()",
       "project::coffee::machine::version()"
     ],
     "name": "machine",
@@ -230,6 +231,28 @@
     "return_type": "void",
     "scope": "project::coffee::machine",
     "signature": "set_number_cups(uint32_t cups)",
+    "type": "function"
+  },
+  "project::coffee::machine::tank()": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "Get the water tank.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "name": "tank",
+    "parameters": [],
+    "return_description": [],
+    "return_type": "water_tank",
+    "scope": "project::coffee::machine",
+    "signature": "tank()",
     "type": "function"
   },
   "project::coffee::machine::version()": {
