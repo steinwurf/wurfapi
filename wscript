@@ -115,6 +115,11 @@ def _pytest(bld):
 
     with _create_virtualenv(bld=bld) as venv:
 
+        # Some of the Python packages needs to compile, so we
+        # need our compiler in path
+        venv.env['PATH'] = os.path.pathsep.join(
+            [venv.env['PATH'], os.environ['PATH']])
+
         venv.pip_install(['pytest', 'pytest-testdirectory',
                           'sphinx', 'mock', 'vcrpy'])
 
@@ -139,10 +144,6 @@ def _pytest(bld):
 
         # Make the basetemp directory
         os.makedirs(basetemp)
-
-        # If we need to be able to run doxygen from the system
-        # venv.env['PATH'] = os.path.pathsep.join(
-        #    [venv.env['PATH'], os.environ['PATH']])
 
         # Main test command
         command = 'python -B -m pytest {} --basetemp {}'.format(

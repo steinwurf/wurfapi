@@ -58,6 +58,9 @@ public:
     ///
     static std::string version();
 
+    /// Get the water tank
+    water_tank tank();
+
 protected:
     /// @brief Set the heat.
     ///
