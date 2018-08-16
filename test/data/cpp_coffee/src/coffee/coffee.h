@@ -30,6 +30,10 @@ public:
 
     /// @brief Set the number of cups to brew.
     ///
+    /// Before setting number of cups, check the following:
+    /// 1. You have enough water.
+    /// 2. Your coffee mug is clean.
+    ///
     /// You can see number_cups() for how many cups
     /// @param cups The number of cups
     void set_number_cups(uint32_t cups);
