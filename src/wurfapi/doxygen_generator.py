@@ -32,13 +32,13 @@ ALIASES += "endrst=\endverbatim"
 class DoxygenGenerator(object):
 
     def __init__(self, doxygen_executable, runner, recursive,
-                 source_path, output_path, warnings_as_error):
+                 source_paths, output_path, warnings_as_error):
         """ Generate the doxygen XML.
 
         :param doxygen_executable: Path to the Doxygen executable.
         :param runner: The subprocess run wrapper.
         :param recursive: Doxygen option
-        :param source_path: Doxygen option
+        :param source_paths: Doxygen option
         :param output_path: Doxygen option
         :param warnings_as_errors: If True we raise an error if Doxygen
             produces any warnings. If False we ignore any Doxygen
@@ -47,11 +47,15 @@ class DoxygenGenerator(object):
         self.doxygen_executable = doxygen_executable
         self.runner = runner
         self.recursive = recursive
-        self.source_path = source_path
+        self.source_paths = source_paths
         self.output_path = output_path
         self.warnings_as_error = warnings_as_error
 
-        assert(os.path.isdir(self.source_path))
+        assert(type(self.source_paths) is list)
+
+        for path in self.source_paths:
+            assert(os.path.isdir(path) or os.path.isfile(path))
+
         assert(os.path.isdir(self.output_path))
 
     def generate(self):
@@ -68,7 +72,7 @@ class DoxygenGenerator(object):
         doxyfile_content = DOXYFILE_TEMPLATE.format(
             name='wurfapi',
             output_path=self.output_path,
-            source_path=self.source_path,
+            source_path=' '.join(self.source_paths),
             recursive="YES" if self.recursive else "NO",
             extra="")
 

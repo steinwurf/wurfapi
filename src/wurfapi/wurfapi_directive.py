@@ -105,8 +105,9 @@ def main():
 
 def generate_doxygen(app):
 
-    source_path = os.path.join(app.srcdir,
-                               app.config.wurfapi['source_path'])
+    source_paths = []
+    for path in app.config.wurfapi['source_paths']:
+        source_paths.append(os.path.join(app.srcdir, path))
 
     output_path = os.path.join(app.doctreedir, 'wurfapi')
 
@@ -118,29 +119,8 @@ def generate_doxygen(app):
     # below debug to stdout and above to stderr
     logger = sphinx.util.logging.getLogger('wurfapi')
 
-    # class LessThanFilter(logging.Filter):
-    #     def __init__(self, exclusive_maximum, name=""):
-    #         super(LessThanFilter, self).__init__(name)
-    #         self.max_level = exclusive_maximum
-
-    #     def filter(self, record):
-    #         # non-zero return means we log this message
-    #         return 1 if record.levelno < self.max_level else 0
-
-    # # Have to set the root logger level, it defaults to logging.WARNING
-    # logger.setLevel(logging.NOTSET)
-
-    # logging_handler_out = logging.StreamHandler(sys.stdout)
-    # logging_handler_out.setLevel(logging.DEBUG)
-    # logging_handler_out.addFilter(LessThanFilter(logging.WARNING))
-    # logger.addHandler(logging_handler_out)
-
-    # logging_handler_err = logging.StreamHandler(sys.stderr)
-    # logging_handler_err.setLevel(logging.WARNING)
-    # logger.addHandler(logging_handler_err)
-
     logger.info('wurfapi source_path={} output_path={}'.format(
-        source_path, output_path))
+        source_paths, output_path))
 
     parser = app.config.wurfapi['parser']
     assert parser['type'] == 'doxygen'
@@ -161,7 +141,7 @@ def generate_doxygen(app):
         doxygen_executable=doxygen_executable,
         runner=run,
         recursive=True,
-        source_path=source_path,
+        source_paths=source_paths,
         output_path=output_path,
         warnings_as_error=parser['warnings_as_error'])
 
@@ -170,7 +150,7 @@ def generate_doxygen(app):
     logger.info('wurfapi doxygen XML {}'.format(output))
 
     parser = doxygen_parser.DoxygenParser(
-        doxygen_path=output, project_path=source_path, log=logger)
+        doxygen_path=output, project_paths=source_paths, log=logger)
 
     app.wurfapi_api = parser.parse_index()
 

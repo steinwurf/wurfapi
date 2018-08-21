@@ -26,7 +26,7 @@ def generate_coffee_xml(testdirectory):
         doxygen_executable=doxygen_executable,
         runner=wurfapi.run,
         recursive=True,
-        source_path=src_dir.path(),
+        source_paths=[src_dir.path()],
         output_path=output_dir.path(),
         warnings_as_error=True)
 
@@ -41,7 +41,7 @@ def test_coffee(testdirectory, caplog):
     log = logging.getLogger(name='test_coffee')
 
     parser = wurfapi.doxygen_parser.DoxygenParser(
-        doxygen_path=xml_dir, project_path=src_dir, log=log)
+        doxygen_path=xml_dir, project_paths=[src_dir], log=log)
 
     api = parser.parse_index()
 
@@ -68,7 +68,7 @@ def generate_xml(testdirectory, source_file):
         doxygen_executable=doxygen_executable,
         runner=wurfapi.run,
         recursive=True,
-        source_path=source_dir.path(),
+        source_paths=[source_dir.path()],
         output_path=output_dir.path(),
         warnings_as_error=True)
 
@@ -86,7 +86,7 @@ def test_parser_input_function(testdirectory, caplog):
     log = logging.getLogger(name='test_parser_input_function')
 
     parser = wurfapi.doxygen_parser.DoxygenParser(
-        doxygen_path=xml_dir, project_path=src_dir, log=log)
+        doxygen_path=xml_dir, project_paths=[src_dir], log=log)
 
     api = parser.parse_index()
 
@@ -111,7 +111,7 @@ def test_parser_input_enum_class(testdirectory, caplog):
     log = logging.getLogger(name='test_parser_input_enum_class')
 
     parser = wurfapi.doxygen_parser.DoxygenParser(
-        doxygen_path=xml_dir, project_path=src_dir, log=log)
+        doxygen_path=xml_dir, project_paths=[src_dir], log=log)
 
     api = parser.parse_index()
 

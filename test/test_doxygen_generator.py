@@ -20,7 +20,7 @@ def test_doxygen_generator(testdirectory):
         doxygen_executable=doxygen_executable,
         runner=wurfapi.run,
         recursive=True,
-        source_path=coffee_dir.path(),
+        source_paths=[coffee_dir.path()],
         output_path=output_dir.path(),
         warnings_as_error=True)
 

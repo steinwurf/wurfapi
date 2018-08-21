@@ -23,7 +23,7 @@ def generate_coffee_api(testdirectory):
         doxygen_executable=doxygen_executable,
         runner=wurfapi.run,
         recursive=True,
-        source_path=src_dir.path(),
+        source_paths=[src_dir.path()],
         output_path=output_dir.path(),
         warnings_as_error=True)
 
@@ -33,7 +33,7 @@ def generate_coffee_api(testdirectory):
 
     reader = wurfapi.doxygen_parser.DoxygenParser(
         doxygen_path=xml_dir,
-        project_path=src_dir.path(), log=log)
+        project_paths=[src_dir.path()], log=log)
 
     return reader.parse_index()
 
@@ -92,6 +92,7 @@ def test_template_render_namespace(testdirectory):
         mismatch_path=mismatch_path.path())
 
     recorder.record(data=data)
+
 
 def test_template_render_namespace(testdirectory):
 

@@ -6,7 +6,7 @@ of every change, see the Git log.
 
 Latest
 ------
-* tbd
+* Major: Allow multiple source paths to be specified.
 
 2.2.0
 -----
