@@ -89,6 +89,9 @@ To use the extension, the following steps are needed:
         If you separate source and build dir in sphinx your 'source_path'
         should be something like '../../src'.
 
+    ``recursive``
+        Set recursive ``True`` if you want recursively scan the ``source_paths``
+
     ``download``
         If you do not want to automatically download Doxygen, set
         ``download`` to ``False``. In that case ``wurfapi`` will try to invoke
