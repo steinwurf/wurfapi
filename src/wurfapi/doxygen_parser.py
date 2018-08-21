@@ -192,6 +192,9 @@ class DoxygenParser(object):
     def relative_path(self, path):
         """ Return the relative path from the project_paths """
 
+        # Remove any redundant path elements
+        path = os.path.normpath(path)
+
         for project_path in self.project_paths:
 
             # Remove any redundant path elements
