@@ -143,10 +143,13 @@ def generate_doxygen(app):
     else:
         doxygen_executable = 'doxygen'
 
+    # Check if we should be recursive
+    recursive = app.config.wurfapi['recursive']
+
     generator = doxygen_generator.DoxygenGenerator(
         doxygen_executable=doxygen_executable,
         runner=run,
-        recursive=True,
+        recursive=recursive,
         source_paths=source_paths,
         output_path=output_path,
         warnings_as_error=parser['warnings_as_error'])

@@ -79,6 +79,7 @@ To use the extension, the following steps are needed:
       # wurfapi options - relative to your docs dir
       wurfapi = {
         'source_paths': ['../src'],
+        'recursive': True,
         'parser': {'type': 'doxygen', 'download': True,  'warnings_as_error': True}
       }
 
