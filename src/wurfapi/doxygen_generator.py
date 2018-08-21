@@ -54,7 +54,7 @@ class DoxygenGenerator(object):
         assert(type(self.source_paths) is list)
 
         for path in self.source_paths:
-            assert(os.path.isdir(path) or os.path.isfile(path))
+            assert(os.path.exists(path))
 
         assert(os.path.isdir(self.output_path))
 

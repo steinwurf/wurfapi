@@ -79,6 +79,7 @@ To use the extension, the following steps are needed:
       # wurfapi options - relative to your docs dir
       wurfapi = {
         'source_paths': ['../src'],
+        'recursive': True,
         'parser': {'type': 'doxygen', 'download': True,  'warnings_as_error': True}
       }
 
@@ -87,6 +88,9 @@ To use the extension, the following steps are needed:
     ``source_path``
         If you separate source and build dir in sphinx your 'source_path'
         should be something like '../../src'.
+
+    ``recursive``
+        Set recursive ``True`` if you want recursively scan the ``source_paths``
 
     ``download``
         If you do not want to automatically download Doxygen, set
