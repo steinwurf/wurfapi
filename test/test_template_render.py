@@ -15,7 +15,8 @@ def generate_coffee_api(testdirectory):
 
     output_dir = testdirectory.mkdir('xml_output')
     coffee_dir = testdirectory.copy_dir('test/data/cpp_coffee')
-    src_dir = coffee_dir.join('src')
+    src_dirs = [os.path.join(coffee_dir.path(), 'src'), os.path.join(
+        coffee_dir.path(), 'examples', 'header', 'header.h')]
 
     doxygen_executable = wurfapi.doxygen_downloader.ensure_doxygen()
 
@@ -23,7 +24,7 @@ def generate_coffee_api(testdirectory):
         doxygen_executable=doxygen_executable,
         runner=wurfapi.run,
         recursive=True,
-        source_paths=[src_dir.path()],
+        source_paths=src_dirs,
         output_path=output_dir.path(),
         warnings_as_error=True)
 
@@ -33,7 +34,7 @@ def generate_coffee_api(testdirectory):
 
     reader = wurfapi.doxygen_parser.DoxygenParser(
         doxygen_path=xml_dir,
-        project_paths=[src_dir.path()], log=log)
+        project_paths=src_dirs, log=log)
 
     return reader.parse_index()
 
