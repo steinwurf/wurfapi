@@ -106,8 +106,14 @@ def main():
 def generate_doxygen(app):
 
     source_paths = []
-    for path in app.config.wurfapi['source_paths']:
-        source_paths.append(os.path.join(app.srcdir, path))
+    for source_path in app.config.wurfapi['source_paths']:
+
+        source_path = os.path.join(app.srcdir, source_path)
+
+        if not os.path.exists(source_path):
+            raise RuntimeError("Missing source path {}".format(source_path))
+
+        source_paths.append(source_path)
 
     output_path = os.path.join(app.doctreedir, 'wurfapi')
 
