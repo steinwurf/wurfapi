@@ -1,8 +1,9 @@
-.. image:: https://img.shields.io/travis/steinwurf/wurfapi.svg?logo=travis
-    :target: https://travis-ci.org/steinwurf/wurfapi
 
-.. image:: https://img.shields.io/appveyor/ci/SteinwurfApS/wurfapi.svg?logo=appveyor
-  :target: https://ci.appveyor.com/project/SteinwurfApS/wurfapi
+.. image:: https://ci.appveyor.com/api/projects/status/l41u9e7y50r685ep?svg=true
+    :target: https://ci.appveyor.com/project/SteinwurfApS/wurfapi
+
+.. image:: https://travis-ci.org/steinwurf/wurfapi.svg?branch=master
+    :target: https://travis-ci.org/steinwurf/wurfapi
 
 Introduction
 ============
@@ -77,14 +78,14 @@ To use the extension, the following steps are needed:
 
       # wurfapi options - relative to your docs dir
       wurfapi = {
-        'source_path': '../src',
+        'source_paths': ['../src'],
         'parser': {'type': 'doxygen', 'download': True,  'warnings_as_error': True}
       }
 
    .. note::
 
     ``source_path``
-        If you seperated you source and build dir in sphinx your 'source_path'
+        If you separate source and build dir in sphinx your 'source_path'
         should be something like '../../src'.
 
     ``download``
@@ -146,7 +147,7 @@ documentation folder. readthedocs.org can be configured to use the
 ``requirements.txt``.
 
 Release new version
-==================
+===================
 
 1. Edit ``NEWS.rst``, ``wscript`` and ``src/wurfapi/wurfapi.py`` (set
    correct ``VERSION``)

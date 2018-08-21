@@ -1,4 +1,46 @@
 {
+  "header": {
+    "briefdescription": [
+      {
+        "content": "This is header.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "location": {
+      "file": "header.h",
+      "line-start": 2,
+      "line-stop": 6
+    },
+    "members": [
+      "header::headz_up()"
+    ],
+    "name": "header",
+    "scope": "",
+    "type": "struct"
+  },
+  "header::headz_up()": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "Check it out!",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "name": "headz_up",
+    "parameters": [],
+    "return_description": [],
+    "return_type": "void",
+    "scope": "header",
+    "signature": "headz_up()",
+    "type": "function"
+  },
   "project": {
     "briefdescription": [],
     "detaileddescription": [],

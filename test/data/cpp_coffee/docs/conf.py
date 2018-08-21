@@ -51,7 +51,7 @@ author = u'Coffee'
 
 # wurfapi options
 wurfapi = {
-    'source_path': '../src',
+    'source_paths': ['../src', '../examples/header/header.h'],
     'parser': {'type': 'doxygen', 'download': True, 'warnings_as_error': True}
 }
 
