@@ -1,8 +1,9 @@
-.. image:: https://img.shields.io/travis/steinwurf/wurfapi.svg?logo=travis
-    :target: https://travis-ci.org/steinwurf/wurfapi
 
-.. image:: https://img.shields.io/appveyor/ci/SteinwurfApS/wurfapi.svg?logo=appveyor
-  :target: https://ci.appveyor.com/project/SteinwurfApS/wurfapi
+.. image:: https://ci.appveyor.com/api/projects/status/l41u9e7y50r685ep?svg=true
+    :target: https://ci.appveyor.com/project/SteinwurfApS/wurfapi
+
+.. image:: https://travis-ci.org/steinwurf/wurfapi.svg?branch=master
+    :target: https://travis-ci.org/steinwurf/wurfapi
 
 Introduction
 ============
@@ -48,14 +49,17 @@ subject to change.
 Usage
 =====
 
+We recommend that you install wurfapi and sphinx in a virtual environment.
 To use the extension, the following steps are needed:
 
-1. Install the extension e.g.::
+1. Create a virtual environment::
 
+    Follow the https://docs.python.org/3/tutorial/venv.html
+
+2. Install the extension::
+
+    pip install sphinx
     pip install wurfapi
-
-2. If you already have ``Sphinx`` documentation setup go to setup 4
-   otherwise go to setup 3.
 
 3. Generate the initial ``Sphinx`` documentation by running::
 
@@ -74,14 +78,29 @@ To use the extension, the following steps are needed:
 
       # wurfapi options - relative to your docs dir
       wurfapi = {
-        'source_path': '../src',
-        'parser': {'type': 'doxygen', 'download': True }
+        'source_paths': ['../src'],
+        'recursive': True,
+        'parser': {'type': 'doxygen', 'download': True,  'warnings_as_error': True}
       }
 
-   Note: if you do not want to automatically download Doxygen, set
-   ``download`` to ``False``. In that case ``wurfapi`` will try to invoke
-   plain ``doxygen`` without specifying any path or similar. This means
-   it ``doxygen`` must be available in the path.
+   .. note::
+
+    ``source_path``
+        If you separate source and build dir in sphinx your 'source_path'
+        should be something like '../../src'.
+
+    ``recursive``
+        Set recursive ``True`` if you want recursively scan the ``source_paths``
+
+    ``download``
+        If you do not want to automatically download Doxygen, set
+        ``download`` to ``False``. In that case ``wurfapi`` will try to invoke
+        plain ``doxygen`` without specifying any path or similar. This means
+        it ``doxygen`` must be available in the path.
+
+    ``warnings_as_error``
+        If Doxygen emits many warnings you might want to set warnings_as_error
+        to False until they have been fixed.
 
 5. To generate the API documentation for a class open a ``.rst`` file
    e.g. ``index.rst`` if you ran ``sphinx-quickstart``. Say we want to
@@ -104,6 +123,9 @@ To use the extension, the following steps are needed:
       .. wurfapi:: class_synopsis.rst
           :selector: project::coffee::machine
 
+      .. wurfapi:: class_synopsis.rst
+          :selector: project::coffee::recipe
+
 
       Indices and tables
       ==================
@@ -115,6 +137,10 @@ To use the extension, the following steps are needed:
 
     To do this we use the ``class_synopsis.rst`` template.
 
+6. Generate the Documentation
+
+    make html
+
 Running on readthedocs.org
 --------------------------
 
@@ -124,8 +150,8 @@ documentation folder. readthedocs.org can be configured to use the
 ``requirements.txt`` when building a project. Simply put ``wurfapi`` in to the
 ``requirements.txt``.
 
-Relase new version
-==================
+Release new version
+===================
 
 1. Edit ``NEWS.rst``, ``wscript`` and ``src/wurfapi/wurfapi.py`` (set
    correct ``VERSION``)

@@ -18,7 +18,8 @@ def generate_coffee_xml(testdirectory):
 
     output_dir = testdirectory.mkdir('xml_output')
     coffee_dir = testdirectory.copy_dir('test/data/cpp_coffee')
-    src_dir = coffee_dir.join('src')
+    src_dirs = [os.path.join(coffee_dir.path(), 'src'), os.path.join(
+        coffee_dir.path(), 'examples', 'header', 'header.h')]
 
     doxygen_executable = wurfapi.doxygen_downloader.ensure_doxygen()
 
@@ -26,22 +27,22 @@ def generate_coffee_xml(testdirectory):
         doxygen_executable=doxygen_executable,
         runner=wurfapi.run,
         recursive=True,
-        source_path=src_dir.path(),
+        source_paths=src_dirs,
         output_path=output_dir.path(),
         warnings_as_error=True)
 
-    return src_dir.path(), generator.generate()
+    return src_dirs, generator.generate()
 
 
 def test_coffee(testdirectory, caplog):
 
     caplog.set_level(logging.DEBUG)
 
-    src_dir, xml_dir = generate_coffee_xml(testdirectory)
+    src_dirs, xml_dir = generate_coffee_xml(testdirectory)
     log = logging.getLogger(name='test_coffee')
 
     parser = wurfapi.doxygen_parser.DoxygenParser(
-        doxygen_path=xml_dir, project_path=src_dir, log=log)
+        doxygen_path=xml_dir, project_paths=src_dirs, log=log)
 
     api = parser.parse_index()
 
@@ -68,7 +69,7 @@ def generate_xml(testdirectory, source_file):
         doxygen_executable=doxygen_executable,
         runner=wurfapi.run,
         recursive=True,
-        source_path=source_dir.path(),
+        source_paths=[source_dir.path()],
         output_path=output_dir.path(),
         warnings_as_error=True)
 
@@ -86,7 +87,7 @@ def test_parser_input_function(testdirectory, caplog):
     log = logging.getLogger(name='test_parser_input_function')
 
     parser = wurfapi.doxygen_parser.DoxygenParser(
-        doxygen_path=xml_dir, project_path=src_dir, log=log)
+        doxygen_path=xml_dir, project_paths=[src_dir], log=log)
 
     api = parser.parse_index()
 
@@ -111,7 +112,7 @@ def test_parser_input_enum_class(testdirectory, caplog):
     log = logging.getLogger(name='test_parser_input_enum_class')
 
     parser = wurfapi.doxygen_parser.DoxygenParser(
-        doxygen_path=xml_dir, project_path=src_dir, log=log)
+        doxygen_path=xml_dir, project_paths=[src_dir], log=log)
 
     api = parser.parse_index()
 

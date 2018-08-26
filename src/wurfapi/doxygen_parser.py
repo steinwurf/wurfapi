@@ -93,12 +93,12 @@ class DoxygenParser(object):
     # Default parsers
     default_parsers = []
 
-    def __init__(self, doxygen_path, project_path, log):
+    def __init__(self, doxygen_path, project_paths, log):
         """ Create a new DoxygenParser
 
         :param doxygen_path: The path to where the Doxygen XML is
             located.
-        :param project_path: The path to the project as a String. The path is
+        :param project_paths: The path to the project as a String. The path is
             important as we use it to compute the relative paths to the files
             indexed by Doxygen. So e.g. if we want to generate links to GitHub
             etc. we need the relative path to the files with root of the
@@ -106,8 +106,10 @@ class DoxygenParser(object):
         :param log: Log object
         """
         self.doxygen_path = doxygen_path
-        self.project_path = project_path
+        self.project_paths = project_paths
         self.log = log
+
+        assert(type(self.project_paths) is list)
 
         # The parser functions registered
         self.parsers = DoxygenParser.default_parsers
@@ -188,13 +190,37 @@ class DoxygenParser(object):
             return True
 
     def relative_path(self, path):
-        """ Return the relative path from the project_path """
-        path = os.path.relpath(path=path, start=self.project_path)
+        """ Return the relative path from the project_paths """
 
-        # Make sure we use unix / linux style paths - also on windows
-        path = path.replace('\\', '/')
+        # Remove any redundant path elements
+        path = os.path.normpath(path)
 
-        return path
+        for project_path in self.project_paths:
+
+            # Remove any redundant path elements
+            project_path = os.path.normpath(project_path)
+
+            if not path.startswith(project_path):
+                continue
+
+            # If the project path is a file we just return
+            # the file name
+            if os.path.isfile(project_path):
+                return os.path.basename(project_path)
+
+            # Otherwise we return the relative path from the
+            # project path
+            path = os.path.relpath(path=path, start=project_path)
+
+            # Make sure we use unix / linux style paths - also on windows
+            path = path.replace('\\', '/')
+
+            return path
+
+        raise RuntimeError(
+            "The path {} was not recognized "
+            "in any of the project paths {}".format(
+                path, self.project_paths))
 
     def _find_in_list(self, xml):
         """ Find the parser function for a specific XML element.
