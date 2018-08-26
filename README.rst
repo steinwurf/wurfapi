@@ -416,7 +416,7 @@ Text information is stored in a list of paragraphs::
 
     paragraphs = [
         {
-          "type": "text" | "code",
+          "type": "text" | "code" | "list",
           ...
         },
         ...
@@ -435,6 +435,12 @@ Text information is stored in a list of paragraphs::
       'type': 'code',
       'content': 'void print();',
       'is_block': true | false
+    }
+
+    list = {
+      'type': 'list',
+      'ordered': true | false,
+      'items': [paragraphs] # Each item is a list of paragraphs
     }
 
 

@@ -655,13 +655,22 @@ def parse(xml, log, parser):
 
 @DoxygenParser.register(tag='computeroutput')
 @DoxygenParser.register(tag='verbatim')
-def parse(log, xml):
+def parse(parser, log, xml):
     """ Parses Doxygen code tags
 
     :return: List of "Text information" paragraphs
     """
 
-    # code = xml.text.strip()
+    if xml.text is None:
+        # This can happen if we see a verbatim element that is also a link
+        # in this case Doxygen will wrap in both. Instead we will try to
+        # parse the nested tag
+        paragraphs = []
+        for child in xml.getchildren():
+            paragraphs += parser.parse_element(xml=child)
+
+        return paragraphs
+
     code = xml.text.rstrip(' ')
 
     return [{"type": "code", "content": code, "is_block": "\n" in code}]
@@ -677,6 +686,7 @@ def parse(log, xml):
     return [{"type": "text", "content": xml.text, "link": link}]
 
 
+@DoxygenParser.register(tag='listitem')
 @DoxygenParser.register(tag='simplesect', attrib={'kind': 'see'})
 def parse(parser, log, xml):
     """ Parses Doxygen verbatim tag
@@ -688,6 +698,23 @@ def parse(parser, log, xml):
         paragraphs += parser.parse_element(xml=child)
 
     return paragraphs
+
+
+@DoxygenParser.register(tag='itemizedlist')
+@DoxygenParser.register(tag='orderedlist')
+def parse(parser, log, xml):
+    """ Parses Doxygen ref tag
+
+    :return: List of "Text information" paragraphs
+    """
+
+    paragraphs = []
+
+    for item in xml.findall('listitem'):
+        item_paragraphs = parser.parse_element(xml=item)
+        paragraphs.append(item_paragraphs)
+
+    return [{"type": "list", "ordered": xml.tag == "orderedlist", "items": paragraphs}]
 
 
 @DoxygenParser.register(tag='para')
@@ -717,6 +744,12 @@ def parse(parser, log, xml):
             paragraphs += parser.parse_element(xml=child)
 
         elif match(xml=child, tag="ref"):
+            paragraphs += parser.parse_element(xml=child)
+
+        elif match(xml=child, tag="orderedlist"):
+            paragraphs += parser.parse_element(xml=child)
+
+        elif match(xml=child, tag="itemizedlist"):
             paragraphs += parser.parse_element(xml=child)
 
         elif match(xml=child, tag="simplesect", attrib={"kind": "see"}):

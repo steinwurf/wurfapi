@@ -48,6 +48,17 @@
 {%- endmacro -%}
 
 
+{# FORMAT_LIST #}
+
+{%- macro format_list(list) -%}
+{%- set item_type = "#. " if list["ordered"] else "- " %}
+{% for item in list["items"] %}
+{{ item_type }}{{format_description(item) | indent(width=item_type|length)}}
+{%- endfor -%}
+
+{%- endmacro -%}
+
+
 {# FORMAT_DESCRIPTION #}
 
 {%- macro format_description(description) -%}
@@ -57,6 +68,9 @@
     {%- endif -%}
     {%- if para["type"] == "code" -%}
         {{ format_code(para) }}
+    {%- endif -%}
+    {%- if para["type"] == "list" -%}
+        {{ format_list(para) }}
     {%- endif -%}
 {%- endfor -%}
 {%- endmacro -%}
