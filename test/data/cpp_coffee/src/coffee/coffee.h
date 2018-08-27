@@ -30,6 +30,16 @@ public:
 
     /// @brief Set the number of cups to brew.
     ///
+    /// Before setting number of cups, check the following:
+    /// 1. You have enough water in the `water_tank`.
+    ///     * Of course you also need power.
+    ///
+    ///           std::cout << "You need power" << std::endl;
+    ///           std::cout << "So plug it in" << std::endl;
+    ///     * A stable surface is also important!
+    ///
+    /// 2. Your coffee mug is clean.
+    ///
     /// You can see number_cups() for how many cups
     /// @param cups The number of cups
     void set_number_cups(uint32_t cups);

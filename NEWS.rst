@@ -7,6 +7,7 @@ of every change, see the Git log.
 Latest
 ------
 * Major: Allow multiple source paths to be specified.
+* Minor: Adding support for lists (ordered and unordered)
 
 2.2.0
 -----

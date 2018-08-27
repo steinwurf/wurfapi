@@ -104,7 +104,21 @@ void **set_number_cups** (std::string cups)
 
     Set the number of cups to brew. 
 
-    You can see :ref:`number_cups()<project::coffee::machine::number_cups()const>` for how many cups 
+    Before setting number of cups, check the following: 
+
+    #. You have enough water in the :ref:`water_tank<project::coffee::machine::water_tank>` . 
+
+       - Of course you also need power. 
+
+         .. code-block:: c++
+
+             std::cout << "You need power" << std::endl;
+             std::cout << "So plug it in" << std::endl;
+
+
+
+       - A stable surface is also important! 
+    #. Your coffee mug is clean. You can see :ref:`number_cups()<project::coffee::machine::number_cups()const>` for how many cups 
 
     
     Parameter ``cups``:
@@ -123,7 +137,21 @@ void **set_number_cups** (uint32_t cups)
 
     Set the number of cups to brew. 
 
-    You can see :ref:`number_cups()<project::coffee::machine::number_cups()const>` for how many cups 
+    Before setting number of cups, check the following: 
+
+    #. You have enough water in the :ref:`water_tank<project::coffee::machine::water_tank>` . 
+
+       - Of course you also need power. 
+
+         .. code-block:: c++
+
+             std::cout << "You need power" << std::endl;
+             std::cout << "So plug it in" << std::endl;
+
+
+
+       - A stable surface is also important! 
+    #. Your coffee mug is clean. You can see :ref:`number_cups()<project::coffee::machine::number_cups()const>` for how many cups 
 
     
     Parameter ``cups``:

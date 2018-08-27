@@ -89,7 +89,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-start": 13,
-      "line-stop": 73
+      "line-stop": 83
     },
     "members": [
       "project::coffee::machine::help_brew()",
@@ -191,6 +191,60 @@
     ],
     "detaileddescription": [
       {
+        "content": "Before setting number of cups, check the following:",
+        "type": "text"
+      },
+      {
+        "items": [
+          [
+            {
+              "content": "You have enough water in the",
+              "type": "text"
+            },
+            {
+              "content": "water_tank",
+              "link": "project::coffee::machine::water_tank",
+              "type": "text"
+            },
+            {
+              "content": ".",
+              "type": "text"
+            },
+            {
+              "items": [
+                [
+                  {
+                    "content": "Of course you also need power.",
+                    "type": "text"
+                  },
+                  {
+                    "content": "std::cout << \"You need power\" << std::endl;\nstd::cout << \"So plug it in\" << std::endl;\n",
+                    "is_block": true,
+                    "type": "code"
+                  }
+                ],
+                [
+                  {
+                    "content": "A stable surface is also important!",
+                    "type": "text"
+                  }
+                ]
+              ],
+              "ordered": false,
+              "type": "list"
+            }
+          ],
+          [
+            {
+              "content": "Your coffee mug is clean.",
+              "type": "text"
+            }
+          ]
+        ],
+        "ordered": true,
+        "type": "list"
+      },
+      {
         "content": "You can see",
         "type": "text"
       },
@@ -237,6 +291,60 @@
       }
     ],
     "detaileddescription": [
+      {
+        "content": "Before setting number of cups, check the following:",
+        "type": "text"
+      },
+      {
+        "items": [
+          [
+            {
+              "content": "You have enough water in the",
+              "type": "text"
+            },
+            {
+              "content": "water_tank",
+              "link": "project::coffee::machine::water_tank",
+              "type": "text"
+            },
+            {
+              "content": ".",
+              "type": "text"
+            },
+            {
+              "items": [
+                [
+                  {
+                    "content": "Of course you also need power.",
+                    "type": "text"
+                  },
+                  {
+                    "content": "std::cout << \"You need power\" << std::endl;\nstd::cout << \"So plug it in\" << std::endl;\n",
+                    "is_block": true,
+                    "type": "code"
+                  }
+                ],
+                [
+                  {
+                    "content": "A stable surface is also important!",
+                    "type": "text"
+                  }
+                ]
+              ],
+              "ordered": false,
+              "type": "list"
+            }
+          ],
+          [
+            {
+              "content": "Your coffee mug is clean.",
+              "type": "text"
+            }
+          ]
+        ],
+        "ordered": true,
+        "type": "list"
+      },
       {
         "content": "You can see",
         "type": "text"
