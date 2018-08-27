@@ -546,7 +546,13 @@ def parse(xml, parser, log, scope):
 
         parameter = {}
 
-        parameter['type'] = param.findtext('type')
+        # The parameter type can be as just text in the type
+        # tag or in a nested ref tag. We use the approach
+        # mentioned here to get it:
+        # https://lxml.de/1.3/tutorial.html#elements-contain-text
+        parameter["type"] = param.find("type").xpath("string()")
+
+        #parameter['type'] = param.findtext('type')
         parameter['name'] = param.findtext('declname')
         parameter['description'] = ''
 
@@ -608,6 +614,15 @@ def parse(xml, parser, log, scope):
     result["detaileddescription"] = parser.parse_element(
         xml=xml.find("detaileddescription"))
     result["parameters"] = parameters
+
+    # If we do not have a return type the function is either a constructor
+    # or a destructor
+    if result["return_type"] == "":
+        result["is_constructor"] = not result["name"].startswith("~")
+        result["is_destructor"] = result["name"].startswith("~")
+    else:
+        result["is_constructor"] = False
+        result["is_destructor"] = False
 
     # Construct the unique name
     unique_name = scope + '::' + result["name"] if scope else result["name"]

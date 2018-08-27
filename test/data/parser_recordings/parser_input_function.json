@@ -31,6 +31,8 @@
       }
     ],
     "is_const": true,
+    "is_constructor": false,
+    "is_destructor": false,
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,

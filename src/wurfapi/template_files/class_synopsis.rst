@@ -4,6 +4,21 @@
 {% from 'function_synopsis.rst' import format_parameters %}
 
 
+{# FORMAT_MEMBER_TABLE_ROW #}
+
+{%- macro format_member_table_row(selector) -%}
+
+{%- set function = api[selector] %}
+{%- set signature = format_parameters(function["parameters"]) %}
+{%- set signature = signature + " const" if function["is_const"]
+        else signature %}
+{%- set return_type = function["return_type"] %}
+{%- set return_type = "virtual " + return_type if function["is_virtual"]
+        else return_type -%}
+* - {{ return_type }}
+  - :ref:`{{ function["name"] }}<{{selector}}>` {{ signature }}
+{% endmacro -%}
+
 {# FORMAT_MEMBER_TABLE #}
 
 {%- macro format_member_table(selectors) -%}
@@ -11,18 +26,10 @@
    :header-rows: 0
    :widths: auto
 
-{% for selector in selectors %}
-   {%- set function = api[selector] %}
-   {%- set signature = format_parameters(function["parameters"]) %}
-   {%- set signature = signature + " const" if function["is_const"]
-           else signature %}
-   {%- set return_type = function["return_type"] %}
-   {%- set return_type = "virtual " + return_type if function["is_virtual"]
-           else return_type %}
-
-   * - {{ return_type }}
-     - :ref:`{{ function["name"] }}<{{selector}}>` {{ signature }}
-{% endfor %}
+{% for selector in selectors | api_sort(key="is_destructor")
+                             | api_sort(key="is_constructor") %}
+   {{ format_member_table_row(selector) | indent(width=3) }}
+{%- endfor -%}
 
 {% endmacro -%}
 
@@ -46,8 +53,8 @@ Brief description
 {% endif %}
 
 
-{% set functions = api_filter(
-       api, class["members"], type="function", access="public", is_static=false)
+{% set functions = class["members"]
+       | api_filter(type="function", access="public", is_static=false)
 %}
 
 {%- if functions -%}
@@ -59,8 +66,8 @@ Member functions (public)
 {% endif %}
 
 
-{% set functions = api_filter(
-       api, class["members"], type="function", access="public", is_static=true)
+{% set functions = class["members"] | api_filter(
+       type="function", access="public", is_static=true)
 %}
 
 {%- if functions -%}
@@ -79,8 +86,10 @@ Description
 {% endif %}
 
 
-{% set functions = api_filter(
-       api, class["members"], type="function", access="public")
+{% set functions = class["members"]
+       | api_filter(type="function", access="public")
+       | api_sort(key="is_destructor")
+       | api_sort(key="is_constructor")
 %}
 
 {% if functions %}

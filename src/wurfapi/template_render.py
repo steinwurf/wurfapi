@@ -2,27 +2,8 @@ import os
 import jinja2
 
 
-def rst_create_heading(name, character):
-    """ @todo document these helpers"""
-    return name + '\n' + character*len(name)
-
-
-def rst_create_signature(unique_name, function):
-
-    signature = ":ref:`" + function["name"] + "<" + unique_name + ">` "
-    signature += "**(** "
-
-    parameters = []
-    for p in function["parameters"]:
-        parameters.append(p["type"] + " " + p["name"])
-
-    signature += ", ".join(parameters)
-    signature += " **)**"
-
-    return signature
-
-
-def api_filter(api, selectors, **attributes):
+@jinja2.contextfilter
+def api_filter(ctx, selectors, **attributes):
 
     result = []
 
@@ -36,12 +17,30 @@ def api_filter(api, selectors, **attributes):
         return True
 
     for selector in selectors:
-        element = api[selector]
+        element = ctx["api"][selector]
 
         if match(element):
             result.append(selector)
 
     return result
+
+
+@jinja2.contextfilter
+def api_sort(ctx, selectors, key, reverse=True):
+
+    # By default in Python False < True which means that
+    # if we sort booleans we get the false values first.
+    # Typically we want the opposite e.g. when sorting
+    # after is_constructor etc. we want the True values on
+    # top. So by default we sort with reverse=True. You
+    # can of course just change that to False in the filter
+    # should you need that behavior.
+
+    def compare(selector):
+        return ctx["api"][selector][key]
+
+    # The sort should be stable
+    return sorted(selectors, key=compare, reverse=reverse)
 
 
 class TemplateRender(object):
@@ -75,10 +74,13 @@ class TemplateRender(object):
             # https://stackoverflow.com/a/39858522/1717320
             extensions=['jinja2.ext.do'])
 
-        self.environment.globals.update(
-            rst_create_heading=rst_create_heading,
-            rst_create_signature=rst_create_signature,
-            api_filter=api_filter)
+        # self.environment.globals.update(
+        #     rst_create_heading=rst_create_heading,
+        #     rst_create_signature=rst_create_signature,
+        #     api_filter=api_filter)
+
+        self.environment.filters['api_sort'] = api_sort
+        self.environment.filters['api_filter'] = api_filter
 
     def render(self, selector, api, filename):
         """ Render the template

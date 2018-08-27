@@ -7,7 +7,10 @@ of every change, see the Git log.
 Latest
 ------
 * Major: Allow multiple source paths to be specified.
-* Minor: Adding support for lists (ordered and unordered)
+* Minor: Adding support for lists (ordered and unordered).
+* Patch: Fix parameter types in cases where Doxygen made them a link.
+* Minor: Add sorting capabilities using the api_sort jinja2 filter.
+* Major: Change api_filter function to be a jinja2 filter.
 
 2.2.0
 -----
