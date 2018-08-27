@@ -1,13 +1,14 @@
 {% from 'macros.rst' import format_description %}
+{% from 'macros.rst' import format_type_to_link %}
 
 {# FORMAT_PARAMETERS #}
 
-{%- macro format_parameters(parameters) -%}
+{%- macro format_parameters(parameters, scope="") -%}
 (
 {%- for parameter in parameters -%}
     {%- set type = parameter["type"] -%}
     {%- set name = parameter["name"] -%}
-    {{type}} {{name}}{{ ", " if not loop.last }}
+    {{ format_type_to_link(type, scope) }} {{name}}{{ ", " if not loop.last }}
 {%- endfor -%}
 )
 {%- endmacro -%}

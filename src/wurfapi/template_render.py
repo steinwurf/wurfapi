@@ -10,8 +10,20 @@ def api_filter(ctx, selectors, **attributes):
     def match(element):
         for key, value in attributes.items():
             try:
-                if value != element[key]:
-                    return False
+                # This allows a user to write expressions such as:
+                #
+                #     selectors | api_filter(access=["private", "protected"])
+                #
+                # Which will then filter out all elements that are either
+                # "private" or "protected"
+                if (type(value) is list) and (element[key] in value):
+                    continue
+
+                if element[key] == value:
+                    continue
+
+                # None of the conditions matched so we break out
+                return False
             except KeyError:
                 return False
         return True

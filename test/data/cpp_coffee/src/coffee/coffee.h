@@ -28,6 +28,14 @@ public:
         bool fill(const cups& number_of_cups, bool safety_valve);
     };
 
+private:
+    /// Internal brewing state
+    struct brew_state
+    {
+        bool m_on;
+    };
+
+public:
     /// @brief The power state
     enum class power
     {

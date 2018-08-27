@@ -424,17 +424,22 @@ def parse(parser, xml):
     scope, _, name = scoped_name.rpartition('::')
 
     # Build the result
-    result = {
-        'type': xml.attrib['kind'],
-        'name': name,
-        'location': parser.parse_element(xml=xml.find('location')),
-        'scope': scope,
-        'briefdescription': parser.parse_element(
-            xml=xml.find("briefdescription")),
-        'detaileddescription': parser.parse_element(
-            xml=xml.find("detaileddescription")),
-        'members': []
-    }
+    result = {}
+
+    result["type"] = xml.attrib['kind']
+    result["name"] = name
+    result["location"] = parser.parse_element(xml=xml.find('location'))
+    result["scope"] = scope
+    result["briefdescription"] = parser.parse_element(
+        xml=xml.find("briefdescription"))
+    result["detaileddescription"] = parser.parse_element(
+        xml=xml.find("detaileddescription"))
+    result["members"] = []
+    result["access"] = xml.attrib["prot"]
+
+    # Inner classes have their own tag
+    for innerclass in xml.findall('.//innerclass'):
+        result['members'].append(innerclass.text)
 
     api = {}
 
@@ -486,6 +491,7 @@ def parse(xml, parser, log, scope):
         xml=xml.find("briefdescription"))
     result["detaileddescription"] = parser.parse_element(
         xml=xml.find("detaileddescription"))
+    result["access"] = xml.attrib["prot"]
 
     # Lets get all the values of the num
     values = []
@@ -552,7 +558,7 @@ def parse(xml, parser, log, scope):
         # https://lxml.de/1.3/tutorial.html#elements-contain-text
         parameter["type"] = param.find("type").xpath("string()")
 
-        #parameter['type'] = param.findtext('type')
+        # parameter['type'] = param.findtext('type')
         parameter['name'] = param.findtext('declname')
         parameter['description'] = ''
 

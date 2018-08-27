@@ -28,6 +28,18 @@
 {%- endmacro -%}
 
 
+{# FORMAT_TYPE_TO_LINK #}
+
+{%- macro format_type_to_link(type, scope="") -%}
+{%- set selector = scope + "::" + type %}
+{%- if selector in api -%}
+:ref:`{{ type }}<{{ selector }}>`
+{%- else -%}
+{{ type }}
+{%- endif -%}
+{%- endmacro -%}
+
+
 {# FORMAT_TEXT_LINK #}
 
 {%- macro format_text_link(paragraph) -%}

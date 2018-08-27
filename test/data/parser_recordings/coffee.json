@@ -1,5 +1,6 @@
 {
   "header": {
+    "access": "public",
     "briefdescription": [
       {
         "content": "This is header.",
@@ -67,6 +68,7 @@
     "type": "namespace"
   },
   "project::coffee::machine": {
+    "access": "public",
     "briefdescription": [
       {
         "content": "A machine to brew your coffee.",
@@ -91,9 +93,10 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-start": 13,
-      "line-stop": 104
+      "line-stop": 112
     },
     "members": [
+      "project::coffee::machine::brew_state",
       "project::coffee::machine::help_brew()",
       "project::coffee::machine::machine()",
       "project::coffee::machine::machine(power)",
@@ -105,11 +108,31 @@
       "project::coffee::machine::set_power(power)",
       "project::coffee::machine::tank()",
       "project::coffee::machine::version()",
+      "project::coffee::machine::water_tank",
       "project::coffee::machine::~machine()"
     ],
     "name": "machine",
     "scope": "project::coffee",
     "type": "class"
+  },
+  "project::coffee::machine::brew_state": {
+    "access": "private",
+    "briefdescription": [
+      {
+        "content": "Internal brewing state.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 33,
+      "line-stop": 36
+    },
+    "members": [],
+    "name": "brew_state",
+    "scope": "project::coffee::machine",
+    "type": "struct"
   },
   "project::coffee::machine::help_brew()": {
     "access": "private",
@@ -209,6 +232,7 @@
     "type": "function"
   },
   "project::coffee::machine::power": {
+    "access": "public",
     "briefdescription": [
       {
         "content": "The power state.",
@@ -218,8 +242,8 @@
     "detaileddescription": [],
     "location": {
       "file": "coffee/coffee.h",
-      "line-start": 32,
-      "line-stop": 38
+      "line-start": 40,
+      "line-stop": 46
     },
     "name": "power",
     "scope": "project::coffee::machine",
@@ -616,6 +640,7 @@
     "type": "function"
   },
   "project::coffee::machine::water_tank": {
+    "access": "public",
     "briefdescription": [
       {
         "content": "The water thank.",
@@ -772,6 +797,7 @@
     "type": "function"
   },
   "project::coffee::mug_size": {
+    "access": "public",
     "briefdescription": [
       {
         "content": "Different size coffee mugs.",

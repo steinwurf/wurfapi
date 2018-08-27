@@ -23,6 +23,20 @@ Brief description
 A machine to brew your coffee. 
 
 
+Member types (public)
+---------------------
+
+.. list-table::
+   :header-rows: 0
+   :widths: auto
+
+
+
+   * - enum
+     - :ref:`power<project::coffee::machine::power>` { on, off }
+
+   * - struct
+     - :ref:`water_tank<project::coffee::machine::water_tank>` 
 
 Member functions (public)
 -------------------------

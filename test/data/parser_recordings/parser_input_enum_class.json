@@ -10,6 +10,7 @@
     "type": "namespace"
   },
   "coffee::mug_size": {
+    "access": "public",
     "briefdescription": [
       {
         "content": "Different size coffee mugs.",

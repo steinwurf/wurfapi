@@ -9,7 +9,7 @@
 {%- macro format_member_table_row(selector) -%}
 
 {%- set function = api[selector] %}
-{%- set signature = format_parameters(function["parameters"]) %}
+{%- set signature = format_parameters(function["parameters"], scope=function["scope"]) %}
 {%- set signature = signature + " const" if function["is_const"]
         else signature %}
 {%- set return_type = function["return_type"] %}
@@ -33,6 +33,33 @@
 
 {% endmacro -%}
 
+{# FORMAT_MEMBER_TYPE_VALUES #}
+
+{%- macro format_member_type_values(selector) -%}
+{%- if api[selector]["type"] == "enum" -%}
+{%- set values = [] -%}
+{%- for value in api[selector]["values"]  -%}
+{%- do values.append(value["name"]) -%}
+{%- endfor -%}
+{ {{ values | join(", ") }} }
+{%- endif -%}
+{%- endmacro -%}
+
+{# FORMAT_MEMBER_TYPE_TABLE #}
+
+{%- macro format_member_type_table(selectors) -%}
+.. list-table::
+   :header-rows: 0
+   :widths: auto
+
+{% for selector in selectors %}
+{% set values = "" %}
+   * - {{ api[selector]["type"] }}
+     - :ref:`{{ api[selector]["name"] }}<{{selector}}>` {{ format_member_type_values(selector) }}
+{%- endfor -%}
+
+{% endmacro -%}
+
 
 {% set class = api[selector] %}
 
@@ -51,6 +78,18 @@ Brief description
 -----------------
 {{ format_description(class["briefdescription"]) }}
 {% endif %}
+
+{% set types = class["members"]
+       | api_filter(type=["class", "struct", "enum"], access="public")
+%}
+
+{%- if types -%}
+Member types (public)
+---------------------
+
+{{ format_member_type_table(types) }}
+
+{% endif -%}
 
 
 {% set functions = class["members"]

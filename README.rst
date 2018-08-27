@@ -369,6 +369,7 @@ Python dictionary representing a C++ enum or enum class::
       'name': 'unqualified-name',
       'location' { 'file': 'filename.h', 'line-start': 10, 'line-end': 23 },
       'scope': 'unique-name' | None,
+      'access': 'public' | 'protected' | 'private',
       'values: [
         {
           'name': 'somename',
@@ -399,6 +400,8 @@ Python dictionary representing a C++ function::
       'is_virtual': True | False,
       'is_explicit': True | False,
       'is_inline': True | False,
+      'is_constructor': True | False,
+      'is_destructor': True | False,
       'access': 'public' | 'protected' | 'private',
       'briefdescription: paragraphs,
       'detaileddescription: paragraphs,
