@@ -54,7 +54,7 @@
 {%- set item_type = "#. " if list["ordered"] else "- " %}
 {% for item in list["items"] %}
 {{ item_type }}{{format_description(item) | indent(width=item_type|length)}}
-{%- endfor -%}
+{%- endfor %}
 
 {%- endmacro -%}
 

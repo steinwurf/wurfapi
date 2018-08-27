@@ -36,6 +36,7 @@ public:
     ///
     ///           std::cout << "You need power" << std::endl;
     ///           std::cout << "So plug it in" << std::endl;
+    ///     * A stable surface is also important!
     ///
     /// 2. Your coffee mug is clean.
     ///
