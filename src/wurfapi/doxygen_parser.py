@@ -424,17 +424,22 @@ def parse(parser, xml):
     scope, _, name = scoped_name.rpartition('::')
 
     # Build the result
-    result = {
-        'type': xml.attrib['kind'],
-        'name': name,
-        'location': parser.parse_element(xml=xml.find('location')),
-        'scope': scope,
-        'briefdescription': parser.parse_element(
-            xml=xml.find("briefdescription")),
-        'detaileddescription': parser.parse_element(
-            xml=xml.find("detaileddescription")),
-        'members': []
-    }
+    result = {}
+
+    result["type"] = xml.attrib['kind']
+    result["name"] = name
+    result["location"] = parser.parse_element(xml=xml.find('location'))
+    result["scope"] = scope
+    result["briefdescription"] = parser.parse_element(
+        xml=xml.find("briefdescription"))
+    result["detaileddescription"] = parser.parse_element(
+        xml=xml.find("detaileddescription"))
+    result["members"] = []
+    result["access"] = xml.attrib["prot"]
+
+    # Inner classes have their own tag
+    for innerclass in xml.findall('.//innerclass'):
+        result['members'].append(innerclass.text)
 
     api = {}
 
@@ -486,6 +491,7 @@ def parse(xml, parser, log, scope):
         xml=xml.find("briefdescription"))
     result["detaileddescription"] = parser.parse_element(
         xml=xml.find("detaileddescription"))
+    result["access"] = xml.attrib["prot"]
 
     # Lets get all the values of the num
     values = []
@@ -509,6 +515,9 @@ def parse(xml, parser, log, scope):
 
     # Construct the unique name
     unique_name = scope + '::' + result["name"] if scope else result["name"]
+
+    # Save mapping from doxygen id to unique name
+    parser.id_mapping[xml.attrib["id"]] = unique_name
 
     return {unique_name: result}
 
@@ -542,11 +551,22 @@ def parse(xml, parser, log, scope):
     parameters = []
     for param in xml.findall('param'):
 
-        assert param.tag == 'param'
-
         parameter = {}
 
-        parameter['type'] = param.findtext('type')
+        # The parameter type can be as just text in the type
+        # tag or in a nested ref tag. We use the approach
+        # mentioned here to get it:
+        # https://lxml.de/1.3/tutorial.html#elements-contain-text
+        parameter["type"] = param.find("type").xpath("string()")
+
+        ref = param.find("type/ref")
+
+        if ref is not None:
+            parameter["link"] = ref.attrib["refid"]
+        else:
+            parameter["link"] = None
+
+        # parameter['type'] = param.findtext('type')
         parameter['name'] = param.findtext('declname')
         parameter['description'] = ''
 
@@ -590,13 +610,25 @@ def parse(xml, parser, log, scope):
     result["scope"] = scope
     result["name"] = xml.findtext("name")
 
+    return_info = {}
+
     # The return type can be as just text in the type
     # tag or in a nested ref tag. We use the approach
     # mentioned here to get it:
     # https://lxml.de/1.3/tutorial.html#elements-contain-text
-    result["return_type"] = xml.find("type").xpath("string()")
+    return_info["type"] = xml.find("type").xpath("string()")
+    return_info["description"] = return_description
+
+    ref = xml.find("type/ref")
+
+    if ref is not None:
+        return_info["link"] = ref.attrib["refid"]
+    else:
+        return_info["link"] = None
+
+    result["return"] = return_info
+
     result["signature"] = result["name"] + xml.findtext("argsstring")
-    result["return_description"] = return_description
     result["is_const"] = xml.attrib["const"] == "yes"
     result["is_static"] = xml.attrib["static"] == "yes"
     result["is_explicit"] = xml.attrib["explicit"] == "yes"
@@ -608,6 +640,15 @@ def parse(xml, parser, log, scope):
     result["detaileddescription"] = parser.parse_element(
         xml=xml.find("detaileddescription"))
     result["parameters"] = parameters
+
+    # If we do not have a return type the function is either a constructor
+    # or a destructor
+    if return_info["type"] == "":
+        result["is_constructor"] = not result["name"].startswith("~")
+        result["is_destructor"] = result["name"].startswith("~")
+    else:
+        result["is_constructor"] = False
+        result["is_destructor"] = False
 
     # Construct the unique name
     unique_name = scope + '::' + result["name"] if scope else result["name"]

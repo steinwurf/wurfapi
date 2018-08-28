@@ -1,4 +1,5 @@
 {% from 'macros.rst' import format_description %}
+{% from 'macros.rst' import format_type_to_link %}
 
 {# FORMAT_PARAMETERS #}
 
@@ -7,7 +8,7 @@
 {%- for parameter in parameters -%}
     {%- set type = parameter["type"] -%}
     {%- set name = parameter["name"] -%}
-    {{type}} {{name}}{{ ", " if not loop.last }}
+    {{ format_type_to_link(parameter) }} {{name}}{{ ", " if not loop.last }}
 {%- endfor -%}
 )
 {%- endmacro -%}
@@ -50,15 +51,15 @@ Parameter ``{{parameter["name"]}}``:
 
 .. _{{selector}}:
 
-{% set return_type = api[selector]["return_type"] -%}
+{% set return_value = api[selector]["return"] -%}
 {%- set name = api[selector]["name"] -%}
 {%- set briefdescription = api[selector]["briefdescription"] -%}
 {%- set detaileddescription = api[selector]["detaileddescription"] -%}
 {%- set parameters =
     format_parameters(api[selector]["parameters"]) -%}
-{%- set return_description = api[selector]["return_description"] -%}
+{%- set return_description = api[selector]["return"]["description"] -%}
 
-{{ return_type }} **{{ name }}** {{ parameters }}
+{{ format_type_to_link(return_value) }} **{{ name }}** {{ parameters }}
 
     {{ format_description(briefdescription)|indent }}
 

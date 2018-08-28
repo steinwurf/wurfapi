@@ -28,6 +28,35 @@ public:
         bool fill(const cups& number_of_cups, bool safety_valve);
     };
 
+private:
+    /// Internal brewing state
+    struct brew_state
+    {
+        bool m_on;
+    };
+
+public:
+    /// @brief The power state
+    enum class power
+    {
+        /// Turn power on
+        on,
+        /// Turn power off
+        off
+    };
+
+    /// Constructor
+    machine();
+
+    /// Constructor with power
+    machine(power pwr);
+
+    /// Destructor
+    ~machine();
+
+    /// Set the power of the machine
+    void set_power(power pwr);
+
     /// @brief Set the number of cups to brew.
     ///
     /// Before setting number of cups, check the following:

@@ -35,8 +35,8 @@
 
 {% endif %}
 
-{% set functions = api_filter(
-       api, namespace["members"], type="function")
+{% set functions = namespace["members"] | api_filter(
+       type="function")
 %}
 
 {% if functions %}

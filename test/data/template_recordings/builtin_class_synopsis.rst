@@ -6,6 +6,7 @@
 
 
 
+
 .. _project::coffee::machine:
 
 class machine
@@ -23,6 +24,20 @@ Brief description
 A machine to brew your coffee. 
 
 
+Member types (public)
+---------------------
+
+.. list-table::
+   :header-rows: 0
+   :widths: auto
+
+
+
+   * - enum
+     - :ref:`power<project::coffee::machine::power>` { on, off }
+
+   * - struct
+     - :ref:`water_tank<project::coffee::machine::water_tank>` 
 
 Member functions (public)
 -------------------------
@@ -32,23 +47,29 @@ Member functions (public)
    :widths: auto
 
 
+   * - 
+     - :ref:`machine<project::coffee::machine::machine()>` ()
+
+   * - 
+     - :ref:`machine<project::coffee::machine::machine(power)>` (:ref:`power<project::coffee::machine::power>` pwr)
+
+   * - 
+     - :ref:`~machine<project::coffee::machine::~machine()>` ()
 
    * - virtual uint32_t
      - :ref:`number_cups<project::coffee::machine::number_cups()const>` () const
 
-
    * - void
      - :ref:`set_number_cups<project::coffee::machine::set_number_cups(std::string)>` (std::string cups)
-
 
    * - void
      - :ref:`set_number_cups<project::coffee::machine::set_number_cups(uint32_t)>` (uint32_t cups)
 
+   * - void
+     - :ref:`set_power<project::coffee::machine::set_power(power)>` (:ref:`power<project::coffee::machine::power>` pwr)
 
-   * - water_tank
+   * - :ref:`water_tank<project::coffee::machine::water_tank>`
      - :ref:`tank<project::coffee::machine::tank()>` ()
-
-
 
 
 
@@ -62,11 +83,8 @@ Static member functions (public)
    :widths: auto
 
 
-
    * - std::string
      - :ref:`version<project::coffee::machine::version()>` ()
-
-
 
 Description
 -----------
@@ -80,6 +98,56 @@ The coffee machine object serves as your applications entry point for brewing co
 
 Member Function Description
 ---------------------------
+
+.. _project::coffee::machine::machine():
+
+ **machine** ()
+
+    Constructor. 
+
+    
+
+    
+
+    
+
+
+
+-----
+
+.. _project::coffee::machine::machine(power):
+
+ **machine** (:ref:`power<project::coffee::machine::power>` pwr)
+
+    Constructor with power. 
+
+    
+
+    
+
+
+
+    
+
+
+
+-----
+
+.. _project::coffee::machine::~machine():
+
+ **~machine** ()
+
+    Destructor. 
+
+    
+
+    
+
+    
+
+
+
+-----
 
 .. _project::coffee::machine::number_cups()const:
 
@@ -164,9 +232,27 @@ void **set_number_cups** (uint32_t cups)
 
 -----
 
+.. _project::coffee::machine::set_power(power):
+
+void **set_power** (:ref:`power<project::coffee::machine::power>` pwr)
+
+    Set the power of the machine. 
+
+    
+
+    
+
+
+
+    
+
+
+
+-----
+
 .. _project::coffee::machine::tank():
 
-water_tank **tank** ()
+:ref:`water_tank<project::coffee::machine::water_tank>` **tank** ()
 
     Get the water tank. 
 

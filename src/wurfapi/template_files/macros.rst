@@ -28,6 +28,17 @@
 {%- endmacro -%}
 
 
+{# FORMAT_TYPE_TO_LINK #}
+
+{%- macro format_type_to_link(element) -%}
+{%- if element["link"] -%}
+:ref:`{{ element["type"] }}<{{ element["link"] }}>`
+{%- else -%}
+{{ element["type"] }}
+{%- endif -%}
+{%- endmacro -%}
+
+
 {# FORMAT_TEXT_LINK #}
 
 {%- macro format_text_link(paragraph) -%}

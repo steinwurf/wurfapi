@@ -31,6 +31,8 @@
       }
     ],
     "is_const": true,
+    "is_constructor": false,
+    "is_destructor": false,
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
@@ -44,6 +46,7 @@
             "type": "text"
           }
         ],
+        "link": null,
         "name": "h",
         "type": "const heat &"
       },
@@ -54,22 +57,26 @@
             "type": "text"
           }
         ],
+        "link": null,
         "name": "max",
         "type": "int"
       }
     ],
-    "return_description": [
-      {
-        "content": "The current heat.",
-        "type": "text"
-      },
-      {
-        "content": "for (uint64_t i = 0; i < 3; ++i)\n{\n    std::cout << i << \"\\n\";\n}\n",
-        "is_block": true,
-        "type": "code"
-      }
-    ],
-    "return_type": "uint32_t",
+    "return": {
+      "description": [
+        {
+          "content": "The current heat.",
+          "type": "text"
+        },
+        {
+          "content": "for (uint64_t i = 0; i < 3; ++i)\n{\n    std::cout << i << \"\\n\";\n}\n",
+          "is_block": true,
+          "type": "code"
+        }
+      ],
+      "link": null,
+      "type": "uint32_t"
+    },
     "scope": null,
     "signature": "set(const heat &h, int max) const",
     "type": "function"

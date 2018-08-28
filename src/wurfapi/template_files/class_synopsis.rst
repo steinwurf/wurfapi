@@ -1,8 +1,24 @@
 {% from 'macros.rst' import format_heading %}
 {% from 'macros.rst' import format_description %}
+{% from 'macros.rst' import format_type_to_link %}
 {% from 'function_synopsis.rst' import format_function %}
 {% from 'function_synopsis.rst' import format_parameters %}
 
+
+{# FORMAT_MEMBER_TABLE_ROW #}
+
+{%- macro format_member_table_row(selector) -%}
+
+{%- set function = api[selector] %}
+{%- set signature = format_parameters(function["parameters"]) %}
+{%- set signature = signature + " const" if function["is_const"]
+        else signature %}
+{%- set return_type = format_type_to_link(function["return"]) %}
+{%- set return_type = "virtual " + return_type if function["is_virtual"]
+        else return_type -%}
+* - {{ return_type }}
+  - :ref:`{{ function["name"] }}<{{selector}}>` {{ signature }}
+{% endmacro -%}
 
 {# FORMAT_MEMBER_TABLE #}
 
@@ -11,18 +27,38 @@
    :header-rows: 0
    :widths: auto
 
-{% for selector in selectors %}
-   {%- set function = api[selector] %}
-   {%- set signature = format_parameters(function["parameters"]) %}
-   {%- set signature = signature + " const" if function["is_const"]
-           else signature %}
-   {%- set return_type = function["return_type"] %}
-   {%- set return_type = "virtual " + return_type if function["is_virtual"]
-           else return_type %}
+{% for selector in selectors | api_sort(key="name", reverse=False)
+                             | api_sort(key="is_destructor")
+                             | api_sort(key="is_constructor") %}
+   {{ format_member_table_row(selector) | indent(width=3) }}
+{%- endfor -%}
 
-   * - {{ return_type }}
-     - :ref:`{{ function["name"] }}<{{selector}}>` {{ signature }}
-{% endfor %}
+{% endmacro -%}
+
+{# FORMAT_MEMBER_TYPE_VALUES #}
+
+{%- macro format_member_type_values(selector) -%}
+{%- if api[selector]["type"] == "enum" -%}
+{%- set values = [] -%}
+{%- for value in api[selector]["values"]  -%}
+{%- do values.append(value["name"]) -%}
+{%- endfor -%}
+{ {{ values | join(", ") }} }
+{%- endif -%}
+{%- endmacro -%}
+
+{# FORMAT_MEMBER_TYPE_TABLE #}
+
+{%- macro format_member_type_table(selectors) -%}
+.. list-table::
+   :header-rows: 0
+   :widths: auto
+
+{% for selector in selectors %}
+{% set values = "" %}
+   * - {{ api[selector]["type"] }}
+     - :ref:`{{ api[selector]["name"] }}<{{selector}}>` {{ format_member_type_values(selector) }}
+{%- endfor -%}
 
 {% endmacro -%}
 
@@ -45,9 +81,21 @@ Brief description
 {{ format_description(class["briefdescription"]) }}
 {% endif %}
 
+{% set types = class["members"]
+       | api_filter(type=["class", "struct", "enum"], access="public")
+%}
 
-{% set functions = api_filter(
-       api, class["members"], type="function", access="public", is_static=false)
+{%- if types -%}
+Member types (public)
+---------------------
+
+{{ format_member_type_table(types) }}
+
+{% endif -%}
+
+
+{% set functions = class["members"]
+       | api_filter(type="function", access="public", is_static=false)
 %}
 
 {%- if functions -%}
@@ -59,8 +107,8 @@ Member functions (public)
 {% endif %}
 
 
-{% set functions = api_filter(
-       api, class["members"], type="function", access="public", is_static=true)
+{% set functions = class["members"] | api_filter(
+       type="function", access="public", is_static=true)
 %}
 
 {%- if functions -%}
@@ -79,8 +127,11 @@ Description
 {% endif %}
 
 
-{% set functions = api_filter(
-       api, class["members"], type="function", access="public")
+{% set functions = class["members"]
+       | api_filter(type="function", access="public")
+       | api_sort(key="name", reverse=False)
+       | api_sort(key="is_destructor")
+       | api_sort(key="is_constructor")
 %}
 
 {% if functions %}

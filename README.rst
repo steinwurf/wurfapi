@@ -369,6 +369,7 @@ Python dictionary representing a C++ enum or enum class::
       'name': 'unqualified-name',
       'location' { 'file': 'filename.h', 'line-start': 10, 'line-end': 23 },
       'scope': 'unique-name' | None,
+      'access': 'public' | 'protected' | 'private',
       'values: [
         {
           'name': 'somename',
@@ -391,20 +392,27 @@ Python dictionary representing a C++ function::
       'name': 'unqualified-name',
       'location' { 'file': 'filename.h', 'line': 10},
       'scope': 'unique-name' | None,
-      'return_type': 'sometype',
-      'return_description': paragraphs,
+      'return': {
+        'type': 'sometype',
+        'description': paragraphs,
+        'link': 'unique-name' | None
+      }
       'signature': 'text',
       'is_const': True | False,
       'is_static': True | False,
       'is_virtual': True | False,
       'is_explicit': True | False,
       'is_inline': True | False,
+      'is_constructor': True | False,
+      'is_destructor': True | False,
       'access': 'public' | 'protected' | 'private',
       'briefdescription: paragraphs,
       'detaileddescription: paragraphs,
       'parameters': [
-        { 'type': 'sometype', 'name': 'somename', 'description': description },
-        { 'type': 'sometype', 'name': 'somename', 'description': description }
+        { 'type': 'sometype', 'name': 'somename',
+          'link': 'unique-name' | None, description': description },
+        { 'type': 'sometype', 'name': 'somename',
+          'link': 'unique-name' | None, 'description': description }
       ]
   }
 
@@ -428,7 +436,7 @@ Text information is stored in a list of paragraphs::
       'content': 'hello',
       'italic': true | false,
       'bold': true | false,
-      'link': unique-name
+      'link': 'unique-name' | None
       }
 
     code = {
