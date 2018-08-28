@@ -1,5 +1,8 @@
 import os
 import sys
+import hashlib
+import tempfile
+import shutil
 
 import docutils.nodes
 import docutils.parsers
@@ -115,7 +118,19 @@ def generate_doxygen(app):
 
         source_paths.append(source_path)
 
-    output_path = os.path.join(app.doctreedir, 'wurfapi')
+    # Create the XML in a temp location
+    project = app.config.project.lower() if app.config.project else ""
+
+    source_hash = hashlib.sha1(
+        ",".join(source_paths).encode('utf-8')).hexdigest()[:6]
+
+    output_path = os.path.join(
+        tempfile.gettempdir(), "wurfapi-"+project+"-"+source_hash)
+
+    #output_path = os.path.join(app.doctreedir, 'wurfapi')
+
+    if os.path.isdir(output_path):
+        shutil.rmtree(output_path, ignore_errors=True)
 
     if not os.path.exists(output_path):
         os.makedirs(name=output_path)
