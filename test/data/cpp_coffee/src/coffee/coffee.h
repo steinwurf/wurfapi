@@ -109,6 +109,10 @@ protected:
 
 private:
     void help_brew();
+
+private:
+    struct impl;
+    std::unique_ptr<impl> m_impl;
 };
 }
 

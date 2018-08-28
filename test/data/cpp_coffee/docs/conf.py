@@ -50,10 +50,19 @@ copyright = u'2018, Coffee'
 author = u'Coffee'
 
 # wurfapi options
+
 wurfapi = {
     'source_paths': ['../src', '../examples/header/header.h'],
     'recursive': True,
-    'parser': {'type': 'doxygen', 'download': True, 'warnings_as_error': True}
+    'parser': {
+        'type': 'doxygen', 'download': True, 'warnings_as_error': True,
+        'patch_api': [
+            # Patch fix Doxygen bug reported here:
+            # https://bit.ly/2BWPllZ
+            {'selector': 'project::coffee::machine::impl',
+                'key': 'access', 'value': 'private'}
+        ]
+    }
 }
 
 # The version info for the project you're documenting, acts as replacement for

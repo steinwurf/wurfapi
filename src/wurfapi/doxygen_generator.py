@@ -18,16 +18,10 @@ RECURSIVE        = {recursive}
 INPUT            = {source_path}
 ENABLE_PREPROCESSING = YES
 QUIET            = YES
-JAVADOC_AUTOBRIEF = YES
 JAVADOC_AUTOBRIEF = NO
 GENERATE_HTML = NO
 GENERATE_XML = YES
-SOURCE_BROWSER = NO
-VERBATIM_HEADERS = NO
-REFERENCES_LINK_SOURCE = NO
 XML_OUTPUT = xml
-ALIASES = "rst=\verbatim embed:rst"
-ALIASES += "endrst=\endverbatim"
 {extra}
 """.strip()
 
