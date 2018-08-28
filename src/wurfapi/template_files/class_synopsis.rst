@@ -27,7 +27,8 @@
    :header-rows: 0
    :widths: auto
 
-{% for selector in selectors | api_sort(key="is_destructor")
+{% for selector in selectors | api_sort(key="name", reverse=False)
+                             | api_sort(key="is_destructor")
                              | api_sort(key="is_constructor") %}
    {{ format_member_table_row(selector) | indent(width=3) }}
 {%- endfor -%}
@@ -128,6 +129,7 @@ Description
 
 {% set functions = class["members"]
        | api_filter(type="function", access="public")
+       | api_sort(key="name", reverse=False)
        | api_sort(key="is_destructor")
        | api_sort(key="is_constructor")
 %}
