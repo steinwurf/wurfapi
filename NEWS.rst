@@ -12,6 +12,8 @@ Latest
 * Minor: Add sorting capabilities using the api_sort jinja2 filter.
 * Major: Change api_filter function to be a jinja2 filter.
 * Major: Changed way return value information is stored in the API dictionary.
+* Minor: Add patch_api support for Doxygen. To allow manually patching Doxygen
+  output if incorrect.
 
 2.2.0
 -----
