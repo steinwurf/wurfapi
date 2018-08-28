@@ -127,8 +127,6 @@ def generate_doxygen(app):
     output_path = os.path.join(
         tempfile.gettempdir(), "wurfapi-"+project+"-"+source_hash)
 
-    #output_path = os.path.join(app.doctreedir, 'wurfapi')
-
     if os.path.isdir(output_path):
         shutil.rmtree(output_path, ignore_errors=True)
 
