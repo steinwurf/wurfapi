@@ -141,13 +141,13 @@ def generate_doxygen(app):
     logger.info('wurfapi source_path={} output_path={}'.format(
         source_paths, output_path))
 
-    parser = app.config.wurfapi['parser']
-    assert parser['type'] == 'doxygen'
+    parser_config = app.config.wurfapi['parser']
+    assert parser_config['type'] == 'doxygen'
 
-    if parser['download']:
+    if parser_config['download']:
 
-        if 'download_path' in parser:
-            download_path = parser['download_path']
+        if 'download_path' in parser_config:
+            download_path = parser_config['download_path']
         else:
             download_path = None
 
@@ -165,18 +165,26 @@ def generate_doxygen(app):
         recursive=recursive,
         source_paths=source_paths,
         output_path=output_path,
-        warnings_as_error=parser['warnings_as_error'])
+        warnings_as_error=parser_config['warnings_as_error'])
 
     output = generator.generate()
 
     logger.info('wurfapi doxygen XML {}'.format(output))
 
+    if 'patch_api' in parser_config:
+        patch_api = parser_config['patch_api']
+    else:
+        patch_api = []
+
     parser = doxygen_parser.DoxygenParser(
-        doxygen_path=output, project_paths=source_paths, log=logger)
+        doxygen_path=output,
+        project_paths=source_paths,
+        patch_api=patch_api,
+        log=logger)
 
     app.wurfapi_api = parser.parse_index()
 
-    with open(os.path.join(output_path, 'wurfapi_api.json'), 'w') as f:
+    with open(os.path.join(app.doctreedir, 'wurfapi_api.json'), 'w') as f:
         json.dump(app.wurfapi_api, f)
 
 

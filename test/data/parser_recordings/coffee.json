@@ -96,11 +96,12 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-start": 13,
-      "line-stop": 112
+      "line-stop": 116
     },
     "members": [
       "project::coffee::machine::brew_state",
       "project::coffee::machine::help_brew()",
+      "project::coffee::machine::impl",
       "project::coffee::machine::machine()",
       "project::coffee::machine::machine(power)",
       "project::coffee::machine::number_cups()const",
@@ -157,6 +158,54 @@
     },
     "scope": "project::coffee::machine",
     "signature": "help_brew()",
+    "type": "function"
+  },
+  "project::coffee::machine::impl": {
+    "access": "private",
+    "briefdescription": [
+      {
+        "content": "Implementation details.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "location": {
+      "file": "coffee/coffee.cpp",
+      "line-start": 8,
+      "line-stop": 12
+    },
+    "members": [
+      "project::coffee::machine::impl::run()"
+    ],
+    "name": "impl",
+    "scope": "project::coffee::machine",
+    "type": "struct"
+  },
+  "project::coffee::machine::impl::run()": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "Run the machine.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constructor": false,
+    "is_destructor": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "name": "run",
+    "parameters": [],
+    "return": {
+      "description": [],
+      "link": null,
+      "type": "void"
+    },
+    "scope": "project::coffee::machine::impl",
+    "signature": "run()",
     "type": "function"
   },
   "project::coffee::machine::machine()": {

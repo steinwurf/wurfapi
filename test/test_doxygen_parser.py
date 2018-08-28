@@ -42,7 +42,14 @@ def test_coffee(testdirectory, caplog):
     log = logging.getLogger(name='test_coffee')
 
     parser = wurfapi.doxygen_parser.DoxygenParser(
-        doxygen_path=xml_dir, project_paths=src_dirs, log=log)
+        doxygen_path=xml_dir,
+        project_paths=src_dirs,
+        # Patch fix Doxygen bug reported here:
+        # https://bit.ly/2BWPllZ
+        patch_api=[
+            {'selector': 'project::coffee::machine::impl',
+             'key': 'access', 'value': 'private'}],
+        log=log)
 
     api = parser.parse_index()
 
@@ -87,7 +94,10 @@ def test_parser_input_function(testdirectory, caplog):
     log = logging.getLogger(name='test_parser_input_function')
 
     parser = wurfapi.doxygen_parser.DoxygenParser(
-        doxygen_path=xml_dir, project_paths=[src_dir], log=log)
+        doxygen_path=xml_dir,
+        project_paths=[src_dir],
+        patch_api=[],
+        log=log)
 
     api = parser.parse_index()
 
@@ -112,7 +122,10 @@ def test_parser_input_enum_class(testdirectory, caplog):
     log = logging.getLogger(name='test_parser_input_enum_class')
 
     parser = wurfapi.doxygen_parser.DoxygenParser(
-        doxygen_path=xml_dir, project_paths=[src_dir], log=log)
+        doxygen_path=xml_dir,
+        project_paths=[src_dir],
+        patch_api=[],
+        log=log)
 
     api = parser.parse_index()
 

@@ -150,6 +150,42 @@ documentation folder. readthedocs.org can be configured to use the
 ``requirements.txt`` when building a project. Simply put ``wurfapi`` in to the
 ``requirements.txt``.
 
+Doxygen issues
+--------------
+
+Nothing is perfect, neither is Doxygen. Sometimes Doxygen gets it wrong e.g. in
+the following example::
+
+    class foo
+    {
+    private:
+        class bar;
+    };
+
+Doxygen incorrectly reports that ``bar`` has public scope (also reported here
+https://bit.ly/2BWPllZ). To deal with such issues, until a fix lands in
+Doxygen, you can do the following:
+
+Add a list of *patches* to the API to your ``conf.py`` file. Extending the
+example from before, we can add the following fix::
+
+      wurfapi = {
+        'source_paths': ['../src'],
+        'recursive': True,
+        'parser': {
+          'type': 'doxygen', 'download': True,  'warnings_as_error': True,
+           'patch_api': [
+            {'selector': 'foo::bar', 'key': 'access', 'value': 'private'}
+          ]
+        }
+      }
+
+The ``patch_api`` allows you to reach in to the parsed API information and
+update certain values. The ``selector`` is the ``unique-name`` of the
+entity you want to update. Check the "Dictionary layout" section further down
+for more information.
+
+
 Release new version
 ===================
 
@@ -484,11 +520,12 @@ Generated output
 ----------------
 
 Since we are going to be using Doxygen's XML output as input to the
-extension we need a place to store it.
+extension we need a place to store it. We store it system temporary folder e.g.
+if the project name is "foobar" on Linux this would be
+``/tmp/wurfapi-foobar-123456`` where ``123456`` is a hash of the source
+directory paths.
 
-We will use the approach by Breathe and store it in
-``_build/.doctree/wurfapi``. Note, this is available in the Sphinx application
-object as the ``sphinx.application.Sphinx.doctreedir``
+The API in json format can be found in the ``_build/.doctree/wurfapi_api.json``.
 
 Paths and directories
 ---------------------

@@ -34,7 +34,11 @@ def generate_coffee_api(testdirectory):
 
     reader = wurfapi.doxygen_parser.DoxygenParser(
         doxygen_path=xml_dir,
-        project_paths=src_dirs, log=log)
+        project_paths=src_dirs,
+        patch_api=[
+            {'selector': 'project::coffee::machine::impl',
+                'key': 'access', 'value': 'private'}],
+        log=log)
 
     return reader.parse_index()
 

@@ -93,7 +93,7 @@ class DoxygenParser(object):
     # Default parsers
     default_parsers = []
 
-    def __init__(self, doxygen_path, project_paths, log):
+    def __init__(self, doxygen_path, project_paths, patch_api, log):
         """ Create a new DoxygenParser
 
         :param doxygen_path: The path to where the Doxygen XML is
@@ -103,10 +103,13 @@ class DoxygenParser(object):
             indexed by Doxygen. So e.g. if we want to generate links to GitHub
             etc. we need the relative path to the files with root of the
             project.
+        :param patch_api: Set of patches to apply to the API after parsing the
+            Doxygen XML.
         :param log: Log object
         """
         self.doxygen_path = doxygen_path
         self.project_paths = project_paths
+        self.patch_api = patch_api
         self.log = log
 
         assert(type(self.project_paths) is list)
@@ -154,7 +157,15 @@ class DoxygenParser(object):
 
             api.update(compound_api)
 
-        return replace_with(replace=self.id_mapping, data=api)
+        api = replace_with(replace=self.id_mapping, data=api)
+
+        def apply_patch(selector, key, value):
+            api[selector][key] = value
+
+        for patch in self.patch_api:
+            apply_patch(**patch)
+
+        return api
 
     def parse_element(self, xml):
         """ Parse an XML element """
