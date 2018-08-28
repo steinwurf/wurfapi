@@ -30,12 +30,11 @@
 
 {# FORMAT_TYPE_TO_LINK #}
 
-{%- macro format_type_to_link(type, scope="") -%}
-{%- set selector = scope + "::" + type %}
-{%- if selector in api -%}
-:ref:`{{ type }}<{{ selector }}>`
+{%- macro format_type_to_link(element) -%}
+{%- if element["link"] -%}
+:ref:`{{ element["type"] }}<{{ element["link"] }}>`
 {%- else -%}
-{{ type }}
+{{ element["type"] }}
 {%- endif -%}
 {%- endmacro -%}
 

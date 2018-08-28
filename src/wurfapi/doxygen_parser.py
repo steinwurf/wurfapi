@@ -516,6 +516,9 @@ def parse(xml, parser, log, scope):
     # Construct the unique name
     unique_name = scope + '::' + result["name"] if scope else result["name"]
 
+    # Save mapping from doxygen id to unique name
+    parser.id_mapping[xml.attrib["id"]] = unique_name
+
     return {unique_name: result}
 
 
@@ -548,8 +551,6 @@ def parse(xml, parser, log, scope):
     parameters = []
     for param in xml.findall('param'):
 
-        assert param.tag == 'param'
-
         parameter = {}
 
         # The parameter type can be as just text in the type
@@ -557,6 +558,13 @@ def parse(xml, parser, log, scope):
         # mentioned here to get it:
         # https://lxml.de/1.3/tutorial.html#elements-contain-text
         parameter["type"] = param.find("type").xpath("string()")
+
+        ref = param.find("type/ref")
+
+        if ref is not None:
+            parameter["link"] = ref.attrib["refid"]
+        else:
+            parameter["link"] = None
 
         # parameter['type'] = param.findtext('type')
         parameter['name'] = param.findtext('declname')
@@ -602,13 +610,25 @@ def parse(xml, parser, log, scope):
     result["scope"] = scope
     result["name"] = xml.findtext("name")
 
+    return_info = {}
+
     # The return type can be as just text in the type
     # tag or in a nested ref tag. We use the approach
     # mentioned here to get it:
     # https://lxml.de/1.3/tutorial.html#elements-contain-text
-    result["return_type"] = xml.find("type").xpath("string()")
+    return_info["type"] = xml.find("type").xpath("string()")
+    return_info["description"] = return_description
+
+    ref = xml.find("type/ref")
+
+    if ref is not None:
+        return_info["link"] = ref.attrib["refid"]
+    else:
+        return_info["link"] = None
+
+    result["return"] = return_info
+
     result["signature"] = result["name"] + xml.findtext("argsstring")
-    result["return_description"] = return_description
     result["is_const"] = xml.attrib["const"] == "yes"
     result["is_static"] = xml.attrib["static"] == "yes"
     result["is_explicit"] = xml.attrib["explicit"] == "yes"
@@ -623,7 +643,7 @@ def parse(xml, parser, log, scope):
 
     # If we do not have a return type the function is either a constructor
     # or a destructor
-    if result["return_type"] == "":
+    if return_info["type"] == "":
         result["is_constructor"] = not result["name"].startswith("~")
         result["is_destructor"] = result["name"].startswith("~")
     else:

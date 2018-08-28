@@ -392,8 +392,11 @@ Python dictionary representing a C++ function::
       'name': 'unqualified-name',
       'location' { 'file': 'filename.h', 'line': 10},
       'scope': 'unique-name' | None,
-      'return_type': 'sometype',
-      'return_description': paragraphs,
+      'return': {
+        'type': 'sometype',
+        'description': paragraphs,
+        'link': 'unique-name' | None
+      }
       'signature': 'text',
       'is_const': True | False,
       'is_static': True | False,
@@ -406,8 +409,10 @@ Python dictionary representing a C++ function::
       'briefdescription: paragraphs,
       'detaileddescription: paragraphs,
       'parameters': [
-        { 'type': 'sometype', 'name': 'somename', 'description': description },
-        { 'type': 'sometype', 'name': 'somename', 'description': description }
+        { 'type': 'sometype', 'name': 'somename',
+          'link': 'unique-name' | None, description': description },
+        { 'type': 'sometype', 'name': 'somename',
+          'link': 'unique-name' | None, 'description': description }
       ]
   }
 
@@ -431,7 +436,7 @@ Text information is stored in a list of paragraphs::
       'content': 'hello',
       'italic': true | false,
       'bold': true | false,
-      'link': unique-name
+      'link': 'unique-name' | None
       }
 
     code = {

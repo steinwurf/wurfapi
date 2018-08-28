@@ -1,5 +1,6 @@
 {% from 'macros.rst' import format_heading %}
 {% from 'macros.rst' import format_description %}
+{% from 'macros.rst' import format_type_to_link %}
 {% from 'function_synopsis.rst' import format_function %}
 {% from 'function_synopsis.rst' import format_parameters %}
 
@@ -9,10 +10,10 @@
 {%- macro format_member_table_row(selector) -%}
 
 {%- set function = api[selector] %}
-{%- set signature = format_parameters(function["parameters"], scope=function["scope"]) %}
+{%- set signature = format_parameters(function["parameters"]) %}
 {%- set signature = signature + " const" if function["is_const"]
         else signature %}
-{%- set return_type = function["return_type"] %}
+{%- set return_type = format_type_to_link(function["return"]) %}
 {%- set return_type = "virtual " + return_type if function["is_virtual"]
         else return_type -%}
 * - {{ return_type }}

@@ -38,8 +38,11 @@
     "is_virtual": false,
     "name": "headz_up",
     "parameters": [],
-    "return_description": [],
-    "return_type": "void",
+    "return": {
+      "description": [],
+      "link": null,
+      "type": "void"
+    },
     "scope": "header",
     "signature": "headz_up()",
     "type": "function"
@@ -147,8 +150,11 @@
     "is_virtual": false,
     "name": "help_brew",
     "parameters": [],
-    "return_description": [],
-    "return_type": "void",
+    "return": {
+      "description": [],
+      "link": null,
+      "type": "void"
+    },
     "scope": "project::coffee::machine",
     "signature": "help_brew()",
     "type": "function"
@@ -171,8 +177,11 @@
     "is_virtual": false,
     "name": "machine",
     "parameters": [],
-    "return_description": [],
-    "return_type": "",
+    "return": {
+      "description": [],
+      "link": null,
+      "type": ""
+    },
     "scope": "project::coffee::machine",
     "signature": "machine()",
     "type": "function"
@@ -197,12 +206,16 @@
     "parameters": [
       {
         "description": "",
+        "link": "project::coffee::machine::power",
         "name": "pwr",
         "type": "power"
       }
     ],
-    "return_description": [],
-    "return_type": "",
+    "return": {
+      "description": [],
+      "link": null,
+      "type": ""
+    },
     "scope": "project::coffee::machine",
     "signature": "machine(power pwr)",
     "type": "function"
@@ -220,13 +233,16 @@
     "is_virtual": true,
     "name": "number_cups",
     "parameters": [],
-    "return_description": [
-      {
-        "content": "The number of cups",
-        "type": "text"
-      }
-    ],
-    "return_type": "uint32_t",
+    "return": {
+      "description": [
+        {
+          "content": "The number of cups",
+          "type": "text"
+        }
+      ],
+      "link": null,
+      "type": "uint32_t"
+    },
     "scope": "project::coffee::machine",
     "signature": "number_cups() const",
     "type": "function"
@@ -298,17 +314,22 @@
     "parameters": [
       {
         "description": "",
+        "link": null,
         "name": "h",
         "type": "const heat &"
       },
       {
         "description": "",
+        "link": null,
         "name": "max",
         "type": "int"
       }
     ],
-    "return_description": [],
-    "return_type": "void",
+    "return": {
+      "description": [],
+      "link": null,
+      "type": "void"
+    },
     "scope": "project::coffee::machine",
     "signature": "set(const heat &h, int max) const",
     "type": "function"
@@ -406,12 +427,16 @@
             "type": "text"
           }
         ],
+        "link": null,
         "name": "cups",
         "type": "std::string"
       }
     ],
-    "return_description": [],
-    "return_type": "void",
+    "return": {
+      "description": [],
+      "link": null,
+      "type": "void"
+    },
     "scope": "project::coffee::machine",
     "signature": "set_number_cups(std::string cups)",
     "type": "function"
@@ -509,12 +534,16 @@
             "type": "text"
           }
         ],
+        "link": null,
         "name": "cups",
         "type": "uint32_t"
       }
     ],
-    "return_description": [],
-    "return_type": "void",
+    "return": {
+      "description": [],
+      "link": null,
+      "type": "void"
+    },
     "scope": "project::coffee::machine",
     "signature": "set_number_cups(uint32_t cups)",
     "type": "function"
@@ -539,12 +568,16 @@
     "parameters": [
       {
         "description": "",
+        "link": "project::coffee::machine::power",
         "name": "pwr",
         "type": "power"
       }
     ],
-    "return_description": [],
-    "return_type": "void",
+    "return": {
+      "description": [],
+      "link": null,
+      "type": "void"
+    },
     "scope": "project::coffee::machine",
     "signature": "set_power(power pwr)",
     "type": "function"
@@ -567,8 +600,11 @@
     "is_virtual": false,
     "name": "tank",
     "parameters": [],
-    "return_description": [],
-    "return_type": "water_tank",
+    "return": {
+      "description": [],
+      "link": "project::coffee::machine::water_tank",
+      "type": "water_tank"
+    },
     "scope": "project::coffee::machine",
     "signature": "tank()",
     "type": "function"
@@ -623,18 +659,21 @@
     "is_virtual": false,
     "name": "version",
     "parameters": [],
-    "return_description": [
-      {
-        "content": "The version of the machine. Example:",
-        "type": "text"
-      },
-      {
-        "content": "std::cout << machine::version();\nstd::cout << \"\\n\";",
-        "is_block": true,
-        "type": "code"
-      }
-    ],
-    "return_type": "std::string",
+    "return": {
+      "description": [
+        {
+          "content": "The version of the machine. Example:",
+          "type": "text"
+        },
+        {
+          "content": "std::cout << machine::version();\nstd::cout << \"\\n\";",
+          "is_block": true,
+          "type": "code"
+        }
+      ],
+      "link": null,
+      "type": "std::string"
+    },
     "scope": "project::coffee::machine",
     "signature": "version()",
     "type": "function"
@@ -681,6 +720,7 @@
             "type": "text"
           }
         ],
+        "link": null,
         "name": "number_of_cups",
         "type": "const cups &"
       },
@@ -709,27 +749,31 @@
             "type": "text"
           }
         ],
+        "link": null,
         "name": "safety_valve",
         "type": "bool"
       }
     ],
-    "return_description": [
-      {
-        "content": "true",
-        "is_block": false,
-        "type": "code"
-      },
-      {
-        "content": "if filling was successfull otherwise",
-        "type": "text"
-      },
-      {
-        "content": "false",
-        "is_block": false,
-        "type": "code"
-      }
-    ],
-    "return_type": "bool",
+    "return": {
+      "description": [
+        {
+          "content": "true",
+          "is_block": false,
+          "type": "code"
+        },
+        {
+          "content": "if filling was successfull otherwise",
+          "type": "text"
+        },
+        {
+          "content": "false",
+          "is_block": false,
+          "type": "code"
+        }
+      ],
+      "link": null,
+      "type": "bool"
+    },
     "scope": "project::coffee::machine::water_tank",
     "signature": "fill(const cups &number_of_cups, bool safety_valve)",
     "type": "function"
@@ -747,27 +791,30 @@
     "is_virtual": false,
     "name": "is_full",
     "parameters": [],
-    "return_description": [
-      {
-        "content": "true",
-        "is_block": false,
-        "type": "code"
-      },
-      {
-        "content": "if the water tank is full otherwise",
-        "type": "text"
-      },
-      {
-        "content": "false",
-        "is_block": false,
-        "type": "code"
-      },
-      {
-        "content": ".",
-        "type": "text"
-      }
-    ],
-    "return_type": "bool",
+    "return": {
+      "description": [
+        {
+          "content": "true",
+          "is_block": false,
+          "type": "code"
+        },
+        {
+          "content": "if the water tank is full otherwise",
+          "type": "text"
+        },
+        {
+          "content": "false",
+          "is_block": false,
+          "type": "code"
+        },
+        {
+          "content": ".",
+          "type": "text"
+        }
+      ],
+      "link": null,
+      "type": "bool"
+    },
     "scope": "project::coffee::machine::water_tank",
     "signature": "is_full() const",
     "type": "function"
@@ -790,8 +837,11 @@
     "is_virtual": false,
     "name": "~machine",
     "parameters": [],
-    "return_description": [],
-    "return_type": "",
+    "return": {
+      "description": [],
+      "link": null,
+      "type": ""
+    },
     "scope": "project::coffee::machine",
     "signature": "~machine()",
     "type": "function"
@@ -963,6 +1013,7 @@
             "type": "text"
           }
         ],
+        "link": null,
         "name": "a",
         "type": "double"
       },
@@ -973,26 +1024,30 @@
             "type": "text"
           }
         ],
+        "link": null,
         "name": "b",
         "type": "int"
       }
     ],
-    "return_description": [
-      {
-        "content": "This does not really return anything because it is",
-        "type": "text"
-      },
-      {
-        "content": "void",
-        "is_block": false,
-        "type": "code"
-      },
-      {
-        "content": "but it could!",
-        "type": "text"
-      }
-    ],
-    "return_type": "void",
+    "return": {
+      "description": [
+        {
+          "content": "This does not really return anything because it is",
+          "type": "text"
+        },
+        {
+          "content": "void",
+          "is_block": false,
+          "type": "code"
+        },
+        {
+          "content": "but it could!",
+          "type": "text"
+        }
+      ],
+      "link": null,
+      "type": "void"
+    },
     "scope": "project",
     "signature": "print(double a, int b)",
     "type": "function"
@@ -1026,6 +1081,7 @@
             "type": "text"
           }
         ],
+        "link": null,
         "name": "a_number",
         "type": "int"
       },
@@ -1045,12 +1101,16 @@
             "type": "text"
           }
         ],
+        "link": null,
         "name": "on_paper",
         "type": "bool"
       }
     ],
-    "return_description": [],
-    "return_type": "void",
+    "return": {
+      "description": [],
+      "link": null,
+      "type": "void"
+    },
     "scope": "project",
     "signature": "print(int a_number, bool on_paper)",
     "type": "function"
@@ -1068,8 +1128,11 @@
     "is_virtual": false,
     "name": "version",
     "parameters": [],
-    "return_description": [],
-    "return_type": "std::string",
+    "return": {
+      "description": [],
+      "link": null,
+      "type": "std::string"
+    },
     "scope": null,
     "signature": "version()",
     "type": "function"
