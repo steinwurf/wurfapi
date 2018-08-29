@@ -120,6 +120,8 @@ def generate_doxygen(app):
 
     # Create the XML in a temp location
     project = app.config.project.lower() if app.config.project else ""
+    # Remove whitespace https://stackoverflow.com/a/2077944/1717320
+    project = "_".join(project.split())
 
     source_hash = hashlib.sha1(
         ",".join(source_paths).encode('utf-8')).hexdigest()[:6]
