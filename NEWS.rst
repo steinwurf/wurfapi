@@ -14,6 +14,7 @@ Latest
 * Major: Changed way return value information is stored in the API dictionary.
 * Minor: Add patch_api support for Doxygen. To allow manually patching Doxygen
   output if incorrect.
+* Patch: Fix space in project name when constructing XML output path
 
 2.2.0
 -----
