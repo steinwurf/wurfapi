@@ -6,6 +6,7 @@ of every change, see the Git log.
 
 Latest
 ------
+* Minor: Support for typedef and using in classes and structs
 * Major: Allow multiple source paths to be specified.
 * Minor: Adding support for lists (ordered and unordered).
 * Patch: Fix parameter types in cases where Doxygen made them a link.

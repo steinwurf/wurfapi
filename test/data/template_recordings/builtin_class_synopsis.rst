@@ -7,6 +7,7 @@
 
 
 
+
 .. _project::coffee::machine:
 
 class machine
@@ -32,6 +33,12 @@ Member types (public)
    :widths: auto
 
 
+
+   * - using
+     - :ref:`callback<project::coffee::machine::callback>` 
+
+   * - typedef
+     - :ref:`other_callback<project::coffee::machine::other_callback>` 
 
    * - enum
      - :ref:`power<project::coffee::machine::power>` { on, off }
@@ -297,6 +304,35 @@ std::string **version** ()
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+Type Description
+----------------
+
+.. _project::coffee::machine::callback:
+
+using **callback** = std::function< void()>
+    The generic callback type. 
+
+    
+
+-----
+
+.. _project::coffee::machine::other_callback:
+
+typedef :ref:`callback<project::coffee::machine::callback>` **other_callback**
+    Another way to define a type is a typedef. 
+
+    
 
 
 

@@ -418,6 +418,25 @@ Python dictionary representing a C++ enum or enum class::
       'detaileddescription': paragraphs
     }
 
+Type ``typedef`` | ``using``
+............................
+
+Python dictionary representing a C++ using or typedef statement::
+
+    info = {
+      'type': 'typedef' | 'using',
+      'name': 'unqualified-name',
+      'location' { 'file': 'filename.h', 'line-start': 10, 'line-end': 23 },
+      'scope': 'unique-name' | None,
+      'access': 'public' | 'protected' | 'private',
+      'identifier': {
+          'type': 'some text',
+          'link': 'unique-name' | None
+      },
+      'briefdescription': paragraphs,
+      'detaileddescription': paragraphs
+    }
+
 Type ``function``
 .................
 

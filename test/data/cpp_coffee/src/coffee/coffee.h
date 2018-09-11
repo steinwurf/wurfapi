@@ -1,4 +1,5 @@
 #include <cstdint>
+#include <function>
 #include <iostream>
 
 namespace project
@@ -27,6 +28,12 @@ public:
         /// @return `true` if filling was successfull otherwise `false`
         bool fill(const cups& number_of_cups, bool safety_valve);
     };
+
+    /// The generic callback type
+    using callback = std::function<void()>;
+
+    /// Another way to define a type is a typedef
+    typedef callback other_callback;
 
 private:
     /// Internal brewing state

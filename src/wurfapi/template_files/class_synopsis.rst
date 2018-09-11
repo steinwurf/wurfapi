@@ -1,6 +1,7 @@
 {% from 'macros.rst' import format_heading %}
 {% from 'macros.rst' import format_description %}
 {% from 'macros.rst' import format_type_to_link %}
+{% from 'macros.rst' import format_type_alias %}
 {% from 'function_synopsis.rst' import format_function %}
 {% from 'function_synopsis.rst' import format_parameters %}
 
@@ -82,7 +83,7 @@ Brief description
 {% endif %}
 
 {% set types = class["members"]
-       | api_filter(type=["class", "struct", "enum"], access="public")
+       | api_filter(type=["class", "struct", "enum", "using", "typedef"], access="public")
 %}
 
 {%- if types -%}
@@ -150,3 +151,28 @@ Member Function Description
 {% endif %}
 
 
+{% set types = class["members"]
+       | api_filter(type=["typedef", "using"], access="public")
+       | api_sort(key="name", reverse=False)
+%}
+
+{% if types %}
+
+Type Description
+----------------
+
+{% for selector in types -%}
+
+.. _{{selector}}:
+
+{{ format_type_alias(api[selector]) }}
+    {{ format_description(api[selector]["briefdescription"])|indent }}
+
+    {{ format_description(api[selector]["detaileddescription"])|indent }}
+
+{{ "-----" if not loop.last }}
+
+{% endfor %}
+
+
+{% endif %}
