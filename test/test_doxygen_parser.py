@@ -154,3 +154,12 @@ def test_parser_replace_with():
     }
 
     assert data_out == data_expect
+
+
+def test_parse_using_type():
+
+    test = "using project::coffee::machine::callback =  std::function<void()>"
+
+    result = wurfapi.doxygen_parser.parse_using_type(definition=test)
+
+    assert result == "std::function<void()>"

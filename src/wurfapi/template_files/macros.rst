@@ -93,3 +93,28 @@
 {{name}}
 {% for n in range(size) %}{{char}}{% endfor %}
 {%- endmacro -%}
+
+
+{# FORMAT_TYPEDEF_ALIAS #}
+
+{%- macro format_typedef_alias(alias) -%}
+typedef {{ format_type_to_link(alias["identifier"]) }} **{{ alias["name"] }}**
+{%- endmacro -%}
+
+
+{# FORMAT_USING_ALIAS #}
+
+{%- macro format_using_alias(alias) -%}
+using **{{ alias["name"] }}** = {{ format_type_to_link(alias["identifier"]) }}
+{%- endmacro -%}
+
+
+{# FORMAT_TYPE_ALIAS #}
+
+{%- macro format_type_alias(alias) -%}
+{%- if alias["type"] == "using" -%}
+    {{ format_using_alias(alias) }}
+{%- else -%}
+    {{ format_typedef_alias(alias) }}
+{%- endif -%}
+{%- endmacro -%}

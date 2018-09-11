@@ -5,6 +5,7 @@ import lxml
 import inspect
 import contextlib
 import copy
+import re
 
 
 def match(xml, tag, attrib={}):
@@ -24,6 +25,34 @@ def match(xml, tag, attrib={}):
             return False
 
     return True
+
+
+def parse_using_type(definition):
+    """ Doxygen does not handle using statements the way we would like
+    so we extract the type from it
+    """
+
+    parser = re.compile(r"""
+        using              # Match 'using'
+        \s+                # Match one or more spaces
+        (?P<name>          # Match and group ("name")
+            [\w:<>_&*()]+  #  Match on or more characters
+        )                  # End group
+        \s+                # Match one or more spaces
+        =                  # Match an equal operator
+        \s+                # Match one or more spaces
+        (?P<type>          # Match and group ("type")
+            [\w:<>_&*()]+  #  Match on or more characters
+        )                  # End group
+        """, re.VERBOSE)
+
+    result = parser.match(definition)
+
+    if result is None:
+        raise RuntimeError(
+            "Failed to parse using statement {}".format(definition))
+
+    return result.group('type')
 
 
 def replace_with(replace, data):
@@ -523,6 +552,57 @@ def parse(xml, parser, log, scope):
         values.append(value)
 
     result["values"] = values
+
+    # Construct the unique name
+    unique_name = scope + '::' + result["name"] if scope else result["name"]
+
+    # Save mapping from doxygen id to unique name
+    parser.id_mapping[xml.attrib["id"]] = unique_name
+
+    return {unique_name: result}
+
+
+@DoxygenParser.register(tag="memberdef", attrib={"kind": "typedef"})
+def parse(xml, parser, log, scope):
+    """ Parses Doxygen memberdefType
+
+    :return: API dictionary
+    """
+    result = {}
+
+    definition = xml.findtext("definition")
+
+    if definition.startswith("using"):
+        result["type"] = "using"
+    elif definition.startswith("typedef"):
+        result["type"] = "typedef"
+    else:
+        raise RuntimeError("Unknown definition '{}'".format(definition))
+
+    result["scope"] = scope
+    result['location'] = parser.parse_element(xml=xml.find('location'))
+    result["name"] = xml.findtext("name")
+    result["briefdescription"] = parser.parse_element(
+        xml=xml.find("briefdescription"))
+    result["detaileddescription"] = parser.parse_element(
+        xml=xml.find("detaileddescription"))
+    result["access"] = xml.attrib["prot"]
+
+    identifier = {}
+    # The identifier type can be as just text in the type
+    # tag or in a nested ref tag. We use the approach
+    # mentioned here to get it:
+    # https://lxml.de/1.3/tutorial.html#elements-contain-text
+    identifier["type"] = xml.find("type").xpath("string()")
+
+    ref = xml.find("type/ref")
+
+    if ref is not None:
+        identifier["link"] = ref.attrib["refid"]
+    else:
+        identifier["link"] = None
+
+    result["identifier"] = identifier
 
     # Construct the unique name
     unique_name = scope + '::' + result["name"] if scope else result["name"]
