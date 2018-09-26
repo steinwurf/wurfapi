@@ -28,6 +28,12 @@ else:
 
 BASE_URL = "http://ftp.stack.nl/pub/users/dimitri/"
 
+# Version 1.8.13 segfaults if the C++ code has any friend declarations
+# as described here:
+# https://bugzilla.gnome.org/show_bug.cgi?id=777941
+# This regression was fixed here:
+# https://bugzilla.gnome.org/show_bug.cgi?id=776791
+
 # Version 1.8.14 has a broken Linux binary:
 # https://bugzilla.gnome.org/show_bug.cgi?id=792761
 # it is linked with libclang but does not ship with it, so you get the following
@@ -38,7 +44,7 @@ BASE_URL = "http://ftp.stack.nl/pub/users/dimitri/"
 #
 # Running ldd gives:
 #
-# 	linux-vdso.so.1 =>  (0x00007ffc883a8000)
+#   linux-vdso.so.1 =>  (0x00007ffc883a8000)
 #   libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f39d96e3000)
 #   libclang.so.6 => not found
 #   libtinfo.so.5 => /lib/x86_64-linux-gnu/libtinfo.so.5 (0x00007f39d94ba000)
