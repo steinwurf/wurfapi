@@ -49,7 +49,7 @@ BASE_URL = "http://ftp.stack.nl/pub/users/dimitri/"
 #   libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f39d85ca000)
 #   /lib64/ld-linux-x86-64.so.2 (0x00007f39d9902000)
 
-VERSION = "1.8.13"
+VERSION = "1.8.12"
 
 
 class DoxygenUnsupportedError(WurfapiError):
