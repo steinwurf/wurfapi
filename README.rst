@@ -1,5 +1,5 @@
 
-.. image:: https://ci.appveyor.com/api/projects/status/l41u9e7y50r685ep?svg=true
+.. image:: https://ci.appveyor.com/api/projects/status/l41u9e7y50r685ep?svg=true&branch=master
     :target: https://ci.appveyor.com/project/SteinwurfApS/wurfapi
 
 .. image:: https://travis-ci.org/steinwurf/wurfapi.svg?branch=master
