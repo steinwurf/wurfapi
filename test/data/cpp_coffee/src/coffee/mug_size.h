@@ -19,7 +19,6 @@ enum class mug_size
     ///     std::cout << mug_size::Grande << std::endl;
     Grande,
     /// @brief The Venti version 20 ounces.
-    ///
     /// This one will keep you up
     /// all night!
     ///
