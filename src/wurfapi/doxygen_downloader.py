@@ -26,7 +26,7 @@ else:
 # http://ftp.stack.nl/pub/users/dimitri/doxygen-1.8.14.windows.bin.zip
 # http://ftp.stack.nl/pub/users/dimitri/doxygen-1.8.14.windows.x64.bin.zip
 
-BASE_URL = "http://ftp.stack.nl/pub/users/dimitri/"
+BASE_URL = "https://sourceforge.net/projects/doxygen/files/rel-1.8.12/"
 
 # Version 1.8.13 segfaults if the C++ code has any friend declarations
 # as described here:
@@ -56,7 +56,6 @@ BASE_URL = "http://ftp.stack.nl/pub/users/dimitri/"
 #   /lib64/ld-linux-x86-64.so.2 (0x00007f39d9902000)
 
 VERSION = "1.8.12"
-
 
 class DoxygenUnsupportedError(WurfapiError):
 
