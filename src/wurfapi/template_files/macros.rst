@@ -27,19 +27,41 @@
 {%- endif -%}
 {%- endmacro -%}
 
-{# CPPREFERENCE_LINK #}
-{%- macro cppreference_link(element, page) -%}
-`{{element["type"]}} <http://en.cppreference.com/w/cpp/{{page}}>`_
+
+{%- macro cppreference_link(element) -%}
+{%- set cppreference_map = dict() -%}
+{%- do cppreference_map.update({'void': "keyword/void"}) -%}
+{%- do cppreference_map.update({'bool': "keyword/bool"}) -%}
+{%- do cppreference_map.update({'short': "keyword/short"}) -%}
+{%- do cppreference_map.update({'int': "keyword/int"}) -%}
+{%- do cppreference_map.update({'long': "keyword/long"}) -%}
+{%- do cppreference_map.update({'float': "keyword/float"}) -%}
+{%- do cppreference_map.update({'double': "keyword/double"}) -%}
+{%- do cppreference_map.update({'std::vector': "container/vector"}) -%}
+{%- do cppreference_map.update({'std::string': "string/basic_string"}) -%}
+{%- do cppreference_map.update({'uint8_t': "types/integer"}) -%}
+{%- do cppreference_map.update({'uint16_t': "types/integer"}) -%}
+{%- do cppreference_map.update({'uint32_t': "types/integer"}) -%}
+{%- do cppreference_map.update({'uint64_t': "types/integer"}) -%}
+{%- do cppreference_map.update({'int8_t': "types/integer"}) -%}
+{%- do cppreference_map.update({'int16_t': "types/integer"}) -%}
+{%- do cppreference_map.update({'int32_t': "types/integer"}) -%}
+{%- do cppreference_map.update({'int64_t': "types/integer"}) -%}
+{%- set type = element["type"] -%}
+{%- if type in cppreference_map -%}
+{%- set page = cppreference_map.get(type) -%}
+`{{type}} <http://en.cppreference.com/w/cpp/{{page}}>`_
+{%- else -%}
+{{type}}
+{%- endif -%}
 {%- endmacro -%}
 
 {# FORMAT_TYPE_TO_LINK #}
 {%- macro format_type_to_link(element) -%}
 {%- if element["link"] -%}
 :ref:`{{ element["type"] }}<{{ element["link"] }}>`
-{%- elif element["type"] == "std::string" -%}
-{{cppreference_link(element, "string/basic_string")}}
 {%- else -%}
-{{ element["type"] }}
+{{cppreference_link(element)}}
 {%- endif -%}
 {%- endmacro -%}
 
