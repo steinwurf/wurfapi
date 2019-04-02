@@ -11,14 +11,15 @@
     "location": {
       "file": "variables.hpp",
       "line-start": 2,
-      "line-stop": 20
+      "line-stop": 23
     },
     "members": [
       "variables::a",
       "variables::b",
       "variables::c",
       "variables::dddd",
-      "variables::my_type_const"
+      "variables::my_type_const",
+      "variables::size"
     ],
     "name": "variables",
     "scope": "",
@@ -157,5 +158,33 @@
     "name": "my_type_const",
     "scope": "variables",
     "type": "using"
+  },
+  "variables::size": {
+    "access": "protected",
+    "briefdescription": [
+      {
+        "content": "This is the size of dddd.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constexpr": false,
+    "is_mutable": false,
+    "is_static": false,
+    "is_volatile": false,
+    "location": {
+      "file": "variables.hpp",
+      "line-start": 22,
+      "line-stop": null
+    },
+    "name": "size",
+    "scope": "variables",
+    "type": "variable",
+    "value": "sizeof(dddd)",
+    "variable_type": {
+      "link": null,
+      "type": "uint32_t"
+    }
   }
 }

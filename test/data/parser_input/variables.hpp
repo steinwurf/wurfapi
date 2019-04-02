@@ -17,4 +17,7 @@ private:
 protected:
     /// This is a dddd variable
     constexpr static bool dddd = false;
+
+    /// This is the size of dddd
+    uint32_t size = sizeof(dddd);
 };

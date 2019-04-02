@@ -801,7 +801,12 @@ def parse(xml, parser, log, scope):
     result["access"] = xml.attrib["prot"]
 
     # Lets get the value
-    v = xml.findtext("initializer", default="")
+    v = xml.find("initializer")
+    if v is None:
+        v = ""
+    else:
+        v = v.xpath("string()")
+
     if v.startswith('= '):
         v = v[2:]
     result["value"] = v
