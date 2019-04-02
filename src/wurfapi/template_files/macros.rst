@@ -118,3 +118,13 @@ using **{{ alias["name"] }}** = {{ format_type_to_link(alias["identifier"]) }}
     {{ format_typedef_alias(alias) }}
 {%- endif -%}
 {%- endmacro -%}
+
+{# MERGE_DESCRIPTION #}
+{%- macro merge_description(item) -%}
+{%- if item["briefdescription"] -%}
+{{format_description(item["briefdescription"])}}
+{%- endif -%}
+{%- if item["detaileddescription"] -%}
+{{format_description(item["detaileddescription"])}}
+{%- endif -%}
+{%- endmacro -%}
