@@ -47,9 +47,11 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-start": 13,
-      "line-stop": 70
+      "line-stop": 76
     },
     "members": [
+      "project::coffee::machine::cups_brewed",
+      "project::coffee::machine::total_cups_brewed",
       "project::coffee::machine::set_number_cups(uint32_t)",
       "project::coffee::machine::set_number_cups(std::string)",
       "project::coffee::machine::number_cups()const",
@@ -60,6 +62,31 @@
     "name": "machine",
     "scope": "project::coffee",
     "type": "class"
+  },
+  "project::coffee::machine::cups_brewed": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "The number of cups brewed by this machine.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constexpr": false,
+    "is_mutable": false,
+    "is_static": false,
+    "is_volatile": false,
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 62,
+      "line-stop": null
+    },
+    "name": "cups_brewed",
+    "scope": "project::coffee::machine",
+    "type": "variable",
+    "value": "0",
+    "variable_type": "uint32_t"
   },
   "project::coffee::machine::help_brew()": {
     "access": "private",
@@ -231,6 +258,31 @@
     "scope": "project::coffee::machine",
     "signature": "set_number_cups(uint32_t cups)",
     "type": "function"
+  },
+  "project::coffee::machine::total_cups_brewed": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "The number of cups brewed by all machines.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constexpr": false,
+    "is_mutable": false,
+    "is_static": true,
+    "is_volatile": false,
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 65,
+      "line-stop": null
+    },
+    "name": "total_cups_brewed",
+    "scope": "project::coffee::machine",
+    "type": "variable",
+    "value": "",
+    "variable_type": "uint32_t"
   },
   "project::coffee::machine::version()": {
     "access": "public",

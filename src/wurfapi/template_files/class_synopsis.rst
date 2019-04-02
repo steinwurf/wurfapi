@@ -100,7 +100,35 @@
 
 {% for member_selector in members -%}
     {% set member = api[member_selector] %}
-    "{% if member["is_virtual"] -%}{{"virtual "}}{%- endif -%}{{member["return_type"]}}", "{{- create_function_signature(member_selector, member) }}"
+    "{%- if member["is_virtual"] -%}virtual {% endif -%}{{member["return_type"]}}", "{{- create_function_signature(member_selector, member) }}"
+{%- endfor %}
+{%- endif -%}
+{%- endmacro -%}
+
+{# FORMAT_MEMBER_VARIABLE #}
+{%- macro format_member_variables(type, static) -%}
+
+{%- set members = [] -%}
+
+{%- for member_selector in type["members"] -%}
+    {% set member = api[member_selector] -%}
+    {%- if member["type"] in ["variable"] -%}
+    {%- if member["access"] in ["public"] -%}
+    {%- if member["is_static"] == static -%}
+        {%- do members.append(member_selector) -%}
+    {%- endif -%}
+    {%- endif -%}
+    {%- endif -%}
+{%- endfor %}
+{%- if members|length -%}
+
+.. csv-table::
+    :widths: auto
+
+    "Type", "Name", "Value"
+{%- for member_selector in members -%}
+    {% set member = api[member_selector] %}
+    "{%- if member["is_mutable"] -%}mutable {% endif -%}{%- if member["is_const"] -%}const {% endif -%}{{member["variable_type"]}}", "{{- create_function_signature(member_selector, member) }}", "{{member["value"]}}"
 {%- endfor %}
 {%- endif -%}
 {%- endmacro -%}
@@ -143,7 +171,7 @@ Brief description
 {% endif %}
 
 {% set member_description -%}
-{{ format_member_functions(api[selector], static=false) }}
+{{ format_member_functions(class, static=false) }}
 {%- endset %}
 
 {% if member_description %}
@@ -155,7 +183,7 @@ Member functions (public)
 {% endif %}
 
 {% set member_description -%}
-{{ format_member_functions(api[selector], static=true) }}
+{{ format_member_functions(class, static=true) }}
 {%- endset %}
 
 {% if member_description | length %}
@@ -163,6 +191,30 @@ Static member functions (public)
 --------------------------------
 
 {{member_description}}
+
+{% endif %}
+
+{% set member_description -%}
+{{ format_member_variables(class, static=false) }}
+{%- endset %}
+
+{% if member_description %}
+Member Variables (public)
+-------------------------
+
+{{ member_description }}
+
+{% endif %}
+
+{% set member_description -%}
+{{ format_member_variables(class, static=true) }}
+{%- endset %}
+
+{% if member_description %}
+Static member Variables (public)
+--------------------------------
+
+{{ member_description }}
 
 {% endif %}
 
@@ -193,4 +245,34 @@ Member Function Description
 
 {% endif %}
 
+{% set variables = api_filter(
+       api, class["members"], type="variable", access="public")
+%}
 
+{% if variables %}
+
+Member Variable Description
+---------------------------
+{%- from 'macros.rst' import format_description -%}
+{%- for variable in variables %}
+
+.. _{{variable}}:
+
+{% set variable_type = api[variable]["variable_type"] -%}
+{%- set name = api[variable]["name"] -%}
+{%- set value = api[variable]["value"] -%}
+{{ variable_type }} **{{ name }}** {%-if value %} = {{ value }}; {%- endif -%}
+
+{%- set briefdescription = api[variable]["briefdescription"] -%}
+{%- set detaileddescription = api[variable]["detaileddescription"] %}
+
+    {{ format_description(briefdescription)|indent }}
+
+    {{ format_description(detaileddescription)|indent }}
+
+{{ "-----" if not loop.last }}
+
+{% endfor %}
+
+
+{% endif %}

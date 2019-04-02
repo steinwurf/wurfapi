@@ -1,0 +1,145 @@
+{
+  "variables": {
+    "briefdescription": [
+      {
+        "content": "Not important.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "location": {
+      "file": "variables.hpp",
+      "line-start": 2,
+      "line-stop": 20
+    },
+    "members": [
+      "variables::my_type_const",
+      "variables::a",
+      "variables::b",
+      "variables::c",
+      "variables::dddd"
+    ],
+    "name": "variables",
+    "scope": "",
+    "type": "struct"
+  },
+  "variables::a": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "This is a a variable.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constexpr": false,
+    "is_mutable": false,
+    "is_static": false,
+    "is_volatile": false,
+    "location": {
+      "file": "variables.hpp",
+      "line-start": 8,
+      "line-stop": null
+    },
+    "name": "a",
+    "scope": "variables",
+    "type": "variable",
+    "value": "",
+    "variable_type": "my_type_const"
+  },
+  "variables::b": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "This is a b variable.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": true,
+    "is_constexpr": false,
+    "is_mutable": false,
+    "is_static": false,
+    "is_volatile": false,
+    "location": {
+      "file": "variables.hpp",
+      "line-start": 11,
+      "line-stop": null
+    },
+    "name": "b",
+    "scope": "variables",
+    "type": "variable",
+    "value": "42",
+    "variable_type": "int"
+  },
+  "variables::c": {
+    "access": "private",
+    "briefdescription": [
+      {
+        "content": "This is a c variable.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constexpr": false,
+    "is_mutable": true,
+    "is_static": true,
+    "is_volatile": false,
+    "location": {
+      "file": "variables.hpp",
+      "line-start": 15,
+      "line-stop": null
+    },
+    "name": "c",
+    "scope": "variables",
+    "type": "variable",
+    "value": "\"coool\"",
+    "variable_type": "std::string"
+  },
+  "variables::dddd": {
+    "access": "protected",
+    "briefdescription": [
+      {
+        "content": "This is a dddd variable.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constexpr": true,
+    "is_mutable": false,
+    "is_static": true,
+    "is_volatile": false,
+    "location": {
+      "file": "variables.hpp",
+      "line-start": 19,
+      "line-stop": null
+    },
+    "name": "dddd",
+    "scope": "variables",
+    "type": "variable",
+    "value": "false",
+    "variable_type": "bool"
+  },
+  "variables::my_type_const": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "Special type for the variable a.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "location": {
+      "file": "variables.hpp",
+      "line-start": 5,
+      "line-stop": null
+    },
+    "name": "my_type_const",
+    "scope": "variables",
+    "type": "typedef",
+    "typedef_type": "bool"
+  }
+}

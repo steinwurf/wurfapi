@@ -58,6 +58,12 @@ public:
     ///
     static std::string version();
 
+    /// The number of cups brewed by this machine.
+    uint32_t cups_brewed = 0;
+
+    /// The number of cups brewed by all machines.
+    static uint32_t total_cups_brewed;
+
 protected:
     /// @brief Set the heat.
     ///

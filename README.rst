@@ -355,6 +355,44 @@ Python dictionary representing a C++ enum or enum class::
       'detaileddescription': paragraphs
     }
 
+Type ``variable``
+..................
+
+Python dictionary representing a C++ variable::
+
+    info = {
+      'type': 'variable',
+      'name': 'unqualified-name',
+      'value': 'some value' | None,
+      'variable_type': 'sometype',
+      'location' { 'file': 'filename.h', 'line-start': 10, 'line-end': None },
+      'is_static': True | False,
+      'is_mutable': True | False,
+      'is_volatile': True | False,
+      'is_const': True | False,
+      'is_constexpr': True | False,
+      'scope': 'unique-name' | None,
+      'access': 'public' | 'protected' | 'private',
+      'briefdescription: paragraphs,
+      'detaileddescription: paragraphs,
+    }
+
+Type ``typedef``
+..................
+
+Python dictionary representing a C++ variable::
+
+    info = {
+      'type': 'typedef',
+      'name': 'unqualified-name',
+      'typedef_type': 'sometype',
+      'location' { 'file': 'filename.h', 'line-start': 10, 'line-end': None },
+      'scope': 'unique-name' | None,
+      'access': 'public' | 'protected' | 'private',
+      'briefdescription: paragraphs,
+      'detaileddescription: paragraphs,
+    }
+
 Type ``function``
 .................
 
@@ -363,7 +401,7 @@ Python dictionary representing a C++ function::
     info = {
       'type': 'function',
       'name': 'unqualified-name',
-      'location' { 'file': 'filename.h', 'line': 10},
+      'location' { 'file': 'filename.h', 'line-start': 10, 'line-end': 23 },
       'scope': 'unique-name' | None,
       'return_type': 'sometype',
       'return_description': paragraphs,

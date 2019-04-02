@@ -48,6 +48,34 @@ Static member functions (public)
 
 
 
+
+
+Member Variables (public)
+-------------------------
+
+.. csv-table::
+    :widths: auto
+
+    "Type", "Name", "Value"
+    "uint32_t", ":ref:`cups_brewed<project::coffee::machine::cups_brewed>` **(**  **)** ", "0"
+
+
+
+
+
+
+Static member Variables (public)
+--------------------------------
+
+.. csv-table::
+    :widths: auto
+
+    "Type", "Name", "Value"
+    "uint32_t", ":ref:`total_cups_brewed<project::coffee::machine::total_cups_brewed>` **(**  **)** ", ""
+
+
+
+
 Description
 -----------
 The coffee machine object serves as your applications entry point for brewing coffee. You have to remember to fill the :ref:`project::coffee::machine::water_tank<project::coffee::machine::water_tank>` though. 
@@ -148,6 +176,38 @@ std::string **version** ()
 
 
 
+
+
+
+
+
+
+
+
+
+
+Member Variable Description
+---------------------------
+
+.. _project::coffee::machine::cups_brewed:
+
+uint32_t **cups_brewed** = 0;
+
+    The number of cups brewed by this machine. 
+
+    
+
+-----
+
+
+
+.. _project::coffee::machine::total_cups_brewed:
+
+uint32_t **total_cups_brewed**
+
+    The number of cups brewed by all machines. 
+
+    
 
 
 
