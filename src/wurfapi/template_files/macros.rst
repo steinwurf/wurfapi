@@ -29,7 +29,7 @@
 
 {# CPPREFERENCE_LINK #}
 {%- macro cppreference_link(element, page) -%}
-`{{element["type"]}} <http://en.cppreference.com/w/cpp/string/{page}>`_
+`{{element["type"]}} <http://en.cppreference.com/w/cpp/{{page}}>`_
 {%- endmacro -%}
 
 {# FORMAT_TYPE_TO_LINK #}
