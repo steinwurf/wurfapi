@@ -27,12 +27,17 @@
 {%- endif -%}
 {%- endmacro -%}
 
+{# CPPREFERENCE_LINK #}
+{%- macro cppreference_link(element, page) -%}
+`{{element["type"]}} <http://en.cppreference.com/w/cpp/string/{page}>`_
+{%- endmacro -%}
 
 {# FORMAT_TYPE_TO_LINK #}
-
 {%- macro format_type_to_link(element) -%}
 {%- if element["link"] -%}
 :ref:`{{ element["type"] }}<{{ element["link"] }}>`
+{%- elif element["type"] == "std::string" -%}
+{{cppreference_link(element, "string/basic_string")}}
 {%- else -%}
 {{ element["type"] }}
 {%- endif -%}
