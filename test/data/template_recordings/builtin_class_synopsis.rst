@@ -51,16 +51,16 @@ Member functions (public)
    * - 
      - :ref:`~machine<project::coffee::machine::~machine()>` ()
 
-   * - virtual uint32_t
+   * - virtual `uint32_t <http://en.cppreference.com/w/cpp/types/integer>`_
      - :ref:`number_cups<project::coffee::machine::number_cups()const>` () const
 
-   * - void
-     - :ref:`set_number_cups<project::coffee::machine::set_number_cups(std::string)>` (std::string cups)
+   * - `void <http://en.cppreference.com/w/cpp/keyword/void>`_
+     - :ref:`set_number_cups<project::coffee::machine::set_number_cups(std::string)>` (`std::string <http://en.cppreference.com/w/cpp/string/basic_string>`_ cups)
 
-   * - void
-     - :ref:`set_number_cups<project::coffee::machine::set_number_cups(uint32_t)>` (uint32_t cups)
+   * - `void <http://en.cppreference.com/w/cpp/keyword/void>`_
+     - :ref:`set_number_cups<project::coffee::machine::set_number_cups(uint32_t)>` (`uint32_t <http://en.cppreference.com/w/cpp/types/integer>`_ cups)
 
-   * - void
+   * - `void <http://en.cppreference.com/w/cpp/keyword/void>`_
      - :ref:`set_power<project::coffee::machine::set_power(power)>` (:ref:`power<project::coffee::machine::power>` pwr)
 
    * - :ref:`water_tank<project::coffee::machine::water_tank>`
@@ -78,7 +78,7 @@ Static member functions (public)
    :widths: auto
 
 
-   * - std::string
+   * - `std::string <http://en.cppreference.com/w/cpp/string/basic_string>`_
      - :ref:`version<project::coffee::machine::version()>` ()
 
 
@@ -181,7 +181,7 @@ Member Function Description
 
 .. _project::coffee::machine::number_cups()const:
 
-uint32_t **number_cups** ()
+`uint32_t <http://en.cppreference.com/w/cpp/types/integer>`_ **number_cups** ()
 
     
 
@@ -198,7 +198,7 @@ uint32_t **number_cups** ()
 
 .. _project::coffee::machine::set_number_cups(std::string):
 
-void **set_number_cups** (std::string cups)
+`void <http://en.cppreference.com/w/cpp/keyword/void>`_ **set_number_cups** (`std::string <http://en.cppreference.com/w/cpp/string/basic_string>`_ cups)
 
     Set the number of cups to brew. 
 
@@ -231,7 +231,7 @@ void **set_number_cups** (std::string cups)
 
 .. _project::coffee::machine::set_number_cups(uint32_t):
 
-void **set_number_cups** (uint32_t cups)
+`void <http://en.cppreference.com/w/cpp/keyword/void>`_ **set_number_cups** (`uint32_t <http://en.cppreference.com/w/cpp/types/integer>`_ cups)
 
     Set the number of cups to brew. 
 
@@ -264,7 +264,7 @@ void **set_number_cups** (uint32_t cups)
 
 .. _project::coffee::machine::set_power(power):
 
-void **set_power** (:ref:`power<project::coffee::machine::power>` pwr)
+`void <http://en.cppreference.com/w/cpp/keyword/void>`_ **set_power** (:ref:`power<project::coffee::machine::power>` pwr)
 
     Set the power of the machine. 
 
@@ -298,7 +298,7 @@ void **set_power** (:ref:`power<project::coffee::machine::power>` pwr)
 
 .. _project::coffee::machine::version():
 
-std::string **version** ()
+`std::string <http://en.cppreference.com/w/cpp/string/basic_string>`_ **version** ()
 
     The version of the machine. 
 
@@ -373,7 +373,7 @@ Variables Description
 
 .. _project::coffee::machine::cups_brewed:
 
-uint32_t **cups_brewed** = 0;
+`uint32_t <http://en.cppreference.com/w/cpp/types/integer>`_ **cups_brewed** = 0;
 
     The number of cups brewed by this machine. 
 
@@ -403,7 +403,7 @@ uint32_t **cups_brewed** = 0;
 
 .. _project::coffee::machine::total_cups_brewed:
 
-uint32_t **total_cups_brewed**
+`uint32_t <http://en.cppreference.com/w/cpp/types/integer>`_ **total_cups_brewed**
 
     The number of cups brewed by all machines. 
 
