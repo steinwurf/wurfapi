@@ -42,25 +42,25 @@ Member functions (public)
    :widths: auto
 
 
-   * - element["type"]
+   * - 
      - :ref:`machine<project::coffee::machine::machine()>` ()
 
-   * - element["type"]
+   * - 
      - :ref:`machine<project::coffee::machine::machine(power)>` (:ref:`power<project::coffee::machine::power>` pwr)
 
-   * - element["type"]
+   * - 
      - :ref:`~machine<project::coffee::machine::~machine()>` ()
 
-   * - virtual element["type"]
+   * - virtual uint32_t
      - :ref:`number_cups<project::coffee::machine::number_cups()const>` () const
 
-   * - element["type"]
-     - :ref:`set_number_cups<project::coffee::machine::set_number_cups(std::string)>` (element["type"] cups)
+   * - void
+     - :ref:`set_number_cups<project::coffee::machine::set_number_cups(std::string)>` (std::string cups)
 
-   * - element["type"]
-     - :ref:`set_number_cups<project::coffee::machine::set_number_cups(uint32_t)>` (element["type"] cups)
+   * - void
+     - :ref:`set_number_cups<project::coffee::machine::set_number_cups(uint32_t)>` (uint32_t cups)
 
-   * - element["type"]
+   * - void
      - :ref:`set_power<project::coffee::machine::set_power(power)>` (:ref:`power<project::coffee::machine::power>` pwr)
 
    * - :ref:`water_tank<project::coffee::machine::water_tank>`
@@ -78,7 +78,7 @@ Static member functions (public)
    :widths: auto
 
 
-   * - element["type"]
+   * - std::string
      - :ref:`version<project::coffee::machine::version()>` ()
 
 
@@ -131,7 +131,7 @@ Member Function Description
 
 .. _project::coffee::machine::machine():
 
-element["type"] **machine** ()
+ **machine** ()
 
     Constructor. 
 
@@ -147,7 +147,7 @@ element["type"] **machine** ()
 
 .. _project::coffee::machine::machine(power):
 
-element["type"] **machine** (:ref:`power<project::coffee::machine::power>` pwr)
+ **machine** (:ref:`power<project::coffee::machine::power>` pwr)
 
     Constructor with power. 
 
@@ -165,7 +165,7 @@ element["type"] **machine** (:ref:`power<project::coffee::machine::power>` pwr)
 
 .. _project::coffee::machine::~machine():
 
-element["type"] **~machine** ()
+ **~machine** ()
 
     Destructor. 
 
@@ -181,7 +181,7 @@ element["type"] **~machine** ()
 
 .. _project::coffee::machine::number_cups()const:
 
-element["type"] **number_cups** ()
+uint32_t **number_cups** ()
 
     
 
@@ -198,7 +198,7 @@ element["type"] **number_cups** ()
 
 .. _project::coffee::machine::set_number_cups(std::string):
 
-element["type"] **set_number_cups** (element["type"] cups)
+void **set_number_cups** (std::string cups)
 
     Set the number of cups to brew. 
 
@@ -231,7 +231,7 @@ element["type"] **set_number_cups** (element["type"] cups)
 
 .. _project::coffee::machine::set_number_cups(uint32_t):
 
-element["type"] **set_number_cups** (element["type"] cups)
+void **set_number_cups** (uint32_t cups)
 
     Set the number of cups to brew. 
 
@@ -264,7 +264,7 @@ element["type"] **set_number_cups** (element["type"] cups)
 
 .. _project::coffee::machine::set_power(power):
 
-element["type"] **set_power** (:ref:`power<project::coffee::machine::power>` pwr)
+void **set_power** (:ref:`power<project::coffee::machine::power>` pwr)
 
     Set the power of the machine. 
 
@@ -298,7 +298,7 @@ element["type"] **set_power** (:ref:`power<project::coffee::machine::power>` pwr
 
 .. _project::coffee::machine::version():
 
-element["type"] **version** ()
+std::string **version** ()
 
     The version of the machine. 
 
@@ -343,7 +343,7 @@ Type Description
 
 .. _project::coffee::machine::callback:
 
-using **callback** = element["type"]
+using **callback** = std::function< void()>
     The generic callback type. 
 
     
@@ -373,7 +373,7 @@ Variables Description
 
 .. _project::coffee::machine::cups_brewed:
 
-element["type"] **cups_brewed** = 0;
+uint32_t **cups_brewed** = 0;
 
     The number of cups brewed by this machine. 
 
@@ -403,7 +403,7 @@ element["type"] **cups_brewed** = 0;
 
 .. _project::coffee::machine::total_cups_brewed:
 
-element["type"] **total_cups_brewed**
+uint32_t **total_cups_brewed**
 
     The number of cups brewed by all machines. 
 
