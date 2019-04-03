@@ -4,10 +4,11 @@
     "briefdescription": [
       {
         "content": "Not important.",
-        "type": "text"
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
+    "kind": "struct",
     "location": {
       "file": "type_definitions.hpp",
       "line-start": 2,
@@ -18,15 +19,14 @@
       "type_definitions::really_a_string"
     ],
     "name": "type_definitions",
-    "scope": "",
-    "type": "struct"
+    "scope": ""
   },
   "type_definitions::my_bool": {
     "access": "public",
     "briefdescription": [
       {
         "content": "This is my bool.",
-        "type": "text"
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -34,21 +34,21 @@
       "link": null,
       "type": "bool"
     },
+    "kind": "using",
     "location": {
       "file": "type_definitions.hpp",
       "line-start": 5,
       "line-stop": null
     },
     "name": "my_bool",
-    "scope": "type_definitions",
-    "type": "using"
+    "scope": "type_definitions"
   },
   "type_definitions::really_a_string": {
     "access": "public",
     "briefdescription": [
       {
         "content": "This is really a string.",
-        "type": "text"
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -56,13 +56,13 @@
       "link": null,
       "type": "std::string"
     },
+    "kind": "using",
     "location": {
       "file": "type_definitions.hpp",
       "line-start": 8,
       "line-stop": null
     },
     "name": "really_a_string",
-    "scope": "type_definitions",
-    "type": "using"
+    "scope": "type_definitions"
   }
 }

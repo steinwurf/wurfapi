@@ -13,7 +13,7 @@
 {% for selector in selectors %}
    {%- set member = api[selector] %}
 
-   * - {{ member["type"] }}
+   * - {{ member["kind"] }}
      - :ref:`{{ member["name"] }}<{{selector}}>`
 {% endfor %}
 
@@ -36,7 +36,7 @@
 {% endif %}
 
 {% set functions = namespace["members"] | api_filter(
-       type="function")
+       kind="function")
 %}
 
 {% if functions %}

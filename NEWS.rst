@@ -6,6 +6,7 @@ of every change, see the Git log.
 
 Latest
 ------
+* Major: Changed certain elements' `type` key to kind.
 * Minor: Support for variables
 * Minor: Support for typedef and using in classes and structs
 * Major: Allow multiple source paths to be specified.

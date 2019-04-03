@@ -4,10 +4,11 @@
     "briefdescription": [
       {
         "content": "Not important.",
-        "type": "text"
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
+    "kind": "struct",
     "location": {
       "file": "variables.hpp",
       "line-start": 2,
@@ -22,15 +23,14 @@
       "variables::size"
     ],
     "name": "variables",
-    "scope": "",
-    "type": "struct"
+    "scope": ""
   },
   "variables::a": {
     "access": "public",
     "briefdescription": [
       {
         "content": "This is a a variable.",
-        "type": "text"
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -39,6 +39,7 @@
     "is_mutable": false,
     "is_static": false,
     "is_volatile": false,
+    "kind": "variable",
     "location": {
       "file": "variables.hpp",
       "line-start": 8,
@@ -46,7 +47,6 @@
     },
     "name": "a",
     "scope": "variables",
-    "type": "variable",
     "value": "",
     "variable_type": {
       "link": "variables::my_type_const",
@@ -58,7 +58,7 @@
     "briefdescription": [
       {
         "content": "This is a b variable.",
-        "type": "text"
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -67,6 +67,7 @@
     "is_mutable": false,
     "is_static": false,
     "is_volatile": false,
+    "kind": "variable",
     "location": {
       "file": "variables.hpp",
       "line-start": 11,
@@ -74,7 +75,6 @@
     },
     "name": "b",
     "scope": "variables",
-    "type": "variable",
     "value": "42",
     "variable_type": {
       "link": null,
@@ -86,7 +86,7 @@
     "briefdescription": [
       {
         "content": "This is a c variable.",
-        "type": "text"
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -95,6 +95,7 @@
     "is_mutable": true,
     "is_static": true,
     "is_volatile": false,
+    "kind": "variable",
     "location": {
       "file": "variables.hpp",
       "line-start": 15,
@@ -102,7 +103,6 @@
     },
     "name": "c",
     "scope": "variables",
-    "type": "variable",
     "value": "\"coool\"",
     "variable_type": {
       "link": null,
@@ -114,7 +114,7 @@
     "briefdescription": [
       {
         "content": "This is a dddd variable.",
-        "type": "text"
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -123,6 +123,7 @@
     "is_mutable": false,
     "is_static": true,
     "is_volatile": false,
+    "kind": "variable",
     "location": {
       "file": "variables.hpp",
       "line-start": 19,
@@ -130,7 +131,6 @@
     },
     "name": "dddd",
     "scope": "variables",
-    "type": "variable",
     "value": "false",
     "variable_type": {
       "link": null,
@@ -142,7 +142,7 @@
     "briefdescription": [
       {
         "content": "Special type for the variable a.",
-        "type": "text"
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -150,21 +150,21 @@
       "link": null,
       "type": "bool"
     },
+    "kind": "using",
     "location": {
       "file": "variables.hpp",
       "line-start": 5,
       "line-stop": null
     },
     "name": "my_type_const",
-    "scope": "variables",
-    "type": "using"
+    "scope": "variables"
   },
   "variables::size": {
     "access": "protected",
     "briefdescription": [
       {
         "content": "This is the size of dddd.",
-        "type": "text"
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -173,6 +173,7 @@
     "is_mutable": false,
     "is_static": false,
     "is_volatile": false,
+    "kind": "variable",
     "location": {
       "file": "variables.hpp",
       "line-start": 22,
@@ -180,7 +181,6 @@
     },
     "name": "size",
     "scope": "variables",
-    "type": "variable",
     "value": "sizeof(dddd)",
     "variable_type": {
       "link": null,
