@@ -8,7 +8,7 @@
 {%- for parameter in parameters -%}
     {%- set type = parameter["type"] -%}
     {%- set name = parameter["name"] -%}
-    {{ format_type_to_link(parameter) }} {{name}}{{ ", " if not loop.last }}
+    {{ format_type_to_link(type) }} {{name}}{{ ", " if not loop.last }}
 {%- endfor -%}
 )
 {%- endmacro -%}
@@ -59,7 +59,7 @@ Parameter ``{{parameter["name"]}}``:
     format_parameters(api[selector]["parameters"]) -%}
 {%- set return_description = api[selector]["return"]["description"] -%}
 
-{{ format_type_to_link(return_value) }} **{{ name }}** {{ parameters }}
+{{ format_type_to_link(return_value["type"]) }} **{{ name }}** {{ parameters }}
 
     {{ format_description(briefdescription)|indent }}
 

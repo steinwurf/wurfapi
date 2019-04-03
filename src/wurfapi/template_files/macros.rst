@@ -97,14 +97,14 @@
 {# FORMAT_TYPEDEF_ALIAS #}
 
 {%- macro format_typedef_alias(alias) -%}
-typedef {{ format_type_to_link(alias["identifier"]) }} **{{ alias["name"] }}**
+typedef {{ format_type_to_link(alias["type"]) }} **{{ alias["name"] }}**
 {%- endmacro -%}
 
 
 {# FORMAT_USING_ALIAS #}
 
 {%- macro format_using_alias(alias) -%}
-using **{{ alias["name"] }}** = {{ format_type_to_link(alias["identifier"]) }}
+using **{{ alias["name"] }}** = {{ format_type_to_link(alias["type"]) }}
 {%- endmacro -%}
 
 

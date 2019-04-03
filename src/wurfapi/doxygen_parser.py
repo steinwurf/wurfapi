@@ -587,22 +587,7 @@ def parse(xml, parser, log, scope):
     result["detaileddescription"] = parser.parse_element(
         xml=xml.find("detaileddescription"))
     result["access"] = xml.attrib["prot"]
-
-    identifier = {}
-    # The identifier type can be as just text in the type
-    # tag or in a nested ref tag. We use the approach
-    # mentioned here to get it:
-    # https://lxml.de/1.3/tutorial.html#elements-contain-text
-    identifier["type"] = xml.find("type").xpath("string()")
-
-    ref = xml.find("type/ref")
-
-    if ref is not None:
-        identifier["link"] = ref.attrib["refid"]
-    else:
-        identifier["link"] = None
-
-    result["identifier"] = identifier
+    result["type"] = parser.parse_element(xml=xml.find('type'))
 
     # Construct the unique name
     unique_name = scope + '::' + result["name"] if scope else result["name"]
@@ -622,13 +607,35 @@ def parse(xml, parser):
     result = {}
     file_path = xml.attrib["file"]
     result['file'] = parser.relative_path(path=file_path)
+    result['line-stop'] = None
+    if xml.attrib.has_key("bodystart"):
+        result['line-start'] = int(xml.attrib["bodystart"])
+        line_stop = int(xml.attrib["bodyend"])
+        if line_stop != -1:
+            result['line-stop'] = line_stop
+    else:
+        result['line-start'] = int(xml.attrib["line"])
+    return result
 
-    result['line-start'] = int(xml.attrib["bodystart"])
+@DoxygenParser.register(tag="type")
+def parse(xml, parser):
+    """ Parses Doxygen type
 
-    line_stop = int(xml.attrib["bodyend"])
-    if line_stop == -1:
-        line_stop = None
-    result['line-stop'] = line_stop
+    :return: Type dict
+    """
+
+    result = {}
+    # The identifier type can be as just text in the type
+    # tag or in a nested ref tag. We use the approach
+    # mentioned here to get it:
+    # https://lxml.de/1.3/tutorial.html#elements-contain-text
+    result["type"] = xml.xpath("string()")
+
+    ref = xml.find("ref")
+    if ref is not None:
+        result["link"] = ref.attrib["refid"]
+    else:
+        result["link"] = None
 
     return result
 
@@ -641,27 +648,17 @@ def parse(xml, parser, log, scope):
     """
 
     result = {}
+    result["kind"] = "function"
+    result["scope"] = scope
+    result['location'] = parser.parse_element(xml=xml.find('location'))
+    result["name"] = xml.findtext("name")
 
-    # First we get the name and type of the parameters
+    # Get the name and type of the parameters
     parameters = []
     for param in xml.findall('param'):
 
         parameter = {}
-
-        # The parameter type can be as just text in the type
-        # tag or in a nested ref tag. We use the approach
-        # mentioned here to get it:
-        # https://lxml.de/1.3/tutorial.html#elements-contain-text
-        parameter["type"] = param.find("type").xpath("string()")
-
-        ref = param.find("type/ref")
-
-        if ref is not None:
-            parameter["link"] = ref.attrib["refid"]
-        else:
-            parameter["link"] = None
-
-        # parameter['type'] = param.findtext('type')
+        parameter["type"] = parser.parse_element(xml=param.find("type"))
         parameter['name'] = param.findtext('declname')
         parameter['description'] = ''
 
@@ -701,26 +698,9 @@ def parse(xml, parser, log, scope):
     else:
         return_description = []
 
-    result["kind"] = "function"
-    result["scope"] = scope
-    result["name"] = xml.findtext("name")
-
     return_info = {}
-
-    # The return type can be as just text in the type
-    # tag or in a nested ref tag. We use the approach
-    # mentioned here to get it:
-    # https://lxml.de/1.3/tutorial.html#elements-contain-text
-    return_info["type"] = xml.find("type").xpath("string()")
+    return_info["type"] = parser.parse_element(xml=xml.find("type"))
     return_info["description"] = return_description
-
-    ref = xml.find("type/ref")
-
-    if ref is not None:
-        return_info["link"] = ref.attrib["refid"]
-    else:
-        return_info["link"] = None
-
     result["return"] = return_info
 
     result["signature"] = result["name"] + xml.findtext("argsstring")
@@ -738,7 +718,7 @@ def parse(xml, parser, log, scope):
 
     # If we do not have a return type the function is either a constructor
     # or a destructor
-    if return_info["type"] == "":
+    if return_info["type"]["type"] == "":
         result["is_constructor"] = not result["name"].startswith("~")
         result["is_destructor"] = result["name"].startswith("~")
     else:
@@ -749,7 +729,7 @@ def parse(xml, parser, log, scope):
     unique_name = scope + '::' + result["name"] if scope else result["name"]
 
     unique_name += '('
-    types = [parameter['type'] for parameter in parameters]
+    types = [parameter['type']['type'] for parameter in parameters]
     unique_name += ','.join(types)
     unique_name += ')'
 
@@ -811,25 +791,10 @@ def parse(xml, parser, log, scope):
         v = v[2:]
     result["value"] = v
 
-    variable_type_info = {}
-
-    # The variable type can be as just text in the type
-    # tag or in a nested ref tag. We use the approach
-    # mentioned here to get it:
-    # https://lxml.de/1.3/tutorial.html#elements-contain-text
-    variable_type = xml.find("type").xpath("string()")
+    result["type"] = parser.parse_element(xml=xml.find("type"))
 
     # Extract const and constexpr info from the variable type
-    variable_type, const, constexpr = parse_variable_type(variable_type)
-
-    variable_type_info["type"] = variable_type
-    ref = xml.find("type/ref")
-    if ref is not None:
-        variable_type_info["link"] = ref.attrib["refid"]
-    else:
-        variable_type_info["link"] = None
-
-    result["variable_type"] = variable_type_info
+    result["type"]["type"], const, constexpr = parse_variable_type(result["type"]["type"])
 
     result['is_const'] = const
     result['is_constexpr'] = constexpr

@@ -38,6 +38,11 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "function.hpp",
+      "line-start": 23,
+      "line-stop": null
+    },
     "name": "set",
     "parameters": [
       {
@@ -47,9 +52,11 @@
             "kind": "text"
           }
         ],
-        "link": null,
         "name": "h",
-        "type": "const heat &"
+        "type": {
+          "link": null,
+          "type": "const heat &"
+        }
       },
       {
         "description": [
@@ -58,9 +65,11 @@
             "kind": "text"
           }
         ],
-        "link": null,
         "name": "max",
-        "type": "int"
+        "type": {
+          "link": null,
+          "type": "int"
+        }
       }
     ],
     "return": {
@@ -75,8 +84,10 @@
           "kind": "code"
         }
       ],
-      "link": null,
-      "type": "uint32_t"
+      "type": {
+        "link": null,
+        "type": "uint32_t"
+      }
     },
     "scope": null,
     "signature": "set(const heat &h, int max) const"

@@ -37,12 +37,19 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "header.h",
+      "line-start": 5,
+      "line-stop": null
+    },
     "name": "headz_up",
     "parameters": [],
     "return": {
       "description": [],
-      "link": null,
-      "type": "void"
+      "type": {
+        "link": null,
+        "type": "void"
+      }
     },
     "scope": "header",
     "signature": "headz_up()"
@@ -164,11 +171,11 @@
     },
     "name": "m_on",
     "scope": "project::coffee::machine::brew_state",
-    "value": "",
-    "variable_type": {
+    "type": {
       "link": null,
       "type": "bool"
-    }
+    },
+    "value": ""
   },
   "project::coffee::machine::callback": {
     "access": "public",
@@ -179,10 +186,6 @@
       }
     ],
     "detaileddescription": [],
-    "identifier": {
-      "link": null,
-      "type": "std::function< void()>"
-    },
     "kind": "using",
     "location": {
       "file": "coffee/coffee.h",
@@ -190,7 +193,11 @@
       "line-stop": null
     },
     "name": "callback",
-    "scope": "project::coffee::machine"
+    "scope": "project::coffee::machine",
+    "type": {
+      "link": null,
+      "type": "std::function< void()>"
+    }
   },
   "project::coffee::machine::cups_brewed": {
     "access": "public",
@@ -214,11 +221,11 @@
     },
     "name": "cups_brewed",
     "scope": "project::coffee::machine",
-    "value": "0",
-    "variable_type": {
+    "type": {
       "link": null,
       "type": "uint32_t"
-    }
+    },
+    "value": "0"
   },
   "project::coffee::machine::help_brew()": {
     "access": "private",
@@ -232,12 +239,19 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 130,
+      "line-stop": null
+    },
     "name": "help_brew",
     "parameters": [],
     "return": {
       "description": [],
-      "link": null,
-      "type": "void"
+      "type": {
+        "link": null,
+        "type": "void"
+      }
     },
     "scope": "project::coffee::machine",
     "signature": "help_brew()"
@@ -280,12 +294,19 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.cpp",
+      "line-start": 11,
+      "line-stop": null
+    },
     "name": "run",
     "parameters": [],
     "return": {
       "description": [],
-      "link": null,
-      "type": "void"
+      "type": {
+        "link": null,
+        "type": "void"
+      }
     },
     "scope": "project::coffee::machine::impl",
     "signature": "run()"
@@ -312,11 +333,11 @@
     },
     "name": "m_callback",
     "scope": "project::coffee::machine",
-    "value": "",
-    "variable_type": {
+    "type": {
       "link": "project::coffee::machine::callback",
       "type": "callback"
-    }
+    },
+    "value": ""
   },
   "project::coffee::machine::m_impl": {
     "access": "private",
@@ -335,11 +356,11 @@
     },
     "name": "m_impl",
     "scope": "project::coffee::machine",
-    "value": "",
-    "variable_type": {
+    "type": {
       "link": "project::coffee::machine::impl",
       "type": "std::unique_ptr< impl >"
-    }
+    },
+    "value": ""
   },
   "project::coffee::machine::m_other_callback": {
     "access": "public",
@@ -363,11 +384,11 @@
     },
     "name": "m_other_callback",
     "scope": "project::coffee::machine",
-    "value": "",
-    "variable_type": {
+    "type": {
       "link": "project::coffee::machine::other_callback",
       "type": "other_callback"
-    }
+    },
+    "value": ""
   },
   "project::coffee::machine::machine()": {
     "access": "public",
@@ -386,12 +407,19 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 62,
+      "line-stop": null
+    },
     "name": "machine",
     "parameters": [],
     "return": {
       "description": [],
-      "link": null,
-      "type": ""
+      "type": {
+        "link": null,
+        "type": ""
+      }
     },
     "scope": "project::coffee::machine",
     "signature": "machine()"
@@ -413,19 +441,28 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 65,
+      "line-stop": null
+    },
     "name": "machine",
     "parameters": [
       {
         "description": "",
-        "link": "project::coffee::machine::power",
         "name": "pwr",
-        "type": "power"
+        "type": {
+          "link": "project::coffee::machine::power",
+          "type": "power"
+        }
       }
     ],
     "return": {
       "description": [],
-      "link": null,
-      "type": ""
+      "type": {
+        "link": null,
+        "type": ""
+      }
     },
     "scope": "project::coffee::machine",
     "signature": "machine(power pwr)"
@@ -442,6 +479,11 @@
     "is_static": false,
     "is_virtual": true,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 93,
+      "line-stop": null
+    },
     "name": "number_cups",
     "parameters": [],
     "return": {
@@ -451,8 +493,10 @@
           "kind": "text"
         }
       ],
-      "link": null,
-      "type": "uint32_t"
+      "type": {
+        "link": null,
+        "type": "uint32_t"
+      }
     },
     "scope": "project::coffee::machine",
     "signature": "number_cups() const"
@@ -466,10 +510,6 @@
       }
     ],
     "detaileddescription": [],
-    "identifier": {
-      "link": "project::coffee::machine::callback",
-      "type": "callback"
-    },
     "kind": "typedef",
     "location": {
       "file": "coffee/coffee.h",
@@ -477,7 +517,11 @@
       "line-stop": null
     },
     "name": "other_callback",
-    "scope": "project::coffee::machine"
+    "scope": "project::coffee::machine",
+    "type": {
+      "link": "project::coffee::machine::callback",
+      "type": "callback"
+    }
   },
   "project::coffee::machine::power": {
     "access": "public",
@@ -543,25 +587,36 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 127,
+      "line-stop": null
+    },
     "name": "set",
     "parameters": [
       {
         "description": "",
-        "link": null,
         "name": "h",
-        "type": "const heat &"
+        "type": {
+          "link": null,
+          "type": "const heat &"
+        }
       },
       {
         "description": "",
-        "link": null,
         "name": "max",
-        "type": "int"
+        "type": {
+          "link": null,
+          "type": "int"
+        }
       }
     ],
     "return": {
       "description": [],
-      "link": null,
-      "type": "void"
+      "type": {
+        "link": null,
+        "type": "void"
+      }
     },
     "scope": "project::coffee::machine",
     "signature": "set(const heat &h, int max) const"
@@ -651,6 +706,11 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 90,
+      "line-stop": null
+    },
     "name": "set_number_cups",
     "parameters": [
       {
@@ -660,15 +720,19 @@
             "kind": "text"
           }
         ],
-        "link": null,
         "name": "cups",
-        "type": "std::string"
+        "type": {
+          "link": null,
+          "type": "std::string"
+        }
       }
     ],
     "return": {
       "description": [],
-      "link": null,
-      "type": "void"
+      "type": {
+        "link": null,
+        "type": "void"
+      }
     },
     "scope": "project::coffee::machine",
     "signature": "set_number_cups(std::string cups)"
@@ -758,6 +822,11 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 87,
+      "line-stop": null
+    },
     "name": "set_number_cups",
     "parameters": [
       {
@@ -767,15 +836,19 @@
             "kind": "text"
           }
         ],
-        "link": null,
         "name": "cups",
-        "type": "uint32_t"
+        "type": {
+          "link": null,
+          "type": "uint32_t"
+        }
       }
     ],
     "return": {
       "description": [],
-      "link": null,
-      "type": "void"
+      "type": {
+        "link": null,
+        "type": "void"
+      }
     },
     "scope": "project::coffee::machine",
     "signature": "set_number_cups(uint32_t cups)"
@@ -797,19 +870,28 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 71,
+      "line-stop": null
+    },
     "name": "set_power",
     "parameters": [
       {
         "description": "",
-        "link": "project::coffee::machine::power",
         "name": "pwr",
-        "type": "power"
+        "type": {
+          "link": "project::coffee::machine::power",
+          "type": "power"
+        }
       }
     ],
     "return": {
       "description": [],
-      "link": null,
-      "type": "void"
+      "type": {
+        "link": null,
+        "type": "void"
+      }
     },
     "scope": "project::coffee::machine",
     "signature": "set_power(power pwr)"
@@ -831,12 +913,19 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 114,
+      "line-stop": null
+    },
     "name": "tank",
     "parameters": [],
     "return": {
       "description": [],
-      "link": "project::coffee::machine::water_tank",
-      "type": "water_tank"
+      "type": {
+        "link": "project::coffee::machine::water_tank",
+        "type": "water_tank"
+      }
     },
     "scope": "project::coffee::machine",
     "signature": "tank()"
@@ -863,11 +952,11 @@
     },
     "name": "total_cups_brewed",
     "scope": "project::coffee::machine",
-    "value": "",
-    "variable_type": {
+    "type": {
       "link": null,
       "type": "uint32_t"
-    }
+    },
+    "value": ""
   },
   "project::coffee::machine::version()": {
     "access": "public",
@@ -918,6 +1007,11 @@
     "is_static": true,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 111,
+      "line-stop": null
+    },
     "name": "version",
     "parameters": [],
     "return": {
@@ -932,8 +1026,10 @@
           "kind": "code"
         }
       ],
-      "link": null,
-      "type": "std::string"
+      "type": {
+        "link": null,
+        "type": "std::string"
+      }
     },
     "scope": "project::coffee::machine",
     "signature": "version()"
@@ -972,6 +1068,11 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 29,
+      "line-stop": null
+    },
     "name": "fill",
     "parameters": [
       {
@@ -981,9 +1082,11 @@
             "kind": "text"
           }
         ],
-        "link": null,
         "name": "number_of_cups",
-        "type": "const cups &"
+        "type": {
+          "link": null,
+          "type": "const cups &"
+        }
       },
       {
         "description": [
@@ -1010,9 +1113,11 @@
             "kind": "text"
           }
         ],
-        "link": null,
         "name": "safety_valve",
-        "type": "bool"
+        "type": {
+          "link": null,
+          "type": "bool"
+        }
       }
     ],
     "return": {
@@ -1032,8 +1137,10 @@
           "kind": "code"
         }
       ],
-      "link": null,
-      "type": "bool"
+      "type": {
+        "link": null,
+        "type": "bool"
+      }
     },
     "scope": "project::coffee::machine::water_tank",
     "signature": "fill(const cups &number_of_cups, bool safety_valve)"
@@ -1050,6 +1157,11 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 21,
+      "line-stop": null
+    },
     "name": "is_full",
     "parameters": [],
     "return": {
@@ -1073,8 +1185,10 @@
           "kind": "text"
         }
       ],
-      "link": null,
-      "type": "bool"
+      "type": {
+        "link": null,
+        "type": "bool"
+      }
     },
     "scope": "project::coffee::machine::water_tank",
     "signature": "is_full() const"
@@ -1096,12 +1210,19 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 68,
+      "line-stop": null
+    },
     "name": "~machine",
     "parameters": [],
     "return": {
       "description": [],
-      "link": null,
-      "type": ""
+      "type": {
+        "link": null,
+        "type": ""
+      }
     },
     "scope": "project::coffee::machine",
     "signature": "~machine()"
@@ -1265,6 +1386,11 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 153,
+      "line-stop": null
+    },
     "name": "print",
     "parameters": [
       {
@@ -1274,9 +1400,11 @@
             "kind": "text"
           }
         ],
-        "link": null,
         "name": "a",
-        "type": "double"
+        "type": {
+          "link": null,
+          "type": "double"
+        }
       },
       {
         "description": [
@@ -1285,9 +1413,11 @@
             "kind": "text"
           }
         ],
-        "link": null,
         "name": "b",
-        "type": "int"
+        "type": {
+          "link": null,
+          "type": "int"
+        }
       }
     ],
     "return": {
@@ -1306,8 +1436,10 @@
           "kind": "text"
         }
       ],
-      "link": null,
-      "type": "void"
+      "type": {
+        "link": null,
+        "type": "void"
+      }
     },
     "scope": "project",
     "signature": "print(double a, int b)"
@@ -1324,6 +1456,11 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 163,
+      "line-stop": null
+    },
     "name": "print",
     "parameters": [
       {
@@ -1342,9 +1479,11 @@
             "kind": "text"
           }
         ],
-        "link": null,
         "name": "a_number",
-        "type": "int"
+        "type": {
+          "link": null,
+          "type": "int"
+        }
       },
       {
         "description": [
@@ -1362,15 +1501,19 @@
             "kind": "text"
           }
         ],
-        "link": null,
         "name": "on_paper",
-        "type": "bool"
+        "type": {
+          "link": null,
+          "type": "bool"
+        }
       }
     ],
     "return": {
       "description": [],
-      "link": null,
-      "type": "void"
+      "type": {
+        "link": null,
+        "type": "void"
+      }
     },
     "scope": "project",
     "signature": "print(int a_number, bool on_paper)"
@@ -1387,12 +1530,19 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 166,
+      "line-stop": null
+    },
     "name": "version",
     "parameters": [],
     "return": {
       "description": [],
-      "link": null,
-      "type": "std::string"
+      "type": {
+        "link": null,
+        "type": "std::string"
+      }
     },
     "scope": null,
     "signature": "version()"

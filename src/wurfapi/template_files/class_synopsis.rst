@@ -12,7 +12,7 @@
 {%- set function = api[selector] %}
 {%- set signature = format_parameters(function["parameters"]) %}
 {%- set signature = signature + " const" if function["is_const"] else signature %}
-{%- set return_type = format_type_to_link(function["return"]) %}
+{%- set return_type = format_type_to_link(function["return"]["type"]) %}
 {%- set return_type = "virtual " + return_type if function["is_virtual"] else return_type -%}
 * - {{ return_type }}
   - :ref:`{{ function["name"] }}<{{selector}}>` {{ signature }}
@@ -216,7 +216,7 @@ Variables Description
 
 .. _{{variable}}:
 
-{% set variable_type = api[variable]["variable_type"] -%}
+{% set variable_type = api[variable]["type"] -%}
 {%- set name = api[variable]["name"] -%}
 {%- set value = api[variable]["value"] -%}
 {{ format_type_to_link(variable_type) }} **{{ name }}** {%-if value %} = {{ value }}; {%- endif -%}
