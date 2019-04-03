@@ -617,25 +617,35 @@ def parse(xml, parser):
         result['line-start'] = int(xml.attrib["line"])
     return result
 
+
 @DoxygenParser.register(tag="type")
 def parse(xml, parser):
     """ Parses Doxygen type
 
-    :return: Type dict
+    :return: Type list
     """
 
-    result = {}
-    # The identifier type can be as just text in the type
-    # tag or in a nested ref tag. We use the approach
-    # mentioned here to get it:
-    # https://lxml.de/1.3/tutorial.html#elements-contain-text
-    result["type"] = xml.xpath("string()")
+    result = []
 
-    ref = xml.find("ref")
-    if ref is not None:
-        result["link"] = ref.attrib["refid"]
-    else:
-        result["link"] = None
+    def append_text(content):
+        if not content or content.isspace():
+            return
+        else:
+            result.append(
+                {"value": content.strip(), "link": None})
+
+    append_text(xml.text)
+
+    for child in xml.getchildren():
+
+        if match(xml=child, tag="ref"):
+
+            result.append(
+                {"value": child.text.strip(), "link": child.attrib["refid"]})
+
+        append_text(child.tail)
+
+    append_text(xml.tail)
 
     return result
 
@@ -718,7 +728,7 @@ def parse(xml, parser, log, scope):
 
     # If we do not have a return type the function is either a constructor
     # or a destructor
-    if return_info["type"]["type"] == "":
+    if return_info["type"] == []:
         result["is_constructor"] = not result["name"].startswith("~")
         result["is_destructor"] = result["name"].startswith("~")
     else:
@@ -729,7 +739,11 @@ def parse(xml, parser, log, scope):
     unique_name = scope + '::' + result["name"] if scope else result["name"]
 
     unique_name += '('
-    types = [parameter['type']['type'] for parameter in parameters]
+    types = []
+    for parameter in parameters:
+        for value in parameter['type']:
+            types.append(value['value'])
+
     unique_name += ','.join(types)
     unique_name += ')'
 
@@ -745,23 +759,36 @@ def parse(xml, parser, log, scope):
 
     return {unique_name: result}
 
+
 def parse_variable_type(variable_type):
-    """ Parses the variable type
+    """ Parses the variable type list
     :return: (variable name, is const, is constexpr)
     """
-    if variable_type.find('constexpr ') != -1:
-        variable_type = variable_type.replace('constexpr ', '')
-        constexpr = True
-    else:
-        constexpr = False
 
-    if variable_type.find('const ') != -1:
-        variable_type = variable_type.replace('const ', '')
-        const = True
-    else:
-        const = False
+    is_const = False
+    is_constexpr = False
 
-    return variable_type, const, constexpr
+    def prune(element):
+
+        global is_const
+        global is_constexpr
+
+        if "constexpr " in element["value"]:
+            element["value"].replace("constexpr ", "")
+            is_constexpr = True
+
+        if "const " in element["value"]:
+            element["value"].replace("const ", "")
+            is_const = True
+
+        if element["value"]:
+            return element
+        else:
+            return None
+
+    variable_type = [element for element in variable_type if prune(element)]
+
+    return variable_type, is_const, is_constexpr
 
 
 @DoxygenParser.register(tag="memberdef", attrib={"kind": "variable"})
@@ -791,10 +818,11 @@ def parse(xml, parser, log, scope):
         v = v[2:]
     result["value"] = v
 
-    result["type"] = parser.parse_element(xml=xml.find("type"))
+    variable_type = parser.parse_element(xml=xml.find("type"))
 
     # Extract const and constexpr info from the variable type
-    result["type"]["type"], const, constexpr = parse_variable_type(result["type"]["type"])
+    result["type"], const, constexpr = parse_variable_type(
+        variable_type)
 
     result['is_const'] = const
     result['is_constexpr'] = constexpr

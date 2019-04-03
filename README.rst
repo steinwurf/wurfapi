@@ -497,12 +497,11 @@ Python dictionary representing a location::
 ``type0`` item
 .................
 
-Python dictionary representing a c++ type::
+Python list representing a c++ type::
 
-    type = {
-      'type': 'sometype',
-      'link': 'unique-name' | None }
-    }
+    type = [
+      {'value': 'sometext', link: 'unique-name' | None }, ...
+    ]
 
 Text information
 .................

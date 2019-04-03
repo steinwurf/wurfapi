@@ -63,8 +63,14 @@ Member functions (public)
    * - void
      - :ref:`set_power<project::coffee::machine::set_power(power)>` (:ref:`power<project::coffee::machine::power>` pwr)
 
-   * - :ref:`water_tank<project::coffee::machine::water_tank>`
+   * - :ref:`water_tank<project::coffee::machine::water_tank>` &
      - :ref:`tank<project::coffee::machine::tank()>` ()
+
+   * - const :ref:`water_tank<project::coffee::machine::water_tank>` &
+     - :ref:`tank<project::coffee::machine::tank()const>` () const
+
+   * - std::vector< :ref:`water_tank<project::coffee::machine::water_tank>` >
+     - :ref:`tanks<project::coffee::machine::tanks()>` ()
 
 
 
@@ -282,9 +288,41 @@ void **set_power** (:ref:`power<project::coffee::machine::power>` pwr)
 
 .. _project::coffee::machine::tank():
 
-:ref:`water_tank<project::coffee::machine::water_tank>` **tank** ()
+:ref:`water_tank<project::coffee::machine::water_tank>` & **tank** ()
 
-    Get the water tank. 
+    Get the first water tank. 
+
+    
+
+    
+
+    
+
+
+
+-----
+
+.. _project::coffee::machine::tank()const:
+
+const :ref:`water_tank<project::coffee::machine::water_tank>` & **tank** ()
+
+    Get the first water tank. 
+
+    
+
+    
+
+    
+
+
+
+-----
+
+.. _project::coffee::machine::tanks():
+
+std::vector< :ref:`water_tank<project::coffee::machine::water_tank>` > **tanks** ()
+
+    Get all water tanks. 
 
     
 

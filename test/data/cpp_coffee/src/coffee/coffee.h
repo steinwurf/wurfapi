@@ -110,8 +110,14 @@ public:
     ///
     static std::string version();
 
-    /// Get the water tank
-    water_tank tank();
+    /// Get the first water tank
+    const water_tank& tank() const;
+
+    /// Get the first water tank
+    water_tank& tank();
+
+    /// Get all water tanks
+    std::vector<water_tank> tanks();
 
     /// The number of cups brewed by this machine.
     uint32_t cups_brewed = 0;
