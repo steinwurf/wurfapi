@@ -407,7 +407,7 @@ def parse(parser, xml):
 
     result = {}
 
-    result["type"] = "namespace"
+    result["kind"] = "namespace"
     result["name"] = name
     result["scope"] = scope
     result['briefdescription'] = parser.parse_element(
@@ -466,7 +466,7 @@ def parse(parser, xml):
     # Build the result
     result = {}
 
-    result["type"] = xml.attrib['kind']
+    result["kind"] = xml.attrib['kind']
     result["name"] = name
     result["location"] = parser.parse_element(xml=xml.find('location'))
     result["scope"] = scope
@@ -523,7 +523,7 @@ def parse(xml, parser, log, scope):
     :return: API dictionary
     """
     result = {}
-    result["type"] = "enum"
+    result["kind"] = "enum"
     result["scope"] = scope
     result['location'] = parser.parse_element(xml=xml.find('location'))
     result["name"] = xml.findtext("name")
@@ -573,9 +573,9 @@ def parse(xml, parser, log, scope):
     definition = xml.findtext("definition")
 
     if definition.startswith("using"):
-        result["type"] = "using"
+        result["kind"] = "using"
     elif definition.startswith("typedef"):
-        result["type"] = "typedef"
+        result["kind"] = "typedef"
     else:
         raise RuntimeError("Unknown definition '{}'".format(definition))
 
@@ -701,7 +701,7 @@ def parse(xml, parser, log, scope):
     else:
         return_description = []
 
-    result["type"] = "function"
+    result["kind"] = "function"
     result["scope"] = scope
     result["name"] = xml.findtext("name")
 
@@ -790,7 +790,7 @@ def parse(xml, parser, log, scope):
     :return: API dictionary
     """
     result = {}
-    result["type"] = "variable"
+    result["kind"] = "variable"
     result["scope"] = scope
     result['location'] = parser.parse_element(xml=xml.find('location'))
     result["name"] = xml.findtext("name")
@@ -886,7 +886,7 @@ def parse(parser, log, xml):
 
     code = xml.text.rstrip(' ')
 
-    return [{"type": "code", "content": code, "is_block": "\n" in code}]
+    return [{"kind": "code", "content": code, "is_block": "\n" in code}]
 
 
 @DoxygenParser.register(tag='ref')
@@ -896,7 +896,7 @@ def parse(log, xml):
     :return: List of "Text information" paragraphs
     """
     link = xml.attrib["refid"]
-    return [{"type": "text", "content": xml.text, "link": link}]
+    return [{"kind": "text", "content": xml.text, "link": link}]
 
 
 @DoxygenParser.register(tag='listitem')
@@ -927,7 +927,7 @@ def parse(parser, log, xml):
         item_paragraphs = parser.parse_element(xml=item)
         paragraphs.append(item_paragraphs)
 
-    return [{"type": "list", "ordered": xml.tag == "orderedlist", "items": paragraphs}]
+    return [{"kind": "list", "ordered": xml.tag == "orderedlist", "items": paragraphs}]
 
 
 @DoxygenParser.register(tag='para')
@@ -944,7 +944,7 @@ def parse(parser, log, xml):
             return
         else:
             paragraphs.append(
-                {"type": "text", "content": content.strip()})
+                {"kind": "text", "content": content.strip()})
 
     append_text(xml.text)
 

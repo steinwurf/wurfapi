@@ -4,30 +4,30 @@
     "briefdescription": [
       {
         "content": "Set the heat.",
-        "type": "text"
+        "kind": "text"
       }
     ],
     "detaileddescription": [
       {
         "content": "This function is use to set the head of the machine.",
-        "type": "text"
+        "kind": "text"
       },
       {
         "content": "void yes();\n",
         "is_block": true,
-        "type": "code"
+        "kind": "code"
       },
       {
         "content": "But maybe it also does other things?",
-        "type": "text"
+        "kind": "text"
       },
       {
         "content": "Test this break",
-        "type": "text"
+        "kind": "text"
       },
       {
         "content": "And then some text",
-        "type": "text"
+        "kind": "text"
       }
     ],
     "is_const": true,
@@ -37,13 +37,14 @@
     "is_inline": false,
     "is_static": false,
     "is_virtual": false,
+    "kind": "function",
     "name": "set",
     "parameters": [
       {
         "description": [
           {
             "content": "Set the heat object.",
-            "type": "text"
+            "kind": "text"
           }
         ],
         "link": null,
@@ -54,7 +55,7 @@
         "description": [
           {
             "content": "The maximum heat value.",
-            "type": "text"
+            "kind": "text"
           }
         ],
         "link": null,
@@ -66,19 +67,18 @@
       "description": [
         {
           "content": "The current heat.",
-          "type": "text"
+          "kind": "text"
         },
         {
           "content": "for (uint64_t i = 0; i < 3; ++i)\n{\n    std::cout << i << \"\\n\";\n}\n",
           "is_block": true,
-          "type": "code"
+          "kind": "code"
         }
       ],
       "link": null,
       "type": "uint32_t"
     },
     "scope": null,
-    "signature": "set(const heat &h, int max) const",
-    "type": "function"
+    "signature": "set(const heat &h, int max) const"
   }
 }

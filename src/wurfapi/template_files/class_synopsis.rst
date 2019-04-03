@@ -36,7 +36,7 @@
 {# FORMAT_MEMBER_TYPE_VALUES #}
 
 {%- macro format_member_type_values(selector) -%}
-{%- if api[selector]["type"] == "enum" -%}
+{%- if api[selector]["kind"] == "enum" -%}
 {%- set values = [] -%}
 {%- for value in api[selector]["values"]  -%}
 {%- do values.append(value["name"]) -%}
@@ -53,7 +53,7 @@
    :widths: auto
 
 {% for selector in selectors %}
-   * - {{ api[selector]["type"] }}
+   * - {{ api[selector]["kind"] }}
      - :ref:`{{ api[selector]["name"] }}<{{selector}}>` {{ format_member_type_values(selector) }}
 {%- endfor -%}
 
@@ -81,7 +81,7 @@
 
 .. _{{selector}}:
 
-{{ format_heading(class["type"] + " " + class["name"]) }}
+{{ format_heading(class["kind"] + " " + class["name"]) }}
 
 {% if class["scope"] %}
 **Scope:** {{ class["scope"] }}
@@ -96,7 +96,7 @@ Brief description
 {% endif %}
 
 {% set types = class["members"]
-       | api_filter(type=["class", "struct", "enum", "using", "typedef"], access="public")
+       | api_filter(kind=["class", "struct", "enum", "using", "typedef"], access="public")
 %}
 
 {%- if types -%}
@@ -109,7 +109,7 @@ Member types (public)
 
 
 {% set functions = class["members"]
-       | api_filter(type="function", access="public", is_static=false)
+       | api_filter(kind="function", access="public", is_static=false)
 %}
 
 {%- if functions -%}
@@ -122,7 +122,7 @@ Member functions (public)
 
 
 {% set functions = class["members"] | api_filter(
-       type="function", access="public", is_static=true)
+       kind="function", access="public", is_static=true)
 %}
 
 {%- if functions -%}
@@ -135,7 +135,7 @@ Static member functions (public)
 {% endif %}
 
 {% set variables = class["members"]
-       | api_filter(type="variable", access="public")
+       | api_filter(kind="variable", access="public")
 %}
 
 {%- if variables -%}
@@ -155,7 +155,7 @@ Description
 
 
 {% set functions = class["members"]
-       | api_filter(type="function", access="public")
+       | api_filter(kind="function", access="public")
        | api_sort(key="name", reverse=False)
        | api_sort(key="is_destructor")
        | api_sort(key="is_constructor")
@@ -178,7 +178,7 @@ Member Function Description
 
 
 {% set types = class["members"]
-       | api_filter(type=["typedef", "using"], access="public")
+       | api_filter(kind=["typedef", "using"], access="public")
        | api_sort(key="name", reverse=False)
 %}
 
@@ -204,7 +204,7 @@ Type Description
 {% endif %}
 
 {% set variables = class["members"]
-       | api_filter(type=["variable"], access="public")
+       | api_filter(kind=["variable"], access="public")
 %}
 
 {% if variables %}

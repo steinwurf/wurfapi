@@ -355,37 +355,37 @@ To make this a bit more concrete consider the following code::
 Parsing the above code would produce the following API dictionary::
 
       api = {
-        'ns1': { 'type': 'namespace', ...},
-        'ns1::shape': { 'type': 'class', ... },
-        'ns1::shape::print(int) const': { type': function' ... },
-        'ns1::ns2': { 'type': 'namespace', ... },
-        'ns1::ns2::box': { 'type': 'struct', ... },
-        'ns1::ns2::box::hello()': { type': function' ... },
-        'ns1::ns2::print()': { 'type': 'function', ...}
+        'ns1': { 'kind': 'namespace', ...},
+        'ns1::shape': { 'kind': 'class', ... },
+        'ns1::shape::print(int) const': { kind': function' ... },
+        'ns1::ns2': { 'kind': 'namespace', ... },
+        'ns1::ns2::box': { 'kind': 'struct', ... },
+        'ns1::ns2::box::hello()': { kind': function' ... },
+        'ns1::ns2::print()': { 'kind': 'function', ...}
       }
 
-The different entity types expose different information about the
-API. We will document the different types in the following.
+The different entity kinds expose different information about the
+API. We will document the different kinds in the following.
 
-Type ``namespace``
+``namespace`` Kind
 ..................
 
 Python dictionary representing a C++ namespace::
 
     info = {
-      'type': 'namespace',
+      'kind': 'namespace',
       'name': 'unqualified-name',
       'scope': 'unique-name' | None,
       'members: [ 'unique-name', 'unique-name' ]
     }
 
-Type ``class`` | ``struct``
+``class`` | ``struct`` Kind
 ...........................
 
 Python dictionary representing a C++ class or struct::
 
     info = {
-      'type': 'class' | 'struct',
+      'kind': 'class' | 'struct',
       'name': 'unqualified-name',
       'location' { 'file': 'filename.h', 'line-start': 10, 'line-end': 23 },
       'scope': 'unique-name' | None,
@@ -395,13 +395,13 @@ Python dictionary representing a C++ class or struct::
     }
 
 
-Type ``enum`` | ``enum class``
+``enum`` | ``enum class`` Kind
 ..............................
 
 Python dictionary representing a C++ enum or enum class::
 
     info = {
-      'type': 'enum',
+      'kind': 'enum',
       'name': 'unqualified-name',
       'location' { 'file': 'filename.h', 'line-start': 10, 'line-end': 23 },
       'scope': 'unique-name' | None,
@@ -418,13 +418,13 @@ Python dictionary representing a C++ enum or enum class::
       'detaileddescription': paragraphs
     }
 
-Type ``typedef`` | ``using``
+``typedef`` | ``using`` Kind
 ............................
 
 Python dictionary representing a C++ using or typedef statement::
 
     info = {
-      'type': 'typedef' | 'using',
+      'kind': 'typedef' | 'using',
       'name': 'unqualified-name',
       'location' { 'file': 'filename.h', 'line-start': 10, 'line-end': 23 },
       'scope': 'unique-name' | None,
@@ -437,13 +437,13 @@ Python dictionary representing a C++ using or typedef statement::
       'detaileddescription': paragraphs
     }
 
-Type ``function``
+``function`` Kind
 .................
 
 Python dictionary representing a C++ function::
 
     info = {
-      'type': 'function',
+      'kind': 'function',
       'name': 'unqualified-name',
       'location' { 'file': 'filename.h', 'line': 10, 'line-end': None},
       'scope': 'unique-name' | None,
@@ -471,13 +471,13 @@ Python dictionary representing a C++ function::
       ]
   }
 
-Type ``variable``
-..................
+``variable`` Kind
+.................
 
 Python dictionary representing a C++ variable::
 
     info = {
-      'type': 'variable',
+      'kind': 'variable',
       'name': 'unqualified-name',
       'value': 'some value' | None,
       'variable_type':
@@ -502,15 +502,14 @@ Text information is stored in a list of paragraphs::
 
     paragraphs = [
         {
-          "type": "text" | "code" | "list",
+          "kind": "text" | "code" | "list",
           ...
         },
         ...
       ]
 
-
     text = {
-      'type': 'text',
+      'kind': 'text',
       'content': 'hello',
       'italic': true | false,
       'bold': true | false,
@@ -518,13 +517,13 @@ Text information is stored in a list of paragraphs::
       }
 
     code = {
-      'type': 'code',
+      'kind': 'code',
       'content': 'void print();',
       'is_block': true | false
     }
 
     list = {
-      'type': 'list',
+      'kind': 'list',
       'ordered': true | false,
       'items': [paragraphs] # Each item is a list of paragraphs
     }

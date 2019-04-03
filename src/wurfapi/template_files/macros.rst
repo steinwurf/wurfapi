@@ -73,13 +73,13 @@
 
 {%- macro format_description(description) -%}
 {%- for para in description -%}
-    {%- if para["type"] == "text" -%}
+    {%- if para["kind"] == "text" -%}
         {{ format_text(para) }}
     {%- endif -%}
-    {%- if para["type"] == "code" -%}
+    {%- if para["kind"] == "code" -%}
         {{ format_code(para) }}
     {%- endif -%}
-    {%- if para["type"] == "list" -%}
+    {%- if para["kind"] == "list" -%}
         {{ format_list(para) }}
     {%- endif -%}
 {%- endfor -%}
@@ -111,7 +111,7 @@ using **{{ alias["name"] }}** = {{ format_type_to_link(alias["identifier"]) }}
 {# FORMAT_TYPE_ALIAS #}
 
 {%- macro format_type_alias(alias) -%}
-{%- if alias["type"] == "using" -%}
+{%- if alias["kind"] == "using" -%}
     {{ format_using_alias(alias) }}
 {%- else -%}
     {{ format_typedef_alias(alias) }}
