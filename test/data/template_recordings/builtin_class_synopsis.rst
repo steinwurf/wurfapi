@@ -42,25 +42,25 @@ Member functions (public)
    :widths: auto
 
 
-   * - 
+   * - element["type"]
      - :ref:`machine<project::coffee::machine::machine()>` ()
 
-   * - 
+   * - element["type"]
      - :ref:`machine<project::coffee::machine::machine(power)>` (:ref:`power<project::coffee::machine::power>` pwr)
 
-   * - 
+   * - element["type"]
      - :ref:`~machine<project::coffee::machine::~machine()>` ()
 
-   * - virtual `uint32_t <http://en.cppreference.com/w/cpp/types/integer>`_
+   * - virtual element["type"]
      - :ref:`number_cups<project::coffee::machine::number_cups()const>` () const
 
-   * - `void <http://en.cppreference.com/w/cpp/keyword/void>`_
-     - :ref:`set_number_cups<project::coffee::machine::set_number_cups(std::string)>` (`std::string <http://en.cppreference.com/w/cpp/string/basic_string>`_ cups)
+   * - element["type"]
+     - :ref:`set_number_cups<project::coffee::machine::set_number_cups(std::string)>` (element["type"] cups)
 
-   * - `void <http://en.cppreference.com/w/cpp/keyword/void>`_
-     - :ref:`set_number_cups<project::coffee::machine::set_number_cups(uint32_t)>` (`uint32_t <http://en.cppreference.com/w/cpp/types/integer>`_ cups)
+   * - element["type"]
+     - :ref:`set_number_cups<project::coffee::machine::set_number_cups(uint32_t)>` (element["type"] cups)
 
-   * - `void <http://en.cppreference.com/w/cpp/keyword/void>`_
+   * - element["type"]
      - :ref:`set_power<project::coffee::machine::set_power(power)>` (:ref:`power<project::coffee::machine::power>` pwr)
 
    * - :ref:`water_tank<project::coffee::machine::water_tank>`
@@ -78,7 +78,7 @@ Static member functions (public)
    :widths: auto
 
 
-   * - `std::string <http://en.cppreference.com/w/cpp/string/basic_string>`_
+   * - element["type"]
      - :ref:`version<project::coffee::machine::version()>` ()
 
 
@@ -131,7 +131,7 @@ Member Function Description
 
 .. _project::coffee::machine::machine():
 
- **machine** ()
+element["type"] **machine** ()
 
     Constructor. 
 
@@ -147,7 +147,7 @@ Member Function Description
 
 .. _project::coffee::machine::machine(power):
 
- **machine** (:ref:`power<project::coffee::machine::power>` pwr)
+element["type"] **machine** (:ref:`power<project::coffee::machine::power>` pwr)
 
     Constructor with power. 
 
@@ -165,7 +165,7 @@ Member Function Description
 
 .. _project::coffee::machine::~machine():
 
- **~machine** ()
+element["type"] **~machine** ()
 
     Destructor. 
 
@@ -181,7 +181,7 @@ Member Function Description
 
 .. _project::coffee::machine::number_cups()const:
 
-`uint32_t <http://en.cppreference.com/w/cpp/types/integer>`_ **number_cups** ()
+element["type"] **number_cups** ()
 
     
 
@@ -198,7 +198,7 @@ Member Function Description
 
 .. _project::coffee::machine::set_number_cups(std::string):
 
-`void <http://en.cppreference.com/w/cpp/keyword/void>`_ **set_number_cups** (`std::string <http://en.cppreference.com/w/cpp/string/basic_string>`_ cups)
+element["type"] **set_number_cups** (element["type"] cups)
 
     Set the number of cups to brew. 
 
@@ -231,7 +231,7 @@ Member Function Description
 
 .. _project::coffee::machine::set_number_cups(uint32_t):
 
-`void <http://en.cppreference.com/w/cpp/keyword/void>`_ **set_number_cups** (`uint32_t <http://en.cppreference.com/w/cpp/types/integer>`_ cups)
+element["type"] **set_number_cups** (element["type"] cups)
 
     Set the number of cups to brew. 
 
@@ -264,7 +264,7 @@ Member Function Description
 
 .. _project::coffee::machine::set_power(power):
 
-`void <http://en.cppreference.com/w/cpp/keyword/void>`_ **set_power** (:ref:`power<project::coffee::machine::power>` pwr)
+element["type"] **set_power** (:ref:`power<project::coffee::machine::power>` pwr)
 
     Set the power of the machine. 
 
@@ -298,7 +298,7 @@ Member Function Description
 
 .. _project::coffee::machine::version():
 
-`std::string <http://en.cppreference.com/w/cpp/string/basic_string>`_ **version** ()
+element["type"] **version** ()
 
     The version of the machine. 
 
@@ -343,7 +343,7 @@ Type Description
 
 .. _project::coffee::machine::callback:
 
-using **callback** = std::function< void()>
+using **callback** = element["type"]
     The generic callback type. 
 
     
@@ -373,7 +373,7 @@ Variables Description
 
 .. _project::coffee::machine::cups_brewed:
 
-`uint32_t <http://en.cppreference.com/w/cpp/types/integer>`_ **cups_brewed** = 0;
+element["type"] **cups_brewed** = 0;
 
     The number of cups brewed by this machine. 
 
@@ -403,7 +403,7 @@ Variables Description
 
 .. _project::coffee::machine::total_cups_brewed:
 
-`uint32_t <http://en.cppreference.com/w/cpp/types/integer>`_ **total_cups_brewed**
+element["type"] **total_cups_brewed**
 
     The number of cups brewed by all machines. 
 

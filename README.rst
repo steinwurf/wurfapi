@@ -480,7 +480,9 @@ Python dictionary representing a C++ variable::
       'type': 'variable',
       'name': 'unqualified-name',
       'value': 'some value' | None,
-      'variable_type': 'sometype',
+      'variable_type':
+        { 'type': 'sometype',
+          'link': 'unique-name' | None },
       'location' { 'file': 'filename.h', 'line-start': 10, 'line-end': None },
       'is_static': True | False,
       'is_mutable': True | False,
