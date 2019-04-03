@@ -445,7 +445,7 @@ Python dictionary representing a C++ function::
     info = {
       'type': 'function',
       'name': 'unqualified-name',
-      'location' { 'file': 'filename.h', 'line': 10},
+      'location' { 'file': 'filename.h', 'line': 10, 'line-end': None},
       'scope': 'unique-name' | None,
       'return': {
         'type': 'sometype',
@@ -471,6 +471,29 @@ Python dictionary representing a C++ function::
       ]
   }
 
+Type ``variable``
+..................
+
+Python dictionary representing a C++ variable::
+
+    info = {
+      'type': 'variable',
+      'name': 'unqualified-name',
+      'value': 'some value' | None,
+      'variable_type':
+        { 'type': 'sometype',
+          'link': 'unique-name' | None },
+      'location' { 'file': 'filename.h', 'line-start': 10, 'line-end': None },
+      'is_static': True | False,
+      'is_mutable': True | False,
+      'is_volatile': True | False,
+      'is_const': True | False,
+      'is_constexpr': True | False,
+      'scope': 'unique-name' | None,
+      'access': 'public' | 'protected' | 'private',
+      'briefdescription: paragraphs,
+      'detaileddescription: paragraphs,
+    }
 
 Text information
 .................

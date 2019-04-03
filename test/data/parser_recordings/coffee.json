@@ -96,13 +96,17 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-start": 14,
-      "line-stop": 123
+      "line-stop": 135
     },
     "members": [
       "project::coffee::machine::brew_state",
       "project::coffee::machine::callback",
+      "project::coffee::machine::cups_brewed",
       "project::coffee::machine::help_brew()",
       "project::coffee::machine::impl",
+      "project::coffee::machine::m_callback",
+      "project::coffee::machine::m_impl",
+      "project::coffee::machine::m_other_callback",
       "project::coffee::machine::machine()",
       "project::coffee::machine::machine(power)",
       "project::coffee::machine::number_cups()const",
@@ -113,6 +117,7 @@
       "project::coffee::machine::set_number_cups(uint32_t)",
       "project::coffee::machine::set_power(power)",
       "project::coffee::machine::tank()",
+      "project::coffee::machine::total_cups_brewed",
       "project::coffee::machine::version()",
       "project::coffee::machine::water_tank",
       "project::coffee::machine::~machine()"
@@ -132,13 +137,38 @@
     "detaileddescription": [],
     "location": {
       "file": "coffee/coffee.h",
-      "line-start": 40,
-      "line-stop": 43
+      "line-start": 46,
+      "line-stop": 49
     },
-    "members": [],
+    "members": [
+      "project::coffee::machine::brew_state::m_on"
+    ],
     "name": "brew_state",
     "scope": "project::coffee::machine",
     "type": "struct"
+  },
+  "project::coffee::machine::brew_state::m_on": {
+    "access": "public",
+    "briefdescription": [],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constexpr": false,
+    "is_mutable": false,
+    "is_static": false,
+    "is_volatile": false,
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 48,
+      "line-stop": null
+    },
+    "name": "m_on",
+    "scope": "project::coffee::machine::brew_state",
+    "type": "variable",
+    "value": "",
+    "variable_type": {
+      "link": null,
+      "type": "bool"
+    }
   },
   "project::coffee::machine::callback": {
     "access": "public",
@@ -156,11 +186,39 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-start": 33,
-      "line-stop": -1
+      "line-stop": null
     },
     "name": "callback",
     "scope": "project::coffee::machine",
     "type": "using"
+  },
+  "project::coffee::machine::cups_brewed": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "The number of cups brewed by this machine.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constexpr": false,
+    "is_mutable": false,
+    "is_static": false,
+    "is_volatile": false,
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 117,
+      "line-stop": null
+    },
+    "name": "cups_brewed",
+    "scope": "project::coffee::machine",
+    "type": "variable",
+    "value": "0",
+    "variable_type": {
+      "link": null,
+      "type": "uint32_t"
+    }
   },
   "project::coffee::machine::help_brew()": {
     "access": "private",
@@ -231,6 +289,85 @@
     "scope": "project::coffee::machine::impl",
     "signature": "run()",
     "type": "function"
+  },
+  "project::coffee::machine::m_callback": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "A variable which uses the callback using statement.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constexpr": false,
+    "is_mutable": false,
+    "is_static": false,
+    "is_volatile": false,
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 39,
+      "line-stop": null
+    },
+    "name": "m_callback",
+    "scope": "project::coffee::machine",
+    "type": "variable",
+    "value": "",
+    "variable_type": {
+      "link": "project::coffee::machine::callback",
+      "type": "callback"
+    }
+  },
+  "project::coffee::machine::m_impl": {
+    "access": "private",
+    "briefdescription": [],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constexpr": false,
+    "is_mutable": false,
+    "is_static": false,
+    "is_volatile": false,
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 133,
+      "line-stop": null
+    },
+    "name": "m_impl",
+    "scope": "project::coffee::machine",
+    "type": "variable",
+    "value": "",
+    "variable_type": {
+      "link": "project::coffee::machine::impl",
+      "type": "std::unique_ptr< impl >"
+    }
+  },
+  "project::coffee::machine::m_other_callback": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "A variable which uses the other_callback typedef statement.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constexpr": false,
+    "is_mutable": false,
+    "is_static": false,
+    "is_volatile": false,
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 42,
+      "line-stop": null
+    },
+    "name": "m_other_callback",
+    "scope": "project::coffee::machine",
+    "type": "variable",
+    "value": "",
+    "variable_type": {
+      "link": "project::coffee::machine::other_callback",
+      "type": "other_callback"
+    }
   },
   "project::coffee::machine::machine()": {
     "access": "public",
@@ -336,7 +473,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-start": 36,
-      "line-stop": -1
+      "line-stop": null
     },
     "name": "other_callback",
     "scope": "project::coffee::machine",
@@ -353,8 +490,8 @@
     "detaileddescription": [],
     "location": {
       "file": "coffee/coffee.h",
-      "line-start": 47,
-      "line-stop": 53
+      "line-start": 53,
+      "line-stop": 59
     },
     "name": "power",
     "scope": "project::coffee::machine",
@@ -703,6 +840,34 @@
     "scope": "project::coffee::machine",
     "signature": "tank()",
     "type": "function"
+  },
+  "project::coffee::machine::total_cups_brewed": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "The number of cups brewed by all machines.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constexpr": false,
+    "is_mutable": false,
+    "is_static": true,
+    "is_volatile": false,
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 120,
+      "line-stop": null
+    },
+    "name": "total_cups_brewed",
+    "scope": "project::coffee::machine",
+    "type": "variable",
+    "value": "",
+    "variable_type": {
+      "link": null,
+      "type": "uint32_t"
+    }
   },
   "project::coffee::machine::version()": {
     "access": "public",

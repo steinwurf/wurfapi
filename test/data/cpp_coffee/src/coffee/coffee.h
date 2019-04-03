@@ -35,6 +35,12 @@ public:
     /// Another way to define a type is a typedef
     typedef callback other_callback;
 
+    /// A variable which uses the callback using statement
+    callback m_callback;
+
+    /// A variable which uses the other_callback typedef statement
+    other_callback m_other_callback;
+
 private:
     /// Internal brewing state
     struct brew_state
@@ -106,6 +112,12 @@ public:
 
     /// Get the water tank
     water_tank tank();
+
+    /// The number of cups brewed by this machine.
+    uint32_t cups_brewed = 0;
+
+    /// The number of cups brewed by all machines.
+    static uint32_t total_cups_brewed;
 
 protected:
     /// @brief Set the heat.

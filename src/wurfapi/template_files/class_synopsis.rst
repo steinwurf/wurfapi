@@ -1,22 +1,19 @@
-{% from 'macros.rst' import format_heading %}
-{% from 'macros.rst' import format_description %}
-{% from 'macros.rst' import format_type_to_link %}
-{% from 'macros.rst' import format_type_alias %}
-{% from 'function_synopsis.rst' import format_function %}
-{% from 'function_synopsis.rst' import format_parameters %}
-
+{%- from 'macros.rst' import format_heading -%}
+{%- from 'macros.rst' import format_description -%}
+{%- from 'macros.rst' import format_type_to_link -%}
+{%- from 'macros.rst' import format_type_alias -%}
+{%- from 'macros.rst' import merge_description -%}
+{%- from 'function_synopsis.rst' import format_function -%}
+{%- from 'function_synopsis.rst' import format_parameters -%}
 
 {# FORMAT_MEMBER_TABLE_ROW #}
 
 {%- macro format_member_table_row(selector) -%}
-
 {%- set function = api[selector] %}
 {%- set signature = format_parameters(function["parameters"]) %}
-{%- set signature = signature + " const" if function["is_const"]
-        else signature %}
+{%- set signature = signature + " const" if function["is_const"] else signature %}
 {%- set return_type = format_type_to_link(function["return"]) %}
-{%- set return_type = "virtual " + return_type if function["is_virtual"]
-        else return_type -%}
+{%- set return_type = "virtual " + return_type if function["is_virtual"] else return_type -%}
 * - {{ return_type }}
   - :ref:`{{ function["name"] }}<{{selector}}>` {{ signature }}
 {% endmacro -%}
@@ -56,13 +53,29 @@
    :widths: auto
 
 {% for selector in selectors %}
-{% set values = "" %}
    * - {{ api[selector]["type"] }}
      - :ref:`{{ api[selector]["name"] }}<{{selector}}>` {{ format_member_type_values(selector) }}
 {%- endfor -%}
 
 {% endmacro -%}
 
+{# FORMAT_MEMBER_VARIABLES_TABLE #}
+{%- macro format_member_variables_table(selectors) -%}
+
+.. list-table::
+   :header-rows: 1
+   :widths: auto
+
+   * - Constant
+     - Value
+     - Description
+{% for selector in selectors %}
+{%- set variable = api[selector] %}
+   * - :ref:`{{ api[selector]["name"] }}<{{selector}}>`
+     - {{variable["value"]}}
+     - {{merge_description(variable) | indent(width=7)}}
+{% endfor %}
+{% endmacro -%}
 
 {% set class = api[selector] %}
 
@@ -113,13 +126,26 @@ Member functions (public)
 %}
 
 {%- if functions -%}
+
 Static member functions (public)
 --------------------------------
 
 {{ format_member_table(functions) }}
 
-{%- endif -%}
+{% endif %}
 
+{% set variables = class["members"]
+       | api_filter(type="variable", access="public")
+%}
+
+{%- if variables -%}
+
+Member variables (public)
+-------------------------
+
+{{ format_member_variables_table(variables) }}
+
+{% endif %}
 
 {% if class["detaileddescription"] %}
 Description
@@ -176,3 +202,38 @@ Type Description
 
 
 {% endif %}
+
+{% set variables = class["members"]
+       | api_filter(type=["variable"], access="public")
+%}
+
+{% if variables %}
+
+Variables Description
+---------------------
+
+{% for variable  in variables -%}
+
+.. _{{variable}}:
+
+{% set variable_type = api[variable]["variable_type"] -%}
+{%- set name = api[variable]["name"] -%}
+{%- set value = api[variable]["value"] -%}
+{{ format_type_to_link(variable_type) }} **{{ name }}** {%-if value %} = {{ value }}; {%- endif -%}
+
+{%- set briefdescription = api[variable]["briefdescription"] -%}
+{%- set detaileddescription = api[variable]["detaileddescription"] %}
+
+    {{ format_description(briefdescription)|indent }}
+
+    {{ format_description(detaileddescription)|indent }}
+
+{{ "-----" if not loop.last }}
+
+{% endfor %}
+
+
+{% endif %}
+
+
+

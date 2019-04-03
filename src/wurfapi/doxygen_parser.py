@@ -615,7 +615,7 @@ def parse(xml, parser, log, scope):
 
 @DoxygenParser.register(tag="location")
 def parse(xml, parser):
-    """ Parses Doxygen memberdefType
+    """ Parses Doxygen location
 
     :return: Location dict
     """
@@ -624,7 +624,11 @@ def parse(xml, parser):
     result['file'] = parser.relative_path(path=file_path)
 
     result['line-start'] = int(xml.attrib["bodystart"])
-    result['line-stop'] = int(xml.attrib["bodyend"])
+
+    line_stop = int(xml.attrib["bodyend"])
+    if line_stop == -1:
+        line_stop = None
+    result['line-stop'] = line_stop
 
     return result
 
@@ -758,6 +762,83 @@ def parse(xml, parser, log, scope):
 
     # Save mapping from doxygen id to unique name
     parser.id_mapping[xml.attrib["id"]] = unique_name
+
+    return {unique_name: result}
+
+def parse_variable_type(variable_type):
+    """ Parses the variable type
+    :return: (variable name, is const, is constexpr)
+    """
+    if variable_type.find('constexpr ') != -1:
+        variable_type = variable_type.replace('constexpr ', '')
+        constexpr = True
+    else:
+        constexpr = False
+
+    if variable_type.find('const ') != -1:
+        variable_type = variable_type.replace('const ', '')
+        const = True
+    else:
+        const = False
+
+    return variable_type, const, constexpr
+
+
+@DoxygenParser.register(tag="memberdef", attrib={"kind": "variable"})
+def parse(xml, parser, log, scope):
+    """ Parses Doxygen variable
+    :return: API dictionary
+    """
+    result = {}
+    result["type"] = "variable"
+    result["scope"] = scope
+    result['location'] = parser.parse_element(xml=xml.find('location'))
+    result["name"] = xml.findtext("name")
+    result["briefdescription"] = parser.parse_element(
+        xml=xml.find("briefdescription"))
+    result["detaileddescription"] = parser.parse_element(
+        xml=xml.find("detaileddescription"))
+    result["access"] = xml.attrib["prot"]
+
+    # Lets get the value
+    v = xml.find("initializer")
+    if v is None:
+        v = ""
+    else:
+        v = v.xpath("string()")
+
+    if v.startswith('= '):
+        v = v[2:]
+    result["value"] = v
+
+    variable_type_info = {}
+
+    # The variable type can be as just text in the type
+    # tag or in a nested ref tag. We use the approach
+    # mentioned here to get it:
+    # https://lxml.de/1.3/tutorial.html#elements-contain-text
+    variable_type = xml.find("type").xpath("string()")
+
+    # Extract const and constexpr info from the variable type
+    variable_type, const, constexpr = parse_variable_type(variable_type)
+
+    variable_type_info["type"] = variable_type
+    ref = xml.find("type/ref")
+    if ref is not None:
+        variable_type_info["link"] = ref.attrib["refid"]
+    else:
+        variable_type_info["link"] = None
+
+    result["variable_type"] = variable_type_info
+
+    result['is_const'] = const
+    result['is_constexpr'] = constexpr
+    result["is_static"] = xml.attrib["static"] == "yes"
+    result["is_mutable"] = xml.attrib.get("mutable", default="no") == "yes"
+    result["is_volatile"] = xml.attrib.get("volatile", default="no") == "yes"
+
+    # Construct the unique name
+    unique_name = scope + '::' + result["name"] if scope else result["name"]
 
     return {unique_name: result}
 

@@ -1,15 +1,6 @@
-{% from 'macros.rst' import format_heading %}
-{% from 'macros.rst' import format_description %}
-
-{# MERGE_ENUM_DESCRIPTION #}
-{%- macro merge_enum_description(enum_value) -%}
-{%- if enum_value["briefdescription"] -%}
-{{format_description(enum_value["briefdescription"])}}
-{%- endif -%}
-{%- if enum_value["detaileddescription"] -%}
-{{format_description(enum_value["detaileddescription"])}}
-{%- endif -%}
-{%- endmacro -%}
+{%- from 'macros.rst' import format_heading -%}
+{%- from 'macros.rst' import format_description -%}
+{%- from 'macros.rst' import merge_description -%}
 
 {% set enum = api[selector] %}
 .. _{{selector}}:
@@ -43,7 +34,7 @@ Values
 {% for value in enum["values"] %}
    * - ``{{enum["name"]}}::{{value["name"]}}``
      - {{value["value"]}}
-     - {{merge_enum_description(value) | indent(width=7)}}
+     - {{merge_description(value) | indent(width=7)}}
 {% endfor %}
 {% endif %}
 

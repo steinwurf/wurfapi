@@ -1,7 +1,4 @@
 
-
-
-
 .. _project::coffee::mug_size:
 
 enum mug_size

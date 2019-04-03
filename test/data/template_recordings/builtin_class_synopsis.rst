@@ -1,13 +1,5 @@
 
 
-
-
-
-
-
-
-
-
 .. _project::coffee::machine:
 
 class machine
@@ -33,16 +25,12 @@ Member types (public)
    :widths: auto
 
 
-
    * - using
      - :ref:`callback<project::coffee::machine::callback>` 
-
    * - typedef
      - :ref:`other_callback<project::coffee::machine::other_callback>` 
-
    * - enum
      - :ref:`power<project::coffee::machine::power>` { on, off }
-
    * - struct
      - :ref:`water_tank<project::coffee::machine::water_tank>` 
 
@@ -92,6 +80,41 @@ Static member functions (public)
 
    * - std::string
      - :ref:`version<project::coffee::machine::version()>` ()
+
+
+
+
+Member variables (public)
+-------------------------
+
+.. list-table::
+   :header-rows: 1
+   :widths: auto
+
+   * - Constant
+     - Value
+     - Description
+
+   * - :ref:`cups_brewed<project::coffee::machine::cups_brewed>`
+     - 0
+     - The number of cups brewed by this machine. 
+
+   * - :ref:`m_callback<project::coffee::machine::m_callback>`
+     - 
+     - A variable which uses the callback using statement. 
+
+   * - :ref:`m_other_callback<project::coffee::machine::m_other_callback>`
+     - 
+     - A variable which uses the other_callback typedef statement. 
+
+   * - :ref:`total_cups_brewed<project::coffee::machine::total_cups_brewed>`
+     - 
+     - The number of cups brewed by all machines. 
+
+
+
+
+
 
 Description
 -----------
@@ -333,6 +356,61 @@ typedef :ref:`callback<project::coffee::machine::callback>` **other_callback**
     Another way to define a type is a typedef. 
 
     
+
+
+
+
+
+
+
+
+
+
+
+
+Variables Description
+---------------------
+
+.. _project::coffee::machine::cups_brewed:
+
+uint32_t **cups_brewed** = 0;
+
+    The number of cups brewed by this machine. 
+
+    
+
+-----
+
+.. _project::coffee::machine::m_callback:
+
+:ref:`callback<project::coffee::machine::callback>` **m_callback**
+
+    A variable which uses the callback using statement. 
+
+    
+
+-----
+
+.. _project::coffee::machine::m_other_callback:
+
+:ref:`other_callback<project::coffee::machine::other_callback>` **m_other_callback**
+
+    A variable which uses the other_callback typedef statement. 
+
+    
+
+-----
+
+.. _project::coffee::machine::total_cups_brewed:
+
+uint32_t **total_cups_brewed**
+
+    The number of cups brewed by all machines. 
+
+    
+
+
+
 
 
 

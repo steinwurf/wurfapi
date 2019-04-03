@@ -1,0 +1,68 @@
+{
+  "type_definitions": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "Not important.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "location": {
+      "file": "type_definitions.hpp",
+      "line-start": 2,
+      "line-stop": 9
+    },
+    "members": [
+      "type_definitions::my_bool",
+      "type_definitions::really_a_string"
+    ],
+    "name": "type_definitions",
+    "scope": "",
+    "type": "struct"
+  },
+  "type_definitions::my_bool": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "This is my bool.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "identifier": {
+      "link": null,
+      "type": "bool"
+    },
+    "location": {
+      "file": "type_definitions.hpp",
+      "line-start": 5,
+      "line-stop": null
+    },
+    "name": "my_bool",
+    "scope": "type_definitions",
+    "type": "using"
+  },
+  "type_definitions::really_a_string": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "This is really a string.",
+        "type": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "identifier": {
+      "link": null,
+      "type": "std::string"
+    },
+    "location": {
+      "file": "type_definitions.hpp",
+      "line-start": 8,
+      "line-stop": null
+    },
+    "name": "really_a_string",
+    "scope": "type_definitions",
+    "type": "using"
+  }
+}
