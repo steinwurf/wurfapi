@@ -495,7 +495,7 @@ Python dictionary representing a location::
     location = { 'file': 'filename.h', 'line-start': 10, 'line-end': 12 | None }
 
 ``type`` item
-.................
+.............
 
 Python list representing a C++ type::
 
