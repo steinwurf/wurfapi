@@ -30,11 +30,14 @@
 
 {# FORMAT_TYPE_TO_LINK #}
 {%- macro format_type_to_link(element) -%}
-{%- if element["link"] -%}
-:ref:`{{ element["type"] }}<{{ element["link"] }}>`
+{%- for item in element -%}
+{%- if item["link"] -%}
+:ref:`{{ item["value"] }}<{{ item["link"] }}>`
 {%- else -%}
-{{ element["type"] }}
+{{ item["value"] }}
 {%- endif -%}
+{{ " " if not loop.last }}
+{%- endfor -%}
 {%- endmacro -%}
 
 
