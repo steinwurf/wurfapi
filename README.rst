@@ -494,15 +494,33 @@ Python dictionary representing a location::
 
     location = { 'file': 'filename.h', 'line-start': 10, 'line-end': 12 | None }
 
-``type0`` item
+``type`` item
 .................
 
-Python list representing a c++ type::
+Python list representing a C++ type::
 
     type = [
       {'value': 'sometext', link: 'unique-name' | None }, ...
     ]
 
+Having the type as a list of items we can create links to nested types e.g.
+say we have a `std::unique_ptr<impl>` and we would like to make `impl` a link.
+This could look like:
+
+    "type": [
+      {
+        "link": null,
+        "value": "std::unique_ptr<"
+      },
+      {
+        "link": "project::impl",
+        "value": "impl"
+      },
+      {
+        "link": null,
+        "value": ">"
+      }
+    ]
 Text information
 .................
 
