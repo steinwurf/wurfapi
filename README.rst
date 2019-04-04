@@ -505,7 +505,7 @@ Python list representing a C++ type::
 
 Having the type as a list of items we can create links to nested types e.g.
 say we have a `std::unique_ptr<impl>` and we would like to make `impl` a link.
-This could look like:
+This could look like::
 
     "type": [
       {
