@@ -53,10 +53,12 @@
           }
         ],
         "name": "h",
-        "type": {
-          "link": null,
-          "type": "const heat &"
-        }
+        "type": [
+          {
+            "link": null,
+            "value": "const heat &"
+          }
+        ]
       },
       {
         "description": [
@@ -66,10 +68,12 @@
           }
         ],
         "name": "max",
-        "type": {
-          "link": null,
-          "type": "int"
-        }
+        "type": [
+          {
+            "link": null,
+            "value": "int"
+          }
+        ]
       }
     ],
     "return": {
@@ -84,10 +88,12 @@
           "kind": "code"
         }
       ],
-      "type": {
-        "link": null,
-        "type": "uint32_t"
-      }
+      "type": [
+        {
+          "link": null,
+          "value": "uint32_t"
+        }
+      ]
     },
     "scope": null,
     "signature": "set(const heat &h, int max) const"

@@ -47,10 +47,12 @@
     },
     "name": "a",
     "scope": "variables",
-    "type": {
-      "link": "variables::my_type_const",
-      "type": "my_type_const"
-    },
+    "type": [
+      {
+        "link": "variables::my_type_const",
+        "value": "my_type_const"
+      }
+    ],
     "value": ""
   },
   "variables::b": {
@@ -75,10 +77,12 @@
     },
     "name": "b",
     "scope": "variables",
-    "type": {
-      "link": null,
-      "type": "int"
-    },
+    "type": [
+      {
+        "link": null,
+        "value": "int"
+      }
+    ],
     "value": "42"
   },
   "variables::c": {
@@ -103,10 +107,12 @@
     },
     "name": "c",
     "scope": "variables",
-    "type": {
-      "link": null,
-      "type": "std::string"
-    },
+    "type": [
+      {
+        "link": null,
+        "value": "std::string"
+      }
+    ],
     "value": "\"coool\""
   },
   "variables::dddd": {
@@ -131,10 +137,12 @@
     },
     "name": "dddd",
     "scope": "variables",
-    "type": {
-      "link": null,
-      "type": "bool"
-    },
+    "type": [
+      {
+        "link": null,
+        "value": "bool"
+      }
+    ],
     "value": "false"
   },
   "variables::my_type_const": {
@@ -154,10 +162,12 @@
     },
     "name": "my_type_const",
     "scope": "variables",
-    "type": {
-      "link": null,
-      "type": "bool"
-    }
+    "type": [
+      {
+        "link": null,
+        "value": "bool"
+      }
+    ]
   },
   "variables::size": {
     "access": "protected",
@@ -181,10 +191,12 @@
     },
     "name": "size",
     "scope": "variables",
-    "type": {
-      "link": null,
-      "type": "uint32_t"
-    },
+    "type": [
+      {
+        "link": null,
+        "value": "uint32_t"
+      }
+    ],
     "value": "sizeof(dddd)"
   }
 }

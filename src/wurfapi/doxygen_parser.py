@@ -765,30 +765,28 @@ def parse_variable_type(variable_type):
     :return: (variable name, is const, is constexpr)
     """
 
-    is_const = False
-    is_constexpr = False
+    # To update these variables from the nested function. See:
+    # https://stackoverflow.com/a/27004558/1717320
+    vars = {'is_const': False, 'is_constexpr': False}
 
-    def prune(element):
+    def prune(item):
 
-        global is_const
-        global is_constexpr
+        if "constexpr " in item["value"]:
+            item["value"] = item["value"].replace("constexpr ", "")
+            vars['is_constexpr'] = True
 
-        if "constexpr " in element["value"]:
-            element["value"].replace("constexpr ", "")
-            is_constexpr = True
+        if "const " in item["value"]:
+            item["value"] = item["value"].replace("const ", "")
+            vars['is_const'] = True
 
-        if "const " in element["value"]:
-            element["value"].replace("const ", "")
-            is_const = True
-
-        if element["value"]:
-            return element
+        if item["value"]:
+            return item
         else:
             return None
 
-    variable_type = [element for element in variable_type if prune(element)]
+    variable_type = [item for item in variable_type if prune(item)]
 
-    return variable_type, is_const, is_constexpr
+    return variable_type, vars['is_const'], vars['is_constexpr']
 
 
 @DoxygenParser.register(tag="memberdef", attrib={"kind": "variable"})
