@@ -3,8 +3,8 @@
 {%- from 'macros.rst' import format_type_to_link -%}
 {%- from 'macros.rst' import format_type_alias -%}
 {%- from 'macros.rst' import merge_description -%}
-{%- from 'function_synopsis.rst' import format_function -%}
-{%- from 'function_synopsis.rst' import format_parameters -%}
+{%- from 'macros.rst' import format_function -%}
+{%- from 'macros.rst' import format_parameters -%}
 
 {# FORMAT_MEMBER_TABLE_ROW #}
 

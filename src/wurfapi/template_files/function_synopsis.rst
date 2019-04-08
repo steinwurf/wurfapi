@@ -1,73 +1,21 @@
-{% from 'macros.rst' import format_description %}
-{% from 'macros.rst' import format_type_to_link %}
-
-{# FORMAT_PARAMETERS #}
-
-{%- macro format_parameters(parameters) -%}
-(
-{%- for parameter in parameters -%}
-    {%- set type = parameter["type"] -%}
-    {%- set name = parameter["name"] -%}
-    {{ format_type_to_link(parameter) }} {{name}}{{ ", " if not loop.last }}
+{%- from 'macros.rst' import format_description -%}
+{%- from 'macros.rst' import format_type_to_link -%}
+{%- from 'macros.rst' import format_heading -%}
+{%- from 'macros.rst' import format_function -%}
+{%- set function = api[selector] -%}
+{%- set parameters_out = [] -%}
+{%- for parameter in function["parameters"] -%}
+{%- do parameters_out.append(format_type_to_link(parameter)) -%}
+{%- if not loop.last -%}
+{%- do parameters_out.append(", ") -%}
+{%- endif -%}
 {%- endfor -%}
-)
-{%- endmacro -%}
+{{ format_heading(function["kind"] + " " + function["name"] + "(" + parameters_out|join('') + ")", "-") }}
 
+{% if function["scope"] %}
+**Scope:** {{ function["scope"] }}
+{% endif %}
 
-{# FORMAT_RETURN #}
+**In header:** ``#include <{{ function["location"]["file"] }}>``
 
-{%- macro format_return_description(description) -%}
-{%- if description|length -%}
-Returns:
-    {{ format_description(description) | indent }}
-{%- endif -%}
-{%- endmacro -%}
-
-
-{# FORMAT_PARAMETER_DESCRIPTION #}
-
-{%- macro format_parameter_description(parameter) -%}
-{%- if parameter["description"] | length -%}
-Parameter ``{{parameter["name"]}}``:
-    {{ format_description(parameter["description"]) | indent }}
-{%- endif -%}
-{%- endmacro -%}
-
-
-{# FORMAT_PARAMETERS_DESCRIPTION #}
-
-{%- macro format_parameters_description(parameters) -%}
-{%- if parameters | length -%}
-{% for parameter in parameters %}
-{{ format_parameter_description(parameter)  }}
-{% endfor %}
-{%- endif -%}
-{%- endmacro -%}
-
-
-{# FORMAT_FUNCTION #}
-
-{%- macro format_function(api, selector) -%}
-
-.. _{{selector}}:
-
-{% set return_value = api[selector]["return"] -%}
-{%- set name = api[selector]["name"] -%}
-{%- set briefdescription = api[selector]["briefdescription"] -%}
-{%- set detaileddescription = api[selector]["detaileddescription"] -%}
-{%- set parameters =
-    format_parameters(api[selector]["parameters"]) -%}
-{%- set return_description = api[selector]["return"]["description"] -%}
-
-{{ format_type_to_link(return_value) }} **{{ name }}** {{ parameters }}
-
-    {{ format_description(briefdescription)|indent }}
-
-    {{ format_description(detaileddescription)|indent }}
-
-    {{ format_parameters_description(api[selector]["parameters"])|indent }}
-
-    {{ format_return_description(return_description) | indent }}
-
-{% endmacro -%}
-
+{{ format_function(api, selector) }}
