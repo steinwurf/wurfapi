@@ -124,7 +124,7 @@ def test_template_render_function(testdirectory):
 
     api = generate_coffee_api(testdirectory=testdirectory)
 
-    data = template.render(selector='project::print(double,int)', api=api,
+    data = template.render(selector='project::print(double,int*)', api=api,
                            filename='function_synopsis.rst')
 
     mismatch_path = testdirectory.mkdir('mismatch')

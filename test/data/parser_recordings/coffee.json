@@ -58,7 +58,7 @@
     "kind": "namespace",
     "members": [
       "project::coffee",
-      "project::print(double,int)",
+      "project::print(double,int*)",
       "project::print(int,bool)"
     ],
     "name": "project",
@@ -1269,7 +1269,7 @@
       }
     ]
   },
-  "project::print(double,int)": {
+  "project::print(double,int*)": {
     "access": "public",
     "briefdescription": [
       {
@@ -1282,7 +1282,7 @@
         "kind": "code"
       },
       {
-        "content": "and then the",
+        "content": "and then the value pointed to by",
         "kind": "text"
       },
       {
@@ -1305,7 +1305,7 @@
         "kind": "text"
       },
       {
-        "content": "std::cout << project::coffee::print(2.0, 1) << \"\\n\";\n",
+        "content": "std::cout << project::coffee::print(2.0, &value) << \"\\n\";\n",
         "is_block": true,
         "kind": "code"
       },
@@ -1361,13 +1361,13 @@
       {
         "description": [
           {
-            "content": "Whereas b is an int.",
+            "content": "Whereas b is a pointer to an int.",
             "kind": "text"
           }
         ],
         "link": null,
         "name": "b",
-        "type": "int"
+        "type": "int *"
       }
     ],
     "return": {
@@ -1390,7 +1390,7 @@
       "type": "void"
     },
     "scope": "project",
-    "signature": "print(double a, int b)"
+    "signature": "print(double a, int *b)"
   },
   "project::print(int,bool)": {
     "access": "public",

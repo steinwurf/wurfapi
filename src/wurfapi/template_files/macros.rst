@@ -33,7 +33,7 @@
 {%- if element["link"] -%}
 :ref:`{{ element["type"] }}<{{ element["link"] }}>`
 {%- else -%}
-{{ element["type"] }}
+{{ element["type"] | replace('*', '\*') }}
 {%- endif -%}
 {%- endmacro -%}
 
