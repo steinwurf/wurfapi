@@ -616,20 +616,19 @@ def parse(xml, parser, log, scope):
 @DoxygenParser.register(tag="location")
 def parse(xml, parser):
     """ Parses Doxygen location
-
     :return: Location dict
     """
     result = {}
     file_path = xml.attrib["file"]
     result['file'] = parser.relative_path(path=file_path)
-
-    result['line-start'] = int(xml.attrib["bodystart"])
-
-    line_stop = int(xml.attrib["bodyend"])
-    if line_stop == -1:
-        line_stop = None
-    result['line-stop'] = line_stop
-
+    result['line-stop'] = None
+    if xml.attrib.has_key("bodystart"):
+        result['line-start'] = int(xml.attrib["bodystart"])
+        line_stop = int(xml.attrib["bodyend"])
+        if line_stop != -1:
+            result['line-stop'] = line_stop
+    else:
+        result['line-start'] = int(xml.attrib["line"])
     return result
 
 
