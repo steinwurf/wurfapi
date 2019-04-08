@@ -30,10 +30,11 @@
 
 {# FORMAT_TYPE_TO_LINK #}
 {%- macro format_type_to_link(element) -%}
+{%- set name = element["type"] | replace('*', '\*') -%}
 {%- if element["link"] -%}
-:ref:`{{ element["type"] }}<{{ element["link"] }}>`
+:ref:`{{ name }}<{{ element["link"] }}>`
 {%- else -%}
-{{ element["type"] | replace('*', '\*') }}
+{{ name }}
 {%- endif -%}
 {%- endmacro -%}
 

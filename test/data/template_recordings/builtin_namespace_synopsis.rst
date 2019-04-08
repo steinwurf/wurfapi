@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 .. _project:
 
 namespace project
@@ -12,40 +5,25 @@ namespace project
 
 
 
-
-
 .. list-table::
    :header-rows: 0
    :widths: auto
 
-
-
    * - namespace
      - :ref:`coffee<project::coffee>`
-
 
    * - function
      - :ref:`print<project::print(double,int*)>`
 
-
    * - function
      - :ref:`print<project::print(int,bool)>`
-
-
-
-
-
-
-
-
-
 
 Functions
 ---------
 
 .. _project::print(double,int*):
 
-void **print** (double a, int * b)
+void **print** (double a, int \* b)
 
     Prints the ``a`` and then the value pointed to by ``b`` . 
 
@@ -97,9 +75,6 @@ void **print** (int a_number, bool on_paper)
 
 
     
-
-
-
 
 
 
