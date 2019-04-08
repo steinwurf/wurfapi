@@ -1,5 +1,6 @@
 {% from 'macros.rst' import format_description %}
 {% from 'macros.rst' import format_type_to_link %}
+{% from 'macros.rst' import format_heading %}
 
 {# FORMAT_PARAMETERS #}
 
@@ -70,4 +71,19 @@ Parameter ``{{parameter["name"]}}``:
     {{ format_return_description(return_description) | indent }}
 
 {% endmacro -%}
+{% if api %}
+{% set function = api[selector] %}
 
+.. _{{selector}}:
+
+{{ format_heading(function["kind"] + " " + function["name"], "-") }}
+
+{% if function["scope"] %}
+**Scope:** {{ function["scope"] }}
+{% endif %}
+
+**In header:** ``#include <{{ function["location"]["file"] }}> : function["location"]["line-start"]``
+
+{{ format_function(api, function) }}
+
+{% endif %}
