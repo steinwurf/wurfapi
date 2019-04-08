@@ -51,6 +51,9 @@ Member functions (public)
    * - 
      - :ref:`~machine<project::coffee::machine::~machine()>` ()
 
+   * - mug_size
+     - :ref:`get_mug_size<project::coffee::machine::get_mug_size()const>` () const
+
    * - virtual uint32_t
      - :ref:`number_cups<project::coffee::machine::number_cups()const>` () const
 
@@ -180,6 +183,23 @@ Member Function Description
     
 
     
+
+
+
+-----
+
+.. _project::coffee::machine::get_mug_size()const:
+
+mug_size **get_mug_size** ()
+
+    
+
+    
+
+    
+
+    Returns:
+        the mug_size 
 
 
 

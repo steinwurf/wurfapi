@@ -106,12 +106,13 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-start": 14,
-      "line-stop": 141
+      "line-stop": 144
     },
     "members": [
       "project::coffee::machine::brew_state",
       "project::coffee::machine::callback",
       "project::coffee::machine::cups_brewed",
+      "project::coffee::machine::get_mug_size()const",
       "project::coffee::machine::help_brew()",
       "project::coffee::machine::impl",
       "project::coffee::machine::m_callback",
@@ -237,6 +238,42 @@
     ],
     "value": "0"
   },
+  "project::coffee::machine::get_mug_size()const": {
+    "access": "public",
+    "briefdescription": [],
+    "detaileddescription": [],
+    "is_const": true,
+    "is_constructor": false,
+    "is_destructor": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 129,
+      "line-stop": null
+    },
+    "name": "get_mug_size",
+    "parameters": [],
+    "return": {
+      "description": [
+        {
+          "content": "the mug_size",
+          "kind": "text"
+        }
+      ],
+      "type": [
+        {
+          "link": null,
+          "value": "mug_size"
+        }
+      ]
+    },
+    "scope": "project::coffee::machine",
+    "signature": "get_mug_size() const"
+  },
   "project::coffee::machine::help_brew()": {
     "access": "private",
     "briefdescription": [],
@@ -251,7 +288,7 @@
     "kind": "function",
     "location": {
       "file": "coffee/coffee.h",
-      "line-start": 136,
+      "line-start": 139,
       "line-stop": null
     },
     "name": "help_brew",
@@ -367,7 +404,7 @@
     "kind": "variable",
     "location": {
       "file": "coffee/coffee.h",
-      "line-start": 139,
+      "line-start": 142,
       "line-stop": null
     },
     "name": "m_impl",
@@ -617,7 +654,7 @@
     "kind": "function",
     "location": {
       "file": "coffee/coffee.h",
-      "line-start": 133,
+      "line-start": 136,
       "line-stop": null
     },
     "name": "set",
@@ -1537,7 +1574,7 @@
     "kind": "function",
     "location": {
       "file": "coffee/coffee.h",
-      "line-start": 159,
+      "line-start": 162,
       "line-stop": null
     },
     "name": "print",
@@ -1613,7 +1650,7 @@
     "kind": "function",
     "location": {
       "file": "coffee/coffee.h",
-      "line-start": 169,
+      "line-start": 172,
       "line-stop": null
     },
     "name": "print",
@@ -1693,7 +1730,7 @@
     "kind": "function",
     "location": {
       "file": "coffee/coffee.h",
-      "line-start": 172,
+      "line-start": 175,
       "line-stop": null
     },
     "name": "version",

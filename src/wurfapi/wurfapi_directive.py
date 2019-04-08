@@ -25,6 +25,7 @@ from . import doxygen_downloader
 from . import run
 from . import template_render
 from . import wurfapi_error
+from . import link_mapper
 
 VERSION = '2.2.0'
 
@@ -184,10 +185,14 @@ def generate_doxygen(app):
         patch_api=patch_api,
         log=logger)
 
-    app.wurfapi_api = parser.parse_index()
+    api = parser.parse_index()
+
+    mapper = link_mapper.LinkMapper(api=api)
+
+    app.wurfapi_api = mapper.map()
 
     with open(os.path.join(app.doctreedir, 'wurfapi_api.json'), 'w') as f:
-        json.dump(app.wurfapi_api, f)
+        json.dump(app.wurfapi_api, f, indent=4, sort_keys=True)
 
 
 def setup(app):

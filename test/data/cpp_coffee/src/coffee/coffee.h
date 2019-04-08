@@ -125,6 +125,9 @@ public:
     /// The number of cups brewed by all machines.
     static uint32_t total_cups_brewed;
 
+    /// @return the mug_size
+    mug_size get_mug_size() const;
+
 protected:
     /// @brief Set the heat.
     ///
