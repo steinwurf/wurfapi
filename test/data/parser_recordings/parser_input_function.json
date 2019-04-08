@@ -38,6 +38,11 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "function.hpp",
+      "line-start": 23,
+      "line-stop": null
+    },
     "name": "set",
     "parameters": [
       {

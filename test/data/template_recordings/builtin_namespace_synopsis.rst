@@ -2,6 +2,9 @@
 
 
 
+
+
+
 .. _project:
 
 namespace project
@@ -9,13 +12,29 @@ namespace project
 
 
 
-.. csv-table::
-    :widths: auto
 
 
-    "namespace", ":ref:`coffee <project::coffee>`"
-    "function", ":ref:`print <project::print(int,bool)>`"
-    "function", ":ref:`print <project::print(double,int)>`"
+.. list-table::
+   :header-rows: 0
+   :widths: auto
+
+
+
+   * - namespace
+     - :ref:`coffee<project::coffee>`
+
+
+   * - function
+     - :ref:`print<project::print(double,int)>`
+
+
+   * - function
+     - :ref:`print<project::print(int,bool)>`
+
+
+
+
+
 
 
 
@@ -23,35 +42,6 @@ namespace project
 
 Functions
 ---------
-
-.. _project::print(int,bool):
-
-void **print** (int a_number, bool on_paper)
-
-    
-
-    
-
-    
-    Parameter ``a_number``:
-        This is the most important parameter. Without it the function will not work. Example: 
-
-        .. code-block:: c++
-
-            project::coffee::print(3);
-
-
-        Does this work 
-
-    Parameter ``on_paper``:
-        If ``true`` print on some actual paper. 
-
-
-    
-
-
-
------
 
 .. _project::print(double,int):
 
@@ -78,6 +68,35 @@ void **print** (double a, int b)
 
     Returns:
         This does not really return anything because it is ``void`` but it could! 
+
+
+
+-----
+
+.. _project::print(int,bool):
+
+void **print** (int a_number, bool on_paper)
+
+    
+
+    
+
+    
+    Parameter ``a_number``:
+        This is the most important parameter. Without it the function will not work. Example: 
+
+        .. code-block:: c++
+
+            project::coffee::print(3);
+
+
+        Does this work 
+
+    Parameter ``on_paper``:
+        If ``true`` print on some actual paper. 
+
+
+    
 
 
 

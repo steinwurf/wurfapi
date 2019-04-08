@@ -136,7 +136,7 @@ using **{{ alias["name"] }}** = {{ format_type_to_link(alias["identifier"]) }}
 {%- for parameter in parameters -%}
     {%- set type = parameter["type"] -%}
     {%- set name = parameter["name"] -%}
-    {{ format_type_to_link(parameter) }} {{name}}{{ ", " if not loop.last }}
+    {{ format_type_to_link(parameter) }}{% if name %} {{name}}{% endif %}{{ ", " if not loop.last }}
 {%- endfor -%}
 )
 {%- endmacro -%}
@@ -175,9 +175,10 @@ Parameter ``{{parameter["name"]}}``:
 
 {# FORMAT_FUNCTION #}
 
-{%- macro format_function(api, selector) -%}
-
+{%- macro format_function(api, selector, include_label=True) -%}
+{% if include_label -%}
 .. _{{selector}}:
+{%- endif %}
 
 {% set return_value = api[selector]["return"] -%}
 {%- set name = api[selector]["name"] -%}

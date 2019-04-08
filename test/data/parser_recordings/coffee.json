@@ -37,6 +37,11 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "header.h",
+      "line-start": 5,
+      "line-stop": null
+    },
     "name": "headz_up",
     "parameters": [],
     "return": {
@@ -232,6 +237,11 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 130,
+      "line-stop": null
+    },
     "name": "help_brew",
     "parameters": [],
     "return": {
@@ -280,6 +290,11 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.cpp",
+      "line-start": 11,
+      "line-stop": null
+    },
     "name": "run",
     "parameters": [],
     "return": {
@@ -386,6 +401,11 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 62,
+      "line-stop": null
+    },
     "name": "machine",
     "parameters": [],
     "return": {
@@ -413,6 +433,11 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 65,
+      "line-stop": null
+    },
     "name": "machine",
     "parameters": [
       {
@@ -442,6 +467,11 @@
     "is_static": false,
     "is_virtual": true,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 93,
+      "line-stop": null
+    },
     "name": "number_cups",
     "parameters": [],
     "return": {
@@ -543,6 +573,11 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 127,
+      "line-stop": null
+    },
     "name": "set",
     "parameters": [
       {
@@ -651,6 +686,11 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 90,
+      "line-stop": null
+    },
     "name": "set_number_cups",
     "parameters": [
       {
@@ -758,6 +798,11 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 87,
+      "line-stop": null
+    },
     "name": "set_number_cups",
     "parameters": [
       {
@@ -797,6 +842,11 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 71,
+      "line-stop": null
+    },
     "name": "set_power",
     "parameters": [
       {
@@ -831,6 +881,11 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 114,
+      "line-stop": null
+    },
     "name": "tank",
     "parameters": [],
     "return": {
@@ -918,6 +973,11 @@
     "is_static": true,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 111,
+      "line-stop": null
+    },
     "name": "version",
     "parameters": [],
     "return": {
@@ -972,6 +1032,11 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 29,
+      "line-stop": null
+    },
     "name": "fill",
     "parameters": [
       {
@@ -1050,6 +1115,11 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 21,
+      "line-stop": null
+    },
     "name": "is_full",
     "parameters": [],
     "return": {
@@ -1096,6 +1166,11 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 68,
+      "line-stop": null
+    },
     "name": "~machine",
     "parameters": [],
     "return": {
@@ -1265,6 +1340,11 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 153,
+      "line-stop": null
+    },
     "name": "print",
     "parameters": [
       {
@@ -1324,6 +1404,11 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 163,
+      "line-stop": null
+    },
     "name": "print",
     "parameters": [
       {
@@ -1387,6 +1472,11 @@
     "is_static": false,
     "is_virtual": false,
     "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-start": 166,
+      "line-stop": null
+    },
     "name": "version",
     "parameters": [],
     "return": {
