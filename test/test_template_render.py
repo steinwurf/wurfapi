@@ -123,7 +123,6 @@ def test_template_render_function(testdirectory):
     template = wurfapi.template_render.TemplateRender(user_path=None)
 
     api = generate_coffee_api(testdirectory=testdirectory)
-    print(api.keys())
 
     data = template.render(selector='project::print(double,int)', api=api,
                            filename='function_synopsis.rst')

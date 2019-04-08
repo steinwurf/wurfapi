@@ -3,11 +3,14 @@
 {%- from 'macros.rst' import format_heading -%}
 {%- from 'macros.rst' import format_function -%}
 {%- set function = api[selector] -%}
-{%- for parameter in parameters -%}
-    {%- set type = parameter["type"] -%}
-    {{ format_type_to_link(parameter) }}{{ ", " if not loop.last }}
+{%- set parameters_out = [] -%}
+{%- for parameter in function["parameters"] -%}
+{%- do parameters_out.append(format_type_to_link(parameter)) -%}
+{%- if not loop.last -%}
+{%- do parameters_out.append(", ") -%}
+{%- endif -%}
 {%- endfor -%}
-{{ format_heading(function["kind"] + " " + function["name"] + "(" + function["parameters"]|map(attribute='type')|join(', ') + ")", "-") }}
+{{ format_heading(function["kind"] + " " + function["name"] + "(" + parameters_out|join('') + ")", "-") }}
 
 {% if function["scope"] %}
 **Scope:** {{ function["scope"] }}
