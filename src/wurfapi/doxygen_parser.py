@@ -641,6 +641,7 @@ def parse(xml, parser, log, scope):
     """
 
     result = {}
+    result['location'] = parser.parse_element(xml=xml.find('location'))
 
     # First we get the name and type of the parameters
     parameters = []
