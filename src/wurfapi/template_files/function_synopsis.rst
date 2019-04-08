@@ -15,4 +15,4 @@
 
 **In header:** ``#include <{{ function["location"]["file"] }}> : function["location"]["line-start"]``
 
-{{ format_function(api, function) }}
+{{ format_function(api, selector) }}
