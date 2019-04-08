@@ -1,6 +1,6 @@
 
 {% from 'macros.rst' import format_heading %}
-{% from 'function_synopsis.rst' import format_function %}
+{% from 'macros.rst' import format_function %}
 
 
 {# FORMAT_MEMBER_TABLE #}
