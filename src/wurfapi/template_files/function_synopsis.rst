@@ -5,14 +5,12 @@
 
 {% set function = api[selector] %}
 
-.. _{{selector}}:
-
 {{ format_heading(function["kind"] + " " + function["name"], "-") }}
 
 {% if function["scope"] %}
 **Scope:** {{ function["scope"] }}
 {% endif %}
 
-**In header:** ``#include <{{ function["location"]["file"] }}> : function["location"]["line-start"]``
+**In header:** ``#include <{{ function["location"]["file"] }}> : {{function["location"]["line-start"]}}``
 
 {{ format_function(api, selector) }}
