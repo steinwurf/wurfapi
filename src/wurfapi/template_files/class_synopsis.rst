@@ -66,14 +66,16 @@
    :header-rows: 1
    :widths: auto
 
-   * - Constant
+   * - Type
+     - Name
      - Value
      - Description
 {% for selector in selectors %}
 {%- set variable = api[selector] %}
-   * - :ref:`{{ api[selector]["name"] }}<{{selector}}>`
-     - {{variable["value"]}}
-     - {{merge_description(variable) | indent(width=7)}}
+   * - {{ format_type_to_link(variable["type"]) }}
+     - {{ variable["name"] }}
+     - {{ variable["value"] }}
+     - {{ merge_description(variable) | indent(width=7) }}
 {% endfor %}
 {% endmacro -%}
 
@@ -135,13 +137,27 @@ Static member functions (public)
 {% endif %}
 
 {% set variables = class["members"]
-       | api_filter(kind="variable", access="public")
+       | api_filter(kind="variable", access="public", is_static=false)
 %}
 
 {%- if variables -%}
 
 Member variables (public)
 -------------------------
+
+{{ format_member_variables_table(variables) }}
+
+{% endif %}
+
+
+{% set variables = class["members"]
+       | api_filter(kind="variable", access="public", is_static=true)
+%}
+
+{%- if variables -%}
+
+Static member variables (public)
+--------------------------------
 
 {{ format_member_variables_table(variables) }}
 
@@ -203,37 +219,6 @@ Type Description
 
 {% endif %}
 
-{% set variables = class["members"]
-       | api_filter(kind=["variable"], access="public")
-%}
-
-{% if variables %}
-
-Variables Description
----------------------
-
-{% for variable  in variables -%}
-
-.. _{{variable}}:
-
-{% set variable_type = api[variable]["type"] -%}
-{%- set name = api[variable]["name"] -%}
-{%- set value = api[variable]["value"] -%}
-{{ format_type_to_link(variable_type) }} **{{ name }}** {%-if value %} = {{ value }}; {%- endif -%}
-
-{%- set briefdescription = api[variable]["briefdescription"] -%}
-{%- set detaileddescription = api[variable]["detaileddescription"] %}
-
-    {{ format_description(briefdescription)|indent }}
-
-    {{ format_description(detaileddescription)|indent }}
-
-{{ "-----" if not loop.last }}
-
-{% endfor %}
-
-
-{% endif %}
 
 
 
