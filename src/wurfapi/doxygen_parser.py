@@ -601,7 +601,6 @@ def parse(xml, parser, log, scope):
 @DoxygenParser.register(tag="location")
 def parse(xml, parser):
     """ Parses Doxygen location
-
     :return: Location dict
     """
     result = {}
@@ -615,6 +614,7 @@ def parse(xml, parser):
             result['line-stop'] = line_stop
     else:
         result['line-start'] = int(xml.attrib["line"])
+
     return result
 
 

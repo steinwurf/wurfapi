@@ -1,8 +1,6 @@
 
-{% from 'macros.rst' import format_heading %}
-{% from 'function_synopsis.rst' import format_function %}
-
-
+{%- from 'macros.rst' import format_heading -%}
+{%- from 'macros.rst' import format_function -%}
 {# FORMAT_MEMBER_TABLE #}
 
 {%- macro format_member_table(selectors) -%}
@@ -10,16 +8,16 @@
    :header-rows: 0
    :widths: auto
 
-{% for selector in selectors %}
+{%- for selector in selectors -%}
    {%- set member = api[selector] %}
 
    * - {{ member["kind"] }}
      - :ref:`{{ member["name"] }}<{{selector}}>`
-{% endfor %}
+{%- endfor -%}
 
-{% endmacro -%}
+{%- endmacro -%}
 
-{% set namespace = api[selector] %}
+{%- set namespace = api[selector] -%}
 
 .. _{{selector}}:
 
@@ -29,17 +27,17 @@
 **Scope:** {{ namespace["scope"] }}
 {% endif %}
 
-{% if namespace["members"] %}
+{% if namespace["members"] -%}
 
 {{ format_member_table(namespace["members"]) }}
 
-{% endif %}
+{%- endif %}
 
-{% set functions = namespace["members"] | api_filter(
+{%- set functions = namespace["members"] | api_filter(
        kind="function")
-%}
+-%}
 
-{% if functions %}
+{%- if functions %}
 
 Functions
 ---------
@@ -49,7 +47,5 @@ Functions
 
 {{ "-----" if not loop.last }}
 
-{% endfor %}
-
-
-{% endif %}
+{% endfor -%}
+{% endif -%}
