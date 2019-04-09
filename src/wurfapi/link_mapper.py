@@ -36,8 +36,6 @@ def transform_key(data, search_key, scope, function):
 
 
 # Keywords used to split a C++ type into it's basic elements:
-#
-#
 keywords = ["<", ">", ")", "(", "&", "*", ",", "const", "constexpr"]
 keyword_pattern = '(' + '|'.join([re.escape(k) for k in keywords]) + ')'
 whitespace_pattern = "(^[ \t]|[ \t]$)"

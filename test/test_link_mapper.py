@@ -1,6 +1,21 @@
 import wurfapi.link_mapper
 
 
+def test_transform_key():
+
+    data = [{'taco': 42}, {'salsa': [{'burrito': {'taco': 69}}]}]
+
+    def map_taco(value, scope):
+        return value * 2
+
+    wurfapi.link_mapper.transform_key(
+        data=data, search_key='taco', scope=None, function=map_taco)
+
+    expected = [{'taco': 84}, {'salsa': [{'burrito': {'taco': 138}}]}]
+
+    assert data == expected
+
+
 def test_split_cpptype():
 
     cpptype = "const std::function<void(uint32_t*, long double)>&"

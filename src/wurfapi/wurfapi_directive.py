@@ -187,8 +187,11 @@ def generate_doxygen(app):
 
     api = parser.parse_index()
 
+    # Try to find additonal links across the API - making it possible for the
+    # user to jump more conveniently around in the docs
     mapper = link_mapper.LinkMapper(api=api)
 
+    # Store the final API
     app.wurfapi_api = mapper.map()
 
     with open(os.path.join(app.doctreedir, 'wurfapi_api.json'), 'w') as f:

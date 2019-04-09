@@ -1,4 +1,5 @@
 import os
+import json
 
 import record
 
@@ -31,3 +32,19 @@ def test_build_docs(testdirectory):
         mismatch_path=mismatch_path.path())
 
     recorder.record(data=log_data)
+
+    # Find and track changes to the wurfapi json file. This is the final API
+    # output produced after parsing the sources and running our various steps
+    # to transform the output.
+    wurfapi_json_file = os.path.join(
+        docs.path(), '_build', '.doctrees', 'wurfapi_api.json')
+
+    recorder = record.Record(
+        filename='build_coffee_wurfapi.json',
+        recording_path='test/data/',
+        mismatch_path=mismatch_path.path())
+
+    with open(wurfapi_json_file, 'r') as wurfapi_json:
+        data = json.load(wurfapi_json)
+
+    recorder.record(data=data)
