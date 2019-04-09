@@ -387,7 +387,7 @@ Python dictionary representing a C++ class or struct::
     info = {
       'kind': 'class' | 'struct',
       'name': 'unqualified-name',
-      'location' { 'file': 'filename.h', 'line-start': 10, 'line-end': 23 },
+      'location': location,
       'scope': 'unique-name' | None,
       'members: [ 'unique-name', 'unique-name' ],
       'briefdescription: 'some text',
@@ -403,7 +403,7 @@ Python dictionary representing a C++ enum or enum class::
     info = {
       'kind': 'enum',
       'name': 'unqualified-name',
-      'location' { 'file': 'filename.h', 'line-start': 10, 'line-end': 23 },
+      'location': location,
       'scope': 'unique-name' | None,
       'access': 'public' | 'protected' | 'private',
       'values: [
@@ -426,13 +426,10 @@ Python dictionary representing a C++ using or typedef statement::
     info = {
       'kind': 'typedef' | 'using',
       'name': 'unqualified-name',
-      'location' { 'file': 'filename.h', 'line-start': 10, 'line-end': 23 },
+      'location': location,
       'scope': 'unique-name' | None,
       'access': 'public' | 'protected' | 'private',
-      'identifier': {
-          'type': 'some text',
-          'link': 'unique-name' | None
-      },
+      'type': type,
       'briefdescription': paragraphs,
       'detaileddescription': paragraphs
     }
@@ -445,12 +442,11 @@ Python dictionary representing a C++ function::
     info = {
       'kind': 'function',
       'name': 'unqualified-name',
-      'location' { 'file': 'filename.h', 'line': 10, 'line-end': None},
+      'location': location,
       'scope': 'unique-name' | None,
       'return': {
-        'type': 'sometype',
-        'description': paragraphs,
-        'link': 'unique-name' | None
+        'type': type,
+        'description': paragraphs
       }
       'signature': 'text',
       'is_const': True | False,
@@ -464,10 +460,8 @@ Python dictionary representing a C++ function::
       'briefdescription: paragraphs,
       'detaileddescription: paragraphs,
       'parameters': [
-        { 'type': 'sometype', 'name': 'somename',
-          'link': 'unique-name' | None, description': description },
-        { 'type': 'sometype', 'name': 'somename',
-          'link': 'unique-name' | None, 'description': description }
+        { 'type': type, 'name': 'somename', 'description': description },
+        { 'type': type, 'name': 'somename', 'description': description }
       ]
   }
 
@@ -480,10 +474,8 @@ Python dictionary representing a C++ variable::
       'kind': 'variable',
       'name': 'unqualified-name',
       'value': 'some value' | None,
-      'variable_type':
-        { 'type': 'sometype',
-          'link': 'unique-name' | None },
-      'location' { 'file': 'filename.h', 'line-start': 10, 'line-end': None },
+      'type': type,
+      'location': location,
       'is_static': True | False,
       'is_mutable': True | False,
       'is_volatile': True | False,
@@ -494,6 +486,41 @@ Python dictionary representing a C++ variable::
       'briefdescription: paragraphs,
       'detaileddescription: paragraphs,
     }
+
+``location`` item
+.................
+
+Python dictionary representing a location::
+
+    location = { 'file': 'filename.h', 'line-start': 10, 'line-end': 12 | None }
+
+``type`` item
+.............
+
+Python list representing a C++ type::
+
+    type = [
+      {'value': 'sometext', link: 'unique-name' | None }, ...
+    ]
+
+Having the type as a list of items we can create links to nested types e.g.
+say we have a `std::unique_ptr<impl>` and we would like to make `impl` a link.
+This could look like::
+
+    "type": [
+      {
+        "link": null,
+        "value": "std::unique_ptr<"
+      },
+      {
+        "link": "project::impl",
+        "value": "impl"
+      },
+      {
+        "link": null,
+        "value": ">"
+      }
+    ]
 
 Text information
 .................

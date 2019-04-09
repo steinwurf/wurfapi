@@ -47,11 +47,13 @@
     },
     "name": "a",
     "scope": "variables",
-    "value": "",
-    "variable_type": {
-      "link": "variables::my_type_const",
-      "type": "my_type_const"
-    }
+    "type": [
+      {
+        "link": "variables::my_type_const",
+        "value": "my_type_const"
+      }
+    ],
+    "value": ""
   },
   "variables::b": {
     "access": "public",
@@ -75,11 +77,13 @@
     },
     "name": "b",
     "scope": "variables",
-    "value": "42",
-    "variable_type": {
-      "link": null,
-      "type": "int"
-    }
+    "type": [
+      {
+        "link": null,
+        "value": "int"
+      }
+    ],
+    "value": "42"
   },
   "variables::c": {
     "access": "private",
@@ -103,11 +107,13 @@
     },
     "name": "c",
     "scope": "variables",
-    "value": "\"coool\"",
-    "variable_type": {
-      "link": null,
-      "type": "std::string"
-    }
+    "type": [
+      {
+        "link": null,
+        "value": "std::string"
+      }
+    ],
+    "value": "\"coool\""
   },
   "variables::dddd": {
     "access": "protected",
@@ -131,11 +137,13 @@
     },
     "name": "dddd",
     "scope": "variables",
-    "value": "false",
-    "variable_type": {
-      "link": null,
-      "type": "bool"
-    }
+    "type": [
+      {
+        "link": null,
+        "value": "bool"
+      }
+    ],
+    "value": "false"
   },
   "variables::my_type_const": {
     "access": "public",
@@ -146,10 +154,6 @@
       }
     ],
     "detaileddescription": [],
-    "identifier": {
-      "link": null,
-      "type": "bool"
-    },
     "kind": "using",
     "location": {
       "file": "variables.hpp",
@@ -157,7 +161,13 @@
       "line-stop": null
     },
     "name": "my_type_const",
-    "scope": "variables"
+    "scope": "variables",
+    "type": [
+      {
+        "link": null,
+        "value": "bool"
+      }
+    ]
   },
   "variables::size": {
     "access": "protected",
@@ -181,10 +191,12 @@
     },
     "name": "size",
     "scope": "variables",
-    "value": "sizeof(dddd)",
-    "variable_type": {
-      "link": null,
-      "type": "uint32_t"
-    }
+    "type": [
+      {
+        "link": null,
+        "value": "uint32_t"
+      }
+    ],
+    "value": "sizeof(dddd)"
   }
 }

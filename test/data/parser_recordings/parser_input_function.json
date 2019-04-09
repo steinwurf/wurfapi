@@ -52,9 +52,13 @@
             "kind": "text"
           }
         ],
-        "link": null,
         "name": "h",
-        "type": "const heat &"
+        "type": [
+          {
+            "link": null,
+            "value": "const heat &"
+          }
+        ]
       },
       {
         "description": [
@@ -63,9 +67,13 @@
             "kind": "text"
           }
         ],
-        "link": null,
         "name": "max",
-        "type": "int"
+        "type": [
+          {
+            "link": null,
+            "value": "int"
+          }
+        ]
       }
     ],
     "return": {
@@ -80,8 +88,12 @@
           "kind": "code"
         }
       ],
-      "link": null,
-      "type": "uint32_t"
+      "type": [
+        {
+          "link": null,
+          "value": "uint32_t"
+        }
+      ]
     },
     "scope": null,
     "signature": "set(const heat &h, int max) const"

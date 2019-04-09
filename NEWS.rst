@@ -6,6 +6,9 @@ of every change, see the Git log.
 
 Latest
 ------
+* Major: Made type a list or items
+* Minor: Improved link finding (more links to known types)
+* Major: Made the type and location element uniform.
 * Major: Changed certain elements' `type` key to kind.
 * Minor: Support for variables
 * Minor: Support for typedef and using in classes and structs

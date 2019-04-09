@@ -30,10 +30,6 @@
       }
     ],
     "detaileddescription": [],
-    "identifier": {
-      "link": null,
-      "type": "bool"
-    },
     "kind": "using",
     "location": {
       "file": "type_definitions.hpp",
@@ -41,7 +37,13 @@
       "line-stop": null
     },
     "name": "my_bool",
-    "scope": "type_definitions"
+    "scope": "type_definitions",
+    "type": [
+      {
+        "link": null,
+        "value": "bool"
+      }
+    ]
   },
   "type_definitions::really_a_string": {
     "access": "public",
@@ -52,10 +54,6 @@
       }
     ],
     "detaileddescription": [],
-    "identifier": {
-      "link": null,
-      "type": "std::string"
-    },
     "kind": "using",
     "location": {
       "file": "type_definitions.hpp",
@@ -63,6 +61,12 @@
       "line-stop": null
     },
     "name": "really_a_string",
-    "scope": "type_definitions"
+    "scope": "type_definitions",
+    "type": [
+      {
+        "link": null,
+        "value": "std::string"
+      }
+    ]
   }
 }

@@ -266,7 +266,7 @@
       ],
       "type": [
         {
-          "link": null,
+          "link": "project::coffee::mug_size",
           "value": "mug_size"
         }
       ]

@@ -30,12 +30,15 @@
 
 {# FORMAT_TYPE_TO_LINK #}
 {%- macro format_type_to_link(element) -%}
-{%- set name = element["type"] | replace('*', '\*') -%}
-{%- if element["link"] -%}
-:ref:`{{ name }}<{{ element["link"] }}>`
+{%- for item in element -%}
+{%- set value = item["value"] | replace('*', '\*') -%}
+{%- if item["link"] -%}
+:ref:`{{ value }}<{{ item["link"] }}>`
 {%- else -%}
-{{ name }}
+{{ value }}
 {%- endif -%}
+{{ " " if not loop.last }}
+{%- endfor -%}
 {%- endmacro -%}
 
 
@@ -98,14 +101,14 @@
 {# FORMAT_TYPEDEF_ALIAS #}
 
 {%- macro format_typedef_alias(alias) -%}
-typedef {{ format_type_to_link(alias["identifier"]) }} **{{ alias["name"] }}**
+typedef {{ format_type_to_link(alias["type"]) }} **{{ alias["name"] }}**
 {%- endmacro -%}
 
 
 {# FORMAT_USING_ALIAS #}
 
 {%- macro format_using_alias(alias) -%}
-using **{{ alias["name"] }}** = {{ format_type_to_link(alias["identifier"]) }}
+using **{{ alias["name"] }}** = {{ format_type_to_link(alias["type"]) }}
 {%- endmacro -%}
 
 
@@ -137,7 +140,7 @@ using **{{ alias["name"] }}** = {{ format_type_to_link(alias["identifier"]) }}
 {%- for parameter in parameters -%}
     {%- set type = parameter["type"] -%}
     {%- set name = parameter["name"] -%}
-    {{ format_type_to_link(parameter) }}{% if name %} {{name}}{% endif %}{{ ", " if not loop.last }}
+    {{ format_type_to_link(type) }}{% if name %} {{name}}{% endif %}{{ ", " if not loop.last }}
 {%- endfor -%}
 )
 {%- endmacro -%}
@@ -189,7 +192,7 @@ Parameter ``{{parameter["name"]}}``:
     format_parameters(api[selector]["parameters"]) -%}
 {%- set return_description = api[selector]["return"]["description"] -%}
 
-{{ format_type_to_link(return_value) }} **{{ name }}** {{ parameters }}
+{{ format_type_to_link(return_value["type"]) }} **{{ name }}** {{ parameters }}
 
     {{ format_description(briefdescription)|indent }}
 
