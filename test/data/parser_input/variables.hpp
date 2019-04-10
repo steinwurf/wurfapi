@@ -10,6 +10,9 @@ struct variables
     /// This is a b variable
     const int b = 42;
 
+    /// Test with alias
+    constexpr static my_type_const eeee;
+
 private:
     /// This is a c variable
     static mutable std::string c = "coool";

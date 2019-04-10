@@ -771,13 +771,22 @@ def parse_variable_type(variable_type):
 
     def prune(item):
 
-        if "constexpr " in item["value"]:
-            item["value"] = item["value"].replace("constexpr ", "")
+        # This prune tries to extract const and constexpr specifiers.
+        tokens = item["value"].split(" ")
+
+        if "constexpr" in tokens:
+            tokens.remove("constexpr")
             vars['is_constexpr'] = True
 
-        if "const " in item["value"]:
-            item["value"] = item["value"].replace("const ", "")
-            vars['is_const'] = True
+        if "const" in tokens:
+            tokens.remove("const")
+            vars["is_const"] = True
+
+        tokens = " ".join(tokens)
+
+        # Trim multpile leading and trailing whitespace - but preseve a single
+        # one if present
+        item["value"] = re.sub(" +", " ", tokens)
 
         if item["value"]:
             return item

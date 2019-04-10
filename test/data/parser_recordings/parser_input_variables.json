@@ -12,13 +12,14 @@
     "location": {
       "file": "variables.hpp",
       "line-start": 2,
-      "line-stop": 23
+      "line-stop": 26
     },
     "members": [
       "variables::a",
       "variables::b",
       "variables::c",
       "variables::dddd",
+      "variables::eeee",
       "variables::my_type_const",
       "variables::size"
     ],
@@ -102,7 +103,7 @@
     "kind": "variable",
     "location": {
       "file": "variables.hpp",
-      "line-start": 15,
+      "line-start": 18,
       "line-stop": null
     },
     "name": "c",
@@ -132,7 +133,7 @@
     "kind": "variable",
     "location": {
       "file": "variables.hpp",
-      "line-start": 19,
+      "line-start": 22,
       "line-stop": null
     },
     "name": "dddd",
@@ -144,6 +145,36 @@
       }
     ],
     "value": "false"
+  },
+  "variables::eeee": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "Test with alias.",
+        "kind": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constexpr": true,
+    "is_mutable": false,
+    "is_static": true,
+    "is_volatile": false,
+    "kind": "variable",
+    "location": {
+      "file": "variables.hpp",
+      "line-start": 14,
+      "line-stop": null
+    },
+    "name": "eeee",
+    "scope": "variables",
+    "type": [
+      {
+        "link": "variables::my_type_const",
+        "value": "my_type_const"
+      }
+    ],
+    "value": ""
   },
   "variables::my_type_const": {
     "access": "public",
@@ -186,7 +217,7 @@
     "kind": "variable",
     "location": {
       "file": "variables.hpp",
-      "line-start": 22,
+      "line-start": 25,
       "line-stop": null
     },
     "name": "size",
