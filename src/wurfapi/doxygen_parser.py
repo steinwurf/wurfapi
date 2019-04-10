@@ -784,10 +784,8 @@ def parse_variable_type(variable_type):
 
         tokens = " ".join(tokens)
 
-        # If only
-
         # Trim multpile leading and trailing whitespace - but preseve a single
-        # on if present
+        # one if present
         item["value"] = re.sub(" +", " ", tokens)
 
         if item["value"]:

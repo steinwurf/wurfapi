@@ -6,6 +6,7 @@ of every change, see the Git log.
 
 Latest
 ------
+* Patch: Fix variable constexpr / const parsing.
 * Major: Split variables into static and non-static and only present the table.
 * Major: Made type a list or items
 * Minor: Improved link finding (more links to known types)
