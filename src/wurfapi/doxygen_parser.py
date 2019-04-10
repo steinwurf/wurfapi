@@ -775,17 +775,26 @@ def parse_variable_type(variable_type):
         #
         # Ideally we should not match
 
-        if "constexpr" == item["value"]:
+        if any(item["value"] in s for s in ["constexpr", " constexpr "]):
             vars['is_constexpr'] = True
             return None
+
+        if item["value"].startswith("constexpr "):
+            vars['is_constexpr'] = True
+            item["value"] = item["value"][9:]
+
+        if item["value"].endswith(" constexpr"):
+            vars['is_constexpr'] = True
+            item["value"] = item["value"][:-9]
+
+        if " constexpr " in item["value"]:
+            print("IN THE MIDDEL!")
+            vars['is_constexpr'] = True
+            item["value"] = item["value"].replace(" constexpr ", " ")
 
         if "const" == item["value"]:
             vars['is_const'] = True
             return None
-
-        if "constexpr " in item["value"]:
-            item["value"] = item["value"].replace("constexpr ", "")
-            vars['is_constexpr'] = True
 
         if "const " in item["value"]:
             item["value"] = item["value"].replace("const ", "")
