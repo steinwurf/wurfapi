@@ -223,6 +223,7 @@ def test_parse_using_type():
 
 def test_parse_variable_type():
 
+    # Test
     variable_type = [{'value': 'constexpr', 'link': None},
                      {'value': 'int', 'link': None}]
 
@@ -233,16 +234,21 @@ def test_parse_variable_type():
     assert is_const == False
     assert is_constexpr == True
 
-    variable_type = [{'value': ' constexpr ', 'link': None},
+    # Test
+    variable_type = [{'value': 'static', 'link': None},
+                     {'value': ' constexpr ', 'link': None},
                      {'value': 'int', 'link': None}]
 
     result_type, is_const, is_constexpr = wurfapi.doxygen_parser.parse_variable_type(
         variable_type=variable_type)
 
-    assert result_type == [{'value': 'int', 'link': None}]
+    assert result_type == [{'value': 'static', 'link': None},
+                           {'value': ' ', 'link': None},
+                           {'value': 'int', 'link': None}]
     assert is_const == False
     assert is_constexpr == True
 
+    # Test
     variable_type = [{'value': ' sdfs_constexpr ', 'link': None},
                      {'value': 'int', 'link': None}]
 
@@ -253,6 +259,7 @@ def test_parse_variable_type():
     assert is_const == False
     assert is_constexpr == False
 
+    # Test
     variable_type = [{'value': ' constexpr_dsf ', 'link': None},
                      {'value': 'int', 'link': None}]
 
@@ -263,14 +270,14 @@ def test_parse_variable_type():
     assert is_const == False
     assert is_constexpr == False
 
+    # Test
     variable_type = [{'value': 'static constexpr unsigned ', 'link': None},
                      {'value': 'int', 'link': None}]
 
     result_type, is_const, is_constexpr = wurfapi.doxygen_parser.parse_variable_type(
         variable_type=variable_type)
-    print(result_type)
-    assert result_type == [
-        {'link': None, 'value': 'static unsigned '},
-        {'value': 'int', 'link': None}]
+
+    assert result_type == [{'value': 'static unsigned ', 'link': None},
+                           {'value': 'int', 'link': None}]
     assert is_const == False
     assert is_constexpr == True
