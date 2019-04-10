@@ -771,6 +771,18 @@ def parse_variable_type(variable_type):
 
     def prune(item):
 
+        # This prune tries to extract const and constexpr specifiers.
+        #
+        # Ideally we should not match
+
+        if "constexpr" == item["value"]:
+            vars['is_constexpr'] = True
+            return None
+
+        if "const" == item["value"]:
+            vars['is_const'] = True
+            return None
+
         if "constexpr " in item["value"]:
             item["value"] = item["value"].replace("constexpr ", "")
             vars['is_constexpr'] = True

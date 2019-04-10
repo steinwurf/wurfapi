@@ -220,3 +220,45 @@ def test_parse_using_type():
 
     assert result == "std::function<void()>"
 
+
+def test_parse_variable_type():
+
+    variable_type = [{'value': 'constexpr', 'link': None},
+                     {'value': 'int', 'link': None}]
+
+    result_type, is_const, is_constexpr = wurfapi.doxygen_parser.parse_variable_type(
+        variable_type=variable_type)
+
+    assert result_type == [{'value': 'int', 'link': None}]
+    assert is_const == False
+    assert is_constexpr == True
+
+    variable_type = [{'value': ' constexpr ', 'link': None},
+                     {'value': 'int', 'link': None}]
+
+    result_type, is_const, is_constexpr = wurfapi.doxygen_parser.parse_variable_type(
+        variable_type=variable_type)
+
+    assert result_type == [{'value': 'int', 'link': None}]
+    assert is_const == False
+    assert is_constexpr == True
+
+    variable_type = [{'value': ' sdfs_constexpr ', 'link': None},
+                     {'value': 'int', 'link': None}]
+
+    result_type, is_const, is_constexpr = wurfapi.doxygen_parser.parse_variable_type(
+        variable_type=variable_type)
+
+    assert result_type == variable_type
+    assert is_const == False
+    assert is_constexpr == False
+
+    variable_type = [{'value': ' constexpr_dsf ', 'link': None},
+                     {'value': 'int', 'link': None}]
+
+    result_type, is_const, is_constexpr = wurfapi.doxygen_parser.parse_variable_type(
+        variable_type=variable_type)
+
+    assert result_type == variable_type
+    assert is_const == False
+    assert is_constexpr == False
