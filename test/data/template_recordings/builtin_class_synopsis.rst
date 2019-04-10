@@ -100,23 +100,45 @@ Member variables (public)
    :header-rows: 1
    :widths: auto
 
-   * - Constant
+   * - Type
+     - Name
      - Value
      - Description
 
-   * - :ref:`cups_brewed<project::coffee::machine::cups_brewed>`
+   * - uint32_t
+     - cups_brewed
      - 0
      - The number of cups brewed by this machine. 
 
-   * - :ref:`m_callback<project::coffee::machine::m_callback>`
+   * - :ref:`callback<project::coffee::machine::callback>`
+     - m_callback
      - 
      - A variable which uses the callback using statement. 
 
-   * - :ref:`m_other_callback<project::coffee::machine::m_other_callback>`
+   * - :ref:`other_callback<project::coffee::machine::other_callback>`
+     - m_other_callback
      - 
      - A variable which uses the other_callback typedef statement. 
 
-   * - :ref:`total_cups_brewed<project::coffee::machine::total_cups_brewed>`
+
+
+
+
+
+Static member variables (public)
+--------------------------------
+
+.. list-table::
+   :header-rows: 1
+   :widths: auto
+
+   * - Type
+     - Name
+     - Value
+     - Description
+
+   * - uint32_t
+     - total_cups_brewed
      - 
      - The number of cups brewed by all machines. 
 
@@ -415,57 +437,6 @@ typedef :ref:`callback<project::coffee::machine::callback>` **other_callback**
 
     
 
-
-
-
-
-
-
-
-
-
-
-
-Variables Description
----------------------
-
-.. _project::coffee::machine::cups_brewed:
-
-uint32_t **cups_brewed** = 0;
-
-    The number of cups brewed by this machine. 
-
-    
-
------
-
-.. _project::coffee::machine::m_callback:
-
-:ref:`callback<project::coffee::machine::callback>` **m_callback**
-
-    A variable which uses the callback using statement. 
-
-    
-
------
-
-.. _project::coffee::machine::m_other_callback:
-
-:ref:`other_callback<project::coffee::machine::other_callback>` **m_other_callback**
-
-    A variable which uses the other_callback typedef statement. 
-
-    
-
------
-
-.. _project::coffee::machine::total_cups_brewed:
-
-uint32_t **total_cups_brewed**
-
-    The number of cups brewed by all machines. 
-
-    
 
 
 
