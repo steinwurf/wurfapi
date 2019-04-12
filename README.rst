@@ -500,7 +500,7 @@ Python dictionary representing a location::
 Python list representing a C++ type::
 
     type = [
-      {'value': 'sometext', link: 'unique-name' | None }, ...
+      {'value': 'sometext', link: link | None }, ...
     ]
 
 Having the type as a list of items we can create links to nested types e.g.
@@ -513,7 +513,7 @@ This could look like::
         "value": "std::unique_ptr<"
       },
       {
-        "link": "project::impl",
+        "link": {"url": False, "value": "project::impl"},
         "value": "impl"
       },
       {
@@ -521,6 +521,17 @@ This could look like::
         "value": ">"
       }
     ]
+
+``link`` item
+.............
+
+Python dictionary representing a link::
+
+    link = { 'url': True | False, 'value': 'somestring' }
+
+If `url` is `True` we have a basic extrenal reference otherwise we have a
+link to an internal type in the API.
+
 
 Text information
 .................
@@ -540,7 +551,7 @@ Text information is stored in a list of paragraphs::
       'content': 'hello',
       'italic': true | false,
       'bold': true | false,
-      'link': 'unique-name' | None
+      'link': link | None
       }
 
     code = {

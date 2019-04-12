@@ -28,12 +28,24 @@
 {%- endmacro -%}
 
 
+{# FORMAT_LINK #}
+
+{%- macro format_link(content, link) -%}
+{%- if link["url"] -%}
+`{{content}} <{{ link["value"] }}>`_
+{%- else -%}
+:ref:`{{ content }}<{{ link["value"]  }}>`
+{%- endif -%}
+{%- endmacro -%}
+
+
 {# FORMAT_TYPE_TO_LINK #}
+
 {%- macro format_type_to_link(element) -%}
 {%- for item in element -%}
 {%- set value = item["value"] | replace('*', '\*') -%}
 {%- if item["link"] -%}
-:ref:`{{ value }}<{{ item["link"] }}>`
+{{ format_link(value, item["link"]) }}
 {%- else -%}
 {{ value }}
 {%- endif -%}
@@ -42,19 +54,12 @@
 {%- endmacro -%}
 
 
-{# FORMAT_TEXT_LINK #}
-
-{%- macro format_text_link(paragraph) -%}
-:ref:`{{ paragraph["content"] }}<{{ paragraph["link"] }}>`
-{%- endmacro -%}
-
-
 {# FORMAT_TEXT #}
 
 {%- macro format_text(paragraph) -%}
 
-{%- if "link" in paragraph -%}
-    {{ format_text_link(paragraph) }}
+{%- if paragraph["link"] -%}
+    {{ format_link(paragraph["content"], paragraph["link"]) }}
 {%- else -%}
     {{ paragraph["content"] }}
 {%- endif -%}

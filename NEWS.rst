@@ -6,6 +6,7 @@ of every change, see the Git log.
 
 Latest
 ------
+* Major: Support both internal and external links.
 * Patch: Fix variable constexpr / const parsing.
 * Major: Split variables into static and non-static and only present the table.
 * Major: Made type a list or items
