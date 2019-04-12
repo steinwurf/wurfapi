@@ -39,7 +39,8 @@ def test_split_cpptype():
 def test_split_typelist():
 
     typelist = [{"value": "const ", "link": None},
-                {"value": "std::function", "link": "www.isocpp.org"},
+                {"value": "std::function", "link": {
+                    'url': True, 'value': 'www.isocpp.org'}},
                 {"value": "<void(uint32_t*, long double)>&", "link": None}]
 
     result = wurfapi.link_mapper.split_typelist(typelist=typelist)
@@ -48,7 +49,8 @@ def test_split_typelist():
 
     expected = [{'link': None, 'value': 'const'},
                 {'link': None, 'value': ' '},
-                {'link': 'www.isocpp.org', 'value': 'std::function'},
+                {'link': {'url': True, 'value': 'www.isocpp.org'},
+                    'value': 'std::function'},
                 {'link': None, 'value': '<'},
                 {'link': None, 'value': 'void'},
                 {'link': None, 'value': '('},
@@ -68,7 +70,8 @@ def test_join_typelist():
 
     typelist = [{'link': None, 'value': 'const'},
                 {'link': None, 'value': ' '},
-                {'link': 'www.isocpp.org', 'value': 'std::function'},
+                {'link': {'url': True, 'value': 'www.isocpp.org'},
+                    'value': 'std::function'},
                 {'link': None, 'value': '<'},
                 {'link': None, 'value': 'void'},
                 {'link': None, 'value': '('},
@@ -84,7 +87,8 @@ def test_join_typelist():
     result = wurfapi.link_mapper.join_typelist(typelist=typelist)
 
     expected = [{"value": "const ", "link": None},
-                {"value": "std::function", "link": "www.isocpp.org"},
+                {"value": "std::function", "link": {
+                    'url': True, 'value': 'www.isocpp.org'}},
                 {"value": "<void(uint32_t*, long double)>&", "link": None}]
 
     print(result)
@@ -103,8 +107,12 @@ def test_linkmapper():
 
     print(result)
 
-    expected = {'object': {'type': [{'link': None, 'value': 'const std::function<void('}, {'link': 'uint32_t', 'value': 'uint32_t'}, {
-        'link': None, 'value': '*, long double)>&'}]}, 'uint32_t': 'dummy'}
+    expected = {'object':
+                {'type': [
+                    {'link': None, 'value': 'const std::function<void('},
+                    {'link': {"url": False, "value": 'uint32_t'}, 'value': 'uint32_t'},
+                    {'link': None, 'value': '*, long double)>&'}]},
+                'uint32_t': 'dummy'}
 
     assert result == expected
 

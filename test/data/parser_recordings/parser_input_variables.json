@@ -50,7 +50,10 @@
     "scope": "variables",
     "type": [
       {
-        "link": "variables::my_type_const",
+        "link": {
+          "url": false,
+          "value": "variables::my_type_const"
+        },
         "value": "my_type_const"
       }
     ],
@@ -170,7 +173,10 @@
     "scope": "variables",
     "type": [
       {
-        "link": "variables::my_type_const",
+        "link": {
+          "url": false,
+          "value": "variables::my_type_const"
+        },
         "value": "my_type_const"
       }
     ],

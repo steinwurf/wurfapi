@@ -83,7 +83,19 @@
     "access": "public",
     "briefdescription": [
       {
-        "content": "A machine to brew your coffee.",
+        "content": "A machine to brew your coffee. Docs by",
+        "kind": "text"
+      },
+      {
+        "content": "http://steinwurf.com",
+        "kind": "text",
+        "link": {
+          "url": true,
+          "value": "http://steinwurf.com"
+        }
+      },
+      {
+        "content": ".",
         "kind": "text"
       }
     ],
@@ -95,7 +107,10 @@
       {
         "content": "project::coffee::machine::water_tank",
         "kind": "text",
-        "link": "project::coffee::machine::water_tank"
+        "link": {
+          "url": false,
+          "value": "project::coffee::machine::water_tank"
+        }
       },
       {
         "content": "though.",
@@ -266,7 +281,10 @@
       ],
       "type": [
         {
-          "link": "project::coffee::mug_size",
+          "link": {
+            "url": false,
+            "value": "project::coffee::mug_size"
+          },
           "value": "mug_size"
         }
       ]
@@ -386,7 +404,10 @@
     "scope": "project::coffee::machine",
     "type": [
       {
-        "link": "project::coffee::machine::callback",
+        "link": {
+          "url": false,
+          "value": "project::coffee::machine::callback"
+        },
         "value": "callback"
       }
     ],
@@ -415,7 +436,10 @@
         "value": "std::unique_ptr<"
       },
       {
-        "link": "project::coffee::machine::impl",
+        "link": {
+          "url": false,
+          "value": "project::coffee::machine::impl"
+        },
         "value": "impl"
       },
       {
@@ -449,7 +473,10 @@
     "scope": "project::coffee::machine",
     "type": [
       {
-        "link": "project::coffee::machine::other_callback",
+        "link": {
+          "url": false,
+          "value": "project::coffee::machine::other_callback"
+        },
         "value": "other_callback"
       }
     ],
@@ -515,7 +542,10 @@
         "name": "pwr",
         "type": [
           {
-            "link": "project::coffee::machine::power",
+            "link": {
+              "url": false,
+              "value": "project::coffee::machine::power"
+            },
             "value": "power"
           }
         ]
@@ -583,7 +613,10 @@
     "scope": "project::coffee::machine",
     "type": [
       {
-        "link": "project::coffee::machine::callback",
+        "link": {
+          "url": false,
+          "value": "project::coffee::machine::callback"
+        },
         "value": "callback"
       }
     ]
@@ -715,7 +748,10 @@
             {
               "content": "water_tank",
               "kind": "text",
-              "link": "project::coffee::machine::water_tank"
+              "link": {
+                "url": false,
+                "value": "project::coffee::machine::water_tank"
+              }
             },
             {
               "content": ".",
@@ -762,7 +798,10 @@
       {
         "content": "number_cups()",
         "kind": "text",
-        "link": "project::coffee::machine::number_cups()const"
+        "link": {
+          "url": false,
+          "value": "project::coffee::machine::number_cups()const"
+        }
       },
       {
         "content": "for how many cups",
@@ -835,7 +874,10 @@
             {
               "content": "water_tank",
               "kind": "text",
-              "link": "project::coffee::machine::water_tank"
+              "link": {
+                "url": false,
+                "value": "project::coffee::machine::water_tank"
+              }
             },
             {
               "content": ".",
@@ -882,7 +924,10 @@
       {
         "content": "number_cups()",
         "kind": "text",
-        "link": "project::coffee::machine::number_cups()const"
+        "link": {
+          "url": false,
+          "value": "project::coffee::machine::number_cups()const"
+        }
       },
       {
         "content": "for how many cups",
@@ -961,7 +1006,10 @@
         "name": "pwr",
         "type": [
           {
-            "link": "project::coffee::machine::power",
+            "link": {
+              "url": false,
+              "value": "project::coffee::machine::power"
+            },
             "value": "power"
           }
         ]
@@ -1007,7 +1055,10 @@
       "description": [],
       "type": [
         {
-          "link": "project::coffee::machine::water_tank",
+          "link": {
+            "url": false,
+            "value": "project::coffee::machine::water_tank"
+          },
           "value": "water_tank"
         },
         {
@@ -1051,7 +1102,10 @@
           "value": "const"
         },
         {
-          "link": "project::coffee::machine::water_tank",
+          "link": {
+            "url": false,
+            "value": "project::coffee::machine::water_tank"
+          },
           "value": "water_tank"
         },
         {
@@ -1095,7 +1149,10 @@
           "value": "std::vector<"
         },
         {
-          "link": "project::coffee::machine::water_tank",
+          "link": {
+            "url": false,
+            "value": "project::coffee::machine::water_tank"
+          },
           "value": "water_tank"
         },
         {

@@ -14,7 +14,7 @@ class machine
 
 Brief description
 -----------------
-A machine to brew your coffee. 
+A machine to brew your coffee. Docs by `http://steinwurf.com <http://steinwurf.com>`_ . 
 
 
 Member types (public)

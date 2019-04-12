@@ -640,8 +640,9 @@ def parse(xml, parser):
 
         if match(xml=child, tag="ref"):
 
-            result.append(
-                {"value": child.text.strip(), "link": child.attrib["refid"]})
+            link = {"url": False, "value": child.attrib["refid"]}
+
+            result.append({"value": child.text.strip(), "link": link})
 
         append_text(child.tail)
 
@@ -895,7 +896,17 @@ def parse(log, xml):
 
     :return: List of "Text information" paragraphs
     """
-    link = xml.attrib["refid"]
+    link = {"url": False, "value": xml.attrib["refid"]}
+    return [{"kind": "text", "content": xml.text, "link": link}]
+
+
+@DoxygenParser.register(tag='ulink')
+def parse(log, xml):
+    """ Parses Doxygen ulink tag
+
+    :return: List of "Text information" paragraphs
+    """
+    link = {"url": True, "value": xml.attrib["url"]}
     return [{"kind": "text", "content": xml.text, "link": link}]
 
 
@@ -957,6 +968,9 @@ def parse(parser, log, xml):
             paragraphs += parser.parse_element(xml=child)
 
         elif match(xml=child, tag="ref"):
+            paragraphs += parser.parse_element(xml=child)
+
+        elif match(xml=child, tag="ulink"):
             paragraphs += parser.parse_element(xml=child)
 
         elif match(xml=child, tag="orderedlist"):

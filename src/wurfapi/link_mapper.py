@@ -194,6 +194,9 @@ class LinkMapper(object):
         for item in typelist:
 
             if item['link']:
+                # If we do have a link to a type it should be in the API
+                assert item["link"]["value"] in self.api
+
                 continue
 
             item['link'] = self._find_link(typename=item['value'], scope=scope)
@@ -219,7 +222,7 @@ class LinkMapper(object):
 
         if typename in self.api:
             # The typename was found diretly in the API
-            return typename
+            return {"url": False, "value": typename}
 
         if scope is None:
             # We do not have a scope so there is nothing more we can do
@@ -233,7 +236,7 @@ class LinkMapper(object):
 
             if scoped_name in self.api:
                 # The scope qualified name was found
-                return scoped_name
+                return {"url": False, "value": scoped_name}
 
         # We give up
         return None
