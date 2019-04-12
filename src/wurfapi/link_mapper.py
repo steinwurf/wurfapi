@@ -163,12 +163,14 @@ def split_cppscope(cppscope):
 
 class LinkMapper(object):
 
-    def __init__(self, api):
+    def __init__(self, api, link_provider):
         """ Create a new instance
 
         :param api: The API to map
+        :param link_provider: Helper to resolve links to more types
         """
         self.api = api
+        self.link_provider = link_provider
 
     def map(self):
         """ Perform the actual mapping.
@@ -211,10 +213,10 @@ class LinkMapper(object):
         """ Given a token e.g. std::function see if we can find a link
 
         First we check if the type name is found directly in the API. After
-        this we try to see if the
+        this we try to see if the link_provider has one.
 
         :param typename: A C++ type name as a string
-        :param scope: The scope
+        :param scope: A scope as a string otherwise None
         """
         if typename in keywords:
             # Not a typename just a C++ token
@@ -238,5 +240,5 @@ class LinkMapper(object):
                 # The scope qualified name was found
                 return {"url": False, "value": scoped_name}
 
-        # We give up
-        return None
+        # Finally try the link provider - which either returns None or a link
+        return self.link_provider.find_link(typename=typename)

@@ -218,8 +218,15 @@
     "scope": "project::coffee::machine",
     "type": [
       {
+        "link": {
+          "url": true,
+          "value": "https://en.cppreference.com/w/cpp/utility/functional/function"
+        },
+        "value": "std::function"
+      },
+      {
         "link": null,
-        "value": "std::function< void()>"
+        "value": "< void()>"
       }
     ]
   },
@@ -247,7 +254,10 @@
     "scope": "project::coffee::machine",
     "type": [
       {
-        "link": null,
+        "link": {
+          "url": true,
+          "value": "https://en.cppreference.com/w/cpp/types/integer"
+        },
         "value": "uint32_t"
       }
     ],
@@ -586,7 +596,10 @@
       ],
       "type": [
         {
-          "link": null,
+          "link": {
+            "url": true,
+            "value": "https://en.cppreference.com/w/cpp/types/integer"
+          },
           "value": "uint32_t"
         }
       ]
@@ -707,7 +720,10 @@
         "name": "max",
         "type": [
           {
-            "link": null,
+            "link": {
+              "url": true,
+              "value": "https://en.cppreference.com/w/cpp/language/types"
+            },
             "value": "int"
           }
         ]
@@ -833,7 +849,10 @@
         "name": "cups",
         "type": [
           {
-            "link": null,
+            "link": {
+              "url": true,
+              "value": "https://en.cppreference.com/w/cpp/string/basic_string"
+            },
             "value": "std::string"
           }
         ]
@@ -959,7 +978,10 @@
         "name": "cups",
         "type": [
           {
-            "link": null,
+            "link": {
+              "url": true,
+              "value": "https://en.cppreference.com/w/cpp/types/integer"
+            },
             "value": "uint32_t"
           }
         ]
@@ -1145,8 +1167,15 @@
       "description": [],
       "type": [
         {
+          "link": {
+            "url": true,
+            "value": "https://en.cppreference.com/w/cpp/container/vector"
+          },
+          "value": "std::vector"
+        },
+        {
           "link": null,
-          "value": "std::vector<"
+          "value": "<"
         },
         {
           "link": {
@@ -1188,7 +1217,10 @@
     "scope": "project::coffee::machine",
     "type": [
       {
-        "link": null,
+        "link": {
+          "url": true,
+          "value": "https://en.cppreference.com/w/cpp/types/integer"
+        },
         "value": "uint32_t"
       }
     ],
@@ -1264,7 +1296,10 @@
       ],
       "type": [
         {
-          "link": null,
+          "link": {
+            "url": true,
+            "value": "https://en.cppreference.com/w/cpp/string/basic_string"
+          },
           "value": "std::string"
         }
       ]
@@ -1646,7 +1681,10 @@
         "name": "a",
         "type": [
           {
-            "link": null,
+            "link": {
+              "url": true,
+              "value": "https://en.cppreference.com/w/cpp/language/types"
+            },
             "value": "double"
           }
         ]
@@ -1661,8 +1699,15 @@
         "name": "b",
         "type": [
           {
+            "link": {
+              "url": true,
+              "value": "https://en.cppreference.com/w/cpp/language/types"
+            },
+            "value": "int"
+          },
+          {
             "link": null,
-            "value": "int *"
+            "value": " *"
           }
         ]
       }
@@ -1731,7 +1776,10 @@
         "name": "a_number",
         "type": [
           {
-            "link": null,
+            "link": {
+              "url": true,
+              "value": "https://en.cppreference.com/w/cpp/language/types"
+            },
             "value": "int"
           }
         ]
