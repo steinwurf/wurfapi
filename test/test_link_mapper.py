@@ -1,3 +1,4 @@
+import mock
 import wurfapi.link_mapper
 
 
@@ -101,7 +102,10 @@ def test_linkmapper():
     api = {'object': {'type': [
         {'value': 'const std::function<void(uint32_t*, long double)>&', 'link': None}]}, 'uint32_t': "dummy"}
 
-    mapper = wurfapi.link_mapper.LinkMapper(api=api)
+    provider = mock.Mock()
+    provider.find_link.return_value = None
+
+    mapper = wurfapi.link_mapper.LinkMapper(api=api, link_provider=provider)
 
     result = mapper.map()
 

@@ -26,6 +26,7 @@ from . import run
 from . import template_render
 from . import wurfapi_error
 from . import link_mapper
+from . import link_provider
 
 VERSION = '2.2.0'
 
@@ -187,9 +188,12 @@ def generate_doxygen(app):
 
     api = parser.parse_index()
 
+    # Instatiate the link provider
+    provider = link_provider.LinkProvider(user_mappings=[])
+
     # Try to find additonal links across the API - making it possible for the
     # user to jump more conveniently around in the docs
-    mapper = link_mapper.LinkMapper(api=api)
+    mapper = link_mapper.LinkMapper(api=api, link_provider=provider)
 
     # Store the final API
     app.wurfapi_api = mapper.map()
