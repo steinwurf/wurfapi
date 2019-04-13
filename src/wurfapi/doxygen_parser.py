@@ -495,10 +495,14 @@ def parse(parser, xml):
     # the same order
     result["members"].sort()
 
-    api[scoped_name] = result
+    # Remove all whitespace - this is also done in standardes. See the README
+    # on the problems of unique-name
+    unique_name = scoped_name.replace(" ", "")
+
+    api[unique_name] = result
 
     # Save mapping from doxygen id to unique name
-    parser.id_mapping[xml.attrib["id"]] = scoped_name
+    parser.id_mapping[xml.attrib["id"]] = unique_name
 
     return api
 

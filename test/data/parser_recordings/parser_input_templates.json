@@ -1,0 +1,238 @@
+{
+  "another_type": {
+    "access": "public",
+    "briefdescription": [],
+    "detaileddescription": [
+      {
+        "content": "A template class",
+        "kind": "text"
+      }
+    ],
+    "kind": "class",
+    "location": {
+      "file": "templates.hpp",
+      "line-start": 25,
+      "line-stop": 30
+    },
+    "members": [
+      "another_type::another_type(constT&)"
+    ],
+    "name": "another_type",
+    "scope": ""
+  },
+  "another_type::another_type(constT&)": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "With constructor.",
+        "kind": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constructor": true,
+    "is_destructor": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "kind": "function",
+    "location": {
+      "file": "templates.hpp",
+      "line-start": 29,
+      "line-stop": null
+    },
+    "name": "another_type",
+    "parameters": [
+      {
+        "description": "",
+        "name": "t",
+        "type": [
+          {
+            "link": null,
+            "value": "const T &"
+          }
+        ]
+      }
+    ],
+    "return": {
+      "description": [],
+      "type": []
+    },
+    "scope": "another_type",
+    "signature": "another_type(const T &t)"
+  },
+  "f(constH<S>&)": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "Template template function.",
+        "kind": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constructor": false,
+    "is_destructor": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "kind": "function",
+    "location": {
+      "file": "templates.hpp",
+      "line-start": 34,
+      "line-stop": 36
+    },
+    "name": "f",
+    "parameters": [
+      {
+        "description": "",
+        "name": "value",
+        "type": [
+          {
+            "link": null,
+            "value": "const H< S > &"
+          }
+        ]
+      }
+    ],
+    "return": {
+      "description": [],
+      "type": [
+        {
+          "link": null,
+          "value": "void"
+        }
+      ]
+    },
+    "scope": null,
+    "signature": "f(const H< S > &value)"
+  },
+  "our_type": {
+    "access": "public",
+    "briefdescription": [],
+    "detaileddescription": [
+      {
+        "content": "A template class",
+        "kind": "text"
+      }
+    ],
+    "kind": "class",
+    "location": {
+      "file": "templates.hpp",
+      "line-start": 5,
+      "line-stop": 10
+    },
+    "members": [
+      "our_type::our_type(constT&)"
+    ],
+    "name": "our_type",
+    "scope": ""
+  },
+  "our_type::our_type(constT&)": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "With constructor.",
+        "kind": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constructor": true,
+    "is_destructor": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "kind": "function",
+    "location": {
+      "file": "templates.hpp",
+      "line-start": 9,
+      "line-stop": null
+    },
+    "name": "our_type",
+    "parameters": [
+      {
+        "description": "",
+        "name": "t",
+        "type": [
+          {
+            "link": null,
+            "value": "const T &"
+          }
+        ]
+      }
+    ],
+    "return": {
+      "description": [],
+      "type": []
+    },
+    "scope": "our_type",
+    "signature": "our_type(const T &t)"
+  },
+  "our_type<int>": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "Specialization.",
+        "kind": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "kind": "class",
+    "location": {
+      "file": "templates.hpp",
+      "line-start": 14,
+      "line-stop": 19
+    },
+    "members": [
+      "our_type<int>::our_type(constint&)"
+    ],
+    "name": "our_type< int >",
+    "scope": ""
+  },
+  "our_type<int>::our_type(constint&)": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "With int.",
+        "kind": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constructor": true,
+    "is_destructor": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "kind": "function",
+    "location": {
+      "file": "templates.hpp",
+      "line-start": 18,
+      "line-stop": null
+    },
+    "name": "our_type",
+    "parameters": [
+      {
+        "description": "",
+        "name": "t",
+        "type": [
+          {
+            "link": null,
+            "value": "const int &"
+          }
+        ]
+      }
+    ],
+    "return": {
+      "description": [],
+      "type": []
+    },
+    "scope": "our_type< int >",
+    "signature": "our_type(const int &t)"
+  }
+}
