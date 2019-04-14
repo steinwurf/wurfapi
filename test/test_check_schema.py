@@ -124,6 +124,24 @@ def test_check_schema():
         'detaileddescription': paragraphs_schema
     })
 
+    enum_schema = schema.Schema({
+        'kind': 'enum',
+        'name': string_schema,
+        'location': location_schema,
+        'scope': schema.Or(string_schema, None),
+        'access': schema.Or('public', 'protected', 'private'),
+        'values': [{
+            'name': string_schema,
+            'briefdescription': paragraphs_schema,
+            'detaileddescription': paragraphs_schema,
+            'value': schema.Or(string_schema, None)
+        }],
+        'briefdescription': paragraphs_schema,
+        'detaileddescription': paragraphs_schema
+    })
+
+    # Enum schema
+
     api = {
         'dfsd': {
             'kind': 'namespace',
@@ -144,16 +162,44 @@ def test_check_schema():
                 {'kind': 'code', 'content': 'bla bla', 'is_block': True},
                 {'kind': 'list', 'ordered': True, 'items': [
                     {'kind': 'code', 'content': 'bla bla', 'is_block': True},
-                    {'kind': 'text', 'content': 'bla bla', 'link': None}]
+                    {'kind': 'text', 'content': 'bla bla', 'link': None},
+                    {'kind': 'list', 'ordered': True, 'items': [
+                        {'kind': 'code', 'content': 'bla', 'is_block': True},
+                        {'kind': 'text', 'content': 'bla', 'link': None}]
+                     }]
                  }
             ]
-        }
+        },
+        'dfsd': {
+            'kind': 'enum',
+            'name': "dfsfdsfds",
+            'location': {'file': 'some.h', 'line-start': 10, 'line-end': None},
+            'scope': None,
+            'access': 'public',
+            'values': [{
+                'name': 'a',
+                'briefdescription': [
+                    {'kind': 'text', 'content': 'bla bla', 'link': None}
+                ],
+                'detaileddescription': [
+                    {'kind': 'text', 'content': 'bla bla', 'link': None}
+                ],
+                'value': None
+            }],
+            'briefdescription': [
+                {'kind': 'text', 'content': 'bla bla', 'link': None}
+            ],
+            'detaileddescription': [
+                {'kind': 'text', 'content': 'bla bla', 'link': None}
+            ]
+        },
     }
 
     api_schema = schema.Schema({
         str: schema.Or(
             namespace_schema,
-            class_struct_schema
+            class_struct_schema,
+            enum_schema
         )
     })
 
