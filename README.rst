@@ -549,8 +549,6 @@ Text information is stored in a list of paragraphs::
     text = {
       'kind': 'text',
       'content': 'hello',
-      'italic': true | false,
-      'bold': true | false,
       'link': link | None
       }
 
