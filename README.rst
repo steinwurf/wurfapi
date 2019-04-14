@@ -500,7 +500,7 @@ Python dictionary representing a location::
 Python list representing a C++ type::
 
     type = [
-      {'value': 'sometext', link: link | None }, ...
+      {'value': 'sometext', 'link': link | None }, ...
     ]
 
 Having the type as a list of items we can create links to nested types e.g.

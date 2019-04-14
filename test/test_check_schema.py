@@ -124,6 +124,8 @@ def test_check_schema():
         'detaileddescription': paragraphs_schema
     })
 
+    # Enum schema
+
     enum_schema = schema.Schema({
         'kind': 'enum',
         'name': string_schema,
@@ -140,7 +142,73 @@ def test_check_schema():
         'detaileddescription': paragraphs_schema
     })
 
-    # Enum schema
+    # type schema
+
+    type_schema = schema.Schema({
+        'value': string_schema,
+        'link': schema.Or(link_schema, None)
+    })
+
+    # typedef / using schema
+
+    typedef_using_schema = schema.Schema({
+        'kind': schema.Or('typedef', 'using'),
+        'name': string_schema,
+        'location': location_schema,
+        'scope': schema.Or(string_schema, None),
+        'access': schema.Or('public', 'protected', 'private'),
+        'type': type_schema,
+        'briefdescription': paragraphs_schema,
+        'detaileddescription': paragraphs_schema
+    })
+
+    # function schema
+
+    function_schema = schema.Schema({
+        'kind': 'function',
+        'name': string_schema,
+        'location': location_schema,
+        'scope': schema.Or(string_schema, None),
+        'return': {
+            'type': type_schema,
+            'description': paragraphs_schema
+        },
+        'signature': string_schema,
+        'is_const': bool,
+        'is_static': bool,
+        'is_virtual': bool,
+        'is_explicit': bool,
+        'is_inline': bool,
+        'is_constructor': bool,
+        'is_destructor': bool,
+        'access': schema.Or('public', 'protected', 'private'),
+        'briefdescription': paragraphs_schema,
+        'detaileddescription': paragraphs_schema,
+        'parameters': [{
+            'type': type_schema,
+            'name': string_schema,
+            'description': paragraphs_schema
+        }],
+    })
+
+    # variable schema
+
+    variable_schema = schema.Schema({
+        'kind': 'variable',
+        'name': string_schema,
+        'value': schema.Or(string_schema, None),
+        'type': type_schema,
+        'location': location_schema,
+        'is_static': bool,
+        'is_mutable': bool,
+        'is_volatile': bool,
+        'is_const': bool,
+        'is_constexpr': bool,
+        'scope': schema.Or(string_schema, None),
+        'access': schema.Or('public', 'protected', 'private'),
+        'briefdescription': paragraphs_schema,
+        'detaileddescription': paragraphs_schema,
+    })
 
     api = {
         'dfsd': {
@@ -193,13 +261,100 @@ def test_check_schema():
                 {'kind': 'text', 'content': 'bla bla', 'link': None}
             ]
         },
+        'tryrt': {
+            'kind': 'using',
+            'name': "dfsfdsfds",
+            'location': {'file': 'some.h', 'line-start': 10, 'line-end': None},
+            'scope': 'dfsds',
+            'access': 'private',
+            'type': {
+                'value': 'uint32_t', 'link': {
+                    'url': True, 'value': 'www.steinwurf.com'
+                }
+            },
+            'briefdescription': [
+                {'kind': 'text', 'content': 'bla bla', 'link': None}
+            ],
+            'detaileddescription': [
+                {'kind': 'text', 'content': 'bla bla', 'link': None}
+            ]
+        },
+        'fsdfsdfs': {
+            'kind': 'function',
+            'name': "dfsfdsfddfsdfs",
+            'location': {'file': 'sdd.h', 'line-start': 10, 'line-end': 15},
+            'scope': 'dfsds::ds',
+            'return': {
+                'type': {
+                    'value': 'uint32_t', 'link': {
+                        'url': True, 'value': 'www.steinwurf.com'
+                    }
+                },
+                'description': [
+                    {'kind': 'text', 'content': 'bla bla', 'link': None}
+                ]
+            },
+            'signature': 'void some(int a)',
+            'is_const': True,
+            'is_static': False,
+            'is_virtual': True,
+            'is_explicit': False,
+            'is_inline': True,
+            'is_constructor': False,
+            'is_destructor': True,
+            'access': 'public',
+            'briefdescription': [
+                {'kind': 'text', 'content': 'bla bla', 'link': None}
+            ],
+            'detaileddescription': [
+                {'kind': 'text', 'content': 'bla bla', 'link': None}
+            ],
+            'parameters': [{
+                'type': {
+                    'value': 'uint32_t', 'link': {
+                        'url': True, 'value': 'www.steinwurf.com'
+                    }
+                },
+                'name': 'aaa',
+                'description': [
+                    {'kind': 'text', 'content': 'bla bla', 'link': None}
+                ]
+            }],
+        },
+        'fsdfsddsfsdfs': {
+            'kind': 'variable',
+            'name': "dfsfdsfddfsdfs",
+            'value': '10',
+            'type': {
+                'value': 'uint32_t', 'link': {
+                    'url': True, 'value': 'www.steinwurf.com'
+                }
+            },
+            'location': {'file': 'sdd.h', 'line-start': 10, 'line-end': 15},
+            'is_static': False,
+            'is_mutable': True,
+            'is_volatile': False,
+            'is_const': True,
+            'is_constexpr': True,
+            'scope': 'dfsds::ds',
+            'access': 'public',
+            'briefdescription': [
+                {'kind': 'text', 'content': 'bla bla', 'link': None}
+            ],
+            'detaileddescription': [
+                {'kind': 'text', 'content': 'bla bla', 'link': None}
+            ]
+        },
     }
 
     api_schema = schema.Schema({
         str: schema.Or(
             namespace_schema,
             class_struct_schema,
-            enum_schema
+            enum_schema,
+            typedef_using_schema,
+            function_schema,
+            variable_schema
         )
     })
 
