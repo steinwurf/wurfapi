@@ -108,5 +108,5 @@ setup(
     #
     package_data={"wurfapi": ["template_files/*"]},
 
-    install_requires=['pyquery', 'python-archive'],
+    install_requires=['pyquery', 'python-archive', 'schema', 'six'],
 )

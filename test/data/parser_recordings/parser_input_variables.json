@@ -4,15 +4,16 @@
     "briefdescription": [
       {
         "content": "Not important.",
-        "kind": "text"
+        "kind": "text",
+        "link": null
       }
     ],
     "detaileddescription": [],
     "kind": "struct",
     "location": {
       "file": "variables.hpp",
-      "line-start": 2,
-      "line-stop": 26
+      "line-end": 26,
+      "line-start": 2
     },
     "members": [
       "variables::a",
@@ -31,7 +32,8 @@
     "briefdescription": [
       {
         "content": "This is a a variable.",
-        "kind": "text"
+        "kind": "text",
+        "link": null
       }
     ],
     "detaileddescription": [],
@@ -43,8 +45,8 @@
     "kind": "variable",
     "location": {
       "file": "variables.hpp",
-      "line-start": 8,
-      "line-stop": null
+      "line-end": null,
+      "line-start": 8
     },
     "name": "a",
     "scope": "variables",
@@ -64,7 +66,8 @@
     "briefdescription": [
       {
         "content": "This is a b variable.",
-        "kind": "text"
+        "kind": "text",
+        "link": null
       }
     ],
     "detaileddescription": [],
@@ -76,8 +79,8 @@
     "kind": "variable",
     "location": {
       "file": "variables.hpp",
-      "line-start": 11,
-      "line-stop": null
+      "line-end": null,
+      "line-start": 11
     },
     "name": "b",
     "scope": "variables",
@@ -94,7 +97,8 @@
     "briefdescription": [
       {
         "content": "This is a c variable.",
-        "kind": "text"
+        "kind": "text",
+        "link": null
       }
     ],
     "detaileddescription": [],
@@ -106,8 +110,8 @@
     "kind": "variable",
     "location": {
       "file": "variables.hpp",
-      "line-start": 18,
-      "line-stop": null
+      "line-end": null,
+      "line-start": 18
     },
     "name": "c",
     "scope": "variables",
@@ -124,7 +128,8 @@
     "briefdescription": [
       {
         "content": "This is a dddd variable.",
-        "kind": "text"
+        "kind": "text",
+        "link": null
       }
     ],
     "detaileddescription": [],
@@ -136,8 +141,8 @@
     "kind": "variable",
     "location": {
       "file": "variables.hpp",
-      "line-start": 22,
-      "line-stop": null
+      "line-end": null,
+      "line-start": 22
     },
     "name": "dddd",
     "scope": "variables",
@@ -154,7 +159,8 @@
     "briefdescription": [
       {
         "content": "Test with alias.",
-        "kind": "text"
+        "kind": "text",
+        "link": null
       }
     ],
     "detaileddescription": [],
@@ -166,8 +172,8 @@
     "kind": "variable",
     "location": {
       "file": "variables.hpp",
-      "line-start": 14,
-      "line-stop": null
+      "line-end": null,
+      "line-start": 14
     },
     "name": "eeee",
     "scope": "variables",
@@ -187,15 +193,16 @@
     "briefdescription": [
       {
         "content": "Special type for the variable a.",
-        "kind": "text"
+        "kind": "text",
+        "link": null
       }
     ],
     "detaileddescription": [],
     "kind": "using",
     "location": {
       "file": "variables.hpp",
-      "line-start": 5,
-      "line-stop": null
+      "line-end": null,
+      "line-start": 5
     },
     "name": "my_type_const",
     "scope": "variables",
@@ -211,7 +218,8 @@
     "briefdescription": [
       {
         "content": "This is the size of dddd.",
-        "kind": "text"
+        "kind": "text",
+        "link": null
       }
     ],
     "detaileddescription": [],
@@ -223,8 +231,8 @@
     "kind": "variable",
     "location": {
       "file": "variables.hpp",
-      "line-start": 25,
-      "line-stop": null
+      "line-end": null,
+      "line-start": 25
     },
     "name": "size",
     "scope": "variables",

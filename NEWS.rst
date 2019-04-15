@@ -6,6 +6,7 @@ of every change, see the Git log.
 
 Latest
 ------
+* Major: Added schema checking of parsed API json
 * Major: Added link provider functionality and default mappings to cppreference.
 * Major: Support both internal and external links.
 * Patch: Fix variable constexpr / const parsing.

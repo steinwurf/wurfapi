@@ -376,7 +376,9 @@ Python dictionary representing a C++ namespace::
       'kind': 'namespace',
       'name': 'unqualified-name',
       'scope': 'unique-name' | None,
-      'members: [ 'unique-name', 'unique-name' ]
+      'members: [ 'unique-name', 'unique-name' ],
+      'briefdescription': paragraphs,
+      'detaileddescription': paragraphs
     }
 
 ``class`` | ``struct`` Kind
@@ -389,9 +391,10 @@ Python dictionary representing a C++ class or struct::
       'name': 'unqualified-name',
       'location': location,
       'scope': 'unique-name' | None,
+      'access': 'public' | 'protected' | 'private',
       'members: [ 'unique-name', 'unique-name' ],
-      'briefdescription: 'some text',
-      'detaileddescription: 'some text
+      'briefdescription': paragraphs,
+      'detaileddescription': paragraphs
     }
 
 
@@ -460,8 +463,8 @@ Python dictionary representing a C++ function::
       'briefdescription: paragraphs,
       'detaileddescription: paragraphs,
       'parameters': [
-        { 'type': type, 'name': 'somename', 'description': description },
-        { 'type': type, 'name': 'somename', 'description': description }
+        { 'type': type, 'name': 'somename', 'description': paragraphs },
+        { 'type': type, 'name': 'somename', 'description': paragraphs }
       ]
   }
 
@@ -500,7 +503,7 @@ Python dictionary representing a location::
 Python list representing a C++ type::
 
     type = [
-      {'value': 'sometext', link: link | None }, ...
+      {'value': 'sometext', 'link': link | None }, ...
     ]
 
 Having the type as a list of items we can create links to nested types e.g.
@@ -549,8 +552,6 @@ Text information is stored in a list of paragraphs::
     text = {
       'kind': 'text',
       'content': 'hello',
-      'italic': true | false,
-      'bold': true | false,
       'link': link | None
       }
 
@@ -563,7 +564,7 @@ Text information is stored in a list of paragraphs::
     list = {
       'kind': 'list',
       'ordered': true | false,
-      'items': [paragraphs] # Each item is a list of paragraphs
+      'items': paragraphs # Each item is a list of paragraphs
     }
 
 
