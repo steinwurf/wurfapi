@@ -9,6 +9,7 @@
       }
     ],
     "detaileddescription": [],
+    "is_template": false,
     "kind": "struct",
     "location": {
       "file": "variables.hpp",

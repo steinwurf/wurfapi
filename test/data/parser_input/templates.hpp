@@ -30,7 +30,26 @@ public:
 };
 
 /// Template template function
-template <template <class> class H, class S>
+/// @tparam S something something...
+/// @tparam H another something
+template <template <class> class H, class S = our_type<int>>
 void f(const H<S>& value)
 {
 }
+
+/// A non-type template class
+///
+/// @tparam T is a type
+template <uint32_t Value>
+class non_type
+{
+public:
+};
+
+/// Template template struct
+/// @tparam S something something...
+/// @tparam H another something
+template <template <class> class H, class S = our_type<int>>
+struct testtest
+{
+};

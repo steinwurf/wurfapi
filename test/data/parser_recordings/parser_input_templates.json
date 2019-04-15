@@ -9,6 +9,7 @@
         "link": null
       }
     ],
+    "is_template": true,
     "kind": "class",
     "location": {
       "file": "templates.hpp",
@@ -37,6 +38,7 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
+    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -66,26 +68,27 @@
   },
   "f(constH<S>&)": {
     "access": "public",
-    "briefdescription": [
+    "briefdescription": [],
+    "detaileddescription": [
       {
-        "content": "Template template function.",
+        "content": "Template template function",
         "kind": "text",
         "link": null
       }
     ],
-    "detaileddescription": [],
     "is_const": false,
     "is_constructor": false,
     "is_destructor": false,
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
+    "is_template": true,
     "is_virtual": false,
     "kind": "function",
     "location": {
       "file": "templates.hpp",
-      "line-end": 36,
-      "line-start": 34
+      "line-end": 38,
+      "line-start": 36
     },
     "name": "f",
     "parameters": [
@@ -112,6 +115,27 @@
     "scope": null,
     "signature": "f(const H< S > &value)"
   },
+  "non_type": {
+    "access": "public",
+    "briefdescription": [],
+    "detaileddescription": [
+      {
+        "content": "A non-type template class",
+        "kind": "text",
+        "link": null
+      }
+    ],
+    "is_template": true,
+    "kind": "class",
+    "location": {
+      "file": "templates.hpp",
+      "line-end": 47,
+      "line-start": 44
+    },
+    "members": [],
+    "name": "non_type",
+    "scope": ""
+  },
   "our_type": {
     "access": "public",
     "briefdescription": [],
@@ -122,6 +146,7 @@
         "link": null
       }
     ],
+    "is_template": true,
     "kind": "class",
     "location": {
       "file": "templates.hpp",
@@ -150,6 +175,7 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
+    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -187,6 +213,7 @@
       }
     ],
     "detaileddescription": [],
+    "is_template": true,
     "kind": "class",
     "location": {
       "file": "templates.hpp",
@@ -215,6 +242,7 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
+    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -241,5 +269,26 @@
     },
     "scope": "our_type< int >",
     "signature": "our_type(const int &t)"
+  },
+  "testtest": {
+    "access": "public",
+    "briefdescription": [],
+    "detaileddescription": [
+      {
+        "content": "Template template struct",
+        "kind": "text",
+        "link": null
+      }
+    ],
+    "is_template": true,
+    "kind": "struct",
+    "location": {
+      "file": "templates.hpp",
+      "line-end": 55,
+      "line-start": 53
+    },
+    "members": [],
+    "name": "testtest",
+    "scope": ""
   }
 }

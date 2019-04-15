@@ -16,6 +16,7 @@ test_api = {
     'class_dfdsfsd': {
         'kind': 'class',
         'name': 'sdfsdfsd',
+        'is_template': True,
         'location': {'file': 'some.h', 'line-start': 10, 'line-end': 11},
         'scope': "fdsfd",
         'access': 'private',
@@ -92,6 +93,7 @@ test_api = {
             ]
         },
         'signature': 'void some(int a)',
+        'is_template': True,
         'is_const': True,
         'is_static': False,
         'is_virtual': True,

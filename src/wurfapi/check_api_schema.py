@@ -126,6 +126,7 @@ def check_api_schema(api):
         'location': location_schema,
         'scope': schema.Or(string_schema, None),
         'access': schema.Or('public', 'protected', 'private'),
+        'is_template': bool,
         'members': [MemberInAPI(api=api)],
         'briefdescription': paragraphs_schema,
         'detaileddescription': paragraphs_schema
@@ -181,6 +182,7 @@ def check_api_schema(api):
             'description': paragraphs_schema
         },
         'signature': string_schema,
+        'is_template': bool,
         'is_const': bool,
         'is_static': bool,
         'is_virtual': bool,

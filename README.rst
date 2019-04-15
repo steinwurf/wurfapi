@@ -389,6 +389,7 @@ Python dictionary representing a C++ class or struct::
     info = {
       'kind': 'class' | 'struct',
       'name': 'unqualified-name',
+      'is_template': True | False,
       'location': location,
       'scope': 'unique-name' | None,
       'access': 'public' | 'protected' | 'private',
@@ -452,6 +453,7 @@ Python dictionary representing a C++ function::
         'description': paragraphs
       }
       'signature': 'text',
+      'is_template': True | False,
       'is_const': True | False,
       'is_static': True | False,
       'is_virtual': True | False,

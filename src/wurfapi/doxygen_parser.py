@@ -477,6 +477,17 @@ def parse(parser, xml):
     result["members"] = []
     result["access"] = xml.attrib["prot"]
 
+    # If this class or struct is a template
+    templatelist = xml.find('templateparamlist')
+
+    if templatelist is not None:
+        result["is_template"] = True
+        result["template_parameters"] = parser.parse_element(xml=templatelist)
+
+    else:
+        result["is_template"] = False
+        result["template_parameters"] = []
+
     # Inner classes have their own tag
     for innerclass in xml.findall('.//innerclass'):
         result['members'].append(innerclass.text)
@@ -622,9 +633,47 @@ def parse(xml, parser):
     return result
 
 
-@DoxygenParser.register(tag="type")
+@DoxygenParser.register(tag="templateparamlist")
 def parse(xml, parser):
-    """ Parses Doxygen type
+    """ Parses Doxygen templateparamlist
+    :return: List of template parameters
+    """
+    # Get the name and type of the parameters
+    parameters = []
+    for param in xml.findall('param'):
+
+        parameter = {}
+
+        # Look if we have a declname - sometimes Doxygen has it. It's the
+        # name of the template parameter e.g. in "class T" then "T" would be
+        # the declname
+        template_name = param.findtext("declname", default="")
+        template_type = param.findtext("type")
+
+        # If we did not find a name it is in the type like "class T"
+        if not template_name:
+            template_type, template_name = template_type.split()
+
+        parameter["type"] = template_type
+        parameter["name"] = template_name
+
+        # Parse the default value
+        template_default = param.find("defval")
+
+        if template_default is not None:
+            parameter["default"] = parser.parse_element(xml=template_default)
+        else:
+            parameter["default"] = []
+
+        parameters.append(parameter)
+
+    return parameters
+
+
+@DoxygenParser.register(tag="type")
+@DoxygenParser.register(tag="defval")
+def parse(xml, parser):
+    """ Parses Doxygen type and defval
 
     :return: Type list
     """
@@ -667,6 +716,17 @@ def parse(xml, parser, log, scope):
     result["scope"] = scope
     result['location'] = parser.parse_element(xml=xml.find('location'))
     result["name"] = xml.findtext("name")
+
+    # If this function is a template
+    templatelist = xml.find('templateparamlist')
+
+    if templatelist is not None:
+        result["is_template"] = True
+        result["template_parameters"] = parser.parse_element(xml=templatelist)
+
+    else:
+        result["is_template"] = False
+        result["template_parameters"] = []
 
     # Get the name and type of the parameters
     parameters = []
