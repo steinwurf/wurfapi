@@ -4,15 +4,16 @@
     "briefdescription": [
       {
         "content": "Not important.",
-        "kind": "text"
+        "kind": "text",
+        "link": null
       }
     ],
     "detaileddescription": [],
     "kind": "struct",
     "location": {
       "file": "type_definitions.hpp",
-      "line-start": 2,
-      "line-stop": 9
+      "line-end": 9,
+      "line-start": 2
     },
     "members": [
       "type_definitions::my_bool",
@@ -26,15 +27,16 @@
     "briefdescription": [
       {
         "content": "This is my bool.",
-        "kind": "text"
+        "kind": "text",
+        "link": null
       }
     ],
     "detaileddescription": [],
     "kind": "using",
     "location": {
       "file": "type_definitions.hpp",
-      "line-start": 5,
-      "line-stop": null
+      "line-end": null,
+      "line-start": 5
     },
     "name": "my_bool",
     "scope": "type_definitions",
@@ -50,15 +52,16 @@
     "briefdescription": [
       {
         "content": "This is really a string.",
-        "kind": "text"
+        "kind": "text",
+        "link": null
       }
     ],
     "detaileddescription": [],
     "kind": "using",
     "location": {
       "file": "type_definitions.hpp",
-      "line-start": 8,
-      "line-stop": null
+      "line-end": null,
+      "line-start": 8
     },
     "name": "really_a_string",
     "scope": "type_definitions",

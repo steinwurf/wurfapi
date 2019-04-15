@@ -14,20 +14,22 @@
     "briefdescription": [
       {
         "content": "Different size coffee mugs.",
-        "kind": "text"
+        "kind": "text",
+        "link": null
       }
     ],
     "detaileddescription": [
       {
         "content": "This lets you choose the size of your coffee mug",
-        "kind": "text"
+        "kind": "text",
+        "link": null
       }
     ],
     "kind": "enum",
     "location": {
       "file": "enum_class.hpp",
-      "line-start": 7,
-      "line-stop": 17
+      "line-end": 17,
+      "line-start": 7
     },
     "name": "mug_size",
     "scope": "coffee",
@@ -36,7 +38,8 @@
         "briefdescription": [
           {
             "content": "The Short version.",
-            "kind": "text"
+            "kind": "text",
+            "link": null
           }
         ],
         "detaileddescription": [],
@@ -47,7 +50,8 @@
         "briefdescription": [
           {
             "content": "The Tall version.",
-            "kind": "text"
+            "kind": "text",
+            "link": null
           }
         ],
         "detaileddescription": [],
@@ -58,7 +62,8 @@
         "briefdescription": [
           {
             "content": "The Grande version.",
-            "kind": "text"
+            "kind": "text",
+            "link": null
           }
         ],
         "detaileddescription": [],
@@ -69,7 +74,8 @@
         "briefdescription": [
           {
             "content": "The Venti version 20 ounces.",
-            "kind": "text"
+            "kind": "text",
+            "link": null
           }
         ],
         "detaileddescription": [],

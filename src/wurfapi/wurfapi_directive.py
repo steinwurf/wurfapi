@@ -27,6 +27,8 @@ from . import template_render
 from . import wurfapi_error
 from . import link_mapper
 from . import link_provider
+from . import check_api_schema
+
 
 VERSION = '2.2.0'
 
@@ -194,9 +196,13 @@ def generate_doxygen(app):
     # Try to find additonal links across the API - making it possible for the
     # user to jump more conveniently around in the docs
     mapper = link_mapper.LinkMapper(api=api, link_provider=provider)
+    api = mapper.map()
+
+    # Run schema checks on the API
+    check_api_schema.check_api_schema(api=api)
 
     # Store the final API
-    app.wurfapi_api = mapper.map()
+    app.wurfapi_api = api
 
     with open(os.path.join(app.doctreedir, 'wurfapi_api.json'), 'w') as f:
         json.dump(app.wurfapi_api, f, indent=4, sort_keys=True)

@@ -606,12 +606,12 @@ def parse(xml, parser):
     result = {}
     file_path = xml.attrib["file"]
     result['file'] = parser.relative_path(path=file_path)
-    result['line-stop'] = None
+    result['line-end'] = None
     if xml.attrib.has_key("bodystart"):
         result['line-start'] = int(xml.attrib["bodystart"])
-        line_stop = int(xml.attrib["bodyend"])
-        if line_stop != -1:
-            result['line-stop'] = line_stop
+        line_end = int(xml.attrib["bodyend"])
+        if line_end != -1:
+            result['line-end'] = line_end
     else:
         result['line-start'] = int(xml.attrib["line"])
 
@@ -671,7 +671,7 @@ def parse(xml, parser, log, scope):
         parameter = {}
         parameter["type"] = parser.parse_element(xml=param.find("type"))
         parameter['name'] = param.findtext('declname')
-        parameter['description'] = ''
+        parameter['description'] = []
 
         parameters.append(parameter)
 
@@ -955,7 +955,7 @@ def parse(parser, log, xml):
             return
         else:
             paragraphs.append(
-                {"kind": "text", "content": content.strip()})
+                {"kind": "text", "content": content.strip(), "link": None})
 
     append_text(xml.text)
 
