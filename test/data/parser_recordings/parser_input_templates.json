@@ -5,14 +5,15 @@
     "detaileddescription": [
       {
         "content": "A template class",
-        "kind": "text"
+        "kind": "text",
+        "link": null
       }
     ],
     "kind": "class",
     "location": {
       "file": "templates.hpp",
-      "line-start": 25,
-      "line-stop": 30
+      "line-end": 30,
+      "line-start": 25
     },
     "members": [
       "another_type::another_type(constT&)"
@@ -25,7 +26,8 @@
     "briefdescription": [
       {
         "content": "With constructor.",
-        "kind": "text"
+        "kind": "text",
+        "link": null
       }
     ],
     "detaileddescription": [],
@@ -39,13 +41,13 @@
     "kind": "function",
     "location": {
       "file": "templates.hpp",
-      "line-start": 29,
-      "line-stop": null
+      "line-end": null,
+      "line-start": 29
     },
     "name": "another_type",
     "parameters": [
       {
-        "description": "",
+        "description": [],
         "name": "t",
         "type": [
           {
@@ -67,7 +69,8 @@
     "briefdescription": [
       {
         "content": "Template template function.",
-        "kind": "text"
+        "kind": "text",
+        "link": null
       }
     ],
     "detaileddescription": [],
@@ -81,13 +84,13 @@
     "kind": "function",
     "location": {
       "file": "templates.hpp",
-      "line-start": 34,
-      "line-stop": 36
+      "line-end": 36,
+      "line-start": 34
     },
     "name": "f",
     "parameters": [
       {
-        "description": "",
+        "description": [],
         "name": "value",
         "type": [
           {
@@ -115,14 +118,15 @@
     "detaileddescription": [
       {
         "content": "A template class",
-        "kind": "text"
+        "kind": "text",
+        "link": null
       }
     ],
     "kind": "class",
     "location": {
       "file": "templates.hpp",
-      "line-start": 5,
-      "line-stop": 10
+      "line-end": 10,
+      "line-start": 5
     },
     "members": [
       "our_type::our_type(constT&)"
@@ -135,7 +139,8 @@
     "briefdescription": [
       {
         "content": "With constructor.",
-        "kind": "text"
+        "kind": "text",
+        "link": null
       }
     ],
     "detaileddescription": [],
@@ -149,13 +154,13 @@
     "kind": "function",
     "location": {
       "file": "templates.hpp",
-      "line-start": 9,
-      "line-stop": null
+      "line-end": null,
+      "line-start": 9
     },
     "name": "our_type",
     "parameters": [
       {
-        "description": "",
+        "description": [],
         "name": "t",
         "type": [
           {
@@ -177,15 +182,16 @@
     "briefdescription": [
       {
         "content": "Specialization.",
-        "kind": "text"
+        "kind": "text",
+        "link": null
       }
     ],
     "detaileddescription": [],
     "kind": "class",
     "location": {
       "file": "templates.hpp",
-      "line-start": 14,
-      "line-stop": 19
+      "line-end": 19,
+      "line-start": 14
     },
     "members": [
       "our_type<int>::our_type(constint&)"
@@ -198,7 +204,8 @@
     "briefdescription": [
       {
         "content": "With int.",
-        "kind": "text"
+        "kind": "text",
+        "link": null
       }
     ],
     "detaileddescription": [],
@@ -212,13 +219,13 @@
     "kind": "function",
     "location": {
       "file": "templates.hpp",
-      "line-start": 18,
-      "line-stop": null
+      "line-end": null,
+      "line-start": 18
     },
     "name": "our_type",
     "parameters": [
       {
-        "description": "",
+        "description": [],
         "name": "t",
         "type": [
           {
