@@ -4,13 +4,15 @@
     "briefdescription": [
       {
         "content": "Set the heat.",
-        "kind": "text"
+        "kind": "text",
+        "link": null
       }
     ],
     "detaileddescription": [
       {
         "content": "This function is use to set the head of the machine.",
-        "kind": "text"
+        "kind": "text",
+        "link": null
       },
       {
         "content": "void yes();\n",
@@ -19,15 +21,18 @@
       },
       {
         "content": "But maybe it also does other things?",
-        "kind": "text"
+        "kind": "text",
+        "link": null
       },
       {
         "content": "Test this break",
-        "kind": "text"
+        "kind": "text",
+        "link": null
       },
       {
         "content": "And then some text",
-        "kind": "text"
+        "kind": "text",
+        "link": null
       }
     ],
     "is_const": true,
@@ -40,8 +45,8 @@
     "kind": "function",
     "location": {
       "file": "function.hpp",
-      "line-start": 23,
-      "line-stop": null
+      "line-end": null,
+      "line-start": 23
     },
     "name": "set",
     "parameters": [
@@ -49,7 +54,8 @@
         "description": [
           {
             "content": "Set the heat object.",
-            "kind": "text"
+            "kind": "text",
+            "link": null
           }
         ],
         "name": "h",
@@ -64,7 +70,8 @@
         "description": [
           {
             "content": "The maximum heat value.",
-            "kind": "text"
+            "kind": "text",
+            "link": null
           }
         ],
         "name": "max",
@@ -80,7 +87,8 @@
       "description": [
         {
           "content": "The current heat.",
-          "kind": "text"
+          "kind": "text",
+          "link": null
         },
         {
           "content": "for (uint64_t i = 0; i < 3; ++i)\n{\n    std::cout << i << \"\\n\";\n}\n",
