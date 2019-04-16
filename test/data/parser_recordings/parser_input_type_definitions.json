@@ -4,8 +4,7 @@
     "briefdescription": [
       {
         "content": "Not important.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -28,8 +27,7 @@
     "briefdescription": [
       {
         "content": "This is my bool.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -43,7 +41,6 @@
     "scope": "type_definitions",
     "type": [
       {
-        "link": null,
         "value": "bool"
       }
     ]
@@ -53,8 +50,7 @@
     "briefdescription": [
       {
         "content": "This is really a string.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -68,7 +64,6 @@
     "scope": "type_definitions",
     "type": [
       {
-        "link": null,
         "value": "std::string"
       }
     ]

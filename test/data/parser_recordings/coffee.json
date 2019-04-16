@@ -4,8 +4,7 @@
     "briefdescription": [
       {
         "content": "This is header.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -27,8 +26,7 @@
     "briefdescription": [
       {
         "content": "Check it out!",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -52,7 +50,6 @@
       "description": [],
       "type": [
         {
-          "link": null,
           "value": "void"
         }
       ]
@@ -88,8 +85,7 @@
     "briefdescription": [
       {
         "content": "A machine to brew your coffee. Docs by",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       },
       {
         "content": "http://steinwurf.com",
@@ -101,15 +97,13 @@
       },
       {
         "content": ".",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [
       {
         "content": "The coffee machine object serves as your applications entry point for brewing coffee. You have to remember to fill the",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       },
       {
         "content": "project::coffee::machine::water_tank",
@@ -121,8 +115,7 @@
       },
       {
         "content": "though.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "is_template": false,
@@ -167,8 +160,7 @@
     "briefdescription": [
       {
         "content": "Internal brewing state.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -204,7 +196,6 @@
     "scope": "project::coffee::machine::brew_state",
     "type": [
       {
-        "link": null,
         "value": "bool"
       }
     ],
@@ -215,8 +206,7 @@
     "briefdescription": [
       {
         "content": "The generic callback type.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -230,7 +220,6 @@
     "scope": "project::coffee::machine",
     "type": [
       {
-        "link": null,
         "value": "std::function< void()>"
       }
     ]
@@ -240,8 +229,7 @@
     "briefdescription": [
       {
         "content": "The number of cups brewed by this machine.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -260,7 +248,6 @@
     "scope": "project::coffee::machine",
     "type": [
       {
-        "link": null,
         "value": "uint32_t"
       }
     ],
@@ -290,13 +277,11 @@
       "description": [
         {
           "content": "the mug_size",
-          "kind": "text",
-          "link": null
+          "kind": "text"
         }
       ],
       "type": [
         {
-          "link": null,
           "value": "mug_size"
         }
       ]
@@ -328,7 +313,6 @@
       "description": [],
       "type": [
         {
-          "link": null,
           "value": "void"
         }
       ]
@@ -341,8 +325,7 @@
     "briefdescription": [
       {
         "content": "Implementation details.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -364,8 +347,7 @@
     "briefdescription": [
       {
         "content": "Run the machine.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -389,7 +371,6 @@
       "description": [],
       "type": [
         {
-          "link": null,
           "value": "void"
         }
       ]
@@ -402,8 +383,7 @@
     "briefdescription": [
       {
         "content": "A variable which uses the callback using statement.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -450,7 +430,6 @@
     "scope": "project::coffee::machine",
     "type": [
       {
-        "link": null,
         "value": "std::unique_ptr<"
       },
       {
@@ -461,7 +440,6 @@
         "value": "impl"
       },
       {
-        "link": null,
         "value": ">"
       }
     ],
@@ -472,8 +450,7 @@
     "briefdescription": [
       {
         "content": "A variable which uses the other_callback typedef statement.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -506,8 +483,7 @@
     "briefdescription": [
       {
         "content": "Constructor.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -539,8 +515,7 @@
     "briefdescription": [
       {
         "content": "Constructor with power.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -605,13 +580,11 @@
       "description": [
         {
           "content": "The number of cups",
-          "kind": "text",
-          "link": null
+          "kind": "text"
         }
       ],
       "type": [
         {
-          "link": null,
           "value": "uint32_t"
         }
       ]
@@ -624,8 +597,7 @@
     "briefdescription": [
       {
         "content": "Another way to define a type is a typedef.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -652,8 +624,7 @@
     "briefdescription": [
       {
         "content": "The power state.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -670,8 +641,7 @@
         "briefdescription": [
           {
             "content": "Turn power on.",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           }
         ],
         "detaileddescription": [],
@@ -682,8 +652,7 @@
         "briefdescription": [
           {
             "content": "Turn power off.",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           }
         ],
         "detaileddescription": [],
@@ -697,15 +666,13 @@
     "briefdescription": [
       {
         "content": "Set the heat.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [
       {
         "content": "This function is use to set the head of the machine.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "is_const": true,
@@ -729,7 +696,6 @@
         "name": "h",
         "type": [
           {
-            "link": null,
             "value": "const heat &"
           }
         ]
@@ -739,7 +705,6 @@
         "name": "max",
         "type": [
           {
-            "link": null,
             "value": "int"
           }
         ]
@@ -749,7 +714,6 @@
       "description": [],
       "type": [
         {
-          "link": null,
           "value": "void"
         }
       ]
@@ -762,23 +726,20 @@
     "briefdescription": [
       {
         "content": "Set the number of cups to brew.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [
       {
         "content": "Before setting number of cups, check the following:",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       },
       {
         "items": [
           [
             {
               "content": "You have enough water in the",
-              "kind": "text",
-              "link": null
+              "kind": "text"
             },
             {
               "content": "water_tank",
@@ -790,16 +751,14 @@
             },
             {
               "content": ".",
-              "kind": "text",
-              "link": null
+              "kind": "text"
             },
             {
               "items": [
                 [
                   {
                     "content": "Of course you also need power.",
-                    "kind": "text",
-                    "link": null
+                    "kind": "text"
                   },
                   {
                     "content": "std::cout << \"You need power\" << std::endl;\nstd::cout << \"So plug it in\" << std::endl;\n",
@@ -810,8 +769,7 @@
                 [
                   {
                     "content": "A stable surface is also important!",
-                    "kind": "text",
-                    "link": null
+                    "kind": "text"
                   }
                 ]
               ],
@@ -822,8 +780,7 @@
           [
             {
               "content": "Your coffee mug is clean.",
-              "kind": "text",
-              "link": null
+              "kind": "text"
             }
           ]
         ],
@@ -832,8 +789,7 @@
       },
       {
         "content": "You can see",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       },
       {
         "content": "number_cups()",
@@ -845,8 +801,7 @@
       },
       {
         "content": "for how many cups",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "is_const": false,
@@ -869,14 +824,12 @@
         "description": [
           {
             "content": "The number of cups",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           }
         ],
         "name": "cups",
         "type": [
           {
-            "link": null,
             "value": "std::string"
           }
         ]
@@ -886,7 +839,6 @@
       "description": [],
       "type": [
         {
-          "link": null,
           "value": "void"
         }
       ]
@@ -899,23 +851,20 @@
     "briefdescription": [
       {
         "content": "Set the number of cups to brew.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [
       {
         "content": "Before setting number of cups, check the following:",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       },
       {
         "items": [
           [
             {
               "content": "You have enough water in the",
-              "kind": "text",
-              "link": null
+              "kind": "text"
             },
             {
               "content": "water_tank",
@@ -927,16 +876,14 @@
             },
             {
               "content": ".",
-              "kind": "text",
-              "link": null
+              "kind": "text"
             },
             {
               "items": [
                 [
                   {
                     "content": "Of course you also need power.",
-                    "kind": "text",
-                    "link": null
+                    "kind": "text"
                   },
                   {
                     "content": "std::cout << \"You need power\" << std::endl;\nstd::cout << \"So plug it in\" << std::endl;\n",
@@ -947,8 +894,7 @@
                 [
                   {
                     "content": "A stable surface is also important!",
-                    "kind": "text",
-                    "link": null
+                    "kind": "text"
                   }
                 ]
               ],
@@ -959,8 +905,7 @@
           [
             {
               "content": "Your coffee mug is clean.",
-              "kind": "text",
-              "link": null
+              "kind": "text"
             }
           ]
         ],
@@ -969,8 +914,7 @@
       },
       {
         "content": "You can see",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       },
       {
         "content": "number_cups()",
@@ -982,8 +926,7 @@
       },
       {
         "content": "for how many cups",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "is_const": false,
@@ -1006,14 +949,12 @@
         "description": [
           {
             "content": "The number of cups",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           }
         ],
         "name": "cups",
         "type": [
           {
-            "link": null,
             "value": "uint32_t"
           }
         ]
@@ -1023,7 +964,6 @@
       "description": [],
       "type": [
         {
-          "link": null,
           "value": "void"
         }
       ]
@@ -1036,8 +976,7 @@
     "briefdescription": [
       {
         "content": "Set the power of the machine.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -1075,7 +1014,6 @@
       "description": [],
       "type": [
         {
-          "link": null,
           "value": "void"
         }
       ]
@@ -1088,8 +1026,7 @@
     "briefdescription": [
       {
         "content": "Get the first water tank.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -1120,7 +1057,6 @@
           "value": "water_tank"
         },
         {
-          "link": null,
           "value": "&"
         }
       ]
@@ -1133,8 +1069,7 @@
     "briefdescription": [
       {
         "content": "Get the first water tank.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -1158,7 +1093,6 @@
       "description": [],
       "type": [
         {
-          "link": null,
           "value": "const"
         },
         {
@@ -1169,7 +1103,6 @@
           "value": "water_tank"
         },
         {
-          "link": null,
           "value": "&"
         }
       ]
@@ -1182,8 +1115,7 @@
     "briefdescription": [
       {
         "content": "Get all water tanks.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -1207,7 +1139,6 @@
       "description": [],
       "type": [
         {
-          "link": null,
           "value": "std::vector<"
         },
         {
@@ -1218,7 +1149,6 @@
           "value": "water_tank"
         },
         {
-          "link": null,
           "value": ">"
         }
       ]
@@ -1231,8 +1161,7 @@
     "briefdescription": [
       {
         "content": "The number of cups brewed by all machines.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -1251,7 +1180,6 @@
     "scope": "project::coffee::machine",
     "type": [
       {
-        "link": null,
         "value": "uint32_t"
       }
     ],
@@ -1262,15 +1190,13 @@
     "briefdescription": [
       {
         "content": "The version of the machine.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [
       {
         "content": "Example:",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       },
       {
         "content": "std::cout << \"The version\";\n           << project::coffee::machine::version() << \"\\n\";\n",
@@ -1279,8 +1205,7 @@
       },
       {
         "content": "Remember to use",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       },
       {
         "content": "\\n",
@@ -1289,8 +1214,7 @@
       },
       {
         "content": "rather than",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       },
       {
         "content": "std::endl",
@@ -1299,8 +1223,7 @@
       },
       {
         "content": "it is more efficient.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "is_const": false,
@@ -1323,8 +1246,7 @@
       "description": [
         {
           "content": "The version of the machine. Example:",
-          "kind": "text",
-          "link": null
+          "kind": "text"
         },
         {
           "content": "std::cout << machine::version();\nstd::cout << \"\\n\";",
@@ -1334,7 +1256,6 @@
       ],
       "type": [
         {
-          "link": null,
           "value": "std::string"
         }
       ]
@@ -1347,8 +1268,7 @@
     "briefdescription": [
       {
         "content": "The water thank.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -1390,14 +1310,12 @@
         "description": [
           {
             "content": "Fill the water tank with the specified number number of cups.",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           }
         ],
         "name": "number_of_cups",
         "type": [
           {
-            "link": null,
             "value": "const cups &"
           }
         ]
@@ -1406,8 +1324,7 @@
         "description": [
           {
             "content": "Set",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           },
           {
             "content": "true",
@@ -1416,8 +1333,7 @@
           },
           {
             "content": "to enable the safety valve this will sound and alarm if the water tank is too full. To disable the safety valve set",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           },
           {
             "content": "false",
@@ -1426,14 +1342,12 @@
           },
           {
             "content": ".",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           }
         ],
         "name": "safety_valve",
         "type": [
           {
-            "link": null,
             "value": "bool"
           }
         ]
@@ -1448,8 +1362,7 @@
         },
         {
           "content": "if filling was successfull otherwise",
-          "kind": "text",
-          "link": null
+          "kind": "text"
         },
         {
           "content": "false",
@@ -1459,7 +1372,6 @@
       ],
       "type": [
         {
-          "link": null,
           "value": "bool"
         }
       ]
@@ -1496,8 +1408,7 @@
         },
         {
           "content": "if the water tank is full otherwise",
-          "kind": "text",
-          "link": null
+          "kind": "text"
         },
         {
           "content": "false",
@@ -1506,13 +1417,11 @@
         },
         {
           "content": ".",
-          "kind": "text",
-          "link": null
+          "kind": "text"
         }
       ],
       "type": [
         {
-          "link": null,
           "value": "bool"
         }
       ]
@@ -1525,8 +1434,7 @@
     "briefdescription": [
       {
         "content": "Destructor.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -1558,15 +1466,13 @@
     "briefdescription": [
       {
         "content": "Different size coffee mugs.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [
       {
         "content": "This lets you choose the size of your coffee mug",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "kind": "enum",
@@ -1582,8 +1488,7 @@
         "briefdescription": [
           {
             "content": "The Short version.",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           }
         ],
         "detaileddescription": [],
@@ -1594,8 +1499,7 @@
         "briefdescription": [
           {
             "content": "The Tall version.",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           }
         ],
         "detaileddescription": [],
@@ -1607,8 +1511,7 @@
         "detaileddescription": [
           {
             "content": "The Grande version Use it like so:",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           },
           {
             "content": "std::cout << mug_size::Grande << std::endl;",
@@ -1623,15 +1526,13 @@
         "briefdescription": [
           {
             "content": "The Venti version 20 ounces.",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           }
         ],
         "detaileddescription": [
           {
             "content": "This one will keep you up all night!",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           },
           {
             "content": "std::cout << mug_size::Venti << std::endl;\n",
@@ -1640,8 +1541,7 @@
           },
           {
             "content": "I hope you enjoy.",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           }
         ],
         "name": "Venti",
@@ -1654,8 +1554,7 @@
     "briefdescription": [
       {
         "content": "Prints the",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       },
       {
         "content": "a",
@@ -1664,8 +1563,7 @@
       },
       {
         "content": "and then the value pointed to by",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       },
       {
         "content": "b",
@@ -1674,20 +1572,17 @@
       },
       {
         "content": ".",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [
       {
         "content": "This is really handy in case you need to see them.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       },
       {
         "content": "Example:",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       },
       {
         "content": "std::cout << project::coffee::print(2.0, &value) << \"\\n\";\n",
@@ -1696,8 +1591,7 @@
       },
       {
         "content": "Remember to use",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       },
       {
         "content": "\\n",
@@ -1706,8 +1600,7 @@
       },
       {
         "content": "rather than",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       },
       {
         "content": "std::endl",
@@ -1716,8 +1609,7 @@
       },
       {
         "content": "it is more efficient.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "is_const": false,
@@ -1740,14 +1632,12 @@
         "description": [
           {
             "content": "A is actually a double.",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           }
         ],
         "name": "a",
         "type": [
           {
-            "link": null,
             "value": "double"
           }
         ]
@@ -1756,14 +1646,12 @@
         "description": [
           {
             "content": "Whereas b is a pointer to an int.",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           }
         ],
         "name": "b",
         "type": [
           {
-            "link": null,
             "value": "int *"
           }
         ]
@@ -1773,8 +1661,7 @@
       "description": [
         {
           "content": "This does not really return anything because it is",
-          "kind": "text",
-          "link": null
+          "kind": "text"
         },
         {
           "content": "void",
@@ -1783,13 +1670,11 @@
         },
         {
           "content": "but it could!",
-          "kind": "text",
-          "link": null
+          "kind": "text"
         }
       ],
       "type": [
         {
-          "link": null,
           "value": "void"
         }
       ]
@@ -1821,8 +1706,7 @@
         "description": [
           {
             "content": "This is the most important parameter. Without it the function will not work. Example:",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           },
           {
             "content": "project::coffee::print(3);\n",
@@ -1831,14 +1715,12 @@
           },
           {
             "content": "Does this work",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           }
         ],
         "name": "a_number",
         "type": [
           {
-            "link": null,
             "value": "int"
           }
         ]
@@ -1847,8 +1729,7 @@
         "description": [
           {
             "content": "If",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           },
           {
             "content": "true",
@@ -1857,14 +1738,12 @@
           },
           {
             "content": "print on some actual paper.",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           }
         ],
         "name": "on_paper",
         "type": [
           {
-            "link": null,
             "value": "bool"
           }
         ]
@@ -1874,7 +1753,6 @@
       "description": [],
       "type": [
         {
-          "link": null,
           "value": "void"
         }
       ]
@@ -1906,7 +1784,6 @@
       "description": [],
       "type": [
         {
-          "link": null,
           "value": "std::string"
         }
       ]

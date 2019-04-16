@@ -14,15 +14,13 @@
     "briefdescription": [
       {
         "content": "Different size coffee mugs.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [
       {
         "content": "This lets you choose the size of your coffee mug",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "kind": "enum",
@@ -38,8 +36,7 @@
         "briefdescription": [
           {
             "content": "The Short version.",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           }
         ],
         "detaileddescription": [],
@@ -50,8 +47,7 @@
         "briefdescription": [
           {
             "content": "The Tall version.",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           }
         ],
         "detaileddescription": [],
@@ -62,8 +58,7 @@
         "briefdescription": [
           {
             "content": "The Grande version.",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           }
         ],
         "detaileddescription": [],
@@ -74,8 +69,7 @@
         "briefdescription": [
           {
             "content": "The Venti version 20 ounces.",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           }
         ],
         "detaileddescription": [],

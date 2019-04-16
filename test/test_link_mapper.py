@@ -39,58 +39,58 @@ def test_split_cpptype():
 
 def test_split_typelist():
 
-    typelist = [{"value": "const ", "link": None},
+    typelist = [{"value": "const "},
                 {"value": "std::function", "link": {
                     'url': True, 'value': 'www.isocpp.org'}},
-                {"value": "<void(uint32_t*, long double)>&", "link": None}]
+                {"value": "<void(uint32_t*, long double)>&"}]
 
     result = wurfapi.link_mapper.split_typelist(typelist=typelist)
 
     print(result)
 
-    expected = [{'link': None, 'value': 'const'},
-                {'link': None, 'value': ' '},
+    expected = [{'value': 'const'},
+                {'value': ' '},
                 {'link': {'url': True, 'value': 'www.isocpp.org'},
                     'value': 'std::function'},
-                {'link': None, 'value': '<'},
-                {'link': None, 'value': 'void'},
-                {'link': None, 'value': '('},
-                {'link': None, 'value': 'uint32_t'},
-                {'link': None, 'value': '*'},
-                {'link': None, 'value': ','},
-                {'link': None, 'value': ' '},
-                {'link': None, 'value': 'long double'},
-                {'link': None, 'value': ')'},
-                {'link': None, 'value': '>'},
-                {'link': None, 'value': '&'}]
+                {'value': '<'},
+                {'value': 'void'},
+                {'value': '('},
+                {'value': 'uint32_t'},
+                {'value': '*'},
+                {'value': ','},
+                {'value': ' '},
+                {'value': 'long double'},
+                {'value': ')'},
+                {'value': '>'},
+                {'value': '&'}]
 
     assert result == expected
 
 
 def test_join_typelist():
 
-    typelist = [{'link': None, 'value': 'const'},
-                {'link': None, 'value': ' '},
+    typelist = [{'value': 'const'},
+                {'value': ' '},
                 {'link': {'url': True, 'value': 'www.isocpp.org'},
                     'value': 'std::function'},
-                {'link': None, 'value': '<'},
-                {'link': None, 'value': 'void'},
-                {'link': None, 'value': '('},
-                {'link': None, 'value': 'uint32_t'},
-                {'link': None, 'value': '*'},
-                {'link': None, 'value': ','},
-                {'link': None, 'value': ' '},
-                {'link': None, 'value': 'long double'},
-                {'link': None, 'value': ')'},
-                {'link': None, 'value': '>'},
-                {'link': None, 'value': '&'}]
+                {'value': '<'},
+                {'value': 'void'},
+                {'value': '('},
+                {'value': 'uint32_t'},
+                {'value': '*'},
+                {'value': ','},
+                {'value': ' '},
+                {'value': 'long double'},
+                {'value': ')'},
+                {'value': '>'},
+                {'value': '&'}]
 
     result = wurfapi.link_mapper.join_typelist(typelist=typelist)
 
-    expected = [{"value": "const ", "link": None},
+    expected = [{"value": "const "},
                 {"value": "std::function", "link": {
                     'url': True, 'value': 'www.isocpp.org'}},
-                {"value": "<void(uint32_t*, long double)>&", "link": None}]
+                {"value": "<void(uint32_t*, long double)>&"}]
 
     print(result)
 
@@ -100,7 +100,7 @@ def test_join_typelist():
 def test_linkmapper():
 
     api = {'object': {'type': [
-        {'value': 'const std::function<void(uint32_t*, long double)>&', 'link': None}]}, 'uint32_t': "dummy"}
+        {'value': 'const std::function<void(uint32_t*, long double)>&'}]}, 'uint32_t': "dummy"}
 
     provider = mock.Mock()
     provider.find_link.return_value = None
@@ -113,9 +113,9 @@ def test_linkmapper():
 
     expected = {'object':
                 {'type': [
-                    {'link': None, 'value': 'const std::function<void('},
+                    {'value': 'const std::function<void('},
                     {'link': {"url": False, "value": 'uint32_t'}, 'value': 'uint32_t'},
-                    {'link': None, 'value': '*, long double)>&'}]},
+                    {'value': '*, long double)>&'}]},
                 'uint32_t': 'dummy'}
 
     assert result == expected
