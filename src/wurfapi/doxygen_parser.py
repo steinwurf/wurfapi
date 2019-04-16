@@ -759,7 +759,8 @@ def parse(xml, parser, log, scope):
 
     detaileddescription = xml.find("detaileddescription")
 
-    # Description of the parameters are in the parameterlist tags
+    # Description of the parameters are in the parameterlist tags with the
+    # attribute kind="param"
     parameterlists = detaileddescription.findall(
         './/parameterlist[@kind = "param"]')
 
