@@ -117,7 +117,8 @@ def check_api_schema(api):
     template_parameter_schema = schema.Schema([{
         'type': type_schema,
         'name': string_schema,
-        schema.Optional('default'): type_schema
+        schema.Optional('default'): type_schema,
+        schema.Optional('description'): paragraphs_schema
     }])
 
     # Schema for checking the namespace kind

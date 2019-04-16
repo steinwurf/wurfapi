@@ -57,7 +57,7 @@
           {
             "link": {
               "url": false,
-              "value": "our_type<class>"
+              "value": "our_type"
             },
             "value": "our_type"
           },
@@ -74,7 +74,7 @@
       }
     ]
   },
-  "function<R(Args...)><typename,typename...>": {
+  "function<R(Args...)>": {
     "access": "public",
     "briefdescription": [
       {
@@ -111,7 +111,7 @@
       }
     ]
   },
-  "non_type<uint32_t>": {
+  "non_type": {
     "access": "public",
     "briefdescription": [],
     "detaileddescription": [
@@ -140,7 +140,7 @@
       }
     ]
   },
-  "our_type<class>": {
+  "our_type": {
     "access": "public",
     "briefdescription": [],
     "detaileddescription": [
@@ -156,7 +156,7 @@
       "line-start": 5
     },
     "members": [
-      "our_type<class>::our_type(constT&)"
+      "our_type::our_type(constT&)"
     ],
     "name": "our_type",
     "scope": "",
@@ -171,7 +171,7 @@
       }
     ]
   },
-  "our_type<class>::our_type(constT&)": {
+  "our_type::our_type(constT&)": {
     "access": "public",
     "briefdescription": [
       {
@@ -209,10 +209,10 @@
       "description": [],
       "type": []
     },
-    "scope": "our_type<class>",
+    "scope": "our_type",
     "signature": "our_type(const T &t)"
   },
-  "our_type<int><>": {
+  "our_type<int>": {
     "access": "public",
     "briefdescription": [
       {
@@ -228,13 +228,13 @@
       "line-start": 14
     },
     "members": [
-      "our_type<int><>::our_type(constint&)"
+      "our_type<int>::our_type(constint&)"
     ],
     "name": "our_type< int >",
     "scope": "",
     "template_parameters": []
   },
-  "our_type<int><>::our_type(constint&)": {
+  "our_type<int>::our_type(constint&)": {
     "access": "public",
     "briefdescription": [
       {
@@ -272,7 +272,7 @@
       "description": [],
       "type": []
     },
-    "scope": "our_type<int><>",
+    "scope": "our_type<int>",
     "signature": "our_type(const int &t)"
   },
   "test": {
@@ -280,73 +280,12 @@
     "detaileddescription": [],
     "kind": "namespace",
     "members": [
-      "test::another_type<class,typename,typename...>"
+      "test::another_type"
     ],
     "name": "test",
     "scope": ""
   },
-  "test::another_type::nested<class>": {
-    "access": "public",
-    "briefdescription": [
-      {
-        "content": "Nexted class.",
-        "kind": "text"
-      }
-    ],
-    "detaileddescription": [],
-    "kind": "class",
-    "location": {
-      "file": "templates.hpp",
-      "line-end": 38,
-      "line-start": 35
-    },
-    "members": [
-      "test::another_type::nested<class>::print()"
-    ],
-    "name": "nested",
-    "scope": "test::another_type",
-    "template_parameters": [
-      {
-        "name": "T",
-        "type": [
-          {
-            "value": "class"
-          }
-        ]
-      }
-    ]
-  },
-  "test::another_type::nested<class>::print()": {
-    "access": "private",
-    "briefdescription": [],
-    "detaileddescription": [],
-    "is_const": false,
-    "is_constructor": false,
-    "is_destructor": false,
-    "is_explicit": false,
-    "is_inline": false,
-    "is_static": false,
-    "is_virtual": false,
-    "kind": "function",
-    "location": {
-      "file": "templates.hpp",
-      "line-end": null,
-      "line-start": 37
-    },
-    "name": "print",
-    "parameters": [],
-    "return": {
-      "description": [],
-      "type": [
-        {
-          "value": "void"
-        }
-      ]
-    },
-    "scope": "test::another_type::nested<class>",
-    "signature": "print()"
-  },
-  "test::another_type<class,typename,typename...>": {
+  "test::another_type": {
     "access": "public",
     "briefdescription": [],
     "detaileddescription": [
@@ -363,7 +302,7 @@
     },
     "members": [
       "test::another_type::nested",
-      "test::another_type<class,typename,typename...>::another_type(constT&)"
+      "test::another_type::another_type(constT&)"
     ],
     "name": "another_type",
     "scope": "test",
@@ -404,7 +343,7 @@
       }
     ]
   },
-  "test::another_type<class,typename,typename...>::another_type(constT&)": {
+  "test::another_type::another_type(constT&)": {
     "access": "public",
     "briefdescription": [
       {
@@ -442,8 +381,69 @@
       "description": [],
       "type": []
     },
-    "scope": "test::another_type<class,typename,typename...>",
+    "scope": "test::another_type",
     "signature": "another_type(const T &t)"
+  },
+  "test::another_type::nested": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "Nexted class.",
+        "kind": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "kind": "class",
+    "location": {
+      "file": "templates.hpp",
+      "line-end": 38,
+      "line-start": 35
+    },
+    "members": [
+      "test::another_type::nested::print()"
+    ],
+    "name": "nested",
+    "scope": "test::another_type",
+    "template_parameters": [
+      {
+        "name": "T",
+        "type": [
+          {
+            "value": "class"
+          }
+        ]
+      }
+    ]
+  },
+  "test::another_type::nested::print()": {
+    "access": "private",
+    "briefdescription": [],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constructor": false,
+    "is_destructor": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "kind": "function",
+    "location": {
+      "file": "templates.hpp",
+      "line-end": null,
+      "line-start": 37
+    },
+    "name": "print",
+    "parameters": [],
+    "return": {
+      "description": [],
+      "type": [
+        {
+          "value": "void"
+        }
+      ]
+    },
+    "scope": "test::another_type::nested",
+    "signature": "print()"
   },
   "test<class,class>()": {
     "access": "public",
@@ -538,7 +538,7 @@
       }
     ]
   },
-  "testtest<template<class>class,class>": {
+  "testtest": {
     "access": "public",
     "briefdescription": [],
     "detaileddescription": [
@@ -570,7 +570,7 @@
           {
             "link": {
               "url": false,
-              "value": "our_type<class>"
+              "value": "our_type"
             },
             "value": "our_type"
           },

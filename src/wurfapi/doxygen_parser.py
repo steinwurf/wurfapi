@@ -492,14 +492,6 @@ def parse(parser, xml):
 
     # Create the unique name
     unique_name = scoped_name
-    if "template_parameters" in result:
-        unique_name += '<'
-        types = []
-        for parameter in result["template_parameters"]:
-            for value in parameter['type']:
-                types.append(value['value'])
-        unique_name += ','.join(types)
-        unique_name += '>'
 
     # Remove all whitespace - this is also done in standardes. See the README
     # on the problems of unique-name
@@ -640,6 +632,29 @@ def parse(xml, parser):
     return result
 
 
+@DoxygenParser.register(tag="parameterlist")
+def parse(xml, parser):
+    """ Parses Doxygen parameterlist
+    :return: dictonary mapping parameter name to description
+    """
+    result = {}
+
+    # The description of each parameter is stored
+    # in parameteritem tags
+    #
+    # The strange looking .// is a ElementPath expression:
+    # http://effbot.org/zone/element-xpath.htm
+
+    for item in xml.findall('parameteritem'):
+
+        name = item.find("parameternamelist/parametername").text
+
+        result[name] = parser.parse_element(
+            xml=item.find("parameterdescription"))
+
+    return result
+
+
 @DoxygenParser.register(tag="templateparamlist")
 def parse(xml, parser):
     """ Parses Doxygen templateparamlist
@@ -744,26 +759,19 @@ def parse(xml, parser, log, scope):
 
     detaileddescription = xml.find("detaileddescription")
 
-    # The description of each parameter is stored
-    # in parameteritem tags
-    #
-    # The strange looking .// is a ElementPath expression:
-    # http://effbot.org/zone/element-xpath.htm
+    # Description of the parameters are in the parameterlist tags
+    parameterlists = detaileddescription.findall(
+        './/parameterlist[@kind = "param"]')
 
-    for item in detaileddescription.findall('.//parameteritem'):
-
-        name = item.find("parameternamelist/parametername").text
+    for parameterlist in parameterlists:
+        parameterlist = parser.parse_element(xml=parameterlist)
 
         for parameter in parameters:
 
-            if name == parameter['name']:
+            name = parameter['name']
 
-                description = item.find("parameterdescription")
-
-                parameter['description'] = parser.parse_element(
-                    xml=description)
-
-                break
+            if name in parameterlist:
+                parameter['description'] = parameterlist[name]
 
     # Description of the return type
     return_xml = detaileddescription.find('.//simplesect[@kind = "return"]')

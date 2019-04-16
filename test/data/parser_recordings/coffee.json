@@ -123,12 +123,10 @@
       "line-start": 14
     },
     "members": [
-      "project::coffee::machine::brew_state",
       "project::coffee::machine::callback",
       "project::coffee::machine::cups_brewed",
       "project::coffee::machine::get_mug_size()const",
       "project::coffee::machine::help_brew()",
-      "project::coffee::machine::impl",
       "project::coffee::machine::m_callback",
       "project::coffee::machine::m_impl",
       "project::coffee::machine::m_other_callback",
@@ -146,8 +144,10 @@
       "project::coffee::machine::tanks()",
       "project::coffee::machine::total_cups_brewed",
       "project::coffee::machine::version()",
-      "project::coffee::machine::water_tank",
-      "project::coffee::machine::~machine()"
+      "project::coffee::machine::~machine()",
+      "project::coffee::machine::brew_state",
+      "project::coffee::machine::impl",
+      "project::coffee::machine::water_tank"
     ],
     "name": "machine",
     "scope": "project::coffee"
