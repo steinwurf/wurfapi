@@ -8,7 +8,6 @@
       }
     ],
     "detaileddescription": [],
-    "is_template": false,
     "kind": "struct",
     "location": {
       "file": "header.h",
@@ -36,7 +35,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -118,7 +116,6 @@
         "kind": "text"
       }
     ],
-    "is_template": false,
     "kind": "class",
     "location": {
       "file": "coffee/coffee.h",
@@ -164,7 +161,6 @@
       }
     ],
     "detaileddescription": [],
-    "is_template": false,
     "kind": "struct",
     "location": {
       "file": "coffee/coffee.h",
@@ -263,7 +259,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -299,7 +294,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -329,7 +323,6 @@
       }
     ],
     "detaileddescription": [],
-    "is_template": false,
     "kind": "struct",
     "location": {
       "file": "coffee/coffee.cpp",
@@ -357,7 +350,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -493,7 +485,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -525,7 +516,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -566,7 +556,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": true,
     "kind": "function",
     "location": {
@@ -681,7 +670,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -810,7 +798,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -935,7 +922,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -986,7 +972,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -1036,7 +1021,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -1079,7 +1063,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -1125,7 +1108,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -1232,7 +1214,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": true,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -1272,7 +1253,6 @@
       }
     ],
     "detaileddescription": [],
-    "is_template": false,
     "kind": "struct",
     "location": {
       "file": "coffee/coffee.h",
@@ -1296,7 +1276,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -1389,7 +1368,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -1444,7 +1422,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -1618,7 +1595,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -1692,7 +1668,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -1770,7 +1745,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {

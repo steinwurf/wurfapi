@@ -8,7 +8,6 @@
       }
     ],
     "detaileddescription": [],
-    "is_template": false,
     "kind": "struct",
     "location": {
       "file": "type_definitions.hpp",

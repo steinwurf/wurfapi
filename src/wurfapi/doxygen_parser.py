@@ -481,20 +481,31 @@ def parse(parser, xml):
     templatelist = xml.find('templateparamlist')
 
     if templatelist is not None:
-        result["is_template"] = True
         result["template_parameters"] = parser.parse_element(xml=templatelist)
-
-    else:
-        result["is_template"] = False
-        result["template_parameters"] = []
 
     # Inner classes have their own tag
     for innerclass in xml.findall('.//innerclass'):
-        result['members'].append(innerclass.text)
+        refid = innerclass.attrib["refid"]
+        result["members"].append(refid)
 
     api = {}
 
-    with parser.set_scope(scoped_name):
+    # Create the unique name
+    unique_name = scoped_name
+    if "template_parameters" in result:
+        unique_name += '<'
+        types = []
+        for parameter in result["template_parameters"]:
+            for value in parameter['type']:
+                types.append(value['value'])
+        unique_name += ','.join(types)
+        unique_name += '>'
+
+    # Remove all whitespace - this is also done in standardes. See the README
+    # on the problems of unique-name
+    unique_name = unique_name.replace(" ", "")
+
+    with parser.set_scope(unique_name):
 
         for member in xml.findall('.//memberdef'):
             member_api = parser.parse_element(xml=member)
@@ -505,10 +516,6 @@ def parse(parser, xml):
     # Sort the members list such that they always appear in
     # the same order
     result["members"].sort()
-
-    # Remove all whitespace - this is also done in standardes. See the README
-    # on the problems of unique-name
-    unique_name = scoped_name.replace(" ", "")
 
     api[unique_name] = result
 
@@ -654,7 +661,7 @@ def parse(xml, parser):
         if not template_name:
             template_type, template_name = template_type.split()
 
-        parameter["type"] = template_type
+        parameter["type"] = [{"value": template_type}]
         parameter["name"] = template_name
 
         # Parse the default value
@@ -662,8 +669,6 @@ def parse(xml, parser):
 
         if template_default is not None:
             parameter["default"] = parser.parse_element(xml=template_default)
-        else:
-            parameter["default"] = []
 
         parameters.append(parameter)
 
@@ -721,12 +726,7 @@ def parse(xml, parser, log, scope):
     templatelist = xml.find('templateparamlist')
 
     if templatelist is not None:
-        result["is_template"] = True
         result["template_parameters"] = parser.parse_element(xml=templatelist)
-
-    else:
-        result["is_template"] = False
-        result["template_parameters"] = []
 
     # Get the name and type of the parameters
     parameters = []
@@ -803,9 +803,18 @@ def parse(xml, parser, log, scope):
     # Construct the unique name
     unique_name = scope + '::' + result["name"] if scope else result["name"]
 
+    if "template_parameters" in result:
+        unique_name += '<'
+        types = []
+        for parameter in result["template_parameters"]:
+            for value in parameter['type']:
+                types.append(value['value'])
+        unique_name += ','.join(types)
+        unique_name += '>'
+
     unique_name += '('
     types = []
-    for parameter in parameters:
+    for parameter in result["parameters"]:
         for value in parameter['type']:
             types.append(value['value'])
 

@@ -8,7 +8,6 @@
       }
     ],
     "detaileddescription": [],
-    "is_template": false,
     "kind": "struct",
     "location": {
       "file": "header.h",
@@ -36,7 +35,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -118,7 +116,6 @@
         "kind": "text"
       }
     ],
-    "is_template": false,
     "kind": "class",
     "location": {
       "file": "coffee/coffee.h",
@@ -126,12 +123,10 @@
       "line-start": 14
     },
     "members": [
-      "project::coffee::machine::brew_state",
       "project::coffee::machine::callback",
       "project::coffee::machine::cups_brewed",
       "project::coffee::machine::get_mug_size()const",
       "project::coffee::machine::help_brew()",
-      "project::coffee::machine::impl",
       "project::coffee::machine::m_callback",
       "project::coffee::machine::m_impl",
       "project::coffee::machine::m_other_callback",
@@ -149,8 +144,10 @@
       "project::coffee::machine::tanks()",
       "project::coffee::machine::total_cups_brewed",
       "project::coffee::machine::version()",
-      "project::coffee::machine::water_tank",
-      "project::coffee::machine::~machine()"
+      "project::coffee::machine::~machine()",
+      "project::coffee::machine::brew_state",
+      "project::coffee::machine::impl",
+      "project::coffee::machine::water_tank"
     ],
     "name": "machine",
     "scope": "project::coffee"
@@ -164,7 +161,6 @@
       }
     ],
     "detaileddescription": [],
-    "is_template": false,
     "kind": "struct",
     "location": {
       "file": "coffee/coffee.h",
@@ -274,7 +270,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -314,7 +309,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -344,7 +338,6 @@
       }
     ],
     "detaileddescription": [],
-    "is_template": false,
     "kind": "struct",
     "location": {
       "file": "coffee/coffee.cpp",
@@ -372,7 +365,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -508,7 +500,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -540,7 +531,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -581,7 +571,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": true,
     "kind": "function",
     "location": {
@@ -700,7 +689,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -833,7 +821,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -962,7 +949,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -1017,7 +1003,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -1067,7 +1052,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -1110,7 +1094,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -1156,7 +1139,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -1274,7 +1256,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": true,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -1318,7 +1299,6 @@
       }
     ],
     "detaileddescription": [],
-    "is_template": false,
     "kind": "struct",
     "location": {
       "file": "coffee/coffee.h",
@@ -1342,7 +1322,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -1435,7 +1414,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -1490,7 +1468,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -1664,7 +1641,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -1749,7 +1725,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
@@ -1831,7 +1806,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {

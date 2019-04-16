@@ -36,7 +36,6 @@
     "is_explicit": false,
     "is_inline": false,
     "is_static": false,
-    "is_template": false,
     "is_virtual": false,
     "kind": "function",
     "location": {
