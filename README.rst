@@ -367,6 +367,16 @@ Parsing the above code would produce the following API dictionary::
 The different entity kinds expose different information about the
 API. We will document the different kinds in the following.
 
+We make some keys *optional* this is marked in the following way::
+
+    api = {
+      'unique-name': {
+        'some_key': ...
+        Optional('an_optional_key'): ...
+      },
+      ...
+    }
+
 ``namespace`` Kind
 ..................
 
