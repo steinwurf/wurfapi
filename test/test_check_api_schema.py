@@ -7,10 +7,10 @@ test_api = {
         'scope': None,
         'members': ['class_dfdsfsd'],
         'briefdescription': [
-            {'kind': 'text', 'content': 'bla bla', 'link': None}
+            {'kind': 'text', 'content': 'bla bla'}
         ],
         'detaileddescription': [
-            {'kind': 'text', 'content': 'bla bla', 'link': None}
+            {'kind': 'text', 'content': 'bla bla'}
         ]
     },
     'class_dfdsfsd': {
@@ -21,16 +21,16 @@ test_api = {
         'access': 'private',
         'members': ["variable_fsdfsddsfsdfs"],
         'briefdescription': [
-            {'kind': 'text', 'content': 'bla bla', 'link': None}
+            {'kind': 'text', 'content': 'bla bla'}
         ],
         'detaileddescription': [
             {'kind': 'code', 'content': 'bla bla', 'is_block': True},
             {'kind': 'list', 'ordered': True, 'items': [[
                 {'kind': 'code', 'content': 'bla bla', 'is_block': True},
-                {'kind': 'text', 'content': 'bla bla', 'link': None},
+                {'kind': 'text', 'content': 'bla bla'},
                 {'kind': 'list', 'ordered': True, 'items': [[
                     {'kind': 'code', 'content': 'bla', 'is_block': True},
-                    {'kind': 'text', 'content': 'bla', 'link': None}]]
+                    {'kind': 'text', 'content': 'bla'}]]
                  }]]
              }
         ]
@@ -44,18 +44,18 @@ test_api = {
         'values': [{
             'name': 'a',
             'briefdescription': [
-                {'kind': 'text', 'content': 'bla bla', 'link': None}
+                {'kind': 'text', 'content': 'bla bla'}
             ],
             'detaileddescription': [
-                {'kind': 'text', 'content': 'bla bla', 'link': None}
+                {'kind': 'text', 'content': 'bla bla'}
             ],
             'value': None
         }],
         'briefdescription': [
-            {'kind': 'text', 'content': 'bla bla', 'link': None}
+            {'kind': 'text', 'content': 'bla bla'}
         ],
         'detaileddescription': [
-            {'kind': 'text', 'content': 'bla bla', 'link': None}
+            {'kind': 'text', 'content': 'bla bla'}
         ]
     },
     'using_tryrt': {
@@ -70,10 +70,14 @@ test_api = {
             }
         }],
         'briefdescription': [
-            {'kind': 'text', 'content': 'bla bla', 'link': None}
+            {
+                'kind': 'text', 'content': 'bla bla', 'link': {
+                    'url': True, 'value': 'www.steinwurf.com'
+                }
+            }
         ],
         'detaileddescription': [
-            {'kind': 'text', 'content': 'bla bla', 'link': None}
+            {'kind': 'text', 'content': 'bla bla'}
         ]
     },
     'function_fsdfsdfs': {
@@ -88,7 +92,7 @@ test_api = {
                 }
             }],
             'description': [
-                {'kind': 'text', 'content': 'bla bla', 'link': None}
+                {'kind': 'text', 'content': 'bla bla'}
             ]
         },
         'signature': 'void some(int a)',
@@ -101,10 +105,10 @@ test_api = {
         'is_destructor': True,
         'access': 'public',
         'briefdescription': [
-            {'kind': 'text', 'content': 'bla bla', 'link': None}
+            {'kind': 'text', 'content': 'bla bla'}
         ],
         'detaileddescription': [
-            {'kind': 'text', 'content': 'bla bla', 'link': None}
+            {'kind': 'text', 'content': 'bla bla'}
         ],
         'parameters': [{
             'type': [{
@@ -114,7 +118,7 @@ test_api = {
             }],
             'name': 'aaa',
             'description': [
-                {'kind': 'text', 'content': 'bla bla', 'link': None}
+                {'kind': 'text', 'content': 'bla bla'}
             ]
         }],
     },
@@ -136,10 +140,10 @@ test_api = {
         'scope': 'dfsds::ds',
         'access': 'public',
         'briefdescription': [
-            {'kind': 'text', 'content': 'bla bla', 'link': None}
+            {'kind': 'text', 'content': 'bla bla'}
         ],
         'detaileddescription': [
-            {'kind': 'text', 'content': 'bla bla', 'link': None}
+            {'kind': 'text', 'content': 'bla bla'}
         ]
     },
 }

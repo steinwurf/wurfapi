@@ -44,7 +44,7 @@
 {%- macro format_type_to_link(element) -%}
 {%- for item in element -%}
 {%- set value = item["value"] | replace('*', '\*') -%}
-{%- if item["link"] -%}
+{%- if "link" in item -%}
 {{ format_link(value, item["link"]) }}
 {%- else -%}
 {{ value }}
@@ -58,7 +58,7 @@
 
 {%- macro format_text(paragraph) -%}
 
-{%- if paragraph["link"] -%}
+{%- if "link" in paragraph -%}
     {{ format_link(paragraph["content"], paragraph["link"]) }}
 {%- else -%}
     {{ paragraph["content"] }}

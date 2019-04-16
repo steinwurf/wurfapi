@@ -4,8 +4,7 @@
     "briefdescription": [
       {
         "content": "Not important.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -32,8 +31,7 @@
     "briefdescription": [
       {
         "content": "This is a a variable.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -66,8 +64,7 @@
     "briefdescription": [
       {
         "content": "This is a b variable.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -86,7 +83,6 @@
     "scope": "variables",
     "type": [
       {
-        "link": null,
         "value": "int"
       }
     ],
@@ -97,8 +93,7 @@
     "briefdescription": [
       {
         "content": "This is a c variable.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -117,7 +112,6 @@
     "scope": "variables",
     "type": [
       {
-        "link": null,
         "value": "std::string"
       }
     ],
@@ -128,8 +122,7 @@
     "briefdescription": [
       {
         "content": "This is a dddd variable.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -148,7 +141,6 @@
     "scope": "variables",
     "type": [
       {
-        "link": null,
         "value": "bool"
       }
     ],
@@ -159,8 +151,7 @@
     "briefdescription": [
       {
         "content": "Test with alias.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -193,8 +184,7 @@
     "briefdescription": [
       {
         "content": "Special type for the variable a.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -208,7 +198,6 @@
     "scope": "variables",
     "type": [
       {
-        "link": null,
         "value": "bool"
       }
     ]
@@ -218,8 +207,7 @@
     "briefdescription": [
       {
         "content": "This is the size of dddd.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [],
@@ -238,7 +226,6 @@
     "scope": "variables",
     "type": [
       {
-        "link": null,
         "value": "uint32_t"
       }
     ],
