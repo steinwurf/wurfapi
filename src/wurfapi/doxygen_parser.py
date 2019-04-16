@@ -632,7 +632,7 @@ def parse(xml, parser):
             return
         else:
             result.append(
-                {"value": content.strip(), "link": None})
+                {"value": content.strip()})
 
     append_text(xml.text)
 
@@ -955,7 +955,7 @@ def parse(parser, log, xml):
             return
         else:
             paragraphs.append(
-                {"kind": "text", "content": content.strip(), "link": None})
+                {"kind": "text", "content": content.strip()})
 
     append_text(xml.text)
 

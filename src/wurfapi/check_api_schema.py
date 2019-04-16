@@ -40,10 +40,6 @@ def check_api_schema(api):
 
         def validate(self, data):
 
-            # A link can be None
-            if data is None:
-                return data
-
             # Check the basic properties
             schema.Schema({
                 'url': bool,
@@ -66,7 +62,7 @@ def check_api_schema(api):
     paragraphs_text_schema = schema.Schema({
         'kind': 'text',
         'content': string_schema,
-        'link': LinkSchema(api=api)
+        schema.Optional('link'): LinkSchema(api=api)
     })
 
     # Paragraphs code schema
@@ -153,7 +149,7 @@ def check_api_schema(api):
 
     type_schema = schema.Schema([{
         'value': string_schema,
-        'link': LinkSchema(api=api)
+        schema.Optional('link'): LinkSchema(api=api)
     }])
 
     # typedef / using schema

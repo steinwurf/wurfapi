@@ -86,7 +86,7 @@ def split_typelist(typelist):
 
     for item in typelist:
 
-        if item["link"] is not None:
+        if "link" in item:
 
             # We already have a link for this item of the type
             newlist.append(item)
@@ -98,7 +98,7 @@ def split_typelist(typelist):
         tokens = split_cpptype(cpptype=item['value'])
 
         for token in tokens:
-            newlist.append({"value": token, "link": None})
+            newlist.append({"value": token})
 
     return newlist
 
@@ -112,22 +112,22 @@ def join_typelist(typelist):
 
     newlist = []
 
-    temporary_item = {'value': "", "link": None}
+    temporary_item = {'value': ""}
 
     for item in typelist:
 
         # We have the following cases:
 
-        # 2. We just get a new item with a link
-        # 3. The new item does not have a link
+        # 1. We just get a new item with a link
+        # 2. The new item does not have a link
 
-        if item["link"] and temporary_item["value"]:
+        if "link" in item and temporary_item["value"]:
             # We got an item with a link and we have already accumulated
             # something in the temporary_item
             newlist.append(temporary_item)
-            temporary_item = {'value': "", "link": None}
+            temporary_item = {'value': ""}
 
-        if item["link"]:
+        if "link" in item:
             newlist.append(item)
         else:
             temporary_item["value"] += item["value"]
@@ -195,13 +195,17 @@ class LinkMapper(object):
         # 2. Check if we have a link for each of the itms
         for item in typelist:
 
-            if item['link']:
+            if "link" in item:
+                print(item)
                 # If we do have a link to a type it should be in the API
                 assert item["link"]["value"] in self.api
 
                 continue
 
-            item['link'] = self._find_link(typename=item['value'], scope=scope)
+            link = self._find_link(typename=item['value'], scope=scope)
+
+            if link is not None:
+                item['link'] = link
 
         # 3. Reduce the typelist such that only elements with links are
         #    kept standalone

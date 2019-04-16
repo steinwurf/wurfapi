@@ -503,7 +503,10 @@ Python dictionary representing a location::
 Python list representing a C++ type::
 
     type = [
-      {'value': 'sometext', 'link': link | None }, ...
+      {
+        'value': 'sometext',
+        Optional('link'): link
+      }, ...
     ]
 
 Having the type as a list of items we can create links to nested types e.g.
@@ -552,7 +555,7 @@ Text information is stored in a list of paragraphs::
     text = {
       'kind': 'text',
       'content': 'hello',
-      'link': link | None
+      Optional('link'): link
       }
 
     code = {

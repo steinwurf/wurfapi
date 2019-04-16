@@ -4,15 +4,13 @@
     "briefdescription": [
       {
         "content": "Set the heat.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "detaileddescription": [
       {
         "content": "This function is use to set the head of the machine.",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       },
       {
         "content": "void yes();\n",
@@ -21,18 +19,15 @@
       },
       {
         "content": "But maybe it also does other things?",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       },
       {
         "content": "Test this break",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       },
       {
         "content": "And then some text",
-        "kind": "text",
-        "link": null
+        "kind": "text"
       }
     ],
     "is_const": true,
@@ -54,14 +49,12 @@
         "description": [
           {
             "content": "Set the heat object.",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           }
         ],
         "name": "h",
         "type": [
           {
-            "link": null,
             "value": "const heat &"
           }
         ]
@@ -70,14 +63,12 @@
         "description": [
           {
             "content": "The maximum heat value.",
-            "kind": "text",
-            "link": null
+            "kind": "text"
           }
         ],
         "name": "max",
         "type": [
           {
-            "link": null,
             "value": "int"
           }
         ]
@@ -87,8 +78,7 @@
       "description": [
         {
           "content": "The current heat.",
-          "kind": "text",
-          "link": null
+          "kind": "text"
         },
         {
           "content": "for (uint64_t i = 0; i < 3; ++i)\n{\n    std::cout << i << \"\\n\";\n}\n",
@@ -98,7 +88,6 @@
       ],
       "type": [
         {
-          "link": null,
           "value": "uint32_t"
         }
       ]

@@ -48,6 +48,7 @@ class LinkProvider(object):
        this we try our default mappings.
 
        :param typename: A C++ type name as a string
+       :return: A link dictionary or None
        """
 
         mappings_list = [self.user_mappings, cppreference_mappings]
