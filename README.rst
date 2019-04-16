@@ -515,7 +515,6 @@ This could look like::
 
     "type": [
       {
-        "link": null,
         "value": "std::unique_ptr<"
       },
       {
@@ -523,7 +522,6 @@ This could look like::
         "value": "impl"
       },
       {
-        "link": null,
         "value": ">"
       }
     ]
