@@ -16,6 +16,8 @@ Welcome to Coffee's documentation!
    api_water_tank
    api_namespace
    api_header
+   api_cup
+   api_cup_tea
    examples
 
 

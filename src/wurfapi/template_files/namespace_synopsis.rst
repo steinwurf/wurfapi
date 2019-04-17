@@ -1,18 +1,21 @@
 
 {%- from 'macros.rst' import format_heading -%}
 {%- from 'macros.rst' import format_function -%}
+{%- from 'macros.rst' import format_ref -%}
+
 {# FORMAT_MEMBER_TABLE #}
 
-{%- macro format_member_table(selectors) -%}
+{% macro format_member_table(selectors) %}
 .. list-table::
    :header-rows: 0
    :widths: auto
 
-{%- for selector in selectors -%}
+{% for selector in selectors %}
    {%- set member = api[selector] %}
 
    * - {{ member["kind"] }}
-     - :ref:`{{ member["name"] }}<{{selector}}>`
+     - {{ format_ref(member["name"], selector )}}
+
 {%- endfor -%}
 
 {%- endmacro -%}

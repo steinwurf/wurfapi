@@ -82,6 +82,8 @@ class TemplateRender(object):
 
         self.environment = jinja2.Environment(
             loader=jinja2.ChoiceLoader(loaders=loaders),
+            trim_blocks=True,
+            lstrip_blocks=True,
             # Enable the do statement:
             # https://stackoverflow.com/a/39858522/1717320
             extensions=['jinja2.ext.do'])

@@ -477,11 +477,11 @@ def parse(parser, xml):
     result["members"] = []
     result["access"] = xml.attrib["prot"]
 
-    # If this class or struct is a template
-    templatelist = xml.find('templateparamlist')
+    # Parse template arguments
+    template_parameters = parse_template_parameters(xml=xml, parser=parser)
 
-    if templatelist is not None:
-        result["template_parameters"] = parser.parse_element(xml=templatelist)
+    if template_parameters is not None:
+        result["template_parameters"] = template_parameters
 
     # Inner classes have their own tag
     for innerclass in xml.findall('.//innerclass'):
@@ -724,6 +724,40 @@ def parse(xml, parser):
     return result
 
 
+def parse_template_parameters(xml, parser):
+    """ Helper for parsing templates of functions, structs and classes
+
+    :param xml: A doxygen memberdef element which may be a template
+    :return: A template_parameters list or None (an empty list indicates a
+        template specilization)
+    """
+    templatelist = xml.find('templateparamlist')
+
+    if templatelist is None:
+        # We did not find a templateparamlist element so this is not a template
+        return None
+
+    template_parameters = parser.parse_element(xml=templatelist)
+
+    # Description of the tempalte parameters are in the parameterlist tags
+    # with the attribute kind="param"
+    parameterlists = xml.findall(
+        './/parameterlist[@kind = "templateparam"]')
+
+    for parameterlist in parameterlists:
+
+        parameterlist = parser.parse_element(xml=parameterlist)
+
+        for parameter in template_parameters:
+
+            name = parameter['name']
+
+            if name in parameterlist:
+                parameter['description'] = parameterlist[name]
+
+    return template_parameters
+
+
 @DoxygenParser.register(tag="memberdef", attrib={"kind": "function"})
 def parse(xml, parser, log, scope):
     """ Parses Doxygen memberdefType
@@ -736,12 +770,6 @@ def parse(xml, parser, log, scope):
     result["scope"] = scope
     result['location'] = parser.parse_element(xml=xml.find('location'))
     result["name"] = xml.findtext("name")
-
-    # If this function is a template
-    templatelist = xml.find('templateparamlist')
-
-    if templatelist is not None:
-        result["template_parameters"] = parser.parse_element(xml=templatelist)
 
     # Get the name and type of the parameters
     parameters = []
@@ -756,7 +784,6 @@ def parse(xml, parser, log, scope):
 
     # The description of the parameter is in the
     # detaileddescription section
-
     detaileddescription = xml.find("detaileddescription")
 
     # Description of the parameters are in the parameterlist tags with the
@@ -773,6 +800,12 @@ def parse(xml, parser, log, scope):
 
             if name in parameterlist:
                 parameter['description'] = parameterlist[name]
+
+    # Parse template arguments
+    template_parameters = parse_template_parameters(xml=xml, parser=parser)
+
+    if template_parameters is not None:
+        result["template_parameters"] = template_parameters
 
     # Description of the return type
     return_xml = detaileddescription.find('.//simplesect[@kind = "return"]')

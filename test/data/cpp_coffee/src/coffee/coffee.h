@@ -119,6 +119,10 @@ public:
     /// Get all water tanks
     std::vector<water_tank> tanks();
 
+    /// Add a genearic beans
+    template <class Beans>
+    void add_beans(const Beans& beans);
+
     /// The number of cups brewed by this machine.
     uint32_t cups_brewed = 0;
 
@@ -142,6 +146,26 @@ private:
     struct impl;
     std::unique_ptr<impl> m_impl;
 };
+
+/// @brief A genric cup
+/// @tparam T The liquid for the cup
+/// @tparam Liter The number of liters
+template <class T = water, uint32_t Liter>
+struct cup
+{
+    /// The liquid contained
+    T m_liquid;
+};
+
+/// @brief A tea cup
+/// @tparam Liter The number of liters
+template <uint32_t Liter>
+struct cup<tea, Liter>
+{
+    /// The liquid contained
+    tea m_liquid;
+};
+
 }
 
 /// @brief Prints the `a` and then the value pointed to by `b`.

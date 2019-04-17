@@ -314,8 +314,20 @@ scopes e.g. ``foo::bar::baz``.
   or ``foo::bar::baz::func(int a, char*) const``. See cppreference_ for more
   information.
 
+* For class template specilizations the unique name includes the specilization
+  arguments. For example::
+
+      // Here the unique-name is just 'foo'
+      template<class T>
+      class foo {};
+
+      // Here the unique name is foo<int>
+      template<>
+      class foo<int> {};
+
 .. _cppreference: http://en.cppreference.com/w/cpp/language/member_functions
 .. _standardese: https://github.com/foonathan/standardese#linking
+
 
 
 The API dictionary

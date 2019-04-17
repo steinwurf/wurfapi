@@ -1,12 +1,12 @@
 {%- from 'macros.rst' import format_description -%}
-{%- from 'macros.rst' import format_type_to_link -%}
+{%- from 'macros.rst' import format_type_list -%}
 {%- from 'macros.rst' import format_heading -%}
 {%- from 'macros.rst' import format_function -%}
 
 {%- set function = api[selector] -%}
 {%- set parameters_out = [] -%}
 {%- for parameter in function["parameters"] -%}
-{%- do parameters_out.append(format_type_to_link(parameter["type"])) -%}
+{%- do parameters_out.append(format_type_list(parameter["type"])) -%}
 {%- if not loop.last -%}
 {%- do parameters_out.append(", ") -%}
 {%- endif -%}

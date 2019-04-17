@@ -28,23 +28,36 @@
 {%- endmacro -%}
 
 
+{# ESCAPE_REF #}
+
+{%- macro escape_ref(content) -%}
+{{ content | replace('<', '\<') | replace('>', '\>') }}
+{%- endmacro -%}
+
+{# FORMAT_REF #}
+
+{%- macro format_ref(content, reference) -%}
+:ref:`{{ escape_ref(content) }} <{{ escape_ref(reference)  }}>`
+{%- endmacro -%}
+
+
 {# FORMAT_LINK #}
 
 {%- macro format_link(content, link) -%}
 {%- if link["url"] -%}
-`{{content}} <{{ link["value"] }}>`_
+`{{ escape_ref(content) }} <{{ escape_ref(link["value"]) }}>`_
 {%- else -%}
-:ref:`{{ content }}<{{ link["value"]  }}>`
+{{ format_ref(content, link["value"]) }}
 {%- endif -%}
 {%- endmacro -%}
 
 
-{# FORMAT_TYPE_TO_LINK #}
+{# FORMAT_TYPE_LIST #}
 
-{%- macro format_type_to_link(element) -%}
+{%- macro format_type_list(element, as_code=False) -%}
 {%- for item in element -%}
 {%- set value = item["value"] | replace('*', '\*') -%}
-{%- if "link" in item -%}
+{%- if "link" in item and not as_code -%}
 {{ format_link(value, item["link"]) }}
 {%- else -%}
 {{ value }}
@@ -106,14 +119,14 @@
 {# FORMAT_TYPEDEF_ALIAS #}
 
 {%- macro format_typedef_alias(alias) -%}
-typedef {{ format_type_to_link(alias["type"]) }} **{{ alias["name"] }}**
+typedef {{ format_type_list(alias["type"]) }} **{{ alias["name"] }}**
 {%- endmacro -%}
 
 
 {# FORMAT_USING_ALIAS #}
 
 {%- macro format_using_alias(alias) -%}
-using **{{ alias["name"] }}** = {{ format_type_to_link(alias["type"]) }}
+using **{{ alias["name"] }}** = {{ format_type_list(alias["type"]) }}
 {%- endmacro -%}
 
 
@@ -145,9 +158,33 @@ using **{{ alias["name"] }}** = {{ format_type_to_link(alias["type"]) }}
 {%- for parameter in parameters -%}
     {%- set type = parameter["type"] -%}
     {%- set name = parameter["name"] -%}
-    {{ format_type_to_link(type) }}{% if name %} {{name}}{% endif %}{{ ", " if not loop.last }}
+    {{ format_type_list(type) + " " }}
+    {%- if name -%}
+    {{name}}
+    {%- endif -%}
+    {{ ", " if not loop.last }}
 {%- endfor -%}
 )
+{%- endmacro -%}
+
+
+{# FORMAT_TEMPLATE_PARAMETERS #}
+
+{%- macro format_template_parameters(parameters, as_code=False) -%}
+<
+{%- for parameter in parameters -%}
+    {%- set type = parameter["type"] -%}
+    {%- set name = parameter["name"] -%}
+    {{ format_type_list(type, as_code=as_code) + " " }}
+    {%- if name -%}
+    {{name}}
+    {%- endif -%}
+    {%- if "default" in parameter -%}
+    {{ " = " + format_type_list(parameter["default"], as_code=as_code)}}
+    {%- endif -%}
+    {{ ", " if not loop.last }}
+{%- endfor -%}
+>
 {%- endmacro -%}
 
 
@@ -163,12 +200,13 @@ Returns:
 
 {# FORMAT_PARAMETER_DESCRIPTION #}
 
-{%- macro format_parameter_description(parameter) -%}
-{%- if parameter["description"] | length -%}
+{% macro format_parameter_description(parameter) %}
+{% if parameter["description"] | length %}
 Parameter ``{{parameter["name"]}}``:
     {{ format_description(parameter["description"]) | indent }}
-{%- endif -%}
-{%- endmacro -%}
+
+{% endif %}
+{% endmacro %}
 
 
 {# FORMAT_PARAMETERS_DESCRIPTION #}
@@ -197,7 +235,10 @@ Parameter ``{{parameter["name"]}}``:
     format_parameters(api[selector]["parameters"]) -%}
 {%- set return_description = api[selector]["return"]["description"] -%}
 
-{{ format_type_to_link(return_value["type"]) }} **{{ name }}** {{ parameters }}
+{%- if api[selector]["template_parameters"] -%}
+template {{ format_template_parameters(api[selector]["template_parameters"]) }}
+{% endif %}
+{{ format_type_list(return_value["type"]) }} **{{ name }}** {{ parameters }}
 
     {{ format_description(briefdescription)|indent }}
 
