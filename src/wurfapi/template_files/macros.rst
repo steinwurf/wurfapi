@@ -1,55 +1,56 @@
 
 {# FORMAT_CODE_BLOCK #}
 
-{%- macro format_code_block(paragraph) %}
+{% macro format_code_block(paragraph) %}
+
 
 .. code-block:: c++
 
 {{ paragraph["content"] | indent(first=true) }}
 
-{% endmacro -%}
+{% endmacro %}
 
 
 {# FORMAT_CODE_INLINE #}
 
-{%- macro format_code_inline(paragraph) -%}
+{% macro format_code_inline(paragraph) %}
 ``{{ paragraph["content"] }}``{{ " " }}
-{%- endmacro -%}
+{%- endmacro %}
 
 
 {# FORMAT_CODE #}
 
-{%- macro format_code(paragraph) -%}
-{%- if paragraph["is_block"] -%}
-    {{ format_code_block(paragraph) }}
-{%- else -%}
-    {{ format_code_inline(paragraph) }}
-{%- endif -%}
-{%- endmacro -%}
+{% macro format_code(paragraph) %}
+{% if paragraph["is_block"] %}
+{{ format_code_block(paragraph) }}
+{%- else %}
+{{ format_code_inline(paragraph) }}
+{%- endif %}
+{% endmacro %}
 
 
 {# ESCAPE_REF #}
 
-{%- macro escape_ref(content) -%}
+{% macro escape_ref(content) -%}
 {{ content | replace('<', '\<') | replace('>', '\>') }}
-{%- endmacro -%}
+{%- endmacro %}
 
 {# FORMAT_REF #}
 
-{%- macro format_ref(content, reference) -%}
+{% macro format_ref(content, reference) -%}
 :ref:`{{ escape_ref(content) }} <{{ escape_ref(reference)  }}>`
-{%- endmacro -%}
+{%- endmacro %}
 
 
 {# FORMAT_LINK #}
 
-{%- macro format_link(content, link) -%}
-{%- if link["url"] -%}
+{% macro format_link(content, link) %}
+{% if link["url"] -%}
 `{{ escape_ref(content) }} <{{ escape_ref(link["value"]) }}>`_
 {%- else -%}
 {{ format_ref(content, link["value"]) }}
-{%- endif -%}
-{%- endmacro -%}
+{%- endif %}
+{% endmacro %}
 
 
 {# FORMAT_TYPE_LIST #}
@@ -69,43 +70,43 @@
 
 {# FORMAT_TEXT #}
 
-{%- macro format_text(paragraph) -%}
-
-{%- if "link" in paragraph -%}
-    {{ format_link(paragraph["content"], paragraph["link"]) }}
+{% macro format_text(paragraph) %}
+{% if "link" in paragraph -%}
+{{ format_link(paragraph["content"], paragraph["link"]) }}
 {%- else -%}
-    {{ paragraph["content"] }}
+{{ paragraph["content"] }}
 {%- endif -%}
 {{ " " }}
-{%- endmacro -%}
+{%- endmacro %}
 
 
 {# FORMAT_LIST #}
 
-{%- macro format_list(list) -%}
-{%- set item_type = "#. " if list["ordered"] else "- " %}
+{% macro format_list(list) %}
+{% set item_type = "#. " if list["ordered"] else "- " %}
 {% for item in list["items"] %}
 {{ item_type }}{{format_description(item) | indent(width=item_type|length)}}
-{%- endfor %}
+{% endfor %}
 
-{%- endmacro -%}
+{% endmacro %}
 
 
 {# FORMAT_DESCRIPTION #}
 
-{%- macro format_description(description) -%}
-{%- for para in description -%}
-    {%- if para["kind"] == "text" -%}
-        {{ format_text(para) }}
-    {%- endif -%}
-    {%- if para["kind"] == "code" -%}
-        {{ format_code(para) }}
-    {%- endif -%}
-    {%- if para["kind"] == "list" -%}
-        {{ format_list(para) }}
-    {%- endif -%}
-{%- endfor -%}
-{%- endmacro -%}
+{% macro format_description(description) %}
+{% for para in description %}
+{% if para["kind"] == "text" %}
+{{ format_text(para) }}
+{%- endif %}
+{% if para["kind"] == "code" %}
+{{ format_code(para) }}
+{%- endif %}
+{% if para["kind"] == "list" %}
+
+{{ format_list(para) }}
+{%- endif %}
+{% endfor %}
+{% endmacro %}
 
 {# FORMAT_HEADING #}
 
@@ -225,17 +226,16 @@ Parameter ``{{parameter["name"]}}``:
 {%- macro format_function(api, selector, include_label=True) -%}
 {% if include_label -%}
 .. _{{selector}}:
-{%- endif %}
 
-{% set return_value = api[selector]["return"] -%}
-{%- set name = api[selector]["name"] -%}
-{%- set briefdescription = api[selector]["briefdescription"] -%}
-{%- set detaileddescription = api[selector]["detaileddescription"] -%}
-{%- set parameters =
-    format_parameters(api[selector]["parameters"]) -%}
-{%- set return_description = api[selector]["return"]["description"] -%}
-
-{%- if api[selector]["template_parameters"] -%}
+{% endif %}
+{% set return_value = api[selector]["return"] %}
+{% set name = api[selector]["name"] %}
+{% set briefdescription = api[selector]["briefdescription"] %}
+{% set detaileddescription = api[selector]["detaileddescription"] %}
+{% set parameters =
+    format_parameters(api[selector]["parameters"]) %}
+{%- set return_description = api[selector]["return"]["description"] %}
+{% if api[selector]["template_parameters"] %}
 template {{ format_template_parameters(api[selector]["template_parameters"]) }}
 {% endif %}
 {{ format_type_list(return_value["type"]) }} **{{ name }}** {{ parameters }}
@@ -248,4 +248,4 @@ template {{ format_template_parameters(api[selector]["template_parameters"]) }}
 
     {{ format_return_description(return_description) | indent }}
 
-{% endmacro -%}
+{% endmacro %}

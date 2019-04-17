@@ -56,7 +56,7 @@
 {% for selector in selectors %}
    * - {{ api[selector]["kind"] }}
      - :ref:`{{ api[selector]["name"] }}<{{selector}}>` {{ format_member_type_values(selector) }}
-{%- endfor -%}
+{% endfor %}
 
 {% endmacro -%}
 
@@ -225,6 +225,7 @@ Type Description
 .. _{{selector}}:
 
 {{ format_type_alias(api[selector]) }}
+
     {{ format_description(api[selector]["briefdescription"])|indent }}
 
     {{ format_description(api[selector]["detaileddescription"])|indent }}

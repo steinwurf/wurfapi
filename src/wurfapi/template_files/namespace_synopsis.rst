@@ -28,19 +28,20 @@
 
 {% if namespace["scope"] %}
 **Scope:** {{ namespace["scope"] }}
-{% endif %}
 
-{% if namespace["members"] -%}
+{% endif -%}
+
+{% if namespace["members"] %}
 
 {{ format_member_table(namespace["members"]) }}
 
-{%- endif %}
+{% endif -%}
 
-{%- set functions = namespace["members"] | api_filter(
+{% set functions = namespace["members"] | api_filter(
        kind="function")
 -%}
 
-{%- if functions %}
+{% if functions %}
 
 Functions
 ---------
@@ -51,4 +52,5 @@ Functions
 {{ "-----" if not loop.last }}
 
 {% endfor -%}
-{% endif -%}
+{% endif %}
+
