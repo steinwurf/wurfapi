@@ -34,6 +34,7 @@ Values
    * - ``mug_size::Venti``
      - 20
      - The Venti version 20 ounces. This one will keep you up all night! 
+
        .. code-block:: c++
 
            std::cout << mug_size::Venti << std::endl;

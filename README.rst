@@ -411,10 +411,10 @@ Python dictionary representing a C++ class or struct::
     info = {
       'kind': 'class' | 'struct',
       'name': 'unqualified-name',
-      'is_template': True | False,
       'location': location,
       'scope': 'unique-name' | None,
       'access': 'public' | 'protected' | 'private',
+      Optional('template_parameters'): template_parameters,
       'members: [ 'unique-name', 'unique-name' ],
       'briefdescription': paragraphs,
       'detaileddescription': paragraphs
@@ -475,7 +475,7 @@ Python dictionary representing a C++ function::
         'description': paragraphs
       }
       'signature': 'text',
-      'is_template': True | False,
+      Optional('template_parameters'): template_parameters,
       'is_const': True | False,
       'is_static': True | False,
       'is_virtual': True | False,
@@ -560,6 +560,17 @@ Python dictionary representing a link::
 If `url` is `True` we have a basic extrenal reference otherwise we have a
 link to an internal type in the API.
 
+``template_parameters`` item
+.............................
+
+Python list of dictionaries representing template parameters::
+
+    template_parameters = [{
+      'type': type,
+      'name': 'somestring',
+      Optional('default'): type,
+      Optional('description'): paragraphs
+    }]
 
 Text information
 .................

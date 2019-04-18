@@ -73,10 +73,215 @@
     "kind": "namespace",
     "members": [
       "project::coffee::machine",
-      "project::coffee::mug_size"
+      "project::coffee::mug_size",
+      "project::coffee::cup",
+      "project::coffee::cup<tea,5>",
+      "project::coffee::cup<tea,Liter>"
     ],
     "name": "coffee",
     "scope": "project"
+  },
+  "project::coffee::cup": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "A genric cup.",
+        "kind": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "kind": "struct",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-end": 159,
+      "line-start": 155
+    },
+    "members": [
+      "project::coffee::cup::m_liquid"
+    ],
+    "name": "cup",
+    "scope": "project::coffee",
+    "template_parameters": [
+      {
+        "default": [
+          {
+            "value": "water"
+          }
+        ],
+        "description": [
+          {
+            "content": "The liquid for the cup",
+            "kind": "text"
+          }
+        ],
+        "name": "T",
+        "type": [
+          {
+            "value": "class"
+          }
+        ]
+      },
+      {
+        "description": [
+          {
+            "content": "The number of liters",
+            "kind": "text"
+          }
+        ],
+        "name": "Liter",
+        "type": [
+          {
+            "value": "uint32_t"
+          }
+        ]
+      }
+    ]
+  },
+  "project::coffee::cup::m_liquid": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "The liquid contained.",
+        "kind": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constexpr": false,
+    "is_mutable": false,
+    "is_static": false,
+    "is_volatile": false,
+    "kind": "variable",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-end": null,
+      "line-start": 158
+    },
+    "name": "m_liquid",
+    "scope": "project::coffee::cup",
+    "type": [
+      {
+        "value": "T"
+      }
+    ],
+    "value": ""
+  },
+  "project::coffee::cup<tea,5>": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "A 5 liter tea cup.",
+        "kind": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "kind": "struct",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-end": 176,
+      "line-start": 172
+    },
+    "members": [
+      "project::coffee::cup<tea,5>::m_liquid"
+    ],
+    "name": "cup< tea, 5 >",
+    "scope": "project::coffee",
+    "template_parameters": []
+  },
+  "project::coffee::cup<tea,5>::m_liquid": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "The liquid contained.",
+        "kind": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constexpr": false,
+    "is_mutable": false,
+    "is_static": false,
+    "is_volatile": false,
+    "kind": "variable",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-end": null,
+      "line-start": 175
+    },
+    "name": "m_liquid",
+    "scope": "project::coffee::cup<tea,5>",
+    "type": [
+      {
+        "value": "tea"
+      }
+    ],
+    "value": ""
+  },
+  "project::coffee::cup<tea,Liter>": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "A tea cup.",
+        "kind": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "kind": "struct",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-end": 168,
+      "line-start": 164
+    },
+    "members": [
+      "project::coffee::cup<tea,Liter>::m_liquid"
+    ],
+    "name": "cup< tea, Liter >",
+    "scope": "project::coffee",
+    "template_parameters": [
+      {
+        "description": [
+          {
+            "content": "The number of liters",
+            "kind": "text"
+          }
+        ],
+        "name": "Liter",
+        "type": [
+          {
+            "value": "uint32_t"
+          }
+        ]
+      }
+    ]
+  },
+  "project::coffee::cup<tea,Liter>::m_liquid": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "The liquid contained.",
+        "kind": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constexpr": false,
+    "is_mutable": false,
+    "is_static": false,
+    "is_volatile": false,
+    "kind": "variable",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-end": null,
+      "line-start": 167
+    },
+    "name": "m_liquid",
+    "scope": "project::coffee::cup<tea,Liter>",
+    "type": [
+      {
+        "value": "tea"
+      }
+    ],
+    "value": ""
   },
   "project::coffee::machine": {
     "access": "public",
@@ -119,10 +324,11 @@
     "kind": "class",
     "location": {
       "file": "coffee/coffee.h",
-      "line-end": 144,
+      "line-end": 149,
       "line-start": 14
     },
     "members": [
+      "project::coffee::machine::add_beans<class>(constBeans&)",
       "project::coffee::machine::callback",
       "project::coffee::machine::cups_brewed",
       "project::coffee::machine::get_mug_size()const",
@@ -151,6 +357,61 @@
     ],
     "name": "machine",
     "scope": "project::coffee"
+  },
+  "project::coffee::machine::add_beans<class>(constBeans&)": {
+    "access": "public",
+    "briefdescription": [],
+    "detaileddescription": [
+      {
+        "content": "Add a genearic beans",
+        "kind": "text"
+      }
+    ],
+    "is_const": false,
+    "is_constructor": false,
+    "is_destructor": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "kind": "function",
+    "location": {
+      "file": "coffee/coffee.h",
+      "line-end": null,
+      "line-start": 125
+    },
+    "name": "add_beans",
+    "parameters": [
+      {
+        "description": [],
+        "name": "beans",
+        "type": [
+          {
+            "value": "const Beans &"
+          }
+        ]
+      }
+    ],
+    "return": {
+      "description": [],
+      "type": [
+        {
+          "value": "void"
+        }
+      ]
+    },
+    "scope": "project::coffee::machine",
+    "signature": "add_beans(const Beans &beans)",
+    "template_parameters": [
+      {
+        "name": "Beans",
+        "type": [
+          {
+            "value": "class"
+          }
+        ]
+      }
+    ]
   },
   "project::coffee::machine::brew_state": {
     "access": "private",
@@ -238,7 +499,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 123
+      "line-start": 128
     },
     "name": "cups_brewed",
     "scope": "project::coffee::machine",
@@ -264,7 +525,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 129
+      "line-start": 134
     },
     "name": "get_mug_size",
     "parameters": [],
@@ -299,7 +560,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 139
+      "line-start": 144
     },
     "name": "help_brew",
     "parameters": [],
@@ -416,7 +677,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 142
+      "line-start": 147
     },
     "name": "m_impl",
     "scope": "project::coffee::machine",
@@ -675,7 +936,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 136
+      "line-start": 141
     },
     "name": "set",
     "parameters": [
@@ -955,7 +1216,7 @@
       ]
     },
     "scope": "project::coffee::machine",
-    "signature": "set_number_cups(uint32_t cups)"
+    "signature": "set_number_cups(uint32_t cups=0)"
   },
   "project::coffee::machine::set_power(power)": {
     "access": "public",
@@ -1156,7 +1417,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 126
+      "line-start": 131
     },
     "name": "total_cups_brewed",
     "scope": "project::coffee::machine",
@@ -1600,7 +1861,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 162
+      "line-start": 195
     },
     "name": "print",
     "parameters": [
@@ -1673,7 +1934,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 172
+      "line-start": 205
     },
     "name": "print",
     "parameters": [
@@ -1750,7 +2011,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 175
+      "line-start": 208
     },
     "name": "version",
     "parameters": [],

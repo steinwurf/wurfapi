@@ -84,7 +84,7 @@ public:
     ///
     /// You can see number_cups() for how many cups
     /// @param cups The number of cups
-    void set_number_cups(uint32_t cups);
+    void set_number_cups(uint32_t cups = 0);
 
     /// @copydoc set_number_cups
     void set_number_cups(std::string cups);
@@ -120,6 +120,7 @@ public:
     std::vector<water_tank> tanks();
 
     /// Add a genearic beans
+    ///
     template <class Beans>
     void add_beans(const Beans& beans);
 
@@ -161,6 +162,14 @@ struct cup
 /// @tparam Liter The number of liters
 template <uint32_t Liter>
 struct cup<tea, Liter>
+{
+    /// The liquid contained
+    tea m_liquid;
+};
+
+/// @brief A 5 liter tea cup
+template <>
+struct cup<tea, 5>
 {
     /// The liquid contained
     tea m_liquid;

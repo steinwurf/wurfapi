@@ -7,7 +7,7 @@ function print(double, int \*)
 
 .. _project::print(double,int*):
 
-void **print** (double a, int \* b)
+| void **print** (double a, int \* b)
 
     Prints the ``a`` and then the value pointed to by ``b`` . 
 

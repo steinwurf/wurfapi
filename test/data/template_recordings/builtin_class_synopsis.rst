@@ -135,7 +135,7 @@ Member Function Description
 
 .. _project::coffee::machine::machine():
 
- **machine** ()
+|  **machine** ()
 
     Constructor. 
 
@@ -151,7 +151,7 @@ Member Function Description
 
 .. _project::coffee::machine::machine(power):
 
- **machine** (:ref:`power <project::coffee::machine::power>` pwr)
+|  **machine** (:ref:`power <project::coffee::machine::power>` pwr)
 
     Constructor with power. 
 
@@ -168,7 +168,7 @@ Member Function Description
 
 .. _project::coffee::machine::~machine():
 
- **~machine** ()
+|  **~machine** ()
 
     Destructor. 
 
@@ -184,12 +184,12 @@ Member Function Description
 
 .. _project::coffee::machine::add_beans<class>(constBeans&):
 
-template <class Beans>
-void **add_beans** (const Beans & beans)
-
-    Add a genearic beans. 
+| template <class Beans>
+| void **add_beans** (const Beans & beans)
 
     
+
+    Add a genearic beans 
 
     
 
@@ -202,7 +202,7 @@ void **add_beans** (const Beans & beans)
 
 .. _project::coffee::machine::get_mug_size()const:
 
-mug_size **get_mug_size** ()
+| mug_size **get_mug_size** ()
 
     
 
@@ -219,7 +219,7 @@ mug_size **get_mug_size** ()
 
 .. _project::coffee::machine::number_cups()const:
 
-uint32_t **number_cups** ()
+| uint32_t **number_cups** ()
 
     
 
@@ -236,12 +236,14 @@ uint32_t **number_cups** ()
 
 .. _project::coffee::machine::set_number_cups(std::string):
 
-void **set_number_cups** (std::string cups)
+| void **set_number_cups** (std::string cups)
 
     Set the number of cups to brew. 
 
     Before setting number of cups, check the following: 
+
     #. You have enough water in the :ref:`water_tank <project::coffee::machine::water_tank>` . 
+
        - Of course you also need power. 
 
          .. code-block:: c++
@@ -251,10 +253,18 @@ void **set_number_cups** (std::string cups)
 
 
 
+
+
+
        - A stable surface is also important! 
 
 
+
+
+
+
     #. Your coffee mug is clean. 
+
 
     You can see :ref:`number_cups() <project::coffee::machine::number_cups()const>` for how many cups 
 
@@ -272,12 +282,14 @@ void **set_number_cups** (std::string cups)
 
 .. _project::coffee::machine::set_number_cups(uint32_t):
 
-void **set_number_cups** (uint32_t cups)
+| void **set_number_cups** (uint32_t cups)
 
     Set the number of cups to brew. 
 
     Before setting number of cups, check the following: 
+
     #. You have enough water in the :ref:`water_tank <project::coffee::machine::water_tank>` . 
+
        - Of course you also need power. 
 
          .. code-block:: c++
@@ -287,10 +299,18 @@ void **set_number_cups** (uint32_t cups)
 
 
 
+
+
+
        - A stable surface is also important! 
 
 
+
+
+
+
     #. Your coffee mug is clean. 
+
 
     You can see :ref:`number_cups() <project::coffee::machine::number_cups()const>` for how many cups 
 
@@ -308,7 +328,7 @@ void **set_number_cups** (uint32_t cups)
 
 .. _project::coffee::machine::set_power(power):
 
-void **set_power** (:ref:`power <project::coffee::machine::power>` pwr)
+| void **set_power** (:ref:`power <project::coffee::machine::power>` pwr)
 
     Set the power of the machine. 
 
@@ -325,7 +345,7 @@ void **set_power** (:ref:`power <project::coffee::machine::power>` pwr)
 
 .. _project::coffee::machine::tank():
 
-:ref:`water_tank <project::coffee::machine::water_tank>` & **tank** ()
+| :ref:`water_tank <project::coffee::machine::water_tank>` & **tank** ()
 
     Get the first water tank. 
 
@@ -341,7 +361,7 @@ void **set_power** (:ref:`power <project::coffee::machine::power>` pwr)
 
 .. _project::coffee::machine::tank()const:
 
-const :ref:`water_tank <project::coffee::machine::water_tank>` & **tank** ()
+| const :ref:`water_tank <project::coffee::machine::water_tank>` & **tank** ()
 
     Get the first water tank. 
 
@@ -357,7 +377,7 @@ const :ref:`water_tank <project::coffee::machine::water_tank>` & **tank** ()
 
 .. _project::coffee::machine::tanks():
 
-std::vector< :ref:`water_tank <project::coffee::machine::water_tank>` > **tanks** ()
+| std::vector< :ref:`water_tank <project::coffee::machine::water_tank>` > **tanks** ()
 
     Get all water tanks. 
 
@@ -373,7 +393,7 @@ std::vector< :ref:`water_tank <project::coffee::machine::water_tank>` > **tanks*
 
 .. _project::coffee::machine::version():
 
-std::string **version** ()
+| std::string **version** ()
 
     The version of the machine. 
 

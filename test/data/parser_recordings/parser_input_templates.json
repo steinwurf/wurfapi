@@ -45,6 +45,12 @@
     "signature": "f(const H< S > &value)",
     "template_parameters": [
       {
+        "description": [
+          {
+            "content": "another something",
+            "kind": "text"
+          }
+        ],
         "name": "H",
         "type": [
           {
@@ -63,6 +69,12 @@
           },
           {
             "value": "<int>"
+          }
+        ],
+        "description": [
+          {
+            "content": "something something...",
+            "kind": "text"
           }
         ],
         "name": "S",
@@ -162,6 +174,12 @@
     "scope": "",
     "template_parameters": [
       {
+        "description": [
+          {
+            "content": "is a type",
+            "kind": "text"
+          }
+        ],
         "name": "T",
         "type": [
           {
@@ -313,6 +331,12 @@
             "value": "uint32_t"
           }
         ],
+        "description": [
+          {
+            "content": "is a uint32_t",
+            "kind": "text"
+          }
+        ],
         "name": "T",
         "type": [
           {
@@ -324,6 +348,12 @@
         "default": [
           {
             "value": "T"
+          }
+        ],
+        "description": [
+          {
+            "content": "is T",
+            "kind": "text"
           }
         ],
         "name": "U",
@@ -558,6 +588,12 @@
     "scope": "",
     "template_parameters": [
       {
+        "description": [
+          {
+            "content": "another something",
+            "kind": "text"
+          }
+        ],
         "name": "H",
         "type": [
           {
@@ -576,6 +612,12 @@
           },
           {
             "value": "<int>"
+          }
+        ],
+        "description": [
+          {
+            "content": "something something...",
+            "kind": "text"
           }
         ],
         "name": "S",

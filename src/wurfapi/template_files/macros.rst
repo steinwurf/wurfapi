@@ -55,17 +55,17 @@
 
 {# FORMAT_TYPE_LIST #}
 
-{%- macro format_type_list(element, as_code=False) -%}
-{%- for item in element -%}
-{%- set value = item["value"] | replace('*', '\*') -%}
-{%- if "link" in item and not as_code -%}
-{{ format_link(value, item["link"]) }}
-{%- else -%}
-{{ value }}
-{%- endif -%}
-{{ " " if not loop.last }}
-{%- endfor -%}
-{%- endmacro -%}
+{% macro format_type_list(element, as_code=False) %}
+{% for item in element %}
+{% set value = item["value"] | replace('*', '\*') %}
+{% if "link" in item and not as_code %}
+{{ format_link(value, item["link"]) -}}
+{% else %}
+{{ value -}}
+{% endif %}
+{{ " " if not loop.last -}}
+{% endfor %}
+{% endmacro %}
 
 
 {# FORMAT_TEXT #}
@@ -85,9 +85,11 @@
 {% macro format_list(list) %}
 {% set item_type = "#. " if list["ordered"] else "- " %}
 {% for item in list["items"] %}
-{{ item_type }}{{format_description(item) | indent(width=item_type|length)}}
-{% endfor %}
 
+
+{{ item_type }}{{format_description(item) | indent(width=item_type|length)}}
+
+{% endfor %}
 {% endmacro %}
 
 
@@ -102,9 +104,8 @@
 {{ format_code(para) }}
 {%- endif %}
 {% if para["kind"] == "list" %}
-
 {{ format_list(para) }}
-{%- endif %}
+{% endif %}
 {% endfor %}
 {% endmacro %}
 
@@ -154,39 +155,39 @@ using **{{ alias["name"] }}** = {{ format_type_list(alias["type"]) }}
 
 {# FORMAT_PARAMETERS #}
 
-{%- macro format_parameters(parameters) -%}
+{% macro format_parameters(parameters) -%}
 (
 {%- for parameter in parameters -%}
-    {%- set type = parameter["type"] -%}
-    {%- set name = parameter["name"] -%}
-    {{ format_type_list(type) + " " }}
-    {%- if name -%}
-    {{name}}
-    {%- endif -%}
-    {{ ", " if not loop.last }}
-{%- endfor -%}
+    {% set type = parameter["type"] %}
+    {% set name = parameter["name"] %}
+    {{- format_type_list(type) + " " -}}
+    {% if name %}
+    {{- name -}}
+    {% endif %}
+    {{- ", " if not loop.last -}}
+{% endfor -%}
 )
 {%- endmacro -%}
 
 
 {# FORMAT_TEMPLATE_PARAMETERS #}
 
-{%- macro format_template_parameters(parameters, as_code=False) -%}
+{% macro format_template_parameters(parameters, as_code=False) -%}
 <
-{%- for parameter in parameters -%}
-    {%- set type = parameter["type"] -%}
-    {%- set name = parameter["name"] -%}
-    {{ format_type_list(type, as_code=as_code) + " " }}
-    {%- if name -%}
-    {{name}}
-    {%- endif -%}
-    {%- if "default" in parameter -%}
-    {{ " = " + format_type_list(parameter["default"], as_code=as_code)}}
-    {%- endif -%}
-    {{ ", " if not loop.last }}
-{%- endfor -%}
+{%- for parameter in parameters %}
+    {% set type = parameter["type"] %}
+    {% set name = parameter["name"] %}
+    {{- format_type_list(type, as_code=as_code) + " " -}}
+    {% if name %}
+    {{- name -}}
+    {% endif %}
+    {% if "default" in parameter %}
+    {{- " = " + format_type_list(parameter["default"], as_code=as_code) -}}
+    {% endif %}
+    {{- ", " if not loop.last -}}
+{% endfor %}
 >
-{%- endmacro -%}
+{%- endmacro %}
 
 
 {# FORMAT_RETURN #}
@@ -224,7 +225,7 @@ Parameter ``{{parameter["name"]}}``:
 {# FORMAT_FUNCTION #}
 
 {%- macro format_function(api, selector, include_label=True) -%}
-{% if include_label -%}
+{% if include_label %}
 .. _{{selector}}:
 
 {% endif %}
@@ -234,11 +235,11 @@ Parameter ``{{parameter["name"]}}``:
 {% set detaileddescription = api[selector]["detaileddescription"] %}
 {% set parameters =
     format_parameters(api[selector]["parameters"]) %}
-{%- set return_description = api[selector]["return"]["description"] %}
+{% set return_description = api[selector]["return"]["description"] %}
 {% if api[selector]["template_parameters"] %}
-template {{ format_template_parameters(api[selector]["template_parameters"]) }}
+| template {{ format_template_parameters(api[selector]["template_parameters"]) }}
 {% endif %}
-{{ format_type_list(return_value["type"]) }} **{{ name }}** {{ parameters }}
+| {{ format_type_list(return_value["type"]) }} **{{ name }}** {{ parameters }}
 
     {{ format_description(briefdescription)|indent }}
 
