@@ -8,6 +8,7 @@ import wurfapi.template_render
 import wurfapi.doxygen_downloader
 
 import record
+import pytest_datarecorder
 
 
 def generate_coffee_api(testdirectory):
@@ -135,3 +136,20 @@ def test_template_render_function(testdirectory):
         mismatch_path=mismatch_path.path())
 
     recorder.record(data=data)
+
+
+template_string = """\
+{%- from 'macros.rst' import escape_ref -%}
+{{ escape_ref(data) }}
+"""
+
+
+def test_template_render_macro(datarecorder):
+
+    datarecorder.recording_path = "test/data/template_recordings/macro_escape_ref.rst"
+
+    render = wurfapi.template_render.TemplateRender(user_path=None)
+    template = render.environment.from_string(template_string)
+    output = template.render(data="<hello>")
+
+    datarecorder.record(data=output)
