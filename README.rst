@@ -473,8 +473,8 @@ Python dictionary representing a C++ function::
       'briefdescription: paragraphs,
       'detaileddescription: paragraphs,
       'parameters': [
-        { 'type': type, 'name': 'somename', 'description': paragraphs },
-        { 'type': type, 'name': 'somename', 'description': paragraphs }
+        { 'type': type, Optional('name'): 'somename', 'description': paragraphs },
+        ...
       ]
   }
 

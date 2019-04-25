@@ -68,7 +68,7 @@ public:
     ~machine();
 
     /// Set the power of the machine
-    void set_power(power pwr);
+    void set_power(power);
 
     /// @brief Set the number of cups to brew.
     ///

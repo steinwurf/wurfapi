@@ -983,7 +983,6 @@
     "parameters": [
       {
         "description": [],
-        "name": "pwr",
         "type": [
           {
             "link": {
@@ -1004,7 +1003,7 @@
       ]
     },
     "scope": "project::coffee::machine",
-    "signature": "set_power(power pwr)"
+    "signature": "set_power(power)"
   },
   "project::coffee::machine::tank()": {
     "access": "public",

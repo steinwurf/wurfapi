@@ -670,7 +670,12 @@ def parse(xml, parser, log, scope):
 
         parameter = {}
         parameter["type"] = parser.parse_element(xml=param.find("type"))
-        parameter['name'] = param.findtext('declname')
+
+        name = param.findtext('declname')
+
+        if name:
+            parameter['name'] = name
+
         parameter['description'] = []
 
         parameters.append(parameter)
@@ -691,6 +696,9 @@ def parse(xml, parser, log, scope):
         name = item.find("parameternamelist/parametername").text
 
         for parameter in parameters:
+
+            if 'name' not in parameter:
+                continue
 
             if name == parameter['name']:
 

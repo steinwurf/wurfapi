@@ -189,7 +189,7 @@ def check_api_schema(api):
         'detaileddescription': paragraphs_schema,
         'parameters': [{
             'type': type_schema,
-            'name': string_schema,
+            schema.Optional('name'): string_schema,
             'description': paragraphs_schema
         }],
     })
