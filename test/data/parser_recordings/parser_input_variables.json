@@ -24,7 +24,7 @@
       "variables::size"
     ],
     "name": "variables",
-    "scope": ""
+    "scope": null
   },
   "variables::a": {
     "access": "public",
@@ -56,8 +56,7 @@
         },
         "value": "my_type_const"
       }
-    ],
-    "value": ""
+    ]
   },
   "variables::b": {
     "access": "public",
@@ -176,8 +175,7 @@
         },
         "value": "my_type_const"
       }
-    ],
-    "value": ""
+    ]
   },
   "variables::my_type_const": {
     "access": "public",

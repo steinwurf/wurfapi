@@ -10,7 +10,22 @@ def check_api_schema(api):
     """
 
     # Schema for checking we have a string in a Python 2 and 3 compatible way
-    string_schema = schema.Schema(schema.Or(*six.string_types))
+
+    # Link schema
+    class StringSchema(object):
+
+        def validate(self, data):
+
+            # Check the basic properties
+            schema.Schema(schema.Or(*six.string_types)).validate(data)
+
+            # No empty strings either
+            if not data:
+                raise schema.SchemaError("String is empty")
+
+            return data
+
+    string_schema = StringSchema()
 
     # Schema for checking the location
     location_schema = schema.Schema({
@@ -139,7 +154,7 @@ def check_api_schema(api):
             'name': string_schema,
             'briefdescription': paragraphs_schema,
             'detaileddescription': paragraphs_schema,
-            'value': schema.Or(string_schema, None)
+            schema.Optional('value'): string_schema
         }],
         'briefdescription': paragraphs_schema,
         'detaileddescription': paragraphs_schema
@@ -199,7 +214,7 @@ def check_api_schema(api):
     variable_schema = schema.Schema({
         'kind': 'variable',
         'name': string_schema,
-        'value': schema.Or(string_schema, None),
+        schema.Optional('value'): string_schema,
         'type': type_schema,
         'location': location_schema,
         'is_static': bool,
