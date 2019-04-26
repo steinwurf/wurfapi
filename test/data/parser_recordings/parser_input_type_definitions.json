@@ -19,7 +19,7 @@
       "type_definitions::really_a_string"
     ],
     "name": "type_definitions",
-    "scope": ""
+    "scope": null
   },
   "type_definitions::my_bool": {
     "access": "public",

@@ -198,14 +198,15 @@ def generate_doxygen(app):
     mapper = link_mapper.LinkMapper(api=api, link_provider=provider)
     api = mapper.map()
 
+    # Dump the API
+    with open(os.path.join(app.doctreedir, 'wurfapi_api.json'), 'w') as f:
+        json.dump(api, f, indent=4, sort_keys=True)
+
     # Run schema checks on the API
     check_api_schema.check_api_schema(api=api)
 
     # Store the final API
     app.wurfapi_api = api
-
-    with open(os.path.join(app.doctreedir, 'wurfapi_api.json'), 'w') as f:
-        json.dump(app.wurfapi_api, f, indent=4, sort_keys=True)
 
 
 def setup(app):

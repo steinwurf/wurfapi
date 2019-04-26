@@ -6,6 +6,9 @@ of every change, see the Git log.
 
 Latest
 ------
+* Major: Make value attributes optional
+* Major: Make name of parameters optional
+* Major: Enforce scope as either a string or None
 * Major: Make link attribute optional.
 * Major: Added schema checking of parsed API json
 * Major: Added link provider functionality and default mappings to cppreference.
