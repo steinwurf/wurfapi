@@ -436,8 +436,8 @@ Python dictionary representing a C++ enum or enum class::
         {
           'name': 'somename',
           'briefdescription': paragraphs,
-          'detaileddescription': paragraphs
-          'value': 'some value' | none
+          'detaileddescription': paragraphs,
+          Optional('value'): 'some value'
         }
        ],
       'briefdescription': paragraphs,
@@ -487,8 +487,8 @@ Python dictionary representing a C++ function::
       'briefdescription: paragraphs,
       'detaileddescription: paragraphs,
       'parameters': [
-        { 'type': type, 'name': 'somename', 'description': paragraphs },
-        { 'type': type, 'name': 'somename', 'description': paragraphs }
+        { 'type': type, Optional('name'): 'somename', 'description': paragraphs },
+        ...
       ]
   }
 
@@ -500,7 +500,7 @@ Python dictionary representing a C++ variable::
     info = {
       'kind': 'variable',
       'name': 'unqualified-name',
-      'value': 'some value' | None,
+      Optional('value'): 'some value',
       'type': type,
       'location': location,
       'is_static': True | False,

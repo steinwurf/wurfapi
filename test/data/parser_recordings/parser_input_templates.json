@@ -103,7 +103,7 @@
     },
     "members": [],
     "name": "function< R(Args...)>",
-    "scope": "",
+    "scope": null,
     "template_parameters": [
       {
         "name": "R",
@@ -140,7 +140,7 @@
     },
     "members": [],
     "name": "non_type",
-    "scope": "",
+    "scope": null,
     "template_parameters": [
       {
         "name": "Value",
@@ -171,7 +171,7 @@
       "our_type::our_type(constT&)"
     ],
     "name": "our_type",
-    "scope": "",
+    "scope": null,
     "template_parameters": [
       {
         "description": [
@@ -249,7 +249,7 @@
       "our_type<int>::our_type(constint&)"
     ],
     "name": "our_type< int >",
-    "scope": "",
+    "scope": null,
     "template_parameters": []
   },
   "our_type<int>::our_type(constint&)": {
@@ -301,7 +301,7 @@
       "test::another_type"
     ],
     "name": "test",
-    "scope": ""
+    "scope": null
   },
   "test::another_type": {
     "access": "public",
@@ -585,7 +585,7 @@
     },
     "members": [],
     "name": "testtest",
-    "scope": "",
+    "scope": null,
     "template_parameters": [
       {
         "description": [

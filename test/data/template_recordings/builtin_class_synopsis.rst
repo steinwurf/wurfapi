@@ -55,7 +55,7 @@ Member functions (public)
    * - void
      - :ref:`set_number_cups<project::coffee::machine::set_number_cups(uint32_t)>` (uint32_t cups)
    * - void
-     - :ref:`set_power<project::coffee::machine::set_power(power)>` (:ref:`power <project::coffee::machine::power>` pwr)
+     - :ref:`set_power<project::coffee::machine::set_power(power)>` (:ref:`power <project::coffee::machine::power>` )
    * - :ref:`water_tank <project::coffee::machine::water_tank>` &
      - :ref:`tank<project::coffee::machine::tank()>` ()
    * - const :ref:`water_tank <project::coffee::machine::water_tank>` &
@@ -328,7 +328,7 @@ Member Function Description
 
 .. _project::coffee::machine::set_power(power):
 
-| void **set_power** (:ref:`power <project::coffee::machine::power>` pwr)
+| void **set_power** (:ref:`power <project::coffee::machine::power>` )
 
     Set the power of the machine. 
 

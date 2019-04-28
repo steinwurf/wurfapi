@@ -18,7 +18,7 @@
       "header::headz_up()"
     ],
     "name": "header",
-    "scope": ""
+    "scope": null
   },
   "header::headz_up()": {
     "access": "public",
@@ -65,7 +65,7 @@
       "project::print(int,bool)"
     ],
     "name": "project",
-    "scope": ""
+    "scope": null
   },
   "project::coffee": {
     "briefdescription": [],
@@ -163,8 +163,7 @@
       {
         "value": "T"
       }
-    ],
-    "value": ""
+    ]
   },
   "project::coffee::cup<tea,5>": {
     "access": "public",
@@ -214,8 +213,7 @@
       {
         "value": "tea"
       }
-    ],
-    "value": ""
+    ]
   },
   "project::coffee::cup<tea,Liter>": {
     "access": "public",
@@ -280,8 +278,7 @@
       {
         "value": "tea"
       }
-    ],
-    "value": ""
+    ]
   },
   "project::coffee::machine": {
     "access": "public",
@@ -455,8 +452,7 @@
       {
         "value": "bool"
       }
-    ],
-    "value": ""
+    ]
   },
   "project::coffee::machine::callback": {
     "access": "public",
@@ -661,8 +657,7 @@
         },
         "value": "callback"
       }
-    ],
-    "value": ""
+    ]
   },
   "project::coffee::machine::m_impl": {
     "access": "private",
@@ -695,8 +690,7 @@
       {
         "value": ">"
       }
-    ],
-    "value": ""
+    ]
   },
   "project::coffee::machine::m_other_callback": {
     "access": "public",
@@ -728,8 +722,7 @@
         },
         "value": "other_callback"
       }
-    ],
-    "value": ""
+    ]
   },
   "project::coffee::machine::machine()": {
     "access": "public",
@@ -895,8 +888,7 @@
           }
         ],
         "detaileddescription": [],
-        "name": "on",
-        "value": ""
+        "name": "on"
       },
       {
         "briefdescription": [
@@ -906,8 +898,7 @@
           }
         ],
         "detaileddescription": [],
-        "name": "off",
-        "value": ""
+        "name": "off"
       }
     ]
   },
@@ -1244,7 +1235,6 @@
     "parameters": [
       {
         "description": [],
-        "name": "pwr",
         "type": [
           {
             "link": {
@@ -1265,7 +1255,7 @@
       ]
     },
     "scope": "project::coffee::machine",
-    "signature": "set_power(power pwr)"
+    "signature": "set_power(power)"
   },
   "project::coffee::machine::tank()": {
     "access": "public",
@@ -1425,8 +1415,7 @@
       {
         "value": "uint32_t"
       }
-    ],
-    "value": ""
+    ]
   },
   "project::coffee::machine::version()": {
     "access": "public",
@@ -1741,8 +1730,7 @@
           }
         ],
         "detaileddescription": [],
-        "name": "Tall",
-        "value": ""
+        "name": "Tall"
       },
       {
         "briefdescription": [],
@@ -1757,8 +1745,7 @@
             "kind": "code"
           }
         ],
-        "name": "Grande",
-        "value": ""
+        "name": "Grande"
       },
       {
         "briefdescription": [
