@@ -490,10 +490,6 @@
     },
     "name": "machine",
     "parameters": [],
-    "return": {
-      "description": [],
-      "type": []
-    },
     "scope": "project::coffee::machine",
     "signature": "machine()"
   },
@@ -535,10 +531,6 @@
         ]
       }
     ],
-    "return": {
-      "description": [],
-      "type": []
-    },
     "scope": "project::coffee::machine",
     "signature": "machine(power pwr)"
   },
@@ -1423,10 +1415,6 @@
     },
     "name": "~machine",
     "parameters": [],
-    "return": {
-      "description": [],
-      "type": []
-    },
     "scope": "project::coffee::machine",
     "signature": "~machine()"
   },

@@ -189,22 +189,32 @@ Parameter ``{{parameter["name"]}}``:
 .. _{{selector}}:
 {%- endif %}
 
+{% if "return" in api[selector] -%}
 {% set return_value = api[selector]["return"] -%}
+{% set return_description =
+    format_return_description(return_value["description"]) -%}
+{% set return_type =
+    format_type_to_link(return_value["type"]) -%}
+{%- endif %}
+
 {%- set name = api[selector]["name"] -%}
 {%- set briefdescription = api[selector]["briefdescription"] -%}
 {%- set detaileddescription = api[selector]["detaileddescription"] -%}
 {%- set parameters =
     format_parameters(api[selector]["parameters"]) -%}
-{%- set return_description = api[selector]["return"]["description"] -%}
 
-{{ format_type_to_link(return_value["type"]) }} **{{ name }}** {{ parameters }}
-
+{% if return_type is defined -%}
+{{ return_type }} **{{ name }}** {{ parameters }}
+{% else -%}
+**{{ name }}** {{ parameters }}
+{% endif %}
     {{ format_description(briefdescription)|indent }}
 
     {{ format_description(detaileddescription)|indent }}
 
     {{ format_parameters_description(api[selector]["parameters"])|indent }}
-
-    {{ format_return_description(return_description) | indent }}
+{% if return_description is defined %}
+    {{ return_description | indent }}
+{% endif -%}
 
 {% endmacro -%}
