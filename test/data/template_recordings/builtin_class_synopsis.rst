@@ -162,7 +162,7 @@ Member Function Description
 
 .. _project::coffee::machine::machine():
 
- **machine** ()
+**machine** ()
 
     Constructor. 
 
@@ -170,15 +170,12 @@ Member Function Description
 
     
 
-    
-
-
 
 -----
 
 .. _project::coffee::machine::machine(power):
 
- **machine** (:ref:`power<project::coffee::machine::power>` pwr)
+**machine** (:ref:`power<project::coffee::machine::power>` pwr)
 
     Constructor with power. 
 
@@ -188,24 +185,18 @@ Member Function Description
 
 
 
-    
-
-
 
 -----
 
 .. _project::coffee::machine::~machine():
 
- **~machine** ()
+**~machine** ()
 
     Destructor. 
 
     
 
     
-
-    
-
 
 
 -----
@@ -224,7 +215,6 @@ mug_size **get_mug_size** ()
         the mug_size 
 
 
-
 -----
 
 .. _project::coffee::machine::number_cups()const:
@@ -239,7 +229,6 @@ uint32_t **number_cups** ()
 
     Returns:
         The number of cups 
-
 
 
 -----
@@ -274,7 +263,6 @@ void **set_number_cups** (std::string cups)
     
 
 
-
 -----
 
 .. _project::coffee::machine::set_number_cups(uint32_t):
@@ -307,7 +295,6 @@ void **set_number_cups** (uint32_t cups)
     
 
 
-
 -----
 
 .. _project::coffee::machine::set_power(power):
@@ -325,7 +312,6 @@ void **set_power** (:ref:`power<project::coffee::machine::power>`)
     
 
 
-
 -----
 
 .. _project::coffee::machine::tank():
@@ -339,7 +325,6 @@ void **set_power** (:ref:`power<project::coffee::machine::power>`)
     
 
     
-
 
 
 -----
@@ -357,7 +342,6 @@ const :ref:`water_tank<project::coffee::machine::water_tank>` & **tank** ()
     
 
 
-
 -----
 
 .. _project::coffee::machine::tanks():
@@ -371,7 +355,6 @@ std::vector< :ref:`water_tank<project::coffee::machine::water_tank>` > **tanks**
     
 
     
-
 
 
 -----
@@ -401,7 +384,6 @@ std::string **version** ()
 
             std::cout << machine::version();
             std::cout << "\n";
-
 
 
 

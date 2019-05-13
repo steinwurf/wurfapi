@@ -141,6 +141,28 @@ test_api = {
             }
         ],
     },
+    'function_fsdfsdfsaa': {
+        'kind': 'function',
+        'name': "dfsfdsfddfsdfs",
+        'location': {'file': 'sdd.h', 'line-start': 10, 'line-end': 15},
+        'scope': 'dfsds::ds',
+        'signature': 'void some(int a)',
+        'is_const': True,
+        'is_static': False,
+        'is_virtual': True,
+        'is_explicit': False,
+        'is_inline': True,
+        'is_constructor': False,
+        'is_destructor': True,
+        'access': 'public',
+        'briefdescription': [
+            {'kind': 'text', 'content': 'bla bla'}
+        ],
+        'detaileddescription': [
+            {'kind': 'text', 'content': 'bla bla'}
+        ],
+        'parameters': []
+    },
     'variable_fsdfsddsfsdfs': {
         'kind': 'variable',
         'name': "dfsfdsfddfsdfs",

@@ -48,7 +48,6 @@ void **print** (double a, int \* b)
         This does not really return anything because it is ``void`` but it could! 
 
 
-
 -----
 
 .. _project::print(int,bool):
@@ -75,7 +74,6 @@ void **print** (int a_number, bool on_paper)
 
 
     
-
 
 
 

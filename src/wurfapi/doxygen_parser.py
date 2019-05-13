@@ -712,17 +712,24 @@ def parse(xml, parser, log, scope):
                 break
 
     # Description of the return type
-    return_xml = detaileddescription.find('.//simplesect[@kind = "return"]')
+    return_type = parser.parse_element(xml=xml.find("type"))
 
-    if return_xml is not None:
-        return_description = parser.parse_element(xml=return_xml)
-    else:
-        return_description = []
+    if return_type:
 
-    return_info = {}
-    return_info["type"] = parser.parse_element(xml=xml.find("type"))
-    return_info["description"] = return_description
-    result["return"] = return_info
+        # If we have a return type we might also have a description of it
+        return_xml = detaileddescription.find(
+            './/simplesect[@kind = "return"]')
+
+        if return_xml is not None:
+            return_description = parser.parse_element(xml=return_xml)
+        else:
+            return_description = []
+
+        # Create the return value dictionary
+        return_info = {}
+        return_info["type"] = return_type
+        return_info["description"] = return_description
+        result["return"] = return_info
 
     result["signature"] = result["name"] + xml.findtext("argsstring")
     result["is_const"] = xml.attrib["const"] == "yes"
@@ -739,7 +746,7 @@ def parse(xml, parser, log, scope):
 
     # If we do not have a return type the function is either a constructor
     # or a destructor
-    if return_info["type"] == []:
+    if "return" not in result:
         result["is_constructor"] = not result["name"].startswith("~")
         result["is_destructor"] = result["name"].startswith("~")
     else:

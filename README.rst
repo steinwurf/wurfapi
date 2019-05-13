@@ -457,7 +457,7 @@ Python dictionary representing a C++ function::
       'name': 'unqualified-name',
       'location': location,
       'scope': 'unique-name' | None,
-      'return': {
+      Optional('return'): {
         'type': type,
         'description': paragraphs
       }
@@ -477,6 +477,9 @@ Python dictionary representing a C++ function::
         ...
       ]
   }
+
+The `return` key is optional if the function is either a constructor or
+destructor.
 
 ``variable`` Kind
 .................

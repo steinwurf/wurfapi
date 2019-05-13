@@ -143,7 +143,6 @@ def check_api_schema(api):
     })
 
     # Enum schema
-
     enum_schema = schema.Schema({
         'kind': 'enum',
         'name': string_schema,
@@ -160,15 +159,13 @@ def check_api_schema(api):
         'detaileddescription': paragraphs_schema
     })
 
-    # type schema
-
+    # Type schema
     type_schema = schema.Schema([{
         'value': string_schema,
         schema.Optional('link'): LinkSchema(api=api)
     }])
 
-    # typedef / using schema
-
+    # Typedef / using schema
     typedef_using_schema = schema.Schema({
         'kind': schema.Or('typedef', 'using'),
         'name': string_schema,
@@ -180,14 +177,13 @@ def check_api_schema(api):
         'detaileddescription': paragraphs_schema
     })
 
-    # function schema
-
+    # Function schema
     function_schema = schema.Schema({
         'kind': 'function',
         'name': string_schema,
         'location': location_schema,
         'scope': schema.Or(string_schema, None),
-        'return': {
+        schema.Optional('return'): {
             'type': type_schema,
             'description': paragraphs_schema
         },
