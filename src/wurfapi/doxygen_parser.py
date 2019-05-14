@@ -409,7 +409,7 @@ def parse(parser, xml):
 
     result["kind"] = "namespace"
     result["name"] = name
-    result["scope"] = scope
+    result["scope"] = scope if scope else None
     result['briefdescription'] = parser.parse_element(
         xml=xml.find("briefdescription"))
     result['detaileddescription'] = parser.parse_element(
@@ -469,7 +469,7 @@ def parse(parser, xml):
     result["kind"] = xml.attrib['kind']
     result["name"] = name
     result["location"] = parser.parse_element(xml=xml.find('location'))
-    result["scope"] = scope
+    result["scope"] = scope if scope else None
     result["briefdescription"] = parser.parse_element(
         xml=xml.find("briefdescription"))
     result["detaileddescription"] = parser.parse_element(
@@ -561,7 +561,9 @@ def parse(xml, parser, log, scope):
         v = enumvalue.findtext("initializer", default="")
         if v.startswith('= '):
             v = v[2:]
-        value["value"] = v
+
+        if v:
+            value["value"] = v
 
         values.append(value)
 
@@ -777,7 +779,12 @@ def parse(xml, parser, log, scope):
 
         parameter = {}
         parameter["type"] = parser.parse_element(xml=param.find("type"))
-        parameter['name'] = param.findtext('declname')
+
+        name = param.findtext('declname')
+
+        if name:
+            parameter['name'] = name
+
         parameter['description'] = []
 
         parameters.append(parameter)
@@ -796,6 +803,9 @@ def parse(xml, parser, log, scope):
 
         for parameter in parameters:
 
+            if 'name' not in parameter:
+                continue
+
             name = parameter['name']
 
             if name in parameterlist:
@@ -808,17 +818,24 @@ def parse(xml, parser, log, scope):
         result["template_parameters"] = template_parameters
 
     # Description of the return type
-    return_xml = detaileddescription.find('.//simplesect[@kind = "return"]')
+    return_type = parser.parse_element(xml=xml.find("type"))
 
-    if return_xml is not None:
-        return_description = parser.parse_element(xml=return_xml)
-    else:
-        return_description = []
+    if return_type:
 
-    return_info = {}
-    return_info["type"] = parser.parse_element(xml=xml.find("type"))
-    return_info["description"] = return_description
-    result["return"] = return_info
+        # If we have a return type we might also have a description of it
+        return_xml = detaileddescription.find(
+            './/simplesect[@kind = "return"]')
+
+        if return_xml is not None:
+            return_description = parser.parse_element(xml=return_xml)
+        else:
+            return_description = []
+
+        # Create the return value dictionary
+        return_info = {}
+        return_info["type"] = return_type
+        return_info["description"] = return_description
+        result["return"] = return_info
 
     result["signature"] = result["name"] + xml.findtext("argsstring")
     result["is_const"] = xml.attrib["const"] == "yes"
@@ -835,7 +852,7 @@ def parse(xml, parser, log, scope):
 
     # If we do not have a return type the function is either a constructor
     # or a destructor
-    if return_info["type"] == []:
+    if "return" not in result:
         result["is_constructor"] = not result["name"].startswith("~")
         result["is_destructor"] = result["name"].startswith("~")
     else:
@@ -931,15 +948,15 @@ def parse(xml, parser, log, scope):
     result["access"] = xml.attrib["prot"]
 
     # Lets get the value
-    v = xml.find("initializer")
-    if v is None:
-        v = ""
-    else:
-        v = v.xpath("string()")
+    initializer_element = xml.find("initializer")
+    if initializer_element is not None:
 
-    if v.startswith('= '):
-        v = v[2:]
-    result["value"] = v
+        value = initializer_element.xpath("string()")
+
+        if value.startswith('= '):
+            value = value[2:]
+
+        result["value"] = value
 
     variable_type = parser.parse_element(xml=xml.find("type"))
 

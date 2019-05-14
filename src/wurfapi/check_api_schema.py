@@ -10,7 +10,22 @@ def check_api_schema(api):
     """
 
     # Schema for checking we have a string in a Python 2 and 3 compatible way
-    string_schema = schema.Schema(schema.Or(*six.string_types))
+
+    # Link schema
+    class StringSchema(object):
+
+        def validate(self, data):
+
+            # Check the basic properties
+            schema.Schema(schema.Or(*six.string_types)).validate(data)
+
+            # No empty strings either
+            if not data:
+                raise schema.SchemaError("String is empty")
+
+            return data
+
+    string_schema = StringSchema()
 
     # Schema for checking the location
     location_schema = schema.Schema({
@@ -145,7 +160,6 @@ def check_api_schema(api):
     })
 
     # Enum schema
-
     enum_schema = schema.Schema({
         'kind': 'enum',
         'name': string_schema,
@@ -156,14 +170,19 @@ def check_api_schema(api):
             'name': string_schema,
             'briefdescription': paragraphs_schema,
             'detaileddescription': paragraphs_schema,
-            'value': schema.Or(string_schema, None)
+            schema.Optional('value'): string_schema
         }],
         'briefdescription': paragraphs_schema,
         'detaileddescription': paragraphs_schema
     })
 
-    # typedef / using schema
+    # Type schema
+    type_schema = schema.Schema([{
+        'value': string_schema,
+        schema.Optional('link'): LinkSchema(api=api)
+    }])
 
+    # Typedef / using schema
     typedef_using_schema = schema.Schema({
         'kind': schema.Or('typedef', 'using'),
         'name': string_schema,
@@ -175,14 +194,13 @@ def check_api_schema(api):
         'detaileddescription': paragraphs_schema
     })
 
-    # function schema
-
+    # Function schema
     function_schema = schema.Schema({
         'kind': 'function',
         'name': string_schema,
         'location': location_schema,
         'scope': schema.Or(string_schema, None),
-        'return': {
+        schema.Optional('return'): {
             'type': type_schema,
             'description': paragraphs_schema
         },
@@ -200,7 +218,7 @@ def check_api_schema(api):
         'detaileddescription': paragraphs_schema,
         'parameters': [{
             'type': type_schema,
-            'name': string_schema,
+            schema.Optional('name'): string_schema,
             'description': paragraphs_schema
         }],
     })
@@ -210,7 +228,7 @@ def check_api_schema(api):
     variable_schema = schema.Schema({
         'kind': 'variable',
         'name': string_schema,
-        'value': schema.Or(string_schema, None),
+        schema.Optional('value'): string_schema,
         'type': type_schema,
         'location': location_schema,
         'is_static': bool,

@@ -68,7 +68,7 @@ public:
     ~machine();
 
     /// Set the power of the machine
-    void set_power(power pwr);
+    void set_power(power);
 
     /// @brief Set the number of cups to brew.
     ///
@@ -121,7 +121,9 @@ public:
 
     /// Add a genearic beans
     ///
-    template <class Beans>
+    /// @tparam Beans The generic bean type
+    /// @tparam BeanSize The size of a bean
+    template <class Beans = Arabica, uint32_t BeanSize = 100>
     void add_beans(const Beans& beans);
 
     /// The number of cups brewed by this machine.

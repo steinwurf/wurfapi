@@ -119,23 +119,16 @@ def test_template_render_enum(testdirectory):
     recorder.record(data=data)
 
 
-def test_template_render_function(testdirectory):
+def test_template_render_function(testdirectory, datarecorder):
 
     template = wurfapi.template_render.TemplateRender(user_path=None)
-
     api = generate_coffee_api(testdirectory=testdirectory)
 
     data = template.render(selector='project::print(double,int*)', api=api,
                            filename='function_synopsis.rst')
 
-    mismatch_path = testdirectory.mkdir('mismatch')
-
-    recorder = record.Record(
-        filename='builtin_function_synopsis.rst',
-        recording_path='test/data/template_recordings',
-        mismatch_path=mismatch_path.path())
-
-    recorder.record(data=data)
+    datarecorder.recording_path = "test/data/template_recordings/builtin_function_synopsis.rst"
+    datarecorder.record(data=data)
 
 
 template_string = """\
@@ -146,10 +139,9 @@ template_string = """\
 
 def test_template_render_macro(datarecorder):
 
-    datarecorder.recording_path = "test/data/template_recordings/macro_escape_ref.rst"
-
     render = wurfapi.template_render.TemplateRender(user_path=None)
     template = render.environment.from_string(template_string)
-    output = template.render(data="<hello>")
+    data = template.render(data="<hello>")
 
-    datarecorder.record(data=output)
+    datarecorder.recording_path = "test/data/template_recordings/macro_escape_ref.rst"
+    datarecorder.record(data=data)

@@ -71,13 +71,13 @@
 {# FORMAT_TEXT #}
 
 {% macro format_text(paragraph) %}
-{% if "link" in paragraph -%}
-{{ format_link(paragraph["content"], paragraph["link"]) }}
-{%- else -%}
-{{ paragraph["content"] }}
-{%- endif -%}
-{{ " " }}
-{%- endmacro %}
+{% if "link" in paragraph %}
+{{ format_link(paragraph["content"], paragraph["link"]) -}}
+{% else %}
+{{ paragraph["content"] -}}
+{% endif %}
+{{ " " -}}
+{% endmacro %}
 
 
 {# FORMAT_LIST #}
@@ -98,13 +98,13 @@
 {% macro format_description(description) %}
 {% for para in description %}
 {% if para["kind"] == "text" %}
-{{ format_text(para) }}
-{%- endif %}
+{{ format_text(para) -}}
+{% endif %}
 {% if para["kind"] == "code" %}
-{{ format_code(para) }}
-{%- endif %}
+{{ format_code(para) -}}
+{% endif %}
 {% if para["kind"] == "list" %}
-{{ format_list(para) }}
+{{ format_list(para) -}}
 {% endif %}
 {% endfor %}
 {% endmacro %}
@@ -192,12 +192,12 @@ using **{{ alias["name"] }}** = {{ format_type_list(alias["type"]) }}
 
 {# FORMAT_RETURN #}
 
-{%- macro format_return_description(description) -%}
-{%- if description|length -%}
+{% macro format_return_description(description) %}
+{% if description|length %}
 Returns:
-    {{ format_description(description) | indent }}
-{%- endif -%}
-{%- endmacro -%}
+    {{ format_description(description) | indent -}}
+{% endif %}
+{% endmacro %}
 
 
 {# FORMAT_PARAMETER_DESCRIPTION #}
@@ -210,43 +210,96 @@ Parameter ``{{parameter["name"]}}``:
 {% endif %}
 {% endmacro %}
 
-
 {# FORMAT_PARAMETERS_DESCRIPTION #}
 
-{%- macro format_parameters_description(parameters) -%}
-{%- if parameters | length -%}
+{% macro format_parameters_description(parameters) %}
+{% if parameters | length %}
 {% for parameter in parameters %}
-{{ format_parameter_description(parameter)  }}
+{% set description = format_parameter_description(parameter) %}
+{% if description %}
+{{ description }}
+{% endif %}
 {% endfor %}
-{%- endif -%}
-{%- endmacro -%}
+{% endif %}
+{% endmacro %}
+
+{# FORMAT_TEMPLATE_PARAMETER_DESCRIPTION #}
+
+{% macro format_template_parameter_description(parameter) %}
+{% if "description" in parameter %}
+{% set type = format_type_list(parameter["type"]) %}
+{% set name = parameter["name"] %}
+{% set default = format_type_list(parameter["default"]) | default("") %}
+{% set description = format_description(parameter["description"]) %}
+Template parameter: {{ type }} ``{{ name }}`` {{ " = " + default if default }}
+    {{ description | indent -}}
+{% endif %}
+{% endmacro %}
+
+
+{# FORMAT_TEMPLATE_PARAMETERS_DESCRIPTION #}
+
+{% macro format_template_parameters_description(parameters) %}
+{% if parameters | length %}
+{% for parameter in parameters %}
+{% set description = format_template_parameter_description(parameter) %}
+{% if description %}
+{{ description }}
+
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endmacro %}
 
 
 {# FORMAT_FUNCTION #}
 
-{%- macro format_function(api, selector, include_label=True) -%}
+{% macro format_function(api, selector, include_label=True) %}
 {% if include_label %}
 .. _{{selector}}:
 
 {% endif %}
-{% set return_value = api[selector]["return"] %}
-{% set name = api[selector]["name"] %}
-{% set briefdescription = api[selector]["briefdescription"] %}
-{% set detaileddescription = api[selector]["detaileddescription"] %}
-{% set parameters =
-    format_parameters(api[selector]["parameters"]) %}
-{% set return_description = api[selector]["return"]["description"] %}
-{% if api[selector]["template_parameters"] %}
-| template {{ format_template_parameters(api[selector]["template_parameters"]) }}
+{% set function = api[selector] %}
+{% if "return" in function %}
+{% set return_value = format_type_list(function["return"]["type"]) %}
+{% set return_description =
+    format_return_description(function["return"]["description"]) %}
 {% endif %}
-| {{ format_type_list(return_value["type"]) }} **{{ name }}** {{ parameters }}
+{% set name = function["name"] %}
+{% set briefdescription = format_description(function["briefdescription"]) %}
+{% set detaileddescription = format_description(function["detaileddescription"]) %}
+{% set parameters =
+    format_parameters(function["parameters"]) %}
+{% set parameters_description =
+    format_parameters_description(function["parameters"]) %}
+{% if function["template_parameters"] %}
+| template {{ format_template_parameters(function["template_parameters"]) }}
+{% endif %}
+{% if return_value is defined %}
+| {{ return_value }} **{{ name }}** {{ parameters }}
+{% else %}
+| **{{ name }}** {{ parameters }}
+{% endif %}
+{% if briefdescription %}
 
-    {{ format_description(briefdescription)|indent }}
+    {{ briefdescription | indent }}
+{% endif %}
+{% if detaileddescription %}
 
-    {{ format_description(detaileddescription)|indent }}
+    {{ detaileddescription | indent }}
+{% endif %}
+{% if parameters_description %}
 
-    {{ format_parameters_description(api[selector]["parameters"])|indent }}
+    {{ parameters_description | indent }}
+{% endif %}
+{% if return_description %}
 
-    {{ format_return_description(return_description) | indent }}
+    {{ return_description | indent }}
+{% endif %}
+{% if function["template_parameters"] %}
+{% set description =
+    format_template_parameters_description(function["template_parameters"]) %}
 
+    {{ description | indent -}}
+{% endif %}
 {% endmacro %}

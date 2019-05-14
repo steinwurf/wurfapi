@@ -50,16 +50,27 @@ test_api = {
         'location': {'file': 'some.h', 'line-start': 10, 'line-end': None},
         'scope': None,
         'access': 'public',
-        'values': [{
-            'name': 'a',
-            'briefdescription': [
-                {'kind': 'text', 'content': 'bla bla'}
-            ],
-            'detaileddescription': [
-                {'kind': 'text', 'content': 'bla bla'}
-            ],
-            'value': None
-        }],
+        'values': [
+            {
+                'name': 'a',
+                'briefdescription': [
+                    {'kind': 'text', 'content': 'bla bla'}
+                ],
+                'detaileddescription': [
+                    {'kind': 'text', 'content': 'bla bla'}
+                ],
+                'value': "dsf"
+            },
+            {
+                'name': 'b',
+                'briefdescription': [
+                    {'kind': 'text', 'content': 'bla bla'}
+                ],
+                'detaileddescription': [
+                    {'kind': 'text', 'content': 'bla bla'}
+                ]
+            }
+        ],
         'briefdescription': [
             {'kind': 'text', 'content': 'bla bla'}
         ],
@@ -119,17 +130,47 @@ test_api = {
         'detaileddescription': [
             {'kind': 'text', 'content': 'bla bla'}
         ],
-        'parameters': [{
-            'type': [{
-                'value': 'uint32_t', 'link': {
-                    'url': True, 'value': 'www.steinwurf.com'
-                }
-            }],
-            'name': 'aaa',
-            'description': [
-                {'kind': 'text', 'content': 'bla bla'}
-            ]
-        }],
+        'parameters': [
+            {
+                'type': [{
+                    'value': 'uint32_t', 'link': {
+                        'url': True, 'value': 'www.steinwurf.com'
+                    }
+                }],
+                'name': 'aaa',
+                'description': [
+                    {'kind': 'text', 'content': 'bla bla'}
+                ]
+            },
+            {
+                'type': [{'value': 'uint32_t'}],
+                'description': [
+                    {'kind': 'text', 'content': 'bla bla'}
+                ]
+            }
+        ],
+    },
+    'function_fsdfsdfsaa': {
+        'kind': 'function',
+        'name': "dfsfdsfddfsdfs",
+        'location': {'file': 'sdd.h', 'line-start': 10, 'line-end': 15},
+        'scope': 'dfsds::ds',
+        'signature': 'void some(int a)',
+        'is_const': True,
+        'is_static': False,
+        'is_virtual': True,
+        'is_explicit': False,
+        'is_inline': True,
+        'is_constructor': False,
+        'is_destructor': True,
+        'access': 'public',
+        'briefdescription': [
+            {'kind': 'text', 'content': 'bla bla'}
+        ],
+        'detaileddescription': [
+            {'kind': 'text', 'content': 'bla bla'}
+        ],
+        'parameters': []
     },
     'variable_fsdfsddsfsdfs': {
         'kind': 'variable',

@@ -32,4 +32,3 @@ function print(double, int \*)
 
     Returns:
         This does not really return anything because it is ``void`` but it could! 
-

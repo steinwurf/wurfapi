@@ -45,7 +45,7 @@ Member functions (public)
    * - 
      - :ref:`~machine<project::coffee::machine::~machine()>` ()
    * - void
-     - :ref:`add_beans<project::coffee::machine::add_beans<class>(constBeans&)>` (const Beans & beans)
+     - :ref:`add_beans<project::coffee::machine::add_beans<class,uint32_t>(constBeans&)>` (const Beans & beans)
    * - mug_size
      - :ref:`get_mug_size<project::coffee::machine::get_mug_size()const>` () const
    * - virtual uint32_t
@@ -55,7 +55,7 @@ Member functions (public)
    * - void
      - :ref:`set_number_cups<project::coffee::machine::set_number_cups(uint32_t)>` (uint32_t cups)
    * - void
-     - :ref:`set_power<project::coffee::machine::set_power(power)>` (:ref:`power <project::coffee::machine::power>` pwr)
+     - :ref:`set_power<project::coffee::machine::set_power(power)>` (:ref:`power <project::coffee::machine::power>` )
    * - :ref:`water_tank <project::coffee::machine::water_tank>` &
      - :ref:`tank<project::coffee::machine::tank()>` ()
    * - const :ref:`water_tank <project::coffee::machine::water_tank>` &
@@ -135,66 +135,43 @@ Member Function Description
 
 .. _project::coffee::machine::machine():
 
-|  **machine** ()
+| **machine** ()
 
     Constructor. 
-
-    
-
-    
-
-    
-
 
 
 -----
 
 .. _project::coffee::machine::machine(power):
 
-|  **machine** (:ref:`power <project::coffee::machine::power>` pwr)
+| **machine** (:ref:`power <project::coffee::machine::power>` pwr)
 
     Constructor with power. 
-
-    
-
-    
-
-
-    
-
 
 
 -----
 
 .. _project::coffee::machine::~machine():
 
-|  **~machine** ()
+| **~machine** ()
 
     Destructor. 
-
-    
-
-    
-
-    
-
 
 
 -----
 
-.. _project::coffee::machine::add_beans<class>(constBeans&):
+.. _project::coffee::machine::add_beans<class,uint32_t>(constBeans&):
 
-| template <class Beans>
+| template <class Beans = Arabica, uint32_t BeanSize = 100>
 | void **add_beans** (const Beans & beans)
-
-    
 
     Add a genearic beans 
 
-    
+    Template parameter: class ``Beans``  = Arabica
+        The generic bean type 
 
-
-    
+    Template parameter: uint32_t ``BeanSize``  = 100
+        The size of a bean 
 
 
 
@@ -204,15 +181,8 @@ Member Function Description
 
 | mug_size **get_mug_size** ()
 
-    
-
-    
-
-    
-
     Returns:
         the mug_size 
-
 
 
 -----
@@ -221,15 +191,8 @@ Member Function Description
 
 | uint32_t **number_cups** ()
 
-    
-
-    
-
-    
-
     Returns:
         The number of cups 
-
 
 
 -----
@@ -262,9 +225,7 @@ Member Function Description
 
 
 
-
     #. Your coffee mug is clean. 
-
 
     You can see :ref:`number_cups() <project::coffee::machine::number_cups()const>` for how many cups 
 
@@ -272,9 +233,6 @@ Member Function Description
         The number of cups 
 
 
-
-
-    
 
 
 
@@ -308,9 +266,7 @@ Member Function Description
 
 
 
-
     #. Your coffee mug is clean. 
-
 
     You can see :ref:`number_cups() <project::coffee::machine::number_cups()const>` for how many cups 
 
@@ -320,25 +276,14 @@ Member Function Description
 
 
 
-    
-
-
 
 -----
 
 .. _project::coffee::machine::set_power(power):
 
-| void **set_power** (:ref:`power <project::coffee::machine::power>` pwr)
+| void **set_power** (:ref:`power <project::coffee::machine::power>` )
 
     Set the power of the machine. 
-
-    
-
-    
-
-
-    
-
 
 
 -----
@@ -349,13 +294,6 @@ Member Function Description
 
     Get the first water tank. 
 
-    
-
-    
-
-    
-
-
 
 -----
 
@@ -365,13 +303,6 @@ Member Function Description
 
     Get the first water tank. 
 
-    
-
-    
-
-    
-
-
 
 -----
 
@@ -380,13 +311,6 @@ Member Function Description
 | std::vector< :ref:`water_tank <project::coffee::machine::water_tank>` > **tanks** ()
 
     Get all water tanks. 
-
-    
-
-    
-
-    
-
 
 
 -----
@@ -407,8 +331,6 @@ Member Function Description
 
     Remember to use ``\n`` rather than ``std::endl`` it is more efficient. 
 
-    
-
     Returns:
         The version of the machine. Example: 
 
@@ -416,7 +338,6 @@ Member Function Description
 
             std::cout << machine::version();
             std::cout << "\n";
-
 
 
 

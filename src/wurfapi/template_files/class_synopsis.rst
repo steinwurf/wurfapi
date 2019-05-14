@@ -6,14 +6,19 @@
 {%- from 'macros.rst' import format_function -%}
 {%- from 'macros.rst' import format_parameters -%}
 {%- from 'macros.rst' import format_template_parameters -%}
+{%- from 'macros.rst' import format_template_parameters_description -%}
 
 {# FORMAT_MEMBER_TABLE_ROW #}
 
 {%- macro format_member_table_row(selector) -%}
 {%- set function = api[selector] %}
 {%- set signature = format_parameters(function["parameters"]) %}
-{%- set signature = signature + " const" if function["is_const"] else signature %}
-{%- set return_type = format_type_list(function["return"]["type"]) %}
+{%- set signature = signature + " const" if function["is_const"] else signature -%}
+{% if "return" in function -%}
+{%- set return_type = format_type_list(function["return"]["type"]) -%}
+{% else %}
+{%- set return_type = "" -%}
+{%- endif %}
 {%- set return_type = "virtual " + return_type if function["is_virtual"] else return_type -%}
 * - {{ return_type }}
   - :ref:`{{ function["name"] }}<{{selector}}>` {{ signature }}
@@ -264,7 +269,7 @@ Template parameter description
 
 .. _{{selector}}_template_parameter_description:
 
-{{ format_template_parameter_table(class["template_parameters"]) }}
+{{ format_template_parameters_description(class["template_parameters"]) }}
 
 {% endif %}
 

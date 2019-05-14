@@ -103,7 +103,7 @@
     },
     "members": [],
     "name": "function< R(Args...)>",
-    "scope": "",
+    "scope": null,
     "template_parameters": [
       {
         "name": "R",
@@ -140,7 +140,7 @@
     },
     "members": [],
     "name": "non_type",
-    "scope": "",
+    "scope": null,
     "template_parameters": [
       {
         "name": "Value",
@@ -171,7 +171,7 @@
       "our_type::our_type(constT&)"
     ],
     "name": "our_type",
-    "scope": "",
+    "scope": null,
     "template_parameters": [
       {
         "description": [
@@ -223,10 +223,6 @@
         ]
       }
     ],
-    "return": {
-      "description": [],
-      "type": []
-    },
     "scope": "our_type",
     "signature": "our_type(const T &t)"
   },
@@ -249,7 +245,7 @@
       "our_type<int>::our_type(constint&)"
     ],
     "name": "our_type< int >",
-    "scope": "",
+    "scope": null,
     "template_parameters": []
   },
   "our_type<int>::our_type(constint&)": {
@@ -286,10 +282,6 @@
         ]
       }
     ],
-    "return": {
-      "description": [],
-      "type": []
-    },
     "scope": "our_type<int>",
     "signature": "our_type(const int &t)"
   },
@@ -301,7 +293,7 @@
       "test::another_type"
     ],
     "name": "test",
-    "scope": ""
+    "scope": null
   },
   "test::another_type": {
     "access": "public",
@@ -407,10 +399,6 @@
         ]
       }
     ],
-    "return": {
-      "description": [],
-      "type": []
-    },
     "scope": "test::another_type",
     "signature": "another_type(const T &t)"
   },
@@ -585,7 +573,7 @@
     },
     "members": [],
     "name": "testtest",
-    "scope": "",
+    "scope": null,
     "template_parameters": [
       {
         "description": [

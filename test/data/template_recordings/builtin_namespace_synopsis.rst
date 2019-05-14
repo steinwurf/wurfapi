@@ -50,16 +50,11 @@ Functions
         This does not really return anything because it is ``void`` but it could! 
 
 
-
 -----
 
 .. _project::print(int,bool):
 
 | void **print** (int a_number, bool on_paper)
-
-    
-
-    
 
     Parameter ``a_number``:
         This is the most important parameter. Without it the function will not work. Example: 
@@ -76,9 +71,6 @@ Functions
         If ``true`` print on some actual paper. 
 
 
-
-
-    
 
 
 

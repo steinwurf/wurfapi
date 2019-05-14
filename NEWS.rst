@@ -6,6 +6,13 @@ of every change, see the Git log.
 
 Latest
 ------
+* Major: Add template support
+* Major: Made function return values optional - such that constructors and
+  destructors will not have that key.
+* Patch: Fix extra white space when printing constructor and destructors.
+* Major: Make value attributes optional
+* Major: Make name of parameters optional
+* Major: Enforce scope as either a string or None
 * Major: Make link attribute optional.
 * Major: Added schema checking of parsed API json
 * Major: Added link provider functionality and default mappings to cppreference.
