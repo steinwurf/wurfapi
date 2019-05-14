@@ -1,15 +1,13 @@
 function print(double, int \*)
 ------------------------------
 
-
 **Scope:** project
-
 
 **In header:** ``#include <coffee/coffee.h>``
 
 .. _project::print(double,int*):
 
-void **print** (double a, int \* b)
+| void **print** (double a, int \* b)
 
     Prints the ``a`` and then the value pointed to by ``b`` . 
 
@@ -22,12 +20,14 @@ void **print** (double a, int \* b)
 
     Remember to use ``\n`` rather than ``std::endl`` it is more efficient. 
 
-    
     Parameter ``a``:
         A is actually a double. 
 
+
     Parameter ``b``:
         Whereas b is a pointer to an int. 
+
+
 
 
     Returns:

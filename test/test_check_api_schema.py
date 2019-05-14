@@ -16,6 +16,15 @@ test_api = {
     'class_dfdsfsd': {
         'kind': 'class',
         'name': 'sdfsdfsd',
+        'template_parameters': [{
+            'type': [{
+                'value': 'class'
+            }],
+            'name': "H",
+            "default": [{
+                'value': 'uint32_t'
+            }]
+        }],
         'location': {'file': 'some.h', 'line-start': 10, 'line-end': 11},
         'scope': "fdsfd",
         'access': 'private',

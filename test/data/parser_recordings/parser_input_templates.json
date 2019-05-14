@@ -1,0 +1,620 @@
+{
+  "f<template<class>class,class>(constH<S>&)": {
+    "access": "public",
+    "briefdescription": [],
+    "detaileddescription": [
+      {
+        "content": "Template template function",
+        "kind": "text"
+      }
+    ],
+    "is_const": false,
+    "is_constructor": false,
+    "is_destructor": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "kind": "function",
+    "location": {
+      "file": "templates.hpp",
+      "line-end": 47,
+      "line-start": 45
+    },
+    "name": "f",
+    "parameters": [
+      {
+        "description": [],
+        "name": "value",
+        "type": [
+          {
+            "value": "const H< S > &"
+          }
+        ]
+      }
+    ],
+    "return": {
+      "description": [],
+      "type": [
+        {
+          "value": "void"
+        }
+      ]
+    },
+    "scope": null,
+    "signature": "f(const H< S > &value)",
+    "template_parameters": [
+      {
+        "description": [
+          {
+            "content": "another something",
+            "kind": "text"
+          }
+        ],
+        "name": "H",
+        "type": [
+          {
+            "value": "template< class > class"
+          }
+        ]
+      },
+      {
+        "default": [
+          {
+            "link": {
+              "url": false,
+              "value": "our_type"
+            },
+            "value": "our_type"
+          },
+          {
+            "value": "<int>"
+          }
+        ],
+        "description": [
+          {
+            "content": "something something...",
+            "kind": "text"
+          }
+        ],
+        "name": "S",
+        "type": [
+          {
+            "value": "class"
+          }
+        ]
+      }
+    ]
+  },
+  "function<R(Args...)>": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "Specilization.",
+        "kind": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "kind": "class",
+    "location": {
+      "file": "templates.hpp",
+      "line-end": 78,
+      "line-start": 76
+    },
+    "members": [],
+    "name": "function< R(Args...)>",
+    "scope": null,
+    "template_parameters": [
+      {
+        "name": "R",
+        "type": [
+          {
+            "value": "typename"
+          }
+        ]
+      },
+      {
+        "name": "Args",
+        "type": [
+          {
+            "value": "typename..."
+          }
+        ]
+      }
+    ]
+  },
+  "non_type": {
+    "access": "public",
+    "briefdescription": [],
+    "detaileddescription": [
+      {
+        "content": "A non-type template class",
+        "kind": "text"
+      }
+    ],
+    "kind": "class",
+    "location": {
+      "file": "templates.hpp",
+      "line-end": 56,
+      "line-start": 53
+    },
+    "members": [],
+    "name": "non_type",
+    "scope": null,
+    "template_parameters": [
+      {
+        "name": "Value",
+        "type": [
+          {
+            "value": "uint32_t"
+          }
+        ]
+      }
+    ]
+  },
+  "our_type": {
+    "access": "public",
+    "briefdescription": [],
+    "detaileddescription": [
+      {
+        "content": "A template class",
+        "kind": "text"
+      }
+    ],
+    "kind": "class",
+    "location": {
+      "file": "templates.hpp",
+      "line-end": 10,
+      "line-start": 5
+    },
+    "members": [
+      "our_type::our_type(constT&)"
+    ],
+    "name": "our_type",
+    "scope": null,
+    "template_parameters": [
+      {
+        "description": [
+          {
+            "content": "is a type",
+            "kind": "text"
+          }
+        ],
+        "name": "T",
+        "type": [
+          {
+            "value": "class"
+          }
+        ]
+      }
+    ]
+  },
+  "our_type::our_type(constT&)": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "With constructor.",
+        "kind": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constructor": true,
+    "is_destructor": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "kind": "function",
+    "location": {
+      "file": "templates.hpp",
+      "line-end": null,
+      "line-start": 9
+    },
+    "name": "our_type",
+    "parameters": [
+      {
+        "description": [],
+        "name": "t",
+        "type": [
+          {
+            "value": "const T &"
+          }
+        ]
+      }
+    ],
+    "scope": "our_type",
+    "signature": "our_type(const T &t)"
+  },
+  "our_type<int>": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "Specialization.",
+        "kind": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "kind": "class",
+    "location": {
+      "file": "templates.hpp",
+      "line-end": 19,
+      "line-start": 14
+    },
+    "members": [
+      "our_type<int>::our_type(constint&)"
+    ],
+    "name": "our_type< int >",
+    "scope": null,
+    "template_parameters": []
+  },
+  "our_type<int>::our_type(constint&)": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "With int.",
+        "kind": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constructor": true,
+    "is_destructor": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "kind": "function",
+    "location": {
+      "file": "templates.hpp",
+      "line-end": null,
+      "line-start": 18
+    },
+    "name": "our_type",
+    "parameters": [
+      {
+        "description": [],
+        "name": "t",
+        "type": [
+          {
+            "value": "const int &"
+          }
+        ]
+      }
+    ],
+    "scope": "our_type<int>",
+    "signature": "our_type(const int &t)"
+  },
+  "test": {
+    "briefdescription": [],
+    "detaileddescription": [],
+    "kind": "namespace",
+    "members": [
+      "test::another_type"
+    ],
+    "name": "test",
+    "scope": null
+  },
+  "test::another_type": {
+    "access": "public",
+    "briefdescription": [],
+    "detaileddescription": [
+      {
+        "content": "A template class",
+        "kind": "text"
+      }
+    ],
+    "kind": "class",
+    "location": {
+      "file": "templates.hpp",
+      "line-end": 39,
+      "line-start": 27
+    },
+    "members": [
+      "test::another_type::nested",
+      "test::another_type::another_type(constT&)"
+    ],
+    "name": "another_type",
+    "scope": "test",
+    "template_parameters": [
+      {
+        "default": [
+          {
+            "value": "uint32_t"
+          }
+        ],
+        "description": [
+          {
+            "content": "is a uint32_t",
+            "kind": "text"
+          }
+        ],
+        "name": "T",
+        "type": [
+          {
+            "value": "class"
+          }
+        ]
+      },
+      {
+        "default": [
+          {
+            "value": "T"
+          }
+        ],
+        "description": [
+          {
+            "content": "is T",
+            "kind": "text"
+          }
+        ],
+        "name": "U",
+        "type": [
+          {
+            "value": "typename"
+          }
+        ]
+      },
+      {
+        "name": "Args",
+        "type": [
+          {
+            "value": "typename..."
+          }
+        ]
+      }
+    ]
+  },
+  "test::another_type::another_type(constT&)": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "With constructor.",
+        "kind": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constructor": true,
+    "is_destructor": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "kind": "function",
+    "location": {
+      "file": "templates.hpp",
+      "line-end": null,
+      "line-start": 31
+    },
+    "name": "another_type",
+    "parameters": [
+      {
+        "description": [],
+        "name": "t",
+        "type": [
+          {
+            "value": "const T &"
+          }
+        ]
+      }
+    ],
+    "scope": "test::another_type",
+    "signature": "another_type(const T &t)"
+  },
+  "test::another_type::nested": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "Nexted class.",
+        "kind": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "kind": "class",
+    "location": {
+      "file": "templates.hpp",
+      "line-end": 38,
+      "line-start": 35
+    },
+    "members": [
+      "test::another_type::nested::print()"
+    ],
+    "name": "nested",
+    "scope": "test::another_type",
+    "template_parameters": [
+      {
+        "name": "T",
+        "type": [
+          {
+            "value": "class"
+          }
+        ]
+      }
+    ]
+  },
+  "test::another_type::nested::print()": {
+    "access": "private",
+    "briefdescription": [],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constructor": false,
+    "is_destructor": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "kind": "function",
+    "location": {
+      "file": "templates.hpp",
+      "line-end": null,
+      "line-start": 37
+    },
+    "name": "print",
+    "parameters": [],
+    "return": {
+      "description": [],
+      "type": [
+        {
+          "value": "void"
+        }
+      ]
+    },
+    "scope": "test::another_type::nested",
+    "signature": "print()"
+  },
+  "test<class,class>()": {
+    "access": "public",
+    "briefdescription": [],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constructor": false,
+    "is_destructor": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "kind": "function",
+    "location": {
+      "file": "templates.hpp",
+      "line-end": null,
+      "line-start": 72
+    },
+    "name": "test",
+    "parameters": [],
+    "return": {
+      "description": [],
+      "type": [
+        {
+          "value": "void"
+        }
+      ]
+    },
+    "scope": null,
+    "signature": "test()",
+    "template_parameters": [
+      {
+        "name": "A",
+        "type": [
+          {
+            "value": "class"
+          }
+        ]
+      },
+      {
+        "name": "B",
+        "type": [
+          {
+            "value": "class"
+          }
+        ]
+      }
+    ]
+  },
+  "test<class>()": {
+    "access": "public",
+    "briefdescription": [],
+    "detaileddescription": [
+      {
+        "content": "Test overload on number of template args - unique name should be different",
+        "kind": "text"
+      }
+    ],
+    "is_const": false,
+    "is_constructor": false,
+    "is_destructor": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "kind": "function",
+    "location": {
+      "file": "templates.hpp",
+      "line-end": null,
+      "line-start": 69
+    },
+    "name": "test",
+    "parameters": [],
+    "return": {
+      "description": [],
+      "type": [
+        {
+          "value": "void"
+        }
+      ]
+    },
+    "scope": null,
+    "signature": "test()",
+    "template_parameters": [
+      {
+        "name": "A",
+        "type": [
+          {
+            "value": "class"
+          }
+        ]
+      }
+    ]
+  },
+  "testtest": {
+    "access": "public",
+    "briefdescription": [],
+    "detaileddescription": [
+      {
+        "content": "Template template struct",
+        "kind": "text"
+      }
+    ],
+    "kind": "struct",
+    "location": {
+      "file": "templates.hpp",
+      "line-end": 64,
+      "line-start": 62
+    },
+    "members": [],
+    "name": "testtest",
+    "scope": null,
+    "template_parameters": [
+      {
+        "description": [
+          {
+            "content": "another something",
+            "kind": "text"
+          }
+        ],
+        "name": "H",
+        "type": [
+          {
+            "value": "template< class > class"
+          }
+        ]
+      },
+      {
+        "default": [
+          {
+            "link": {
+              "url": false,
+              "value": "our_type"
+            },
+            "value": "our_type"
+          },
+          {
+            "value": "<int>"
+          }
+        ],
+        "description": [
+          {
+            "content": "something something...",
+            "kind": "text"
+          }
+        ],
+        "name": "S",
+        "type": [
+          {
+            "value": "class"
+          }
+        ]
+      }
+    ]
+  }
+}

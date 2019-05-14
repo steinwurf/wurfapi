@@ -120,6 +120,22 @@ def check_api_schema(api):
     # Initilize the items schema which itself is a list of paragraphs
     items_paragraphs.use_schema = paragraphs_schema
 
+    # type schema
+
+    type_schema = schema.Schema([{
+        'value': string_schema,
+        schema.Optional('link'): LinkSchema(api=api)
+    }])
+
+    # template parameter schema
+
+    template_parameter_schema = schema.Schema([{
+        'type': type_schema,
+        'name': string_schema,
+        schema.Optional('default'): type_schema,
+        schema.Optional('description'): paragraphs_schema
+    }])
+
     # Schema for checking the namespace kind
     namespace_schema = schema.Schema({
         'kind': 'namespace',
@@ -137,6 +153,7 @@ def check_api_schema(api):
         'location': location_schema,
         'scope': schema.Or(string_schema, None),
         'access': schema.Or('public', 'protected', 'private'),
+        schema.Optional('template_parameters'): template_parameter_schema,
         'members': [MemberInAPI(api=api)],
         'briefdescription': paragraphs_schema,
         'detaileddescription': paragraphs_schema
@@ -188,6 +205,7 @@ def check_api_schema(api):
             'description': paragraphs_schema
         },
         'signature': string_schema,
+        schema.Optional('template_parameters'): template_parameter_schema,
         'is_const': bool,
         'is_static': bool,
         'is_virtual': bool,

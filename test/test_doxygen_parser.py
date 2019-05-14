@@ -195,6 +195,34 @@ def test_parser_input_type_definitions(testdirectory, caplog):
     recorder.record(data=api)
 
 
+def test_parser_input_templates(testdirectory, caplog):
+
+    caplog.set_level(logging.DEBUG)
+
+    src_dir, xml_dir = generate_xml(
+        testdirectory,
+        source_file='test/data/parser_input/templates.hpp')
+
+    log = logging.getLogger(name='test_parser_templates')
+
+    parser = wurfapi.doxygen_parser.DoxygenParser(
+        doxygen_path=xml_dir,
+        project_paths=[src_dir],
+        patch_api=[],
+        log=log)
+
+    api = parser.parse_index()
+
+    mismatch_path = testdirectory.mkdir('mismatch')
+
+    recorder = record.Record(
+        filename='parser_input_templates.json',
+        recording_path='test/data/parser_recordings',
+        mismatch_path=mismatch_path.path())
+
+    recorder.record(data=api)
+
+
 def test_parser_replace_with():
 
     data_in = {

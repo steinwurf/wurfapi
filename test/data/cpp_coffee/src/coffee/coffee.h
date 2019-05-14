@@ -84,7 +84,7 @@ public:
     ///
     /// You can see number_cups() for how many cups
     /// @param cups The number of cups
-    void set_number_cups(uint32_t cups);
+    void set_number_cups(uint32_t cups = 0);
 
     /// @copydoc set_number_cups
     void set_number_cups(std::string cups);
@@ -119,6 +119,13 @@ public:
     /// Get all water tanks
     std::vector<water_tank> tanks();
 
+    /// Add a genearic beans
+    ///
+    /// @tparam Beans The generic bean type
+    /// @tparam BeanSize The size of a bean
+    template <class Beans = Arabica, uint32_t BeanSize = 100>
+    void add_beans(const Beans& beans);
+
     /// The number of cups brewed by this machine.
     uint32_t cups_brewed = 0;
 
@@ -142,6 +149,34 @@ private:
     struct impl;
     std::unique_ptr<impl> m_impl;
 };
+
+/// @brief A genric cup
+/// @tparam T The liquid for the cup
+/// @tparam Liter The number of liters
+template <class T = water, uint32_t Liter>
+struct cup
+{
+    /// The liquid contained
+    T m_liquid;
+};
+
+/// @brief A tea cup
+/// @tparam Liter The number of liters
+template <uint32_t Liter>
+struct cup<tea, Liter>
+{
+    /// The liquid contained
+    tea m_liquid;
+};
+
+/// @brief A 5 liter tea cup
+template <>
+struct cup<tea, 5>
+{
+    /// The liquid contained
+    tea m_liquid;
+};
+
 }
 
 /// @brief Prints the `a` and then the value pointed to by `b`.

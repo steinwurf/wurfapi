@@ -477,13 +477,27 @@ def parse(parser, xml):
     result["members"] = []
     result["access"] = xml.attrib["prot"]
 
+    # Parse template arguments
+    template_parameters = parse_template_parameters(xml=xml, parser=parser)
+
+    if template_parameters is not None:
+        result["template_parameters"] = template_parameters
+
     # Inner classes have their own tag
     for innerclass in xml.findall('.//innerclass'):
-        result['members'].append(innerclass.text)
+        refid = innerclass.attrib["refid"]
+        result["members"].append(refid)
 
     api = {}
 
-    with parser.set_scope(scoped_name):
+    # Create the unique name
+    unique_name = scoped_name
+
+    # Remove all whitespace - this is also done in standardes. See the README
+    # on the problems of unique-name
+    unique_name = unique_name.replace(" ", "")
+
+    with parser.set_scope(unique_name):
 
         for member in xml.findall('.//memberdef'):
             member_api = parser.parse_element(xml=member)
@@ -495,10 +509,10 @@ def parse(parser, xml):
     # the same order
     result["members"].sort()
 
-    api[scoped_name] = result
+    api[unique_name] = result
 
     # Save mapping from doxygen id to unique name
-    parser.id_mapping[xml.attrib["id"]] = scoped_name
+    parser.id_mapping[xml.attrib["id"]] = unique_name
 
     return api
 
@@ -620,9 +634,68 @@ def parse(xml, parser):
     return result
 
 
-@DoxygenParser.register(tag="type")
+@DoxygenParser.register(tag="parameterlist")
 def parse(xml, parser):
-    """ Parses Doxygen type
+    """ Parses Doxygen parameterlist
+    :return: dictonary mapping parameter name to description
+    """
+    result = {}
+
+    # The description of each parameter is stored
+    # in parameteritem tags
+    #
+    # The strange looking .// is a ElementPath expression:
+    # http://effbot.org/zone/element-xpath.htm
+
+    for item in xml.findall('parameteritem'):
+
+        name = item.find("parameternamelist/parametername").text
+
+        result[name] = parser.parse_element(
+            xml=item.find("parameterdescription"))
+
+    return result
+
+
+@DoxygenParser.register(tag="templateparamlist")
+def parse(xml, parser):
+    """ Parses Doxygen templateparamlist
+    :return: List of template parameters
+    """
+    # Get the name and type of the parameters
+    parameters = []
+    for param in xml.findall('param'):
+
+        parameter = {}
+
+        # Look if we have a declname - sometimes Doxygen has it. It's the
+        # name of the template parameter e.g. in "class T" then "T" would be
+        # the declname
+        template_name = param.findtext("declname", default="")
+        template_type = param.findtext("type")
+
+        # If we did not find a name it is in the type like "class T"
+        if not template_name:
+            template_type, template_name = template_type.split()
+
+        parameter["type"] = [{"value": template_type}]
+        parameter["name"] = template_name
+
+        # Parse the default value
+        template_default = param.find("defval")
+
+        if template_default is not None:
+            parameter["default"] = parser.parse_element(xml=template_default)
+
+        parameters.append(parameter)
+
+    return parameters
+
+
+@DoxygenParser.register(tag="type")
+@DoxygenParser.register(tag="defval")
+def parse(xml, parser):
+    """ Parses Doxygen type and defval
 
     :return: Type list
     """
@@ -651,6 +724,40 @@ def parse(xml, parser):
     append_text(xml.tail)
 
     return result
+
+
+def parse_template_parameters(xml, parser):
+    """ Helper for parsing templates of functions, structs and classes
+
+    :param xml: A doxygen memberdef element which may be a template
+    :return: A template_parameters list or None (an empty list indicates a
+        template specilization)
+    """
+    templatelist = xml.find('templateparamlist')
+
+    if templatelist is None:
+        # We did not find a templateparamlist element so this is not a template
+        return None
+
+    template_parameters = parser.parse_element(xml=templatelist)
+
+    # Description of the tempalte parameters are in the parameterlist tags
+    # with the attribute kind="param"
+    parameterlists = xml.findall(
+        './/parameterlist[@kind = "templateparam"]')
+
+    for parameterlist in parameterlists:
+
+        parameterlist = parser.parse_element(xml=parameterlist)
+
+        for parameter in template_parameters:
+
+            name = parameter['name']
+
+            if name in parameterlist:
+                parameter['description'] = parameterlist[name]
+
+    return template_parameters
 
 
 @DoxygenParser.register(tag="memberdef", attrib={"kind": "function"})
@@ -684,32 +791,31 @@ def parse(xml, parser, log, scope):
 
     # The description of the parameter is in the
     # detaileddescription section
-
     detaileddescription = xml.find("detaileddescription")
 
-    # The description of each parameter is stored
-    # in parameteritem tags
-    #
-    # The strange looking .// is a ElementPath expression:
-    # http://effbot.org/zone/element-xpath.htm
+    # Description of the parameters are in the parameterlist tags with the
+    # attribute kind="param"
+    parameterlists = detaileddescription.findall(
+        './/parameterlist[@kind = "param"]')
 
-    for item in detaileddescription.findall('.//parameteritem'):
-
-        name = item.find("parameternamelist/parametername").text
+    for parameterlist in parameterlists:
+        parameterlist = parser.parse_element(xml=parameterlist)
 
         for parameter in parameters:
 
             if 'name' not in parameter:
                 continue
 
-            if name == parameter['name']:
+            name = parameter['name']
 
-                description = item.find("parameterdescription")
+            if name in parameterlist:
+                parameter['description'] = parameterlist[name]
 
-                parameter['description'] = parser.parse_element(
-                    xml=description)
+    # Parse template arguments
+    template_parameters = parse_template_parameters(xml=xml, parser=parser)
 
-                break
+    if template_parameters is not None:
+        result["template_parameters"] = template_parameters
 
     # Description of the return type
     return_type = parser.parse_element(xml=xml.find("type"))
@@ -756,9 +862,18 @@ def parse(xml, parser, log, scope):
     # Construct the unique name
     unique_name = scope + '::' + result["name"] if scope else result["name"]
 
+    if "template_parameters" in result:
+        unique_name += '<'
+        types = []
+        for parameter in result["template_parameters"]:
+            for value in parameter['type']:
+                types.append(value['value'])
+        unique_name += ','.join(types)
+        unique_name += '>'
+
     unique_name += '('
     types = []
-    for parameter in parameters:
+    for parameter in result["parameters"]:
         for value in parameter['type']:
             types.append(value['value'])
 
