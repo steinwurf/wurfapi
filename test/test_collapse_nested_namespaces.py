@@ -36,6 +36,8 @@ def update_scope(api, from_scope, to_scope):
 
 def remove_inline_namespace(api):
 
+        
+
 
 def collapse_nested_namespaces(api):
     """ Collapses nested namespaces.
