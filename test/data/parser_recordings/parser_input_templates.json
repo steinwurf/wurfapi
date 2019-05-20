@@ -288,6 +288,7 @@
   "test": {
     "briefdescription": [],
     "detaileddescription": [],
+    "inline": false,
     "kind": "namespace",
     "members": [
       "test::another_type"

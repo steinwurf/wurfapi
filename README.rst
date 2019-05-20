@@ -400,8 +400,14 @@ Python dictionary representing a C++ namespace::
       'scope': 'unique-name' | None,
       'members: [ 'unique-name', 'unique-name' ],
       'briefdescription': paragraphs,
-      'detaileddescription': paragraphs
+      'detaileddescription': paragraphs,
+      'inline': True | False
     }
+
+Note: Currently Doxygen does not support parsing ``inline namespaces``. So
+you need to use the patch API to change the value from ``False`` to ``True``
+manually. Maybe at some point https://github.com/doxygen/doxygen/issues/6741
+it will be supported.
 
 ``class`` | ``struct`` Kind
 ...........................

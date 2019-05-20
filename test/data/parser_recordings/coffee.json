@@ -58,6 +58,7 @@
   "project": {
     "briefdescription": [],
     "detaileddescription": [],
+    "inline": false,
     "kind": "namespace",
     "members": [
       "project::coffee",
@@ -70,6 +71,7 @@
   "project::coffee": {
     "briefdescription": [],
     "detaileddescription": [],
+    "inline": false,
     "kind": "namespace",
     "members": [
       "project::coffee::machine",

@@ -309,3 +309,27 @@ def test_parse_variable_type():
                            {'value': 'int', 'link': None}]
     assert is_const == False
     assert is_constexpr == True
+
+
+def test_parser_input_inline_namespace(testdirectory, caplog, datarecorder):
+
+    caplog.set_level(logging.DEBUG)
+
+    src_dir, xml_dir = generate_xml(
+        testdirectory,
+        source_file='test/data/parser_input/inline_namespace.hpp')
+
+    log = logging.getLogger(name='test_parser_inline_namespace')
+
+    parser = wurfapi.doxygen_parser.DoxygenParser(
+        doxygen_path=xml_dir,
+        project_paths=[src_dir],
+        patch_api=[],
+        log=log)
+
+    data = parser.parse_index()
+
+    datarecorder.recording_path = os.path.join(
+        "test/data/parser_recordings/parser_input_inline_namespace.json")
+
+    datarecorder.record(data=data)

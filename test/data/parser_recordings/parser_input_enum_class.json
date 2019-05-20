@@ -2,6 +2,7 @@
   "coffee": {
     "briefdescription": [],
     "detaileddescription": [],
+    "inline": false,
     "kind": "namespace",
     "members": [
       "coffee::mug_size"

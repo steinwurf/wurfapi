@@ -143,7 +143,8 @@ def check_api_schema(api):
         'scope': schema.Or(string_schema, None),
         'members': [MemberInAPI(api=api)],
         'briefdescription': paragraphs_schema,
-        'detaileddescription': paragraphs_schema
+        'detaileddescription': paragraphs_schema,
+        'inline': bool
     })
 
     # Schema for checking classes and structs
