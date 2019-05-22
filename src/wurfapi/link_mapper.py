@@ -184,7 +184,19 @@ class LinkMapper(object):
         transform_key(data=mapped_api, search_key="type", scope=None,
                       function=self._map_type)
 
+        transform_key(data=mapped_api, search_key="text", scope=None,
+                      function=self._map_text)
+
         return mapped_api
+
+    def _map_text(self, value, scope):
+        """ Find links in the 'text' elements """
+
+        if "link" in value:
+            # A link is already present just bail out
+            return value
+
+        return value
 
     def _map_type(self, value, scope):
         """ Find links in the 'type' lists """
@@ -196,7 +208,6 @@ class LinkMapper(object):
         for item in typelist:
 
             if "link" in item:
-                print(item)
                 # If we do have a link to a type it should be in the API
                 assert item["link"]["value"] in self.api
 

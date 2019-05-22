@@ -59,8 +59,14 @@ wurfapi = {
         'patch_api': [
             # Patch fix Doxygen bug reported here:
             # https://bit.ly/2BWPllZ
-            {'selector': 'project::coffee::machine::impl',
-                'key': 'access', 'value': 'private'}
+            {'selector': 'project::v1_0_0::coffee::machine::impl',
+                'key': 'access', 'value': 'private'},
+            # Inline namespaces are not recognized by doxygen
+            {'selector': 'project::v1_0_0',
+                'key': 'inline', 'value': True}
+        ],
+        'collapse_inline_namespaces': [
+            "project::v1_0_0"
         ]
     }
 }

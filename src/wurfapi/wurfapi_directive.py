@@ -28,6 +28,7 @@ from . import wurfapi_error
 from . import link_mapper
 from . import link_provider
 from . import check_api_schema
+from . import collapse_inline_namespaces
 
 
 VERSION = '2.2.0'
@@ -189,6 +190,14 @@ def generate_doxygen(app):
         log=logger)
 
     api = parser.parse_index()
+
+    if 'collapse_inline_namespaces' in parser_config:
+        selectors = parser_config['collapse_inline_namespaces']
+    else:
+        selectors = []
+
+    api = collapse_inline_namespaces.collapse_inline_namespaces(
+        api=api, selectors=selectors)
 
     # Instatiate the link provider
     provider = link_provider.LinkProvider(user_mappings=[])

@@ -1,0 +1,14 @@
+{
+  "B": {
+    "inline": false,
+    "kind": "namespace",
+    "members": [
+      "B::foo"
+    ],
+    "scope": "A"
+  },
+  "B::foo": {
+    "kind": "class",
+    "scope": "B"
+  }
+}
