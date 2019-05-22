@@ -196,6 +196,17 @@ class LinkMapper(object):
             # A link is already present just bail out
             return value
 
+        words = value.split()
+        links = []
+
+        for word in words:
+            if word in self.api:
+                links.append(True)
+            else:
+                links.append(False)
+
+        
+
         return value
 
     def _map_type(self, value, scope):
