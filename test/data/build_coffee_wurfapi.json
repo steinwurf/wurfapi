@@ -95,8 +95,8 @@
     "kind": "struct",
     "location": {
       "file": "coffee/coffee.h",
-      "line-end": 161,
-      "line-start": 157
+      "line-end": 163,
+      "line-start": 159
     },
     "members": [
       "project::coffee::cup::m_liquid"
@@ -161,7 +161,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 160
+      "line-start": 162
     },
     "name": "m_liquid",
     "scope": "project::coffee::cup",
@@ -183,8 +183,8 @@
     "kind": "struct",
     "location": {
       "file": "coffee/coffee.h",
-      "line-end": 178,
-      "line-start": 174
+      "line-end": 180,
+      "line-start": 176
     },
     "members": [
       "project::coffee::cup<tea,5>::m_liquid"
@@ -211,7 +211,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 177
+      "line-start": 179
     },
     "name": "m_liquid",
     "scope": "project::coffee::cup<tea,5>",
@@ -233,8 +233,8 @@
     "kind": "struct",
     "location": {
       "file": "coffee/coffee.h",
-      "line-end": 170,
-      "line-start": 166
+      "line-end": 172,
+      "line-start": 168
     },
     "members": [
       "project::coffee::cup<tea,Liter>::m_liquid"
@@ -280,7 +280,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 169
+      "line-start": 171
     },
     "name": "m_liquid",
     "scope": "project::coffee::cup<tea,Liter>",
@@ -331,8 +331,8 @@
     "kind": "class",
     "location": {
       "file": "coffee/coffee.h",
-      "line-end": 151,
-      "line-start": 14
+      "line-end": 153,
+      "line-start": 16
     },
     "members": [
       "project::coffee::machine::add_beans<class,uint32_t>(constBeans&)",
@@ -385,7 +385,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 127
+      "line-start": 129
     },
     "name": "add_beans",
     "parameters": [
@@ -466,8 +466,8 @@
     "kind": "struct",
     "location": {
       "file": "coffee/coffee.h",
-      "line-end": 49,
-      "line-start": 46
+      "line-end": 51,
+      "line-start": 48
     },
     "members": [
       "project::coffee::machine::brew_state::m_on"
@@ -488,7 +488,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 48
+      "line-start": 50
     },
     "name": "m_on",
     "scope": "project::coffee::machine::brew_state",
@@ -511,7 +511,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 33
+      "line-start": 35
     },
     "name": "callback",
     "scope": "project::coffee::machine",
@@ -546,7 +546,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 130
+      "line-start": 132
     },
     "name": "cups_brewed",
     "scope": "project::coffee::machine",
@@ -576,7 +576,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 136
+      "line-start": 138
     },
     "name": "get_mug_size",
     "parameters": [],
@@ -615,7 +615,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 146
+      "line-start": 148
     },
     "name": "help_brew",
     "parameters": [],
@@ -642,8 +642,8 @@
     "kind": "struct",
     "location": {
       "file": "coffee/coffee.cpp",
-      "line-end": 12,
-      "line-start": 8
+      "line-end": 14,
+      "line-start": 10
     },
     "members": [
       "project::coffee::machine::impl::run()"
@@ -671,7 +671,7 @@
     "location": {
       "file": "coffee/coffee.cpp",
       "line-end": null,
-      "line-start": 11
+      "line-start": 13
     },
     "name": "run",
     "parameters": [],
@@ -704,7 +704,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 39
+      "line-start": 41
     },
     "name": "m_callback",
     "scope": "project::coffee::machine",
@@ -731,7 +731,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 149
+      "line-start": 151
     },
     "name": "m_impl",
     "scope": "project::coffee::machine",
@@ -769,7 +769,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 42
+      "line-start": 44
     },
     "name": "m_other_callback",
     "scope": "project::coffee::machine",
@@ -803,7 +803,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 62
+      "line-start": 64
     },
     "name": "machine",
     "parameters": [],
@@ -830,7 +830,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 65
+      "line-start": 67
     },
     "name": "machine",
     "parameters": [
@@ -866,7 +866,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 93
+      "line-start": 95
     },
     "name": "number_cups",
     "parameters": [],
@@ -903,7 +903,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 36
+      "line-start": 38
     },
     "name": "other_callback",
     "scope": "project::coffee::machine",
@@ -929,8 +929,8 @@
     "kind": "enum",
     "location": {
       "file": "coffee/coffee.h",
-      "line-end": 59,
-      "line-start": 53
+      "line-end": 61,
+      "line-start": 55
     },
     "name": "power",
     "scope": "project::coffee::machine",
@@ -982,7 +982,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 143
+      "line-start": 145
     },
     "name": "set",
     "parameters": [
@@ -1114,7 +1114,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 90
+      "line-start": 92
     },
     "name": "set_number_cups",
     "parameters": [
@@ -1242,7 +1242,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 87
+      "line-start": 89
     },
     "name": "set_number_cups",
     "parameters": [
@@ -1296,7 +1296,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 71
+      "line-start": 73
     },
     "name": "set_power",
     "parameters": [
@@ -1344,7 +1344,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 117
+      "line-start": 119
     },
     "name": "tank",
     "parameters": [],
@@ -1386,7 +1386,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 114
+      "line-start": 116
     },
     "name": "tank",
     "parameters": [],
@@ -1431,7 +1431,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 120
+      "line-start": 122
     },
     "name": "tanks",
     "parameters": [],
@@ -1481,7 +1481,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 133
+      "line-start": 135
     },
     "name": "total_cups_brewed",
     "scope": "project::coffee::machine",
@@ -1547,7 +1547,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 111
+      "line-start": 113
     },
     "name": "version",
     "parameters": [],
@@ -1588,8 +1588,8 @@
     "kind": "struct",
     "location": {
       "file": "coffee/coffee.h",
-      "line-end": 30,
-      "line-start": 18
+      "line-end": 32,
+      "line-start": 20
     },
     "members": [
       "project::coffee::machine::water_tank::fill(constcups&,bool)",
@@ -1613,7 +1613,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 29
+      "line-start": 31
     },
     "name": "fill",
     "parameters": [
@@ -1705,7 +1705,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 21
+      "line-start": 23
     },
     "name": "is_full",
     "parameters": [],
@@ -1759,7 +1759,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 68
+      "line-start": 70
     },
     "name": "~machine",
     "parameters": [],
@@ -1783,8 +1783,8 @@
     "kind": "enum",
     "location": {
       "file": "coffee/mug_size.h",
-      "line-end": 30,
-      "line-start": 10
+      "line-end": 32,
+      "line-start": 12
     },
     "name": "mug_size",
     "scope": "project::coffee",
@@ -1880,11 +1880,7 @@
     ],
     "detaileddescription": [
       {
-        "content": "This is really handy in case you need to see them.",
-        "kind": "text"
-      },
-      {
-        "content": "Example:",
+        "content": "This is really handy in case you need to see them. Example:",
         "kind": "text"
       },
       {
@@ -1926,7 +1922,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 197
+      "line-start": 199
     },
     "name": "print",
     "parameters": [
@@ -2010,7 +2006,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 207
+      "line-start": 209
     },
     "name": "print",
     "parameters": [
@@ -2091,7 +2087,7 @@
     "location": {
       "file": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 210
+      "line-start": 212
     },
     "name": "version",
     "parameters": [],

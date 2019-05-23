@@ -1,3 +1,4 @@
+import functools
 import mock
 import wurfapi.link_mapper
 
@@ -144,5 +145,79 @@ def test_split_cppscope():
     result = wurfapi.link_mapper.split_cppscope(cppscope)
 
     expected = []
+
+    assert result == expected
+
+
+def test_split_text():
+
+    text = {'content': "some list of words", "kind": "text"}
+
+    result = wurfapi.link_mapper.split_text(text=text)
+
+    expected = [
+        {'content': 'some', 'kind': 'text'},
+        {'content': 'list', 'kind': 'text'},
+        {'content': 'of', 'kind': 'text'},
+        {'content': 'words', 'kind': 'text'}
+    ]
+
+    assert result == expected
+
+
+def test_split_paragraphs():
+
+    paragraphs = [
+        {'kind': 'code'},
+        {'content': 'some list of words', 'kind': 'text'},
+        {'kind': 'list', 'items': [[
+            {'content': 'some words', 'kind': 'text'}]
+        ]}
+    ]
+
+    result = wurfapi.link_mapper.split_paragraphs(paragraphs=paragraphs)
+
+    expected = [
+        {'kind': 'code'},
+        {'content': 'some', 'kind': 'text'},
+        {'content': 'list', 'kind': 'text'},
+        {'content': 'of', 'kind': 'text'},
+        {'content': 'words', 'kind': 'text'},
+        {'kind': 'list',
+         'items': [[
+             {'content': 'some', 'kind': 'text'},
+             {'content': 'words', 'kind': 'text'}
+         ]]
+         }
+    ]
+
+    assert result == expected
+
+
+def test_join_paragraphs():
+
+    paragraphs = [
+        {'kind': 'code'},
+        {'content': 'some', 'kind': 'text'},
+        {'content': 'list', 'kind': 'text'},
+        {'content': 'of', 'kind': 'text'},
+        {'content': 'words', 'kind': 'text'},
+        {'kind': 'list',
+         'items': [[
+             {'content': 'some', 'kind': 'text'},
+             {'content': 'words', 'kind': 'text'}
+         ]]
+         }
+    ]
+
+    result = wurfapi.link_mapper.join_paragraphs(paragraphs=paragraphs)
+
+    expected = [
+        {'kind': 'code'},
+        {'content': 'some list of words', 'kind': 'text'},
+        {'kind': 'list', 'items': [[
+            {'content': 'some words', 'kind': 'text'}
+        ]]}
+    ]
 
     assert result == expected

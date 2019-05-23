@@ -1,6 +1,7 @@
 import os
 import re
 import copy
+import functools
 
 
 def transform_key(data, search_key, scope, function):
@@ -161,6 +162,115 @@ def split_cppscope(cppscope):
     return scopes
 
 
+def split_text(text):
+    """ Takes a text item and splits it into a list of words.
+
+    :return: List of text items
+    """
+
+    words = text['content'].split()
+
+    result = []
+    for word in words:
+        result.append({'kind': 'text', 'content': word})
+
+    return result
+
+
+def split_paragraphs(paragraphs):
+    """ Takes a list of pragraphs and splits it into as many compenents
+    as possible.
+
+    :param paragraphs: A list of paragraphs
+    :return: An expanded list of paragraphs
+    """
+
+    newlist = []
+
+    for paragraph in paragraphs:
+
+        if paragraph['kind'] is "code":
+            newlist.append(paragraph)
+            continue
+
+        if paragraph['kind'] is "list":
+
+            items = []
+            for item in paragraph['items']:
+                items.append(split_paragraphs(paragraphs=item))
+
+            paragraph['items'] = items
+
+            newlist.append(paragraph)
+            continue
+
+        if "link" in paragraph:
+            newlist.append(paragraph)
+            continue
+
+        newlist += split_text(paragraph)
+
+    return newlist
+
+
+def join_paragraphs(paragraphs):
+    """ Takes a list of pragraphs and joins it into as few compenents
+    as possible.
+
+    :param paragraphs: A list of paragraphs
+    :return: An recduced list of paragraphs
+    """
+
+    result = []
+
+    # We use this item to accumulate the content from adjacent
+    # text elements
+    text = []
+
+    def _flush(paragraphs, text):
+        if text:
+            paragraphs.append(
+                {'kind': 'text', 'content': " ".join(text)})
+
+            # Remove all elements in the list
+            del text[:]
+
+    flush = functools.partial(_flush, paragraphs=result, text=text)
+
+    for paragraph in paragraphs:
+
+        if paragraph['kind'] is "code":
+            flush()
+            result.append(paragraph)
+            continue
+
+        if paragraph['kind'] is "list":
+
+            # A list contains even more paragraphs
+            items = []
+
+            for item in paragraph['items']:
+                items.append(join_paragraphs(paragraphs=item))
+
+            paragraph['items'] = items
+
+            flush()
+            result.append(paragraph)
+            continue
+
+        if "link" in paragraph:
+            flush()
+            result.append(paragraph)
+            continue
+
+        text.append(paragraph['content'])
+
+    # If anything remains in the temporary flush it out
+    flush()
+
+    return result
+
+
 class LinkMapper(object):
 
     def __init__(self, api, link_provider):
@@ -184,30 +294,55 @@ class LinkMapper(object):
         transform_key(data=mapped_api, search_key="type", scope=None,
                       function=self._map_type)
 
-        transform_key(data=mapped_api, search_key="text", scope=None,
-                      function=self._map_text)
+        transform_key(data=mapped_api, search_key="briefdescription",
+                      scope=None, function=self._map_paragraphs)
+
+        transform_key(data=mapped_api, search_key="detaileddescription",
+                      scope=None, function=self._map_paragraphs)
 
         return mapped_api
 
-    def _map_text(self, value, scope):
+    def _map_paragraphs(self, value, scope):
         """ Find links in the 'text' elements """
 
-        if "link" in value:
-            # A link is already present just bail out
-            return value
+        # 1. Split all the paragraphs into
+        print(value)
 
-        words = value.split()
-        links = []
+        paragraphs = split_paragraphs(paragraphs=value)
 
-        for word in words:
-            if word in self.api:
-                links.append(True)
-            else:
-                links.append(False)
+        def _add_links(paragraphs):
 
-        
+            for paragraph in paragraphs:
 
-        return value
+                if paragraph['kind'] is 'code':
+                    continue
+
+                if paragraph['kind'] is 'list':
+                    for item in paragraph['items']:
+                        _add_links(item)
+
+                    continue
+
+                if 'link' in paragraph:
+                    continue
+
+                if "::" not in paragraph['content']:
+                    # We skip over stuff that does not have a scope
+                    # qualifier in it. Just to avoid making random
+                    # characters into links..
+                    continue
+
+                link = self._find_link(
+                    typename=paragraph['content'], scope=scope)
+
+                if link:
+                    paragraph['link'] = link
+
+        _add_links(paragraphs=paragraphs)
+
+        paragraphs = join_paragraphs(paragraphs=paragraphs)
+
+        return paragraphs
 
     def _map_type(self, value, scope):
         """ Find links in the 'type' lists """
