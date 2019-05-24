@@ -185,6 +185,58 @@ update certain values. The ``selector`` is the ``unique-name`` of the
 entity you want to update. Check the "Dictionary layout" section further down
 for more information.
 
+Collapse inline namespaces
+--------------------------
+
+For symbol versioning you may use ``inline namespaces``, however typically
+you don't want these to show up in the docs, as these are mostly
+invisible for your users.
+
+With ``wurfapi`` you can collapse the inline namespace such that it
+is removed form the scopes etc.
+
+Example::
+
+  namespace foo { inline namespace v1_2_3 { struct bar{}; } }
+
+The scope to bar is ``foo::v1_2_3``. If you collapse the inline namespace it will
+just be ``foo``.
+
+First issue you have to deal with is that Doxygen currently does not
+support inline namespaces. So we need to patch the API first::
+
+      wurfapi = {
+        'source_paths': ['../src'],
+        'recursive': True,
+        'parser': {
+          'type': 'doxygen', 'download': True,  'warnings_as_error': True,
+           'patch_api': [
+            {'selector': 'foo::v1_2_3', 'key': 'inline', 'value': True}
+          ]
+        }
+      }
+
+After this we can collapse the namespace::
+
+      wurfapi = {
+        'source_paths': ['../src'],
+        'recursive': True,
+        'parser': {
+          'type': 'doxygen', 'download': True,  'warnings_as_error': True,
+           'patch_api': [
+            {'selector': 'foo::v1_2_3', 'key': 'inline', 'value': True}
+          ],
+          'collapse_inline_namespaces': [
+            "foo::v1_2_3"
+          ]
+        }
+      }
+
+
+Now you will be able to refer to ``bar`` as ``foo::bar``. Note, that
+collapsing the namespace will affect the selectors you write when
+generating the documentation.
+
 
 Release new version
 ===================

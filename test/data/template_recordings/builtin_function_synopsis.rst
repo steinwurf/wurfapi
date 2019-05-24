@@ -1,11 +1,11 @@
 function print(double, int \*)
 ------------------------------
 
-**Scope:** project
+**Scope:** project::v1_0_0
 
 **In header:** ``#include <coffee/coffee.h>``
 
-.. _project::print(double,int*):
+.. _project::v1_0_0::print(double,int*):
 
 | void **print** (double a, int \* b)
 

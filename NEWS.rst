@@ -6,6 +6,7 @@ of every change, see the Git log.
 
 Latest
 ------
+* Major: Adding inline namespace support.
 * Major: Add template support
 * Major: Made function return values optional - such that constructors and
   destructors will not have that key.

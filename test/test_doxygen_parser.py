@@ -47,7 +47,7 @@ def test_coffee(testdirectory, caplog):
         # Patch fix Doxygen bug reported here:
         # https://bit.ly/2BWPllZ
         patch_api=[
-            {'selector': 'project::coffee::machine::impl',
+            {'selector': 'project::v1_0_0::coffee::machine::impl',
              'key': 'access', 'value': 'private'}],
         log=log)
 
