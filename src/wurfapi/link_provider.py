@@ -28,7 +28,7 @@ cppreference_mappings = [
             "value": "https://en.cppreference.com/w/cpp/utility/functional/function"}
     },
     {
-        "pattern": "(float|double|int)",
+        "pattern": "(float|double|int|bool)",
         "link": {
             "url": True,
             "value": "https://en.cppreference.com/w/cpp/language/types"}
