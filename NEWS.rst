@@ -6,6 +6,7 @@ of every change, see the Git log.
 
 Latest
 ------
+* Minor: Add link to bool type
 * Major: Adding inline namespace support.
 * Major: Add template support
 * Major: Made function return values optional - such that constructors and
