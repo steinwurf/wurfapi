@@ -494,6 +494,10 @@
     "scope": "project::coffee::machine::brew_state",
     "type": [
       {
+        "link": {
+          "url": true,
+          "value": "https://en.cppreference.com/w/cpp/language/types"
+        },
         "value": "bool"
       }
     ]
@@ -1659,6 +1663,10 @@
         "name": "safety_valve",
         "type": [
           {
+            "link": {
+              "url": true,
+              "value": "https://en.cppreference.com/w/cpp/language/types"
+            },
             "value": "bool"
           }
         ]
@@ -1683,6 +1691,10 @@
       ],
       "type": [
         {
+          "link": {
+            "url": true,
+            "value": "https://en.cppreference.com/w/cpp/language/types"
+          },
           "value": "bool"
         }
       ]
@@ -1732,6 +1744,10 @@
       ],
       "type": [
         {
+          "link": {
+            "url": true,
+            "value": "https://en.cppreference.com/w/cpp/language/types"
+          },
           "value": "bool"
         }
       ]
@@ -2056,6 +2072,10 @@
         "name": "on_paper",
         "type": [
           {
+            "link": {
+              "url": true,
+              "value": "https://en.cppreference.com/w/cpp/language/types"
+            },
             "value": "bool"
           }
         ]
