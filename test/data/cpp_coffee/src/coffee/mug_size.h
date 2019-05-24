@@ -1,6 +1,8 @@
 
 namespace project
 {
+inline namespace v1_0_0
+{
 namespace coffee
 {
 /// @brief Different size coffee mugs
@@ -28,5 +30,6 @@ enum class mug_size
     /// I hope you enjoy.
     Venti = 20
 };
+}
 }
 }

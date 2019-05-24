@@ -416,6 +416,11 @@ def parse(parser, xml):
         xml=xml.find("detaileddescription"))
     result['members'] = []
 
+    # Infomration about whether a namespace is 'inline' is not yet supported
+    # by doxygen:
+    #   https://github.com/doxygen/doxygen/issues/6741
+    result['inline'] = False
+
     for member in xml.findall('.//innerclass'):
         refid = member.attrib["refid"]
         result["members"].append(refid)

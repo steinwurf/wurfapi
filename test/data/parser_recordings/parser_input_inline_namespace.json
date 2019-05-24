@@ -1,0 +1,38 @@
+{
+  "coffee": {
+    "briefdescription": [],
+    "detaileddescription": [],
+    "inline": false,
+    "kind": "namespace",
+    "members": [
+      "coffee::VERSION"
+    ],
+    "name": "coffee",
+    "scope": null
+  },
+  "coffee::VERSION": {
+    "briefdescription": [],
+    "detaileddescription": [],
+    "inline": false,
+    "kind": "namespace",
+    "members": [
+      "coffee::VERSION::test_inline"
+    ],
+    "name": "VERSION",
+    "scope": "coffee"
+  },
+  "coffee::VERSION::test_inline": {
+    "access": "public",
+    "briefdescription": [],
+    "detaileddescription": [],
+    "kind": "struct",
+    "location": {
+      "file": "inline_namespace.hpp",
+      "line-end": 10,
+      "line-start": 8
+    },
+    "members": [],
+    "name": "test_inline",
+    "scope": "coffee::VERSION"
+  }
+}

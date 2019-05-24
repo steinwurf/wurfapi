@@ -37,7 +37,7 @@ def generate_coffee_api(testdirectory):
         doxygen_path=xml_dir,
         project_paths=src_dirs,
         patch_api=[
-            {'selector': 'project::coffee::machine::impl',
+            {'selector': 'project::v1_0_0::coffee::machine::impl',
                 'key': 'access', 'value': 'private'}],
         log=log)
 
@@ -50,7 +50,7 @@ def test_template_finder_builtin(testdirectory):
 
     api = generate_coffee_api(testdirectory=testdirectory)
 
-    data = template.render(selector="project::coffee::machine", api=api,
+    data = template.render(selector="project::v1_0_0::coffee::machine", api=api,
                            filename='class_synopsis.rst')
 
     mismatch_path = testdirectory.mkdir('mismatch')
@@ -87,7 +87,7 @@ def test_template_render_namespace(testdirectory):
 
     api = generate_coffee_api(testdirectory=testdirectory)
 
-    data = template.render(selector='project', api=api,
+    data = template.render(selector='project::v1_0_0', api=api,
                            filename='namespace_synopsis.rst')
 
     mismatch_path = testdirectory.mkdir('mismatch')
@@ -106,7 +106,7 @@ def test_template_render_enum(testdirectory):
 
     api = generate_coffee_api(testdirectory=testdirectory)
 
-    data = template.render(selector='project::coffee::mug_size', api=api,
+    data = template.render(selector='project::v1_0_0::coffee::mug_size', api=api,
                            filename='enum_synopsis.rst')
 
     mismatch_path = testdirectory.mkdir('mismatch')
@@ -124,7 +124,7 @@ def test_template_render_function(testdirectory, datarecorder):
     template = wurfapi.template_render.TemplateRender(user_path=None)
     api = generate_coffee_api(testdirectory=testdirectory)
 
-    data = template.render(selector='project::print(double,int*)', api=api,
+    data = template.render(selector='project::v1_0_0::print(double,int*)', api=api,
                            filename='function_synopsis.rst')
 
     datarecorder.recording_path = "test/data/template_recordings/builtin_function_synopsis.rst"

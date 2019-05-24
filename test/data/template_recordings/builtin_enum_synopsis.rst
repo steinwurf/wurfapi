@@ -1,9 +1,9 @@
-.. _project::coffee::mug_size:
+.. _project::v1_0_0::coffee::mug_size:
 
 enum mug_size
 =============
 
-**Scope:** project::coffee
+**Scope:** project::v1_0_0::coffee
 
 **In header:** ``#include <coffee/mug_size.h>``
 

@@ -1,10 +1,10 @@
 
-.. _project::coffee::machine:
+.. _project::v1_0_0::coffee::machine:
 
 class machine
 =============
 
-**Scope:** project::coffee
+**Scope:** project::v1_0_0::coffee
 
 **In header:** ``#include <coffee/coffee.h>``
 
@@ -21,13 +21,13 @@ Member types (public)
    :widths: auto
 
    * - using
-     - :ref:`callback<project::coffee::machine::callback>` 
+     - :ref:`callback<project::v1_0_0::coffee::machine::callback>` 
    * - typedef
-     - :ref:`other_callback<project::coffee::machine::other_callback>` 
+     - :ref:`other_callback<project::v1_0_0::coffee::machine::other_callback>` 
    * - enum
-     - :ref:`power<project::coffee::machine::power>` { on, off }
+     - :ref:`power<project::v1_0_0::coffee::machine::power>` { on, off }
    * - struct
-     - :ref:`water_tank<project::coffee::machine::water_tank>` 
+     - :ref:`water_tank<project::v1_0_0::coffee::machine::water_tank>` 
 
 
 
@@ -39,29 +39,29 @@ Member functions (public)
    :widths: auto
 
    * - 
-     - :ref:`machine<project::coffee::machine::machine()>` ()
+     - :ref:`machine<project::v1_0_0::coffee::machine::machine()>` ()
    * - 
-     - :ref:`machine<project::coffee::machine::machine(power)>` (:ref:`power <project::coffee::machine::power>` pwr)
+     - :ref:`machine<project::v1_0_0::coffee::machine::machine(power)>` (:ref:`power <project::v1_0_0::coffee::machine::power>` pwr)
    * - 
-     - :ref:`~machine<project::coffee::machine::~machine()>` ()
+     - :ref:`~machine<project::v1_0_0::coffee::machine::~machine()>` ()
    * - void
-     - :ref:`add_beans<project::coffee::machine::add_beans<class,uint32_t>(constBeans&)>` (const Beans & beans)
+     - :ref:`add_beans<project::v1_0_0::coffee::machine::add_beans<class,uint32_t>(constBeans&)>` (const Beans & beans)
    * - mug_size
-     - :ref:`get_mug_size<project::coffee::machine::get_mug_size()const>` () const
+     - :ref:`get_mug_size<project::v1_0_0::coffee::machine::get_mug_size()const>` () const
    * - virtual uint32_t
-     - :ref:`number_cups<project::coffee::machine::number_cups()const>` () const
+     - :ref:`number_cups<project::v1_0_0::coffee::machine::number_cups()const>` () const
    * - void
-     - :ref:`set_number_cups<project::coffee::machine::set_number_cups(std::string)>` (std::string cups)
+     - :ref:`set_number_cups<project::v1_0_0::coffee::machine::set_number_cups(std::string)>` (std::string cups)
    * - void
-     - :ref:`set_number_cups<project::coffee::machine::set_number_cups(uint32_t)>` (uint32_t cups)
+     - :ref:`set_number_cups<project::v1_0_0::coffee::machine::set_number_cups(uint32_t)>` (uint32_t cups)
    * - void
-     - :ref:`set_power<project::coffee::machine::set_power(power)>` (:ref:`power <project::coffee::machine::power>` )
-   * - :ref:`water_tank <project::coffee::machine::water_tank>` &
-     - :ref:`tank<project::coffee::machine::tank()>` ()
-   * - const :ref:`water_tank <project::coffee::machine::water_tank>` &
-     - :ref:`tank<project::coffee::machine::tank()const>` () const
-   * - std::vector< :ref:`water_tank <project::coffee::machine::water_tank>` >
-     - :ref:`tanks<project::coffee::machine::tanks()>` ()
+     - :ref:`set_power<project::v1_0_0::coffee::machine::set_power(power)>` (:ref:`power <project::v1_0_0::coffee::machine::power>` )
+   * - :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>` &
+     - :ref:`tank<project::v1_0_0::coffee::machine::tank()>` ()
+   * - const :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>` &
+     - :ref:`tank<project::v1_0_0::coffee::machine::tank()const>` () const
+   * - std::vector< :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>` >
+     - :ref:`tanks<project::v1_0_0::coffee::machine::tanks()>` ()
 
 
 
@@ -74,7 +74,7 @@ Static member functions (public)
    :widths: auto
 
    * - std::string
-     - :ref:`version<project::coffee::machine::version()>` ()
+     - :ref:`version<project::v1_0_0::coffee::machine::version()>` ()
 
 
 
@@ -93,11 +93,11 @@ Member variables (public)
      - cups_brewed
      - 0
      - The number of cups brewed by this machine. 
-   * - :ref:`callback <project::coffee::machine::callback>`
+   * - :ref:`callback <project::v1_0_0::coffee::machine::callback>`
      - m_callback
      - 
      - A variable which uses the callback using statement. 
-   * - :ref:`other_callback <project::coffee::machine::other_callback>`
+   * - :ref:`other_callback <project::v1_0_0::coffee::machine::other_callback>`
      - m_other_callback
      - 
      - A variable which uses the other_callback typedef statement. 
@@ -125,7 +125,7 @@ Static member variables (public)
 
 Description
 -----------
-The coffee machine object serves as your applications entry point for brewing coffee. You have to remember to fill the :ref:`project::coffee::machine::water_tank <project::coffee::machine::water_tank>` though. 
+The coffee machine object serves as your applications entry point for brewing coffee. You have to remember to fill the project::coffee::machine::water_tank though. 
 
 
 
@@ -133,7 +133,7 @@ The coffee machine object serves as your applications entry point for brewing co
 Member Function Description
 ---------------------------
 
-.. _project::coffee::machine::machine():
+.. _project::v1_0_0::coffee::machine::machine():
 
 | **machine** ()
 
@@ -142,16 +142,16 @@ Member Function Description
 
 -----
 
-.. _project::coffee::machine::machine(power):
+.. _project::v1_0_0::coffee::machine::machine(power):
 
-| **machine** (:ref:`power <project::coffee::machine::power>` pwr)
+| **machine** (:ref:`power <project::v1_0_0::coffee::machine::power>` pwr)
 
     Constructor with power. 
 
 
 -----
 
-.. _project::coffee::machine::~machine():
+.. _project::v1_0_0::coffee::machine::~machine():
 
 | **~machine** ()
 
@@ -160,7 +160,7 @@ Member Function Description
 
 -----
 
-.. _project::coffee::machine::add_beans<class,uint32_t>(constBeans&):
+.. _project::v1_0_0::coffee::machine::add_beans<class,uint32_t>(constBeans&):
 
 | template <class Beans = Arabica, uint32_t BeanSize = 100>
 | void **add_beans** (const Beans & beans)
@@ -177,7 +177,7 @@ Member Function Description
 
 -----
 
-.. _project::coffee::machine::get_mug_size()const:
+.. _project::v1_0_0::coffee::machine::get_mug_size()const:
 
 | mug_size **get_mug_size** ()
 
@@ -187,7 +187,7 @@ Member Function Description
 
 -----
 
-.. _project::coffee::machine::number_cups()const:
+.. _project::v1_0_0::coffee::machine::number_cups()const:
 
 | uint32_t **number_cups** ()
 
@@ -197,7 +197,7 @@ Member Function Description
 
 -----
 
-.. _project::coffee::machine::set_number_cups(std::string):
+.. _project::v1_0_0::coffee::machine::set_number_cups(std::string):
 
 | void **set_number_cups** (std::string cups)
 
@@ -205,7 +205,7 @@ Member Function Description
 
     Before setting number of cups, check the following: 
 
-    #. You have enough water in the :ref:`water_tank <project::coffee::machine::water_tank>` . 
+    #. You have enough water in the :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>` . 
 
        - Of course you also need power. 
 
@@ -227,7 +227,7 @@ Member Function Description
 
     #. Your coffee mug is clean. 
 
-    You can see :ref:`number_cups() <project::coffee::machine::number_cups()const>` for how many cups 
+    You can see :ref:`number_cups() <project::v1_0_0::coffee::machine::number_cups()const>` for how many cups 
 
     Parameter ``cups``:
         The number of cups 
@@ -238,7 +238,7 @@ Member Function Description
 
 -----
 
-.. _project::coffee::machine::set_number_cups(uint32_t):
+.. _project::v1_0_0::coffee::machine::set_number_cups(uint32_t):
 
 | void **set_number_cups** (uint32_t cups)
 
@@ -246,7 +246,7 @@ Member Function Description
 
     Before setting number of cups, check the following: 
 
-    #. You have enough water in the :ref:`water_tank <project::coffee::machine::water_tank>` . 
+    #. You have enough water in the :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>` . 
 
        - Of course you also need power. 
 
@@ -268,7 +268,7 @@ Member Function Description
 
     #. Your coffee mug is clean. 
 
-    You can see :ref:`number_cups() <project::coffee::machine::number_cups()const>` for how many cups 
+    You can see :ref:`number_cups() <project::v1_0_0::coffee::machine::number_cups()const>` for how many cups 
 
     Parameter ``cups``:
         The number of cups 
@@ -279,43 +279,43 @@ Member Function Description
 
 -----
 
-.. _project::coffee::machine::set_power(power):
+.. _project::v1_0_0::coffee::machine::set_power(power):
 
-| void **set_power** (:ref:`power <project::coffee::machine::power>` )
+| void **set_power** (:ref:`power <project::v1_0_0::coffee::machine::power>` )
 
     Set the power of the machine. 
 
 
 -----
 
-.. _project::coffee::machine::tank():
+.. _project::v1_0_0::coffee::machine::tank():
 
-| :ref:`water_tank <project::coffee::machine::water_tank>` & **tank** ()
-
-    Get the first water tank. 
-
-
------
-
-.. _project::coffee::machine::tank()const:
-
-| const :ref:`water_tank <project::coffee::machine::water_tank>` & **tank** ()
+| :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>` & **tank** ()
 
     Get the first water tank. 
 
 
 -----
 
-.. _project::coffee::machine::tanks():
+.. _project::v1_0_0::coffee::machine::tank()const:
 
-| std::vector< :ref:`water_tank <project::coffee::machine::water_tank>` > **tanks** ()
+| const :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>` & **tank** ()
+
+    Get the first water tank. 
+
+
+-----
+
+.. _project::v1_0_0::coffee::machine::tanks():
+
+| std::vector< :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>` > **tanks** ()
 
     Get all water tanks. 
 
 
 -----
 
-.. _project::coffee::machine::version():
+.. _project::v1_0_0::coffee::machine::version():
 
 | std::string **version** ()
 
@@ -353,7 +353,7 @@ Member Function Description
 Type Description
 ----------------
 
-.. _project::coffee::machine::callback:
+.. _project::v1_0_0::coffee::machine::callback:
 
 using **callback** = std::function< void()>
 
@@ -363,9 +363,9 @@ using **callback** = std::function< void()>
 
 -----
 
-.. _project::coffee::machine::other_callback:
+.. _project::v1_0_0::coffee::machine::other_callback:
 
-typedef :ref:`callback <project::coffee::machine::callback>` **other_callback**
+typedef :ref:`callback <project::v1_0_0::coffee::machine::callback>` **other_callback**
 
     Another way to define a type is a typedef. 
 

@@ -4,6 +4,8 @@
 
 namespace project
 {
+inline namespace v1_0_0
+{
 namespace coffee
 {
 /// @brief A machine to brew your coffee. Docs by http://steinwurf.com
@@ -206,5 +208,5 @@ void print(double a, int* b);
 /// @param on_paper If `true` print on some actual paper.
 void print(int a_number, bool on_paper);
 }
-
+}
 std::string version();

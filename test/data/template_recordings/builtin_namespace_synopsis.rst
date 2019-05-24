@@ -1,8 +1,10 @@
 
-.. _project:
+.. _project::v1_0_0:
 
-namespace project
-=================
+namespace v1_0_0
+================
+
+**Scope:** project
 
 
 .. list-table::
@@ -11,17 +13,17 @@ namespace project
 
 
    * - namespace
-     - :ref:`coffee <project::coffee>`
+     - :ref:`coffee <project::v1_0_0::coffee>`
    * - function
-     - :ref:`print <project::print(double,int*)>`
+     - :ref:`print <project::v1_0_0::print(double,int*)>`
    * - function
-     - :ref:`print <project::print(int,bool)>`
+     - :ref:`print <project::v1_0_0::print(int,bool)>`
 
 
 Functions
 ---------
 
-.. _project::print(double,int*):
+.. _project::v1_0_0::print(double,int*):
 
 | void **print** (double a, int \* b)
 
@@ -52,7 +54,7 @@ Functions
 
 -----
 
-.. _project::print(int,bool):
+.. _project::v1_0_0::print(int,bool):
 
 | void **print** (int a_number, bool on_paper)
 

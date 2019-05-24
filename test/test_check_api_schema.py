@@ -5,6 +5,7 @@ test_api = {
         'kind': 'namespace',
         'name': "dfsf",
         'scope': None,
+        'inline': True,
         'members': ['class_dfdsfsd'],
         'briefdescription': [
             {'kind': 'text', 'content': 'bla bla'}
