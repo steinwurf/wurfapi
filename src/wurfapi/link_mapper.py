@@ -306,7 +306,6 @@ class LinkMapper(object):
         """ Find links in the 'text' elements """
 
         # 1. Split all the paragraphs into
-        print(value)
 
         paragraphs = split_paragraphs(paragraphs=value)
 
