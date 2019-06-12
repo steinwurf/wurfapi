@@ -237,6 +237,32 @@ Now you will be able to refer to ``bar`` as ``foo::bar``. Note, that
 collapsing the namespace will affect the selectors you write when
 generating the documentation.
 
+Custom templates
+----------------
+
+You can write you own custom templates for generating the rst output.
+To to this you simply write a Jinja2 compatible rst template and place
+it in some folder. Adding the ``user_templates`` key to the ``wurfapi``
+configuration dictionary in the ``conf.py`` file will make it available.
+
+For example::
+
+    wurfapi = {
+        'source_paths': ['../src', '../examples/header/header.h'],
+        'recursive': True,
+        'user_templates': 'rst_templates',
+        'parser': {
+            'type': 'doxygen', 'download': True, 'warnings_as_error': True
+        }
+    }
+
+    exclude_patterns = ['rst_templates/*.rst']
+
+Now we can use ``*.rst`` files inside the ``rst_templates`` folder e.g. if
+we had a ``class_list.rst`` template we could use it like this::
+
+    .. wurfapi:: class_list.rst
+        :selector: project::coffee
 
 Release new version
 ===================

@@ -54,6 +54,7 @@ author = u'Coffee'
 wurfapi = {
     'source_paths': ['../src', '../examples/header/header.h'],
     'recursive': True,
+    'user_templates': 'rst_templates',
     'parser': {
         'type': 'doxygen', 'download': True, 'warnings_as_error': True,
         'patch_api': [
@@ -70,6 +71,8 @@ wurfapi = {
         ]
     }
 }
+
+exclude_patterns = ['rst_templates/*.rst']
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -90,7 +93,7 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns += ['_build', 'Thumbs.db', '.DS_Store']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
