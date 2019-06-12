@@ -76,7 +76,10 @@ class WurfapiDirective(docutils.parsers.rst.Directive):
         api = app.wurfapi_api
         selector = self.options["selector"]
         user_path = app.config.wurfapi.get('user_templates', None)
-        print("userpath {}".format(user_path))
+
+        if user_path:
+            # Make sure it is relative to the documentation directory
+            user_path = os.path.join(app.srcdir, user_path)
 
         if selector not in api:
             raise wurfapi_error.WurfapiError(
