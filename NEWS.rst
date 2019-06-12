@@ -6,6 +6,7 @@ of every change, see the Git log.
 
 Latest
 ------
+* Minor: Enabeling support of user templates.
 * Minor: Add link to bool type
 * Major: Adding inline namespace support.
 * Major: Add template support

@@ -75,13 +75,15 @@ class WurfapiDirective(docutils.parsers.rst.Directive):
         app = env.app
         api = app.wurfapi_api
         selector = self.options["selector"]
+        user_path = app.config.wurfapi.get('user_templates', None)
+        print("userpath {}".format(user_path))
 
         if selector not in api:
             raise wurfapi_error.WurfapiError(
                 'Selector "{}" not in API possible values are {}'.format(
                     selector, api.keys()))
 
-        template = template_render.TemplateRender(user_path=None)
+        template = template_render.TemplateRender(user_path=user_path)
 
         data = template.render(
             selector=self.options['selector'], api=app.wurfapi_api,

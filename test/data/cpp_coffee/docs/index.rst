@@ -21,7 +21,11 @@ Welcome to Coffee's documentation!
    api_cup_tea_5l
    examples
 
+Class list
+==========
 
+.. wurfapi:: class_list.rst
+    :selector: project::coffee
 
 Indices and tables
 ==================
