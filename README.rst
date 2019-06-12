@@ -256,7 +256,7 @@ For example::
         }
     }
 
-exclude_patterns = ['rst_templates/*.rst']
+    exclude_patterns = ['rst_templates/*.rst']
 
 Now we can use ``*.rst`` files inside the ``rst_templates`` folder e.g. if
 we had a ``class_list.rst`` template we could use it like this::
