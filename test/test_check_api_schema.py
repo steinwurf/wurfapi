@@ -26,7 +26,7 @@ test_api = {
                 'value': 'uint32_t'
             }]
         }],
-        'location': {'file': 'some.h', 'line-start': 10, 'line-end': 11},
+        'location': {'path': 'some.h', 'line-start': 10, 'line-end': 11},
         'scope': "fdsfd",
         'access': 'private',
         'members': ["variable_fsdfsddsfsdfs"],
@@ -48,7 +48,12 @@ test_api = {
     'enum_dfsdd': {
         'kind': 'enum',
         'name': "dfsfdsfds",
-        'location': {'file': 'some.h', 'line-start': 10, 'line-end': None},
+        'location': {
+            'path': 'some.h',
+            'include': 'some.h',
+            'line-start': 10,
+            'line-end': None
+        },
         'scope': None,
         'access': 'public',
         'values': [
@@ -82,7 +87,7 @@ test_api = {
     'using_tryrt': {
         'kind': 'using',
         'name': "dfsfdsfds",
-        'location': {'file': 'some.h', 'line-start': 10, 'line-end': None},
+        'location': {'path': 'some.h', 'line-start': 10, 'line-end': None},
         'scope': 'dfsds',
         'access': 'private',
         'type': [{
@@ -104,7 +109,7 @@ test_api = {
     'function_fsdfsdfs': {
         'kind': 'function',
         'name': "dfsfdsfddfsdfs",
-        'location': {'file': 'sdd.h', 'line-start': 10, 'line-end': 15},
+        'location': {'path': 'sdd.h', 'line-start': 10, 'line-end': 15},
         'scope': 'dfsds::ds',
         'return': {
             'type': [{
@@ -154,7 +159,7 @@ test_api = {
     'function_fsdfsdfsaa': {
         'kind': 'function',
         'name': "dfsfdsfddfsdfs",
-        'location': {'file': 'sdd.h', 'line-start': 10, 'line-end': 15},
+        'location': {'path': 'sdd.h', 'line-start': 10, 'line-end': 15},
         'scope': 'dfsds::ds',
         'signature': 'void some(int a)',
         'is_const': True,
@@ -182,7 +187,7 @@ test_api = {
                 'url': True, 'value': 'www.steinwurf.com'
             }
         }],
-        'location': {'file': 'sdd.h', 'line-start': 10, 'line-end': 15},
+        'location': {'path': 'sdd.h', 'line-start': 10, 'line-end': 15},
         'is_static': False,
         'is_mutable': True,
         'is_volatile': False,

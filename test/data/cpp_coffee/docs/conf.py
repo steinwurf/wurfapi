@@ -53,6 +53,7 @@ author = u'Coffee'
 
 wurfapi = {
     'source_paths': ['../src', '../examples/header/header.h'],
+    'include_paths': ['../src', '../examples/'],
     'recursive': True,
     'user_templates': 'rst_templates',
     'parser': {

@@ -606,7 +606,17 @@ Python dictionary representing a C++ variable::
 
 Python dictionary representing a location::
 
-    location = { 'file': 'filename.h', 'line-start': 10, 'line-end': 12 | None }
+    location = {
+      Optional('include'): 'some/header.h',
+      'path': 'src/project/header.h',
+      'line-start': 10,
+      'line-end': 12 | None
+      }
+
+* The ``include`` will be relative to any ``include_paths`` specified in the
+  ``wurfapi`` dictionary in your Sphinx ``conf.py``.
+
+* The ``path`` will be relative to the project root folder.
 
 ``type`` item
 .............

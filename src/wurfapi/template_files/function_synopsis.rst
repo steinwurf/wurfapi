@@ -17,6 +17,6 @@
 **Scope:** {{ function["scope"] }}
 {% endif %}
 
-**In header:** ``#include <{{ function["location"]["file"] }}>``
+**In header:** ``#include <{{ function["location"]["path"] }}>``
 
 {{ format_function(api, selector) }}

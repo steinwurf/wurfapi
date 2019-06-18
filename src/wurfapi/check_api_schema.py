@@ -29,7 +29,8 @@ def check_api_schema(api):
 
     # Schema for checking the location
     location_schema = schema.Schema({
-        'file': string_schema,
+        'path': string_schema,
+        schema.Optional('include'): string_schema,
         'line-start': int,
         'line-end': schema.Or(int, None)
     })
