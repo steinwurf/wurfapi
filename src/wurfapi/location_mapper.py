@@ -3,7 +3,7 @@ import os
 
 class LocationMapper(object):
 
-    def __init__(self, project_root, include_paths):
+    def __init__(self, project_root, include_paths, log):
         # type: (str, List[str]) -> None
         """ Instantiate new object
 
@@ -13,7 +13,8 @@ class LocationMapper(object):
         """
 
         self.project_root = project_root
-        self.include_paths = include_paths
+        self.include_paths = [self._expand_path(p) for p in include_paths]
+        self.log = log
 
         assert os.path.isabs(self.project_root)
 
@@ -36,6 +37,9 @@ class LocationMapper(object):
 
             if relative_path:
                 return relative_path
+
+        self.log.debug("Unable to find file %s in includes %s", path,
+                       self.include_paths)
 
         return None
 

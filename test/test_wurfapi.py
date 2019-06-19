@@ -21,7 +21,7 @@ def test_build_docs(testdirectory):
                     'user.email=doe@email.org', 'commit', '-m', 'oki'])
 
     docs = cpp_coffee.join('docs')
-    docs.run('sphinx-build --no-color -w log.txt -b html . _build')
+    docs.run('sphinx-build --no-color -w log.txt -vvv -b html . _build')
 
     log_file = os.path.join(docs.path(), 'log.txt')
 

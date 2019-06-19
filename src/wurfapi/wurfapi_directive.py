@@ -207,7 +207,7 @@ def generate_doxygen(app):
 
     # Location mapper
     mapper = location_mapper.LocationMapper(
-        project_root=project_root, include_paths=include_paths)
+        project_root=project_root, include_paths=include_paths, log=logger)
 
     parser = doxygen_parser.DoxygenParser(
         doxygen_path=output,

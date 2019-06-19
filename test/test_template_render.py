@@ -6,6 +6,7 @@ import wurfapi.doxygen_generator
 import wurfapi.doxygen_parser
 import wurfapi.template_render
 import wurfapi.doxygen_downloader
+import wurfapi.location_mapper
 
 import record
 import pytest_datarecorder
@@ -33,9 +34,12 @@ def generate_coffee_api(testdirectory):
 
     log = mock.Mock()
 
+    mapper = wurfapi.location_mapper.LocationMapper(
+        project_root=coffee_dir.path(), include_paths=[], log=log)
+
     reader = wurfapi.doxygen_parser.DoxygenParser(
         doxygen_path=xml_dir,
-        project_paths=src_dirs,
+        location_mapper=mapper,
         patch_api=[
             {'selector': 'project::v1_0_0::coffee::machine::impl',
                 'key': 'access', 'value': 'private'}],
