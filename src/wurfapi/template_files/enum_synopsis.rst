@@ -11,7 +11,9 @@
 **Scope:** {{ enum["scope"] }}
 {% endif %}
 
-**In header:** ``#include <{{ enum["location"]["path"] }}>``
+{% if enum["location"]["include"] %}
+**In header:** ``#include <{{ enum["location"]["include"] }}>``
+{% endif %}
 
 {% if enum["briefdescription"] %}
 Brief Description

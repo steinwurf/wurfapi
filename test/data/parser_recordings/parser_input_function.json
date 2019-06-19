@@ -39,9 +39,9 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "file": "function.hpp",
       "line-end": null,
-      "line-start": 23
+      "line-start": 23,
+      "path": "function.hpp"
     },
     "name": "set",
     "parameters": [

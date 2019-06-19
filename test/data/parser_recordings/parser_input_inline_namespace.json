@@ -27,9 +27,9 @@
     "detaileddescription": [],
     "kind": "struct",
     "location": {
-      "file": "inline_namespace.hpp",
       "line-end": 10,
-      "line-start": 8
+      "line-start": 8,
+      "path": "inline_namespace.hpp"
     },
     "members": [],
     "name": "test_inline",

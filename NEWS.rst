@@ -6,6 +6,8 @@ of every change, see the Git log.
 
 Latest
 ------
+* Major: Update location information to contain both path within project, and
+  an optional include path.
 * Minor: Enabeling support of user templates.
 * Minor: Add link to bool type
 * Major: Adding inline namespace support.

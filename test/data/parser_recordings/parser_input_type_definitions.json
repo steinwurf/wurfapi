@@ -10,9 +10,9 @@
     "detaileddescription": [],
     "kind": "struct",
     "location": {
-      "file": "type_definitions.hpp",
       "line-end": 9,
-      "line-start": 2
+      "line-start": 2,
+      "path": "type_definitions.hpp"
     },
     "members": [
       "type_definitions::my_bool",
@@ -32,9 +32,9 @@
     "detaileddescription": [],
     "kind": "using",
     "location": {
-      "file": "type_definitions.hpp",
       "line-end": null,
-      "line-start": 5
+      "line-start": 5,
+      "path": "type_definitions.hpp"
     },
     "name": "my_bool",
     "scope": "type_definitions",
@@ -55,9 +55,9 @@
     "detaileddescription": [],
     "kind": "using",
     "location": {
-      "file": "type_definitions.hpp",
       "line-end": null,
-      "line-start": 8
+      "line-start": 8,
+      "path": "type_definitions.hpp"
     },
     "name": "really_a_string",
     "scope": "type_definitions",

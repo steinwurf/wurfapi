@@ -10,9 +10,9 @@
     "detaileddescription": [],
     "kind": "struct",
     "location": {
-      "file": "variables.hpp",
       "line-end": 26,
-      "line-start": 2
+      "line-start": 2,
+      "path": "variables.hpp"
     },
     "members": [
       "variables::a",
@@ -42,9 +42,9 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "file": "variables.hpp",
       "line-end": null,
-      "line-start": 8
+      "line-start": 8,
+      "path": "variables.hpp"
     },
     "name": "a",
     "scope": "variables",
@@ -74,9 +74,9 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "file": "variables.hpp",
       "line-end": null,
-      "line-start": 11
+      "line-start": 11,
+      "path": "variables.hpp"
     },
     "name": "b",
     "scope": "variables",
@@ -103,9 +103,9 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "file": "variables.hpp",
       "line-end": null,
-      "line-start": 18
+      "line-start": 18,
+      "path": "variables.hpp"
     },
     "name": "c",
     "scope": "variables",
@@ -132,9 +132,9 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "file": "variables.hpp",
       "line-end": null,
-      "line-start": 22
+      "line-start": 22,
+      "path": "variables.hpp"
     },
     "name": "dddd",
     "scope": "variables",
@@ -161,9 +161,9 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "file": "variables.hpp",
       "line-end": null,
-      "line-start": 14
+      "line-start": 14,
+      "path": "variables.hpp"
     },
     "name": "eeee",
     "scope": "variables",
@@ -188,9 +188,9 @@
     "detaileddescription": [],
     "kind": "using",
     "location": {
-      "file": "variables.hpp",
       "line-end": null,
-      "line-start": 5
+      "line-start": 5,
+      "path": "variables.hpp"
     },
     "name": "my_type_const",
     "scope": "variables",
@@ -216,9 +216,9 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "file": "variables.hpp",
       "line-end": null,
-      "line-start": 25
+      "line-start": 25,
+      "path": "variables.hpp"
     },
     "name": "size",
     "scope": "variables",

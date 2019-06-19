@@ -26,9 +26,9 @@
     ],
     "kind": "enum",
     "location": {
-      "file": "enum_class.hpp",
       "line-end": 17,
-      "line-start": 7
+      "line-start": 7,
+      "path": "enum_class.hpp"
     },
     "name": "mug_size",
     "scope": "coffee",

@@ -31,19 +31,22 @@ def generate_coffee_xml(testdirectory):
         output_path=output_dir.path(),
         warnings_as_error=True)
 
-    return src_dirs, generator.generate()
+    return coffee_dir.path(), src_dirs, generator.generate()
 
 
 def test_coffee(testdirectory, caplog):
 
     caplog.set_level(logging.DEBUG)
 
-    src_dirs, xml_dir = generate_coffee_xml(testdirectory)
+    coffee_dir, src_dirs, xml_dir = generate_coffee_xml(testdirectory)
     log = logging.getLogger(name='test_coffee')
+
+    mapper = wurfapi.location_mapper.LocationMapper(
+        project_root=coffee_dir, include_paths=[], log=log)
 
     parser = wurfapi.doxygen_parser.DoxygenParser(
         doxygen_path=xml_dir,
-        project_paths=src_dirs,
+        location_mapper=mapper,
         # Patch fix Doxygen bug reported here:
         # https://bit.ly/2BWPllZ
         patch_api=[
@@ -93,9 +96,12 @@ def test_parser_input_function(testdirectory, caplog):
 
     log = logging.getLogger(name='test_parser_input_function')
 
+    mapper = wurfapi.location_mapper.LocationMapper(
+        project_root=src_dir, include_paths=[], log=log)
+
     parser = wurfapi.doxygen_parser.DoxygenParser(
         doxygen_path=xml_dir,
-        project_paths=[src_dir],
+        location_mapper=mapper,
         patch_api=[],
         log=log)
 
@@ -121,9 +127,12 @@ def test_parser_input_enum_class(testdirectory, caplog):
 
     log = logging.getLogger(name='test_parser_input_enum_class')
 
+    mapper = wurfapi.location_mapper.LocationMapper(
+        project_root=src_dir, include_paths=[], log=log)
+
     parser = wurfapi.doxygen_parser.DoxygenParser(
         doxygen_path=xml_dir,
-        project_paths=[src_dir],
+        location_mapper=mapper,
         patch_api=[],
         log=log)
 
@@ -149,9 +158,12 @@ def test_parser_input_variables(testdirectory, caplog):
 
     log = logging.getLogger(name='test_parser_input_variables')
 
+    mapper = wurfapi.location_mapper.LocationMapper(
+        project_root=src_dir, include_paths=[], log=log)
+
     parser = wurfapi.doxygen_parser.DoxygenParser(
         doxygen_path=xml_dir,
-        project_paths=[src_dir],
+        location_mapper=mapper,
         patch_api=[],
         log=log)
 
@@ -177,9 +189,12 @@ def test_parser_input_type_definitions(testdirectory, caplog):
 
     log = logging.getLogger(name='test_parser_input_type_definitions')
 
+    mapper = wurfapi.location_mapper.LocationMapper(
+        project_root=src_dir, include_paths=[], log=log)
+
     parser = wurfapi.doxygen_parser.DoxygenParser(
         doxygen_path=xml_dir,
-        project_paths=[src_dir],
+        location_mapper=mapper,
         patch_api=[],
         log=log)
 
@@ -205,9 +220,12 @@ def test_parser_input_templates(testdirectory, caplog):
 
     log = logging.getLogger(name='test_parser_templates')
 
+    mapper = wurfapi.location_mapper.LocationMapper(
+        project_root=src_dir, include_paths=[], log=log)
+
     parser = wurfapi.doxygen_parser.DoxygenParser(
         doxygen_path=xml_dir,
-        project_paths=[src_dir],
+        location_mapper=mapper,
         patch_api=[],
         log=log)
 
@@ -321,9 +339,12 @@ def test_parser_input_inline_namespace(testdirectory, caplog, datarecorder):
 
     log = logging.getLogger(name='test_parser_inline_namespace')
 
+    mapper = wurfapi.location_mapper.LocationMapper(
+        project_root=src_dir, include_paths=[], log=log)
+
     parser = wurfapi.doxygen_parser.DoxygenParser(
         doxygen_path=xml_dir,
-        project_paths=[src_dir],
+        location_mapper=mapper,
         patch_api=[],
         log=log)
 
