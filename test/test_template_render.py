@@ -35,7 +35,7 @@ def generate_coffee_api(testdirectory):
     log = mock.Mock()
 
     mapper = wurfapi.location_mapper.LocationMapper(
-        project_root=coffee_dir.path(), include_paths=[], log=log)
+        project_root=coffee_dir.path(), include_paths=src_dirs, log=log)
 
     reader = wurfapi.doxygen_parser.DoxygenParser(
         doxygen_path=xml_dir,
