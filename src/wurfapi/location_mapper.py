@@ -1,5 +1,10 @@
 import os
 
+try:
+    import pathlib
+except (ImportError):
+    import pathlib2 as pathlib
+
 
 class LocationMapper(object):
 
@@ -12,14 +17,9 @@ class LocationMapper(object):
         :param include_paths: List of absolute include paths as strings
         """
 
-        self.project_root = project_root
-        self.include_paths = [self._expand_path(p) for p in include_paths]
+        self.project_root = pathlib.Path(project_root).resolve()
+        self.include_paths = [pathlib.Path(p).resolve() for p in include_paths]
         self.log = log
-
-        assert os.path.isabs(self.project_root)
-
-        for include_path in self.include_paths:
-            assert os.path.isabs(include_path)
 
     def to_include(self, path):
         # type: (str) -> Optional[str]
@@ -28,8 +28,7 @@ class LocationMapper(object):
         :return: The include directive if file found in the include paths
         """
 
-        # Remove any redundant path elements
-        path = self._expand_path(path=path)
+        path = pathlib.Path(path).resolve()
 
         for include_path in self.include_paths:
 
@@ -50,8 +49,7 @@ class LocationMapper(object):
         :return: The relative path to the file from the project root
         """
 
-        # Remove any redundant path elements
-        path = self._expand_path(path=path)
+        path = pathlib.Path(path).resolve()
 
         relative_path = self._relative_path(path=path, start=self.project_root)
 
@@ -63,20 +61,14 @@ class LocationMapper(object):
 
     def _relative_path(self, path, start):
 
-        if not path.startswith(start):
+        if start not in path.parents:
             return None
 
         # Otherwise we return the relative path from the
         # project path
-        path = os.path.relpath(path=path, start=start)
+        relative_path = path.relative_to(start)
 
         # Make sure we use unix / linux style paths - also on windows
-        path = path.replace('\\', '/')
+        relative_path = str(relative_path).replace('\\', '/')
 
-        return path
-
-    def _expand_path(self, path):
-        # Remove any redundant path elements
-        path = os.path.normpath(path)
-        path = os.path.expanduser(path)
-        return os.path.abspath(path)
+        return relative_path

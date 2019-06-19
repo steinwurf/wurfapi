@@ -1,11 +1,13 @@
 import pytest
 import mock
+import logging
 import wurfapi.location_mapper
 
 
-def test_location_mapper_to_include():
+def test_location_mapper_to_include(caplog):
+    caplog.set_level(logging.DEBUG)
 
-    log = mock.Mock()
+    log = logging.getLogger(name='test_location_mapper_to_include')
 
     # No include paths
     mapper = wurfapi.location_mapper.LocationMapper(
