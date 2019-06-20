@@ -14,8 +14,14 @@ def test_build_docs(testdirectory):
 
     cpp_coffee = testdirectory.copy_dir(directory='test/data/cpp_coffee')
 
+    # Make it a git repo - we will try to fetch the project root from git
+    cpp_coffee.run(['git', 'init'])
+    cpp_coffee.run(['git', 'add', '.'])
+    cpp_coffee.run(['git', '-c', 'user.name=John', '-c',
+                    'user.email=doe@email.org', 'commit', '-m', 'oki'])
+
     docs = cpp_coffee.join('docs')
-    docs.run('sphinx-build --no-color -w log.txt -b html . _build')
+    docs.run('sphinx-build --no-color -w log.txt -vvv -b html . _build')
 
     log_file = os.path.join(docs.path(), 'log.txt')
 

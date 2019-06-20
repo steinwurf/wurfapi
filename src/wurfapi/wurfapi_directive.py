@@ -27,6 +27,7 @@ from . import template_render
 from . import wurfapi_error
 from . import link_mapper
 from . import link_provider
+from . import location_mapper
 from . import check_api_schema
 from . import collapse_inline_namespaces
 
@@ -188,9 +189,29 @@ def generate_doxygen(app):
     else:
         patch_api = []
 
+    # Get project root
+    if 'project_root' in app.config.wurfapi:
+        project_root = app.config.wurfapi['project_root']
+    else:
+        project_root = str(run.run(
+            command='git rev-parse --show-toplevel', cwd=app.srcdir).stdout).strip()
+
+    if 'include_paths' in app.config.wurfapi:
+        include_paths = app.config.wurfapi['include_paths']
+
+        # These are specified relative to the conf.py
+        include_paths = [os.path.join(app.srcdir, p) for p in include_paths]
+
+    else:
+        include_paths = []
+
+    # Location mapper
+    mapper = location_mapper.LocationMapper(
+        project_root=project_root, include_paths=include_paths, log=logger)
+
     parser = doxygen_parser.DoxygenParser(
         doxygen_path=output,
-        project_paths=source_paths,
+        location_mapper=mapper,
         patch_api=patch_api,
         log=logger)
 

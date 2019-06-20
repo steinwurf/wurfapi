@@ -17,9 +17,9 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "file": "templates.hpp",
       "line-end": 47,
-      "line-start": 45
+      "line-start": 45,
+      "path": "templates.hpp"
     },
     "name": "f",
     "parameters": [
@@ -97,9 +97,9 @@
     "detaileddescription": [],
     "kind": "class",
     "location": {
-      "file": "templates.hpp",
       "line-end": 78,
-      "line-start": 76
+      "line-start": 76,
+      "path": "templates.hpp"
     },
     "members": [],
     "name": "function< R(Args...)>",
@@ -134,9 +134,9 @@
     ],
     "kind": "class",
     "location": {
-      "file": "templates.hpp",
       "line-end": 56,
-      "line-start": 53
+      "line-start": 53,
+      "path": "templates.hpp"
     },
     "members": [],
     "name": "non_type",
@@ -163,9 +163,9 @@
     ],
     "kind": "class",
     "location": {
-      "file": "templates.hpp",
       "line-end": 10,
-      "line-start": 5
+      "line-start": 5,
+      "path": "templates.hpp"
     },
     "members": [
       "our_type::our_type(constT&)"
@@ -207,9 +207,9 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "file": "templates.hpp",
       "line-end": null,
-      "line-start": 9
+      "line-start": 9,
+      "path": "templates.hpp"
     },
     "name": "our_type",
     "parameters": [
@@ -237,9 +237,9 @@
     "detaileddescription": [],
     "kind": "class",
     "location": {
-      "file": "templates.hpp",
       "line-end": 19,
-      "line-start": 14
+      "line-start": 14,
+      "path": "templates.hpp"
     },
     "members": [
       "our_type<int>::our_type(constint&)"
@@ -266,9 +266,9 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "file": "templates.hpp",
       "line-end": null,
-      "line-start": 18
+      "line-start": 18,
+      "path": "templates.hpp"
     },
     "name": "our_type",
     "parameters": [
@@ -307,9 +307,9 @@
     ],
     "kind": "class",
     "location": {
-      "file": "templates.hpp",
       "line-end": 39,
-      "line-start": 27
+      "line-start": 27,
+      "path": "templates.hpp"
     },
     "members": [
       "test::another_type::nested",
@@ -384,9 +384,9 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "file": "templates.hpp",
       "line-end": null,
-      "line-start": 31
+      "line-start": 31,
+      "path": "templates.hpp"
     },
     "name": "another_type",
     "parameters": [
@@ -414,9 +414,9 @@
     "detaileddescription": [],
     "kind": "class",
     "location": {
-      "file": "templates.hpp",
       "line-end": 38,
-      "line-start": 35
+      "line-start": 35,
+      "path": "templates.hpp"
     },
     "members": [
       "test::another_type::nested::print()"
@@ -447,9 +447,9 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "file": "templates.hpp",
       "line-end": null,
-      "line-start": 37
+      "line-start": 37,
+      "path": "templates.hpp"
     },
     "name": "print",
     "parameters": [],
@@ -477,9 +477,9 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "file": "templates.hpp",
       "line-end": null,
-      "line-start": 72
+      "line-start": 72,
+      "path": "templates.hpp"
     },
     "name": "test",
     "parameters": [],
@@ -530,9 +530,9 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "file": "templates.hpp",
       "line-end": null,
-      "line-start": 69
+      "line-start": 69,
+      "path": "templates.hpp"
     },
     "name": "test",
     "parameters": [],
@@ -568,9 +568,9 @@
     ],
     "kind": "struct",
     "location": {
-      "file": "templates.hpp",
       "line-end": 64,
-      "line-start": 62
+      "line-start": 62,
+      "path": "templates.hpp"
     },
     "members": [],
     "name": "testtest",

@@ -122,26 +122,21 @@ class DoxygenParser(object):
     # Default parsers
     default_parsers = []
 
-    def __init__(self, doxygen_path, project_paths, patch_api, log):
+    def __init__(self, doxygen_path, location_mapper, patch_api, log):
         """ Create a new DoxygenParser
 
         :param doxygen_path: The path to where the Doxygen XML is
             located.
-        :param project_paths: The path to the project as a String. The path is
-            important as we use it to compute the relative paths to the files
-            indexed by Doxygen. So e.g. if we want to generate links to GitHub
-            etc. we need the relative path to the files with root of the
-            project.
+        :param location_mapper: Takes paths provided by Doxygen and maps it
+            to relative paths for include and within the project
         :param patch_api: Set of patches to apply to the API after parsing the
             Doxygen XML.
         :param log: Log object
         """
         self.doxygen_path = doxygen_path
-        self.project_paths = project_paths
+        self.location_mapper = location_mapper
         self.patch_api = patch_api
         self.log = log
-
-        assert(type(self.project_paths) is list)
 
         # The parser functions registered
         self.parsers = DoxygenParser.default_parsers
@@ -211,6 +206,8 @@ class DoxygenParser(object):
                 args["parser"] = self
             elif argument == "log":
                 args["log"] = self.log
+            elif argument == "location_mapper":
+                args["location_mapper"] = self.location_mapper
             elif argument == "scope":
                 args["scope"] = self.scope
             elif argument == "xml":
@@ -228,39 +225,6 @@ class DoxygenParser(object):
             return False
         else:
             return True
-
-    def relative_path(self, path):
-        """ Return the relative path from the project_paths """
-
-        # Remove any redundant path elements
-        path = os.path.normpath(path)
-
-        for project_path in self.project_paths:
-
-            # Remove any redundant path elements
-            project_path = os.path.normpath(project_path)
-
-            if not path.startswith(project_path):
-                continue
-
-            # If the project path is a file we just return
-            # the file name
-            if os.path.isfile(project_path):
-                return os.path.basename(project_path)
-
-            # Otherwise we return the relative path from the
-            # project path
-            path = os.path.relpath(path=path, start=project_path)
-
-            # Make sure we use unix / linux style paths - also on windows
-            path = path.replace('\\', '/')
-
-            return path
-
-        raise RuntimeError(
-            "The path {} was not recognized "
-            "in any of the project paths {}".format(
-                path, self.project_paths))
 
     def _find_in_list(self, xml):
         """ Find the parser function for a specific XML element.
@@ -620,13 +584,21 @@ def parse(xml, parser, log, scope):
 
 
 @DoxygenParser.register(tag="location")
-def parse(xml, parser):
+def parse(xml, parser, location_mapper):
     """ Parses Doxygen location
     :return: Location dict
     """
     result = {}
+
     file_path = xml.attrib["file"]
-    result['file'] = parser.relative_path(path=file_path)
+    path = location_mapper.to_path(path=file_path)
+    include = location_mapper.to_include(path=file_path)
+
+    result['path'] = path
+
+    if include:
+        result['include'] = include
+
     result['line-end'] = None
     if xml.attrib.has_key("bodystart"):
         result['line-start'] = int(xml.attrib["bodystart"])

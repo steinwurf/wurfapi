@@ -95,7 +95,9 @@
 **Scope:** {{ class["scope"] }}
 {% endif %}
 
-**In header:** ``#include <{{ class["location"]["file"] }}>``
+{% if class["location"]["include"] %}
+**In header:** ``#include <{{ class["location"]["include"] }}>``
+{% endif %}
 
 {% if class["briefdescription"] %}
 Brief description
