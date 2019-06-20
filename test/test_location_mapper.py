@@ -20,7 +20,7 @@ def test_location_mapper_to_include(testdirectory, caplog):
 
     # No include paths
     mapper = wurfapi.location_mapper.LocationMapper(
-        project_root=project_dir / "tmp/tmp/project_a", include_paths=[], log=log)
+        project_root=project_dir / "tmp/project_a", include_paths=[], log=log)
 
     assert mapper.to_include(
         path=project_dir / "tmp/project_a/src/include/header.h") == None
@@ -72,4 +72,4 @@ def test_location_mapper_to_path(testdirectory):
         path=project_dir / 'tmp/../tmp/project_a/./src/include/header.h') == 'src/include/header.h'
 
     with pytest.raises(RuntimeError):
-        mapper.to_path(path=project_dir / 'tmp/project_b/helloworld.txt')
+        mapper.to_path(path=project_dir / 'tmp/project_b/src/helloworld.txt')
