@@ -45,23 +45,23 @@ Member functions (public)
    * - 
      - :ref:`~machine<project::v1_0_0::coffee::machine::~machine()>` ()
    * - void
-     - :ref:`add_beans<project::v1_0_0::coffee::machine::add_beans<class,uint32_t>(constBeans&)>` (const Beans & beans)
-   * - mug_size
-     - :ref:`get_mug_size<project::v1_0_0::coffee::machine::get_mug_size()const>` () const
-   * - virtual uint32_t
-     - :ref:`number_cups<project::v1_0_0::coffee::machine::number_cups()const>` () const
-   * - void
-     - :ref:`set_number_cups<project::v1_0_0::coffee::machine::set_number_cups(std::string)>` (std::string cups)
+     - :ref:`set_power<project::v1_0_0::coffee::machine::set_power(power)>` (:ref:`power <project::v1_0_0::coffee::machine::power>` )
    * - void
      - :ref:`set_number_cups<project::v1_0_0::coffee::machine::set_number_cups(uint32_t)>` (uint32_t cups)
    * - void
-     - :ref:`set_power<project::v1_0_0::coffee::machine::set_power(power)>` (:ref:`power <project::v1_0_0::coffee::machine::power>` )
-   * - :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>` &
-     - :ref:`tank<project::v1_0_0::coffee::machine::tank()>` ()
+     - :ref:`set_number_cups<project::v1_0_0::coffee::machine::set_number_cups(std::string)>` (std::string cups)
+   * - virtual uint32_t
+     - :ref:`number_cups<project::v1_0_0::coffee::machine::number_cups()const>` () const
    * - const :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>` &
      - :ref:`tank<project::v1_0_0::coffee::machine::tank()const>` () const
+   * - :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>` &
+     - :ref:`tank<project::v1_0_0::coffee::machine::tank()>` ()
    * - std::vector< :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>` >
      - :ref:`tanks<project::v1_0_0::coffee::machine::tanks()>` ()
+   * - void
+     - :ref:`add_beans<project::v1_0_0::coffee::machine::add_beans<class,uint32_t>(constBeans&)>` (const Beans & beans)
+   * - mug_size
+     - :ref:`get_mug_size<project::v1_0_0::coffee::machine::get_mug_size()const>` () const
 
 
 
@@ -160,80 +160,11 @@ Member Function Description
 
 -----
 
-.. _project::v1_0_0::coffee::machine::add_beans<class,uint32_t>(constBeans&):
+.. _project::v1_0_0::coffee::machine::set_power(power):
 
-| template <class Beans = Arabica, uint32_t BeanSize = 100>
-| void **add_beans** (const Beans & beans)
+| void **set_power** (:ref:`power <project::v1_0_0::coffee::machine::power>` )
 
-    Add a genearic beans 
-
-    Template parameter: class ``Beans``  = Arabica
-        The generic bean type 
-
-    Template parameter: uint32_t ``BeanSize``  = 100
-        The size of a bean 
-
-
-
------
-
-.. _project::v1_0_0::coffee::machine::get_mug_size()const:
-
-| mug_size **get_mug_size** ()
-
-    Returns:
-        the mug_size 
-
-
------
-
-.. _project::v1_0_0::coffee::machine::number_cups()const:
-
-| uint32_t **number_cups** ()
-
-    Returns:
-        The number of cups 
-
-
------
-
-.. _project::v1_0_0::coffee::machine::set_number_cups(std::string):
-
-| void **set_number_cups** (std::string cups)
-
-    Set the number of cups to brew. 
-
-    Before setting number of cups, check the following: 
-
-    #. You have enough water in the :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>` . 
-
-       - Of course you also need power. 
-
-         .. code-block:: c++
-
-             std::cout << "You need power" << std::endl;
-             std::cout << "So plug it in" << std::endl;
-
-
-
-
-
-
-       - A stable surface is also important! 
-
-
-
-
-
-    #. Your coffee mug is clean. 
-
-    You can see :ref:`number_cups() <project::v1_0_0::coffee::machine::number_cups()const>` for how many cups 
-
-    Parameter ``cups``:
-        The number of cups 
-
-
-
+    Set the power of the machine. 
 
 
 -----
@@ -279,38 +210,53 @@ Member Function Description
 
 -----
 
-.. _project::v1_0_0::coffee::machine::set_power(power):
+.. _project::v1_0_0::coffee::machine::set_number_cups(std::string):
 
-| void **set_power** (:ref:`power <project::v1_0_0::coffee::machine::power>` )
+| void **set_number_cups** (std::string cups)
 
-    Set the power of the machine. 
+    Set the number of cups to brew. 
+
+    Before setting number of cups, check the following: 
+
+    #. You have enough water in the :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>` . 
+
+       - Of course you also need power. 
+
+         .. code-block:: c++
+
+             std::cout << "You need power" << std::endl;
+             std::cout << "So plug it in" << std::endl;
+
+
+
+
+
+
+       - A stable surface is also important! 
+
+
+
+
+
+    #. Your coffee mug is clean. 
+
+    You can see :ref:`number_cups() <project::v1_0_0::coffee::machine::number_cups()const>` for how many cups 
+
+    Parameter ``cups``:
+        The number of cups 
+
+
+
 
 
 -----
 
-.. _project::v1_0_0::coffee::machine::tank():
+.. _project::v1_0_0::coffee::machine::number_cups()const:
 
-| :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>` & **tank** ()
+| uint32_t **number_cups** ()
 
-    Get the first water tank. 
-
-
------
-
-.. _project::v1_0_0::coffee::machine::tank()const:
-
-| const :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>` & **tank** ()
-
-    Get the first water tank. 
-
-
------
-
-.. _project::v1_0_0::coffee::machine::tanks():
-
-| std::vector< :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>` > **tanks** ()
-
-    Get all water tanks. 
+    Returns:
+        The number of cups 
 
 
 -----
@@ -340,6 +286,60 @@ Member Function Description
             std::cout << "\n";
 
 
+
+
+-----
+
+.. _project::v1_0_0::coffee::machine::tank()const:
+
+| const :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>` & **tank** ()
+
+    Get the first water tank. 
+
+
+-----
+
+.. _project::v1_0_0::coffee::machine::tank():
+
+| :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>` & **tank** ()
+
+    Get the first water tank. 
+
+
+-----
+
+.. _project::v1_0_0::coffee::machine::tanks():
+
+| std::vector< :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>` > **tanks** ()
+
+    Get all water tanks. 
+
+
+-----
+
+.. _project::v1_0_0::coffee::machine::add_beans<class,uint32_t>(constBeans&):
+
+| template <class Beans = Arabica, uint32_t BeanSize = 100>
+| void **add_beans** (const Beans & beans)
+
+    Add a genearic beans 
+
+    Template parameter: class ``Beans``  = Arabica
+        The generic bean type 
+
+    Template parameter: uint32_t ``BeanSize``  = 100
+        The size of a bean 
+
+
+
+-----
+
+.. _project::v1_0_0::coffee::machine::get_mug_size()const:
+
+| mug_size **get_mug_size** ()
+
+    Returns:
+        the mug_size 
 
 
 
