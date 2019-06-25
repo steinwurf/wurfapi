@@ -1,4 +1,6 @@
 import os
+import functools
+import operator
 import jinja2
 
 
@@ -38,18 +40,13 @@ def api_filter(ctx, selectors, **attributes):
 
 
 @jinja2.contextfilter
-def api_sort(ctx, selectors, key, reverse=True):
-
-    # By default in Python False < True which means that
-    # if we sort booleans we get the false values first.
-    # Typically we want the opposite e.g. when sorting
-    # after is_constructor etc. we want the True values on
-    # top. So by default we sort with reverse=True. You
-    # can of course just change that to False in the filter
-    # should you need that behavior.
+def api_sort(ctx, selectors, keys, reverse=False):
+    # type: (jinja2.runtime.Context, List[str], List[str], bool) -> List[str]
 
     def compare(selector):
-        return ctx["api"][selector][key]
+        # Get the nested value using approach described here:
+        # https://stackoverflow.com/a/14692747/1717320
+        return functools.reduce(operator.getitem, keys, ctx["api"][selector])
 
     # The sort should be stable
     return sorted(selectors, key=compare, reverse=reverse)

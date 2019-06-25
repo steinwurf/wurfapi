@@ -6,6 +6,10 @@ of every change, see the Git log.
 
 Latest
 ------
+* Major: Change api_sort jinja2 helper to support accessing nested items in
+  api dictionary.
+* Minor: Change the default sort of members to match where they are declared
+  in the hpp file.
 * Major: Update location information to contain both path within project, and
   an optional include path.
 * Minor: Enabeling support of user templates.

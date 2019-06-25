@@ -31,9 +31,7 @@
    :header-rows: 0
    :widths: auto
 
-{% for selector in selectors | api_sort(key="name", reverse=False)
-                             | api_sort(key="is_destructor")
-                             | api_sort(key="is_constructor") %}
+{% for selector in selectors | api_sort(keys=["location", "line-start"]) %}
    {{ format_member_table_row(selector) | indent(width=3) }}
 {%- endfor -%}
 
@@ -196,9 +194,7 @@ Description
 
 {% set functions = class["members"]
        | api_filter(kind="function", access="public")
-       | api_sort(key="name", reverse=False)
-       | api_sort(key="is_destructor")
-       | api_sort(key="is_constructor")
+       | api_sort(keys=["location", "line-start"])
 %}
 
 {% if functions %}
@@ -219,7 +215,7 @@ Member Function Description
 
 {% set types = class["members"]
        | api_filter(kind=["typedef", "using"], access="public")
-       | api_sort(key="name", reverse=False)
+       | api_sort(keys=["location", "line-start"])
 %}
 
 {% if types %}
