@@ -52,7 +52,7 @@ def build(bld):
 
     # Create a virtualenv in the source folder and build universal wheel
     # Make sure the virtualenv Python module is in path
-    with bld.create_virtualenv(cwd=bld.bldnode.abspath()) as venv:
+    with bld.create_virtualenv(cwd=bld.path.abspath()) as venv:
         venv.pip_install(packages=['wheel'])
         venv.run(cmd='python setup.py bdist_wheel --universal', cwd=bld.path)
 
@@ -85,7 +85,7 @@ def _find_wheel(ctx):
 def upload(bld):
     """ Upload the built wheel to PyPI (the Python Package Index) """
 
-    with bld.create_virtualenv(cwd=bld.bldnode.abspath()) as venv:
+    with bld.create_virtualenv(cwd=bld.path.abspath()) as venv:
         venv.pip_install(packages=['twine'])
 
         wheel = _find_wheel(ctx=bld)
