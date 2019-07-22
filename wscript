@@ -176,3 +176,19 @@ def _pytest(bld):
 
         venv.pip_install(['collective.checkdocs'])
         venv.run(cmd='python setup.py checkdocs', cwd=bld.path)
+
+
+class ReleaseContext(BuildContext):
+    cmd = 'prepare_release'
+    fun = 'prepare_release'
+
+
+def prepare_release(ctx):
+    """ Prepare a release. """
+
+    # Rewrite version
+    with ctx.rewrite_file(filename="src/wurfapi/wurfapi_directive.py") as f:
+        pattern = r"VERSION = '\d+\.\d+\.\d+'"
+        replacement = "VERSION = '{}'".format(VERSION)
+
+        f.regex_replace(pattern=pattern, replacement=replacement)
