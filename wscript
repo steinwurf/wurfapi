@@ -95,7 +95,7 @@ def upload(bld):
 
 def _pytest(bld):
 
-    with bld.create_virtualenv(cwd=bld.bldnode.abspath()) as venv:
+    with bld.create_virtualenv(cwd=bld.path.abspath()) as venv:
 
         venv.run('python -m pip install pytest')
         venv.run('python -m pip install pytest-testdirectory')
