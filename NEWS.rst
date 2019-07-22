@@ -6,6 +6,10 @@ of every change, see the Git log.
 
 Latest
 ------
+* tbd
+
+3.0.0
+-----
 * Major: Change api_sort jinja2 helper to support accessing nested items in
   api dictionary.
 * Minor: Change the default sort of members to match where they are declared
