@@ -53,7 +53,7 @@ def build(bld):
     # Create a virtualenv in the source folder and build universal wheel
     # Make sure the virtualenv Python module is in path
     with bld.create_virtualenv(cwd=bld.path.abspath()) as venv:
-        venv.pip_install(packages=['wheel'])
+        venv.run('pip install wheel')
         venv.run(cmd='python setup.py bdist_wheel --universal', cwd=bld.path)
 
     # Delete the egg-info directory, do not understand why this is created
@@ -86,7 +86,7 @@ def upload(bld):
     """ Upload the built wheel to PyPI (the Python Package Index) """
 
     with bld.create_virtualenv(cwd=bld.path.abspath()) as venv:
-        venv.pip_install(packages=['twine'])
+        venv.run('pip install twine')
 
         wheel = _find_wheel(ctx=bld)
 
@@ -97,19 +97,20 @@ def _pytest(bld):
 
     with bld.create_virtualenv(cwd=bld.path.abspath()) as venv:
 
-        venv.run('python -m pip install pytest')
-        venv.run('python -m pip install pytest-testdirectory')
-        venv.run('python -m pip install sphinx')
-        venv.run('python -m pip install mock')
-        venv.run('python -m pip install vcrpy')
-        venv.run('python -m pip install '
+        venv.run(cmd='pip install pytest')
+        venv.run(cmd='pip install pytest-testdirectory')
+        venv.run(cmd='pip install sphinx')
+        venv.run(cmd='pip install docutils')
+        venv.run(cmd='pip install mock')
+        venv.run(cmd='pip install vcrpy')
+        venv.run(cmd='pip install '
                  'git+https://github.com/steinwurf/pytest-datarecorder.git@'
                  '6a2c106c1a7f08236fcdd7b1b8742b010ec2403e')
 
         # Install the pytest-testdirectory plugin in the virtualenv
         wheel = _find_wheel(ctx=bld)
 
-        venv.run('python -m pip install {}'.format(wheel))
+        venv.run(cmd='python -m pip install {}'.format(wheel))
 
         # We override the pytest temp folder with the basetemp option,
         # so the test folders will be available at the specified location
@@ -174,7 +175,7 @@ def _pytest(bld):
         # https://stackoverflow.com/a/49107899/1717320
         venv.run(cmd='python setup.py check -r -s', cwd=bld.path)
 
-        venv.pip_install(['collective.checkdocs'])
+        venv.run(cmd='pip install collective.checkdocs')
         venv.run(cmd='python setup.py checkdocs', cwd=bld.path)
 
 
