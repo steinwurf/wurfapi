@@ -1,12 +1,11 @@
+wurfapi
+=======
 
 .. image:: https://ci.appveyor.com/api/projects/status/l41u9e7y50r685ep?svg=true&branch=master
     :target: https://ci.appveyor.com/project/SteinwurfApS/wurfapi
 
 .. image:: https://travis-ci.org/steinwurf/wurfapi.svg?branch=master
     :target: https://travis-ci.org/steinwurf/wurfapi
-
-Introduction
-============
 
 We wanted to have a configurable and easy to use Sphinx API documentation
 generator for our C++ projects. To achieve this we leaned on others for
