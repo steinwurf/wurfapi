@@ -333,7 +333,7 @@ http://www.sphinx-doc.org/en/stable/extdev/index.html#dev-extensions
   suggesting form the mailinglist was to look at the following document:
   https://github.com/docutils-mirror/docutils/blob/master/test/functional/expected/standalone_rst_pseudoxml.txt
 
-* While researching who to do this, there seem to be three potential approaches:
+* While researching how to do this, there seem to be three potential approaches:
 
   1. Use the standard Sphinx approach and operate with the doctree.
   2. Create RST based on jinja templates
