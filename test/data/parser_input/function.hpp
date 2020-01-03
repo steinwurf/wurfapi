@@ -11,7 +11,6 @@
 /// Test this break
 ///
 /// @param max The maximum heat value.
-/// @param array The name of the heat source as a const array
 /// @return The current heat.
 ///
 ///     for (uint64_t i = 0; i < 3; ++i)
@@ -21,4 +20,15 @@
 ///
 /// And then some text
 ///
-uint32_t set(const heat& h, int max, const uint8_t array[100]) const;
+uint32_t set(const heat& h, int max) const;
+
+/// Test array parameters
+/// @param array The name of the heat source as a const array
+void set_array(const uint8_t array[100]) const;
+
+/// Test default parameters
+/// @param test Testing bools
+void set_bool(bool test = false);
+
+/// Test function pointer
+void function(int (*(*foo)(double ))[3]);
