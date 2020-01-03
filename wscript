@@ -165,7 +165,7 @@ def _pytest(bld):
 
         if bld.options.run_ensure_doxygen:
             # Main test command
-            command = 'python -B -m pytest {} --basetemp {}'.format(
+            command = 'python -B -m pytest {} --last-failed --basetemp {}'.format(
                 testdir.abspath(), os.path.join(basetemp, 'ensure_doxygen'))
 
             # Skip the tests that have the "download_test" marker
