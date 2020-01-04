@@ -646,6 +646,30 @@ This could look like::
       }
     ]
 
+``token`` item
+...............
+
+Python dictionary representing a generic token item.
+
+    token = {
+      'value': 'sometext',
+      Optional('link'): link
+    }
+
+A list of tokens can consititute e.g. a C++ type, a function parameter or
+similar. The token is simply a text value with an optional link.
+
+A list of tokens should consitue a meaningful entity. However, it may be entirly
+possible that a single token can be further parsed - e.g. the following should
+produce the same documentation output (and be considered equivalent)::
+
+    tokens = [{'value': 'int a'}]
+    tokens = [{'value': 'int '}, {'value': 'a'}]
+    tokens = [{'value': 'int'}, {'value': ' '}, {'value': 'a'}]
+
+Since we do not control the C++ parsing we try to do our best with what we get.
+
+
 ``link`` item
 .............
 

@@ -30,5 +30,5 @@ void set_array(const uint8_t array[100]) const;
 /// @param test Testing bools
 void set_bool(bool test = false);
 
-/// Test function pointer
-void function(int (*(*foo)(double ))[3]);
+/// Test convoluted stuff
+void set_stuff(int (*(*x)(double))[3] = nullptr);
