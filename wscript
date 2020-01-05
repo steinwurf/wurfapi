@@ -135,7 +135,7 @@ def _pytest(bld):
         os.makedirs(basetemp)
 
         # Main test command
-        command = 'python -B -m pytest {} --exitfirst --last-failed ' \
+        command = 'python -B -m pytest {} --stepwise ' \
             '--basetemp {}'.format(
             testdir.abspath(), os.path.join(basetemp, 'unit_tests'))
 

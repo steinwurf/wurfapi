@@ -41,15 +41,15 @@ Member functions (public)
    * - 
      - :ref:`machine<project::v1_0_0::coffee::machine::machine()>` ()
    * - 
-     - :ref:`machine<project::v1_0_0::coffee::machine::machine(power)>` (:ref:`power <project::v1_0_0::coffee::machine::power>` pwr)
+     - :ref:`machine<project::v1_0_0::coffee::machine::machine(powerpwr)>` (:ref:`power <project::v1_0_0::coffee::machine::power>` pwr)
    * - 
      - :ref:`~machine<project::v1_0_0::coffee::machine::~machine()>` ()
    * - void
-     - :ref:`set_power<project::v1_0_0::coffee::machine::set_power(power)>` (:ref:`power <project::v1_0_0::coffee::machine::power>` )
+     - :ref:`set_power<project::v1_0_0::coffee::machine::set_power(power)>` (:ref:`power <project::v1_0_0::coffee::machine::power>`)
    * - void
-     - :ref:`set_number_cups<project::v1_0_0::coffee::machine::set_number_cups(uint32_t)>` (uint32_t cups)
+     - :ref:`set_number_cups<project::v1_0_0::coffee::machine::set_number_cups(uint32_tcups=0)>` (uint32_t cups = 0)
    * - void
-     - :ref:`set_number_cups<project::v1_0_0::coffee::machine::set_number_cups(std::string)>` (std::string cups)
+     - :ref:`set_number_cups<project::v1_0_0::coffee::machine::set_number_cups(std::stringcups)>` (std::string cups)
    * - virtual uint32_t
      - :ref:`number_cups<project::v1_0_0::coffee::machine::number_cups()const>` () const
    * - const :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>` &
@@ -59,7 +59,7 @@ Member functions (public)
    * - std::vector< :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>` >
      - :ref:`tanks<project::v1_0_0::coffee::machine::tanks()>` ()
    * - void
-     - :ref:`add_beans<project::v1_0_0::coffee::machine::add_beans<class,uint32_t>(constBeans&)>` (const Beans & beans)
+     - :ref:`add_beans<project::v1_0_0::coffee::machine::add_beans<class,uint32_t>(constBeans&beans)>` (const Beans & beans)
    * - mug_size
      - :ref:`get_mug_size<project::v1_0_0::coffee::machine::get_mug_size()const>` () const
 
@@ -142,7 +142,7 @@ Member Function Description
 
 -----
 
-.. _project::v1_0_0::coffee::machine::machine(power):
+.. _project::v1_0_0::coffee::machine::machine(powerpwr):
 
 | **machine** (:ref:`power <project::v1_0_0::coffee::machine::power>` pwr)
 
@@ -162,16 +162,16 @@ Member Function Description
 
 .. _project::v1_0_0::coffee::machine::set_power(power):
 
-| void **set_power** (:ref:`power <project::v1_0_0::coffee::machine::power>` )
+| void **set_power** (:ref:`power <project::v1_0_0::coffee::machine::power>`)
 
     Set the power of the machine. 
 
 
 -----
 
-.. _project::v1_0_0::coffee::machine::set_number_cups(uint32_t):
+.. _project::v1_0_0::coffee::machine::set_number_cups(uint32_tcups=0):
 
-| void **set_number_cups** (uint32_t cups)
+| void **set_number_cups** (uint32_t cups = 0)
 
     Set the number of cups to brew. 
 
@@ -210,7 +210,7 @@ Member Function Description
 
 -----
 
-.. _project::v1_0_0::coffee::machine::set_number_cups(std::string):
+.. _project::v1_0_0::coffee::machine::set_number_cups(std::stringcups):
 
 | void **set_number_cups** (std::string cups)
 
@@ -317,7 +317,7 @@ Member Function Description
 
 -----
 
-.. _project::v1_0_0::coffee::machine::add_beans<class,uint32_t>(constBeans&):
+.. _project::v1_0_0::coffee::machine::add_beans<class,uint32_t>(constBeans&beans):
 
 | template <class Beans = Arabica, uint32_t BeanSize = 100>
 | void **add_beans** (const Beans & beans)

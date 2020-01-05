@@ -15,15 +15,15 @@ namespace v1_0_0
    * - namespace
      - :ref:`coffee <project::v1_0_0::coffee>`
    * - function
-     - :ref:`print <project::v1_0_0::print(double,int*)>`
+     - :ref:`print <project::v1_0_0::print(doublea,int*b)>`
    * - function
-     - :ref:`print <project::v1_0_0::print(int,bool)>`
+     - :ref:`print <project::v1_0_0::print(inta_number,boolon_paper)>`
 
 
 Functions
 ---------
 
-.. _project::v1_0_0::print(double,int*):
+.. _project::v1_0_0::print(doublea,int*b):
 
 | void **print** (double a, int \* b)
 
@@ -54,7 +54,7 @@ Functions
 
 -----
 
-.. _project::v1_0_0::print(int,bool):
+.. _project::v1_0_0::print(inta_number,boolon_paper):
 
 | void **print** (int a_number, bool on_paper)
 

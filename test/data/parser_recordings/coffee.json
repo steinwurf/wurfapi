@@ -52,8 +52,7 @@
         }
       ]
     },
-    "scope": "header",
-    "signature": "headz_up()"
+    "scope": "header"
   },
   "project": {
     "briefdescription": [],
@@ -73,8 +72,8 @@
     "kind": "namespace",
     "members": [
       "project::v1_0_0::coffee",
-      "project::v1_0_0::print(double,int*)",
-      "project::v1_0_0::print(int,bool)"
+      "project::v1_0_0::print(doublea,int*b)",
+      "project::v1_0_0::print(inta_number,boolon_paper)"
     ],
     "name": "v1_0_0",
     "scope": "project"
@@ -326,7 +325,7 @@
       "path": "src/coffee/coffee.h"
     },
     "members": [
-      "project::v1_0_0::coffee::machine::add_beans<class,uint32_t>(constBeans&)",
+      "project::v1_0_0::coffee::machine::add_beans<class,uint32_t>(constBeans&beans)",
       "project::v1_0_0::coffee::machine::callback",
       "project::v1_0_0::coffee::machine::cups_brewed",
       "project::v1_0_0::coffee::machine::get_mug_size()const",
@@ -335,13 +334,13 @@
       "project::v1_0_0::coffee::machine::m_impl",
       "project::v1_0_0::coffee::machine::m_other_callback",
       "project::v1_0_0::coffee::machine::machine()",
-      "project::v1_0_0::coffee::machine::machine(power)",
+      "project::v1_0_0::coffee::machine::machine(powerpwr)",
       "project::v1_0_0::coffee::machine::number_cups()const",
       "project::v1_0_0::coffee::machine::other_callback",
       "project::v1_0_0::coffee::machine::power",
-      "project::v1_0_0::coffee::machine::set(constheat&,int)const",
-      "project::v1_0_0::coffee::machine::set_number_cups(std::string)",
-      "project::v1_0_0::coffee::machine::set_number_cups(uint32_t)",
+      "project::v1_0_0::coffee::machine::set(constheat&h,intmax)const",
+      "project::v1_0_0::coffee::machine::set_number_cups(std::stringcups)",
+      "project::v1_0_0::coffee::machine::set_number_cups(uint32_tcups=0)",
       "project::v1_0_0::coffee::machine::set_power(power)",
       "project::v1_0_0::coffee::machine::tank()",
       "project::v1_0_0::coffee::machine::tank()const",
@@ -356,7 +355,7 @@
     "name": "machine",
     "scope": "project::v1_0_0::coffee"
   },
-  "project::v1_0_0::coffee::machine::add_beans<class,uint32_t>(constBeans&)": {
+  "project::v1_0_0::coffee::machine::add_beans<class,uint32_t>(constBeans&beans)": {
     "access": "public",
     "briefdescription": [],
     "detaileddescription": [
@@ -381,11 +380,13 @@
     "name": "add_beans",
     "parameters": [
       {
-        "description": [],
         "name": "beans",
-        "type": [
+        "tokens": [
           {
             "value": "const Beans &"
+          },
+          {
+            "value": " beans"
           }
         ]
       }
@@ -399,7 +400,6 @@
       ]
     },
     "scope": "project::v1_0_0::coffee::machine",
-    "signature": "add_beans(const Beans &beans)",
     "template_parameters": [
       {
         "default": [
@@ -569,8 +569,7 @@
         }
       ]
     },
-    "scope": "project::v1_0_0::coffee::machine",
-    "signature": "get_mug_size() const"
+    "scope": "project::v1_0_0::coffee::machine"
   },
   "project::v1_0_0::coffee::machine::help_brew()": {
     "access": "private",
@@ -599,8 +598,7 @@
         }
       ]
     },
-    "scope": "project::v1_0_0::coffee::machine",
-    "signature": "help_brew()"
+    "scope": "project::v1_0_0::coffee::machine"
   },
   "project::v1_0_0::coffee::machine::impl": {
     "access": "private",
@@ -655,8 +653,7 @@
         }
       ]
     },
-    "scope": "project::v1_0_0::coffee::machine::impl",
-    "signature": "run()"
+    "scope": "project::v1_0_0::coffee::machine::impl"
   },
   "project::v1_0_0::coffee::machine::m_callback": {
     "access": "public",
@@ -779,10 +776,9 @@
     },
     "name": "machine",
     "parameters": [],
-    "scope": "project::v1_0_0::coffee::machine",
-    "signature": "machine()"
+    "scope": "project::v1_0_0::coffee::machine"
   },
-  "project::v1_0_0::coffee::machine::machine(power)": {
+  "project::v1_0_0::coffee::machine::machine(powerpwr)": {
     "access": "public",
     "briefdescription": [
       {
@@ -807,21 +803,22 @@
     "name": "machine",
     "parameters": [
       {
-        "description": [],
         "name": "pwr",
-        "type": [
+        "tokens": [
           {
             "link": {
               "url": false,
               "value": "project::v1_0_0::coffee::machine::power"
             },
             "value": "power"
+          },
+          {
+            "value": " pwr"
           }
         ]
       }
     ],
-    "scope": "project::v1_0_0::coffee::machine",
-    "signature": "machine(power pwr)"
+    "scope": "project::v1_0_0::coffee::machine"
   },
   "project::v1_0_0::coffee::machine::number_cups()const": {
     "access": "public",
@@ -855,8 +852,7 @@
         }
       ]
     },
-    "scope": "project::v1_0_0::coffee::machine",
-    "signature": "number_cups() const"
+    "scope": "project::v1_0_0::coffee::machine"
   },
   "project::v1_0_0::coffee::machine::other_callback": {
     "access": "public",
@@ -925,7 +921,7 @@
       }
     ]
   },
-  "project::v1_0_0::coffee::machine::set(constheat&,int)const": {
+  "project::v1_0_0::coffee::machine::set(constheat&h,intmax)const": {
     "access": "protected",
     "briefdescription": [
       {
@@ -955,20 +951,24 @@
     "name": "set",
     "parameters": [
       {
-        "description": [],
         "name": "h",
-        "type": [
+        "tokens": [
           {
             "value": "const heat &"
+          },
+          {
+            "value": " h"
           }
         ]
       },
       {
-        "description": [],
         "name": "max",
-        "type": [
+        "tokens": [
           {
             "value": "int"
+          },
+          {
+            "value": " max"
           }
         ]
       }
@@ -981,10 +981,9 @@
         }
       ]
     },
-    "scope": "project::v1_0_0::coffee::machine",
-    "signature": "set(const heat &h, int max) const"
+    "scope": "project::v1_0_0::coffee::machine"
   },
-  "project::v1_0_0::coffee::machine::set_number_cups(std::string)": {
+  "project::v1_0_0::coffee::machine::set_number_cups(std::stringcups)": {
     "access": "public",
     "briefdescription": [
       {
@@ -1090,9 +1089,12 @@
           }
         ],
         "name": "cups",
-        "type": [
+        "tokens": [
           {
             "value": "std::string"
+          },
+          {
+            "value": " cups"
           }
         ]
       }
@@ -1105,10 +1107,9 @@
         }
       ]
     },
-    "scope": "project::v1_0_0::coffee::machine",
-    "signature": "set_number_cups(std::string cups)"
+    "scope": "project::v1_0_0::coffee::machine"
   },
-  "project::v1_0_0::coffee::machine::set_number_cups(uint32_t)": {
+  "project::v1_0_0::coffee::machine::set_number_cups(uint32_tcups=0)": {
     "access": "public",
     "briefdescription": [
       {
@@ -1214,9 +1215,15 @@
           }
         ],
         "name": "cups",
-        "type": [
+        "tokens": [
           {
             "value": "uint32_t"
+          },
+          {
+            "value": " cups"
+          },
+          {
+            "value": " = 0"
           }
         ]
       }
@@ -1229,8 +1236,7 @@
         }
       ]
     },
-    "scope": "project::v1_0_0::coffee::machine",
-    "signature": "set_number_cups(uint32_t cups=0)"
+    "scope": "project::v1_0_0::coffee::machine"
   },
   "project::v1_0_0::coffee::machine::set_power(power)": {
     "access": "public",
@@ -1257,8 +1263,7 @@
     "name": "set_power",
     "parameters": [
       {
-        "description": [],
-        "type": [
+        "tokens": [
           {
             "link": {
               "url": false,
@@ -1277,8 +1282,7 @@
         }
       ]
     },
-    "scope": "project::v1_0_0::coffee::machine",
-    "signature": "set_power(power)"
+    "scope": "project::v1_0_0::coffee::machine"
   },
   "project::v1_0_0::coffee::machine::tank()": {
     "access": "public",
@@ -1319,8 +1323,7 @@
         }
       ]
     },
-    "scope": "project::v1_0_0::coffee::machine",
-    "signature": "tank()"
+    "scope": "project::v1_0_0::coffee::machine"
   },
   "project::v1_0_0::coffee::machine::tank()const": {
     "access": "public",
@@ -1364,8 +1367,7 @@
         }
       ]
     },
-    "scope": "project::v1_0_0::coffee::machine",
-    "signature": "tank() const"
+    "scope": "project::v1_0_0::coffee::machine"
   },
   "project::v1_0_0::coffee::machine::tanks()": {
     "access": "public",
@@ -1409,8 +1411,7 @@
         }
       ]
     },
-    "scope": "project::v1_0_0::coffee::machine",
-    "signature": "tanks()"
+    "scope": "project::v1_0_0::coffee::machine"
   },
   "project::v1_0_0::coffee::machine::total_cups_brewed": {
     "access": "public",
@@ -1514,8 +1515,7 @@
         }
       ]
     },
-    "scope": "project::v1_0_0::coffee::machine",
-    "signature": "version()"
+    "scope": "project::v1_0_0::coffee::machine"
   },
   "project::v1_0_0::coffee::machine::water_tank": {
     "access": "public",
@@ -1533,13 +1533,13 @@
       "path": "src/coffee/coffee.h"
     },
     "members": [
-      "project::v1_0_0::coffee::machine::water_tank::fill(constcups&,bool)",
+      "project::v1_0_0::coffee::machine::water_tank::fill(constcups&number_of_cups,boolsafety_valve)",
       "project::v1_0_0::coffee::machine::water_tank::is_full()const"
     ],
     "name": "water_tank",
     "scope": "project::v1_0_0::coffee::machine"
   },
-  "project::v1_0_0::coffee::machine::water_tank::fill(constcups&,bool)": {
+  "project::v1_0_0::coffee::machine::water_tank::fill(constcups&number_of_cups,boolsafety_valve)": {
     "access": "public",
     "briefdescription": [],
     "detaileddescription": [],
@@ -1566,9 +1566,12 @@
           }
         ],
         "name": "number_of_cups",
-        "type": [
+        "tokens": [
           {
             "value": "const cups &"
+          },
+          {
+            "value": " number_of_cups"
           }
         ]
       },
@@ -1598,9 +1601,12 @@
           }
         ],
         "name": "safety_valve",
-        "type": [
+        "tokens": [
           {
             "value": "bool"
+          },
+          {
+            "value": " safety_valve"
           }
         ]
       }
@@ -1628,8 +1634,7 @@
         }
       ]
     },
-    "scope": "project::v1_0_0::coffee::machine::water_tank",
-    "signature": "fill(const cups &number_of_cups, bool safety_valve)"
+    "scope": "project::v1_0_0::coffee::machine::water_tank"
   },
   "project::v1_0_0::coffee::machine::water_tank::is_full()const": {
     "access": "public",
@@ -1677,8 +1682,7 @@
         }
       ]
     },
-    "scope": "project::v1_0_0::coffee::machine::water_tank",
-    "signature": "is_full() const"
+    "scope": "project::v1_0_0::coffee::machine::water_tank"
   },
   "project::v1_0_0::coffee::machine::~machine()": {
     "access": "public",
@@ -1704,8 +1708,7 @@
     },
     "name": "~machine",
     "parameters": [],
-    "scope": "project::v1_0_0::coffee::machine",
-    "signature": "~machine()"
+    "scope": "project::v1_0_0::coffee::machine"
   },
   "project::v1_0_0::coffee::mug_size": {
     "access": "public",
@@ -1793,7 +1796,7 @@
       }
     ]
   },
-  "project::v1_0_0::print(double,int*)": {
+  "project::v1_0_0::print(doublea,int*b)": {
     "access": "public",
     "briefdescription": [
       {
@@ -1879,9 +1882,12 @@
           }
         ],
         "name": "a",
-        "type": [
+        "tokens": [
           {
             "value": "double"
+          },
+          {
+            "value": " a"
           }
         ]
       },
@@ -1893,9 +1899,12 @@
           }
         ],
         "name": "b",
-        "type": [
+        "tokens": [
           {
             "value": "int *"
+          },
+          {
+            "value": " b"
           }
         ]
       }
@@ -1922,10 +1931,9 @@
         }
       ]
     },
-    "scope": "project::v1_0_0",
-    "signature": "print(double a, int *b)"
+    "scope": "project::v1_0_0"
   },
-  "project::v1_0_0::print(int,bool)": {
+  "project::v1_0_0::print(inta_number,boolon_paper)": {
     "access": "public",
     "briefdescription": [],
     "detaileddescription": [],
@@ -1961,9 +1969,12 @@
           }
         ],
         "name": "a_number",
-        "type": [
+        "tokens": [
           {
             "value": "int"
+          },
+          {
+            "value": " a_number"
           }
         ]
       },
@@ -1984,9 +1995,12 @@
           }
         ],
         "name": "on_paper",
-        "type": [
+        "tokens": [
           {
             "value": "bool"
+          },
+          {
+            "value": " on_paper"
           }
         ]
       }
@@ -1999,8 +2013,7 @@
         }
       ]
     },
-    "scope": "project::v1_0_0",
-    "signature": "print(int a_number, bool on_paper)"
+    "scope": "project::v1_0_0"
   },
   "version()": {
     "access": "public",
@@ -2029,7 +2042,6 @@
         }
       ]
     },
-    "scope": null,
-    "signature": "version()"
+    "scope": null
   }
 }

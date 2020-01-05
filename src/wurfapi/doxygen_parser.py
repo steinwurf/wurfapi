@@ -7,6 +7,8 @@ import contextlib
 import copy
 import re
 
+from .compat import IS_PY2
+
 
 def match(xml, tag, attrib={}):
     """ Matches whether the XML has the specified tag and attributes.
@@ -199,7 +201,11 @@ class DoxygenParser(object):
         # Inject needed arguments
         args = {'xml': xml}
 
-        require_arguments = inspect.getargspec(parser.function)[0]
+        if IS_PY2:
+            require_arguments = inspect.getargspec(parser.function)[0]
+
+        else:
+            require_arguments = inspect.getfullargspec(parser.function)[0]
 
         for argument in require_arguments:
             if argument == "parser":

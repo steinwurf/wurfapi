@@ -128,7 +128,7 @@ def test_template_render_function(testdirectory, datarecorder):
     template = wurfapi.template_render.TemplateRender(user_path=None)
     api = generate_coffee_api(testdirectory=testdirectory)
 
-    data = template.render(selector='project::v1_0_0::print(double,int*)', api=api,
+    data = template.render(selector='project::v1_0_0::print(doublea,int*b)', api=api,
                            filename='function_synopsis.rst')
 
     datarecorder.recording_path = "test/data/template_recordings/builtin_function_synopsis.rst"
