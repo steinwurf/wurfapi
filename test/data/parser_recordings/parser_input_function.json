@@ -1,5 +1,5 @@
 {
-  "set(constheat&,int)const": {
+  "set(constheat&h,intmax)const": {
     "access": "public",
     "briefdescription": [
       {
@@ -53,9 +53,12 @@
           }
         ],
         "name": "h",
-        "type": [
+        "tokens": [
           {
             "value": "const heat &"
+          },
+          {
+            "value": " h"
           }
         ]
       },
@@ -67,9 +70,12 @@
           }
         ],
         "name": "max",
-        "type": [
+        "tokens": [
           {
             "value": "int"
+          },
+          {
+            "value": " max"
           }
         ]
       }
@@ -92,7 +98,164 @@
         }
       ]
     },
-    "scope": null,
-    "signature": "set(const heat &h, int max) const"
+    "scope": null
+  },
+  "set_array(constuint8_tarray[100])const": {
+    "access": "public",
+    "briefdescription": [],
+    "detaileddescription": [
+      {
+        "content": "Test array parameters",
+        "kind": "text"
+      }
+    ],
+    "is_const": true,
+    "is_constructor": false,
+    "is_destructor": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "kind": "function",
+    "location": {
+      "line-end": null,
+      "line-start": 27,
+      "path": "function.hpp"
+    },
+    "name": "set_array",
+    "parameters": [
+      {
+        "description": [
+          {
+            "content": "The name of the heat source as a const array",
+            "kind": "text"
+          }
+        ],
+        "name": "array",
+        "tokens": [
+          {
+            "value": "const uint8_t"
+          },
+          {
+            "value": " array"
+          },
+          {
+            "value": "[100]"
+          }
+        ]
+      }
+    ],
+    "return": {
+      "description": [],
+      "type": [
+        {
+          "value": "void"
+        }
+      ]
+    },
+    "scope": null
+  },
+  "set_bool(booltest=false)": {
+    "access": "public",
+    "briefdescription": [],
+    "detaileddescription": [
+      {
+        "content": "Test default parameters",
+        "kind": "text"
+      }
+    ],
+    "is_const": false,
+    "is_constructor": false,
+    "is_destructor": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "kind": "function",
+    "location": {
+      "line-end": null,
+      "line-start": 31,
+      "path": "function.hpp"
+    },
+    "name": "set_bool",
+    "parameters": [
+      {
+        "description": [
+          {
+            "content": "Testing bools",
+            "kind": "text"
+          }
+        ],
+        "name": "test",
+        "tokens": [
+          {
+            "value": "bool"
+          },
+          {
+            "value": " test"
+          },
+          {
+            "value": " = false"
+          }
+        ]
+      }
+    ],
+    "return": {
+      "description": [],
+      "type": [
+        {
+          "value": "void"
+        }
+      ]
+    },
+    "scope": null
+  },
+  "set_stuff(int(*(*x)(double))[3]=nullptr)": {
+    "access": "public",
+    "briefdescription": [],
+    "detaileddescription": [
+      {
+        "content": "Test convoluted stuff - Doxygen does not parse such things. So we cannot document the parameter x. It seems the recommended way is to create a typedef for the function pointer (which is also easier to read).",
+        "kind": "text"
+      }
+    ],
+    "is_const": false,
+    "is_constructor": false,
+    "is_destructor": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "kind": "function",
+    "location": {
+      "line-end": null,
+      "line-start": 36,
+      "path": "function.hpp"
+    },
+    "name": "set_stuff",
+    "parameters": [
+      {
+        "tokens": [
+          {
+            "value": "int(*(*x)(double))"
+          },
+          {
+            "value": "[3]"
+          },
+          {
+            "value": " = nullptr"
+          }
+        ]
+      }
+    ],
+    "return": {
+      "description": [],
+      "type": [
+        {
+          "value": "void"
+        }
+      ]
+    },
+    "scope": null
   }
 }

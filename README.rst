@@ -649,7 +649,7 @@ This could look like::
 ``token`` item
 ...............
 
-Python dictionary representing a generic token item.
+Python dictionary representing a generic token item::
 
     token = {
       'value': 'sometext',
@@ -679,6 +679,18 @@ Python dictionary representing a link::
 
 If `url` is `True` we have a basic extrenal reference otherwise we have a
 link to an internal type in the API.
+
+``parameter`` item
+...................
+
+Dictionary representing a function parameter::
+
+    parameter = {
+      'tokens': [token, ...],
+      Optional('name'): 'somestring',
+      Optional('description'): paragraphs
+    }
+
 
 ``template_parameters`` item
 .............................

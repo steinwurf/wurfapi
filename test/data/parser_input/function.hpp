@@ -30,5 +30,7 @@ void set_array(const uint8_t array[100]) const;
 /// @param test Testing bools
 void set_bool(bool test = false);
 
-/// Test convoluted stuff
+/// Test convoluted stuff - Doxygen does not parse such things. So we cannot
+/// document the parameter x. It seems the recommended way is to create a
+/// typedef for the function pointer (which is also easier to read).
 void set_stuff(int (*(*x)(double))[3] = nullptr);

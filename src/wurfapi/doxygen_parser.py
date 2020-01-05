@@ -755,14 +755,29 @@ def parse(xml, parser, log, scope):
     for param in xml.findall('param'):
 
         parameter = {}
-        parameter["type"] = parser.parse_element(xml=param.find("type"))
+        parameter["tokens"] = parser.parse_element(xml=param.find("type"))
 
         name = param.findtext('declname')
 
         if name:
             parameter['name'] = name
 
-        parameter['description'] = []
+            # If we get a name from Doxygen we need to put a space between
+            # the type and the actual name
+            parameter['tokens'].append({'value': ' ' + name})
+
+        array = param.findtext('array')
+
+        if array:
+            # The parameter is an array
+            parameter['tokens'].append({'value': array})
+
+        default = param.findtext('defval')
+
+        if default:
+            # The parameter has a default
+            parameter['tokens'].append({'value': ' = '+default})
+
 
         parameters.append(parameter)
 
@@ -814,7 +829,6 @@ def parse(xml, parser, log, scope):
         return_info["description"] = return_description
         result["return"] = return_info
 
-    result["signature"] = result["name"] + xml.findtext("argsstring")
     result["is_const"] = xml.attrib["const"] == "yes"
     result["is_static"] = xml.attrib["static"] == "yes"
     result["is_explicit"] = xml.attrib["explicit"] == "yes"
@@ -849,12 +863,14 @@ def parse(xml, parser, log, scope):
         unique_name += '>'
 
     unique_name += '('
-    types = []
+    parameters = []
     for parameter in result["parameters"]:
-        for value in parameter['type']:
-            types.append(value['value'])
+        values = []
+        for token in parameter['tokens']:
+            values.append(token['value'])
+        parameters.append(''.join(values))
 
-    unique_name += ','.join(types)
+    unique_name += ','.join(parameters)
     unique_name += ')'
 
     if result["is_const"]:

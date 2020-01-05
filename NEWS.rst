@@ -6,7 +6,9 @@ of every change, see the Git log.
 
 Latest
 ------
-* tbd
+* Major: Replaced `type` lists with a more generic `token` item. A list of
+  tokens should when concatenated constitute a valid C++ entity e.g. a type.
+* Major: Remove the `signature` item since it is not really used anywhere.
 
 3.0.0
 -----
