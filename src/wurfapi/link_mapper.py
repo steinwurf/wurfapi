@@ -140,7 +140,7 @@ def join_typelist(typelist):
 
 
 def split_cppscope(cppscope):
-    """ Split a C++ sceop into a list of more an more general scopes.
+    """ Split a C++ scope into a list of more general scopes.
 
     Example:
 
@@ -291,7 +291,11 @@ class LinkMapper(object):
 
         mapped_api = copy.deepcopy(self.api)
 
+        # @todo remove below for type
         transform_key(data=mapped_api, search_key="type", scope=None,
+                      function=self._map_type)
+
+        transform_key(data=mapped_api, search_key="tokens", scope=None,
                       function=self._map_type)
 
         transform_key(data=mapped_api, search_key="briefdescription",

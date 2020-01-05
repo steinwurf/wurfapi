@@ -121,14 +121,29 @@ def check_api_schema(api):
     # Initilize the items schema which itself is a list of paragraphs
     items_paragraphs.use_schema = paragraphs_schema
 
-    # type schema
+    # Type schema
 
     type_schema = schema.Schema([{
         'value': string_schema,
         schema.Optional('link'): LinkSchema(api=api)
     }])
 
-    # template parameter schema
+    # Token schema
+
+    token_schema = schema.Schema({
+        'value': string_schema,
+        schema.Optional('link'): LinkSchema(api=api)
+    })
+
+    # Parameter schema
+
+    parameter_schema = schema.Schema({
+        'tokens': [token_schema],
+        schema.Optional('name'): string_schema,
+        schema.Optional('description'): paragraphs_schema
+    })
+
+    # Template parameter schema
 
     template_parameter_schema = schema.Schema([{
         'type': type_schema,
@@ -178,12 +193,6 @@ def check_api_schema(api):
         'detaileddescription': paragraphs_schema
     })
 
-    # Type schema
-    type_schema = schema.Schema([{
-        'value': string_schema,
-        schema.Optional('link'): LinkSchema(api=api)
-    }])
-
     # Typedef / using schema
     typedef_using_schema = schema.Schema({
         'kind': schema.Or('typedef', 'using'),
@@ -206,7 +215,6 @@ def check_api_schema(api):
             'type': type_schema,
             'description': paragraphs_schema
         },
-        'signature': string_schema,
         schema.Optional('template_parameters'): template_parameter_schema,
         'is_const': bool,
         'is_static': bool,
@@ -218,11 +226,7 @@ def check_api_schema(api):
         'access': schema.Or('public', 'protected', 'private'),
         'briefdescription': paragraphs_schema,
         'detaileddescription': paragraphs_schema,
-        'parameters': [{
-            'type': type_schema,
-            schema.Optional('name'): string_schema,
-            'description': paragraphs_schema
-        }],
+        'parameters': [parameter_schema],
     })
 
     # variable schema
