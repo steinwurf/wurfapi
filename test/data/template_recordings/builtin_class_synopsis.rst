@@ -19,6 +19,7 @@ Member types (public)
 .. list-table::
    :header-rows: 0
    :widths: auto
+   :align: left
 
    * - using
      - :ref:`callback<project::v1_0_0::coffee::machine::callback>` 
@@ -37,6 +38,7 @@ Member functions (public)
 .. list-table::
    :header-rows: 0
    :widths: auto
+   :align: left
 
    * - 
      - :ref:`machine<project::v1_0_0::coffee::machine::machine()>` ()
@@ -62,6 +64,8 @@ Member functions (public)
      - :ref:`add_beans<project::v1_0_0::coffee::machine::add_beans<class,uint32_t>(constBeans&beans)>` (const Beans & beans)
    * - mug_size
      - :ref:`get_mug_size<project::v1_0_0::coffee::machine::get_mug_size()const>` () const
+   * - void
+     - :ref:`set_name<project::v1_0_0::coffee::machine::set_name(constcharname[40])>` (const char name[40])
 
 
 
@@ -72,6 +76,7 @@ Static member functions (public)
 .. list-table::
    :header-rows: 0
    :widths: auto
+   :align: left
 
    * - std::string
      - :ref:`version<project::v1_0_0::coffee::machine::version()>` ()
@@ -84,6 +89,7 @@ Member variables (public)
 .. list-table::
    :header-rows: 1
    :widths: auto
+   :align: left
 
    * - Type
      - Name
@@ -111,6 +117,7 @@ Static member variables (public)
 .. list-table::
    :header-rows: 1
    :widths: auto
+   :align: left
 
    * - Type
      - Name
@@ -340,6 +347,15 @@ Member Function Description
 
     Returns:
         the mug_size 
+
+
+-----
+
+.. _project::v1_0_0::coffee::machine::set_name(constcharname[40]):
+
+| void **set_name** (const char name[40])
+
+    Set the machine name. 
 
 
 

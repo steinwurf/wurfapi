@@ -778,12 +778,12 @@ def parse(xml, parser, log, scope):
             # The parameter is an array
             parameter['tokens'].append({'value': array})
 
-        default = param.findtext('defval')
+        # Parse the default value
+        default = param.find("defval")
 
-        if default:
-            # The parameter has a default
-            parameter['tokens'].append({'value': ' = '+default})
-
+        if default is not None:
+            parameter["tokens"].append({'value': ' = '})
+            parameter["tokens"].extend(parser.parse_element(xml=default))
 
         parameters.append(parameter)
 

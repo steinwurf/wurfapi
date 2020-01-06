@@ -32,7 +32,7 @@
 {# ESCAPE_REF #}
 
 {% macro escape_ref(content) -%}
-{{ content | replace('<', '\<') | replace('>', '\>') }}
+{{ content | replace('<', '\\<') | replace('>', '\\>') }}
 {%- endmacro %}
 
 {# FORMAT_REF #}
@@ -57,7 +57,7 @@
 
 {% macro format_type_list(element, as_code=False) %}
 {% for item in element %}
-{% set value = item["value"] | replace('*', '\*') %}
+{% set value = item["value"] | replace('*', '\\*') %}
 {% if "link" in item and not as_code %}
 {{ format_link(value, item["link"]) -}}
 {% else %}
@@ -72,7 +72,7 @@
 
 {% macro format_tokens(tokens, as_code=False) %}
 {% for token in tokens %}
-{% set value = token["value"] | replace('*', '\*') %}
+{% set value = token["value"] | replace('*', '\\*') %}
 {% if "link" in token and not as_code %}
 {{ format_link(value, token["link"]) -}}
 {% else %}

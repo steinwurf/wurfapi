@@ -30,6 +30,7 @@
 .. list-table::
    :header-rows: 0
    :widths: auto
+   :align: left
 
 {% for selector in selectors | api_sort(keys=["location", "line-start"]) %}
    {{ format_member_table_row(selector) | indent(width=3) }}
@@ -55,6 +56,7 @@
 .. list-table::
    :header-rows: 0
    :widths: auto
+   :align: left
 
 {% for selector in selectors %}
    * - {{ api[selector]["kind"] }}
@@ -69,6 +71,7 @@
 .. list-table::
    :header-rows: 1
    :widths: auto
+   :align: left
 
    * - Type
      - Name
@@ -246,6 +249,7 @@ Type Description
 .. list-table::
    :header-rows: 1
    :widths: auto
+   :align: left
 
    * - Type
      - Default

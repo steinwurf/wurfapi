@@ -104,8 +104,8 @@
     "detaileddescription": [],
     "kind": "struct",
     "location": {
-      "line-end": 163,
-      "line-start": 159,
+      "line-end": 166,
+      "line-start": 162,
       "path": "src/coffee/coffee.h"
     },
     "members": [
@@ -166,7 +166,7 @@
     "kind": "variable",
     "location": {
       "line-end": null,
-      "line-start": 162,
+      "line-start": 165,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_liquid",
@@ -188,8 +188,8 @@
     "detaileddescription": [],
     "kind": "struct",
     "location": {
-      "line-end": 180,
-      "line-start": 176,
+      "line-end": 183,
+      "line-start": 179,
       "path": "src/coffee/coffee.h"
     },
     "members": [
@@ -216,7 +216,7 @@
     "kind": "variable",
     "location": {
       "line-end": null,
-      "line-start": 179,
+      "line-start": 182,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_liquid",
@@ -238,8 +238,8 @@
     "detaileddescription": [],
     "kind": "struct",
     "location": {
-      "line-end": 172,
-      "line-start": 168,
+      "line-end": 175,
+      "line-start": 171,
       "path": "src/coffee/coffee.h"
     },
     "members": [
@@ -281,7 +281,7 @@
     "kind": "variable",
     "location": {
       "line-end": null,
-      "line-start": 171,
+      "line-start": 174,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_liquid",
@@ -320,7 +320,7 @@
     ],
     "kind": "class",
     "location": {
-      "line-end": 153,
+      "line-end": 156,
       "line-start": 16,
       "path": "src/coffee/coffee.h"
     },
@@ -339,6 +339,7 @@
       "project::v1_0_0::coffee::machine::other_callback",
       "project::v1_0_0::coffee::machine::power",
       "project::v1_0_0::coffee::machine::set(constheat&h,intmax)const",
+      "project::v1_0_0::coffee::machine::set_name(constcharname[40])",
       "project::v1_0_0::coffee::machine::set_number_cups(std::stringcups)",
       "project::v1_0_0::coffee::machine::set_number_cups(uint32_tcups=0)",
       "project::v1_0_0::coffee::machine::set_power(power)",
@@ -585,7 +586,7 @@
     "kind": "function",
     "location": {
       "line-end": null,
-      "line-start": 148,
+      "line-start": 151,
       "path": "src/coffee/coffee.h"
     },
     "name": "help_brew",
@@ -699,7 +700,7 @@
     "kind": "variable",
     "location": {
       "line-end": null,
-      "line-start": 151,
+      "line-start": 154,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_impl",
@@ -945,7 +946,7 @@
     "kind": "function",
     "location": {
       "line-end": null,
-      "line-start": 145,
+      "line-start": 148,
       "path": "src/coffee/coffee.h"
     },
     "name": "set",
@@ -969,6 +970,55 @@
           },
           {
             "value": " max"
+          }
+        ]
+      }
+    ],
+    "return": {
+      "description": [],
+      "type": [
+        {
+          "value": "void"
+        }
+      ]
+    },
+    "scope": "project::v1_0_0::coffee::machine"
+  },
+  "project::v1_0_0::coffee::machine::set_name(constcharname[40])": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "Set the machine name.",
+        "kind": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constructor": false,
+    "is_destructor": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "kind": "function",
+    "location": {
+      "line-end": null,
+      "line-start": 141,
+      "path": "src/coffee/coffee.h"
+    },
+    "name": "set_name",
+    "parameters": [
+      {
+        "name": "name",
+        "tokens": [
+          {
+            "value": "const char"
+          },
+          {
+            "value": " name"
+          },
+          {
+            "value": "[40]"
           }
         ]
       }
@@ -1223,7 +1273,10 @@
             "value": " cups"
           },
           {
-            "value": " = 0"
+            "value": " = "
+          },
+          {
+            "value": "0"
           }
         ]
       }
@@ -1869,7 +1922,7 @@
     "kind": "function",
     "location": {
       "line-end": null,
-      "line-start": 199,
+      "line-start": 202,
       "path": "src/coffee/coffee.h"
     },
     "name": "print",
@@ -1947,7 +2000,7 @@
     "kind": "function",
     "location": {
       "line-end": null,
-      "line-start": 209,
+      "line-start": 212,
       "path": "src/coffee/coffee.h"
     },
     "name": "print",
@@ -2029,7 +2082,7 @@
     "kind": "function",
     "location": {
       "line-end": null,
-      "line-start": 212,
+      "line-start": 215,
       "path": "src/coffee/coffee.h"
     },
     "name": "version",

@@ -195,7 +195,10 @@
             "value": " test"
           },
           {
-            "value": " = false"
+            "value": " = "
+          },
+          {
+            "value": "false"
           }
         ]
       }
@@ -243,7 +246,10 @@
             "value": "[3]"
           },
           {
-            "value": " = nullptr"
+            "value": " = "
+          },
+          {
+            "value": "nullptr"
           }
         ]
       }

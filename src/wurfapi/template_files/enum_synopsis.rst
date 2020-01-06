@@ -29,6 +29,7 @@ Values
 .. list-table::
    :header-rows: 1
    :widths: auto
+   :align: left
 
    * - Constant
      - Value

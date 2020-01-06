@@ -10,6 +10,7 @@ namespace v1_0_0
 .. list-table::
    :header-rows: 0
    :widths: auto
+   :align: left
 
 
    * - namespace
