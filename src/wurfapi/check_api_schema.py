@@ -128,17 +128,10 @@ def check_api_schema(api):
         schema.Optional('link'): LinkSchema(api=api)
     }])
 
-    # Token schema
-
-    token_schema = schema.Schema({
-        'value': string_schema,
-        schema.Optional('link'): LinkSchema(api=api)
-    })
-
     # Parameter schema
 
     parameter_schema = schema.Schema({
-        'tokens': [token_schema],
+        'type': type_schema,
         schema.Optional('name'): string_schema,
         schema.Optional('description'): paragraphs_schema
     })

@@ -25,7 +25,7 @@
     "parameters": [
       {
         "name": "value",
-        "tokens": [
+        "type": [
           {
             "value": "const H< S > &"
           },
@@ -216,7 +216,7 @@
     "parameters": [
       {
         "name": "t",
-        "tokens": [
+        "type": [
           {
             "value": "const T &"
           },
@@ -276,7 +276,7 @@
     "parameters": [
       {
         "name": "t",
-        "tokens": [
+        "type": [
           {
             "value": "const int &"
           },
@@ -395,7 +395,7 @@
     "parameters": [
       {
         "name": "t",
-        "tokens": [
+        "type": [
           {
             "value": "const T &"
           },

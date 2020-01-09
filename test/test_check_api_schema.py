@@ -137,7 +137,7 @@ test_api = {
         ],
         'parameters': [
             {
-                'tokens': [{
+                'type': [{
                     'value': 'uint32_t', 'link': {
                         'url': True, 'value': 'www.steinwurf.com'
                     }
@@ -148,7 +148,7 @@ test_api = {
                 ]
             },
             {
-                'tokens': [{'value': 'uint32_t'}],
+                'type': [{'value': 'uint32_t'}],
                 'description': [
                     {'kind': 'text', 'content': 'bla bla'}
                 ]

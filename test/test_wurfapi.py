@@ -21,8 +21,9 @@ def test_build_docs(testdirectory):
                     'user.email=doe@email.org', 'commit', '-m', 'oki'])
 
     docs = cpp_coffee.join('docs')
-    docs.run('sphinx-build --no-color -w log.txt -vvv -b html . _build')
+    r = docs.run('sphinx-build --no-color -w log.txt -vvv -b html . _build')
 
+    #print(r)
     log_file = os.path.join(docs.path(), 'log.txt')
 
     # The log file should have zero size - i.e. now warnings or errors..

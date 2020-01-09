@@ -295,9 +295,6 @@ class LinkMapper(object):
         transform_key(data=mapped_api, search_key="type", scope=None,
                       function=self._map_type)
 
-        transform_key(data=mapped_api, search_key="tokens", scope=None,
-                      function=self._map_type)
-
         transform_key(data=mapped_api, search_key="briefdescription",
                       scope=None, function=self._map_paragraphs)
 

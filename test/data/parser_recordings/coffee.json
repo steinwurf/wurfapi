@@ -382,7 +382,7 @@
     "parameters": [
       {
         "name": "beans",
-        "tokens": [
+        "type": [
           {
             "value": "const Beans &"
           },
@@ -707,7 +707,7 @@
     "scope": "project::v1_0_0::coffee::machine",
     "type": [
       {
-        "value": "std::unique_ptr<"
+        "value": "std::unique_ptr< "
       },
       {
         "link": {
@@ -717,7 +717,7 @@
         "value": "impl"
       },
       {
-        "value": ">"
+        "value": " >"
       }
     ]
   },
@@ -805,7 +805,7 @@
     "parameters": [
       {
         "name": "pwr",
-        "tokens": [
+        "type": [
           {
             "link": {
               "url": false,
@@ -953,7 +953,7 @@
     "parameters": [
       {
         "name": "h",
-        "tokens": [
+        "type": [
           {
             "value": "const heat &"
           },
@@ -964,7 +964,7 @@
       },
       {
         "name": "max",
-        "tokens": [
+        "type": [
           {
             "value": "int"
           },
@@ -1010,15 +1010,12 @@
     "parameters": [
       {
         "name": "name",
-        "tokens": [
+        "type": [
           {
             "value": "const char"
           },
           {
-            "value": " name"
-          },
-          {
-            "value": "[40]"
+            "value": " name[40]"
           }
         ]
       }
@@ -1139,7 +1136,7 @@
           }
         ],
         "name": "cups",
-        "tokens": [
+        "type": [
           {
             "value": "std::string"
           },
@@ -1265,7 +1262,7 @@
           }
         ],
         "name": "cups",
-        "tokens": [
+        "type": [
           {
             "value": "uint32_t"
           },
@@ -1316,7 +1313,7 @@
     "name": "set_power",
     "parameters": [
       {
-        "tokens": [
+        "type": [
           {
             "link": {
               "url": false,
@@ -1372,7 +1369,7 @@
           "value": "water_tank"
         },
         {
-          "value": "&"
+          "value": " &"
         }
       ]
     },
@@ -1406,7 +1403,7 @@
       "description": [],
       "type": [
         {
-          "value": "const"
+          "value": "const "
         },
         {
           "link": {
@@ -1416,7 +1413,7 @@
           "value": "water_tank"
         },
         {
-          "value": "&"
+          "value": " &"
         }
       ]
     },
@@ -1450,7 +1447,7 @@
       "description": [],
       "type": [
         {
-          "value": "std::vector<"
+          "value": "std::vector< "
         },
         {
           "link": {
@@ -1460,7 +1457,7 @@
           "value": "water_tank"
         },
         {
-          "value": ">"
+          "value": " >"
         }
       ]
     },
@@ -1619,7 +1616,7 @@
           }
         ],
         "name": "number_of_cups",
-        "tokens": [
+        "type": [
           {
             "value": "const cups &"
           },
@@ -1654,7 +1651,7 @@
           }
         ],
         "name": "safety_valve",
-        "tokens": [
+        "type": [
           {
             "value": "bool"
           },
@@ -1935,7 +1932,7 @@
           }
         ],
         "name": "a",
-        "tokens": [
+        "type": [
           {
             "value": "double"
           },
@@ -1952,7 +1949,7 @@
           }
         ],
         "name": "b",
-        "tokens": [
+        "type": [
           {
             "value": "int *"
           },
@@ -2022,7 +2019,7 @@
           }
         ],
         "name": "a_number",
-        "tokens": [
+        "type": [
           {
             "value": "int"
           },
@@ -2048,7 +2045,7 @@
           }
         ],
         "name": "on_paper",
-        "tokens": [
+        "type": [
           {
             "value": "bool"
           },

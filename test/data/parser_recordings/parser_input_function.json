@@ -53,7 +53,7 @@
           }
         ],
         "name": "h",
-        "tokens": [
+        "type": [
           {
             "value": "const heat &"
           },
@@ -70,7 +70,7 @@
           }
         ],
         "name": "max",
-        "tokens": [
+        "type": [
           {
             "value": "int"
           },
@@ -132,15 +132,12 @@
           }
         ],
         "name": "array",
-        "tokens": [
+        "type": [
           {
             "value": "const uint8_t"
           },
           {
-            "value": " array"
-          },
-          {
-            "value": "[100]"
+            "value": " array[100]"
           }
         ]
       }
@@ -187,7 +184,7 @@
           }
         ],
         "name": "test",
-        "tokens": [
+        "type": [
           {
             "value": "bool"
           },
@@ -238,12 +235,9 @@
     "name": "set_stuff",
     "parameters": [
       {
-        "tokens": [
+        "type": [
           {
-            "value": "int(*(*x)(double))"
-          },
-          {
-            "value": "[3]"
+            "value": "int(*(*x)(double))[3]"
           },
           {
             "value": " = "

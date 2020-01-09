@@ -646,30 +646,6 @@ This could look like::
       }
     ]
 
-``token`` item
-...............
-
-Python dictionary representing a generic token item::
-
-    token = {
-      'value': 'sometext',
-      Optional('link'): link
-    }
-
-A list of tokens can consititute e.g. a C++ type, a function parameter or
-similar. The token is simply a text value with an optional link.
-
-A list of tokens should consitue a meaningful entity. However, it may be entirly
-possible that a single token can be further parsed - e.g. the following should
-produce the same documentation output (and be considered equivalent)::
-
-    tokens = [{'value': 'int a'}]
-    tokens = [{'value': 'int '}, {'value': 'a'}]
-    tokens = [{'value': 'int'}, {'value': ' '}, {'value': 'a'}]
-
-Since we do not control the C++ parsing we try to do our best with what we get.
-
-
 ``link`` item
 .............
 
@@ -686,11 +662,30 @@ link to an internal type in the API.
 Dictionary representing a function parameter::
 
     parameter = {
-      'tokens': [token, ...],
+      'type': type,
       Optional('name'): 'somestring',
       Optional('description'): paragraphs
     }
 
+For the parameter the name is also included into the type list. The reason
+is that some parameters can be pretty complex, with the name embedded
+inside the type e.g.::
+
+    void function(int (*(*foo)())[3]);
+
+This is a function which takes on parameter `foo` which is pointer
+function returning pointer to array 3 of int - nice right? Anyway, in
+such cases the parameter name is embedded inside the type of the parameter.
+We therefore took the easy out and `wurfapi` will always include the
+parameter name in the type.
+
+As an example the parameter dictionary for a function `void test(int b)`
+could be::
+
+    {
+       'type': [{'value': 'int '}, {'value': 'b'}],
+       'name': 'b'
+    }
 
 ``template_parameters`` item
 .............................

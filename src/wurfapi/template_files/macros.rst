@@ -53,28 +53,13 @@
 {% endmacro %}
 
 
-{# FORMAT_TYPE_LIST (deprecated) #}
+{# FORMAT_TYPE_LIST #}
 
 {% macro format_type_list(element, as_code=False) %}
 {% for item in element %}
 {% set value = item["value"] | replace('*', '\\*') %}
 {% if "link" in item and not as_code %}
 {{ format_link(value, item["link"]) -}}
-{% else %}
-{{ value -}}
-{% endif %}
-{{ " " if not loop.last -}}
-{% endfor %}
-{% endmacro %}
-
-
-{# FORMAT_TOKENS #}
-
-{% macro format_tokens(tokens, as_code=False) %}
-{% for token in tokens %}
-{% set value = token["value"] | replace('*', '\\*') %}
-{% if "link" in token and not as_code %}
-{{ format_link(value, token["link"]) -}}
 {% else %}
 {{ value -}}
 {% endif %}
@@ -172,8 +157,8 @@ using **{{ alias["name"] }}** = {{ format_type_list(alias["type"]) }}
 {% macro format_parameters(parameters, as_code=False) -%}
 (
 {%- for parameter in parameters -%}
-    {% set tokens = parameter["tokens"] %}
-    {{- format_tokens(tokens, as_code=as_code) -}}
+    {% set type = parameter["type"] %}
+    {{- format_type_list(type, as_code=as_code) -}}
     {{- ", " if not loop.last -}}
 {% endfor -%}
 )

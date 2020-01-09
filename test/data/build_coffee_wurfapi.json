@@ -401,7 +401,7 @@
     "parameters": [
       {
         "name": "beans",
-        "tokens": [
+        "type": [
           {
             "value": "const Beans & beans"
           }
@@ -857,7 +857,7 @@
     "parameters": [
       {
         "name": "pwr",
-        "tokens": [
+        "type": [
           {
             "link": {
               "url": false,
@@ -1013,7 +1013,7 @@
     "parameters": [
       {
         "name": "h",
-        "tokens": [
+        "type": [
           {
             "value": "const heat & h"
           }
@@ -1021,7 +1021,7 @@
       },
       {
         "name": "max",
-        "tokens": [
+        "type": [
           {
             "link": {
               "url": true,
@@ -1072,7 +1072,7 @@
     "parameters": [
       {
         "name": "name",
-        "tokens": [
+        "type": [
           {
             "value": "const char name[40]"
           }
@@ -1196,7 +1196,7 @@
           }
         ],
         "name": "cups",
-        "tokens": [
+        "type": [
           {
             "link": {
               "url": true,
@@ -1327,7 +1327,7 @@
           }
         ],
         "name": "cups",
-        "tokens": [
+        "type": [
           {
             "link": {
               "url": true,
@@ -1377,7 +1377,7 @@
     "name": "set_power",
     "parameters": [
       {
-        "tokens": [
+        "type": [
           {
             "link": {
               "url": false,
@@ -1702,7 +1702,7 @@
           }
         ],
         "name": "number_of_cups",
-        "tokens": [
+        "type": [
           {
             "value": "const cups & number_of_cups"
           }
@@ -1734,7 +1734,7 @@
           }
         ],
         "name": "safety_valve",
-        "tokens": [
+        "type": [
           {
             "link": {
               "url": true,
@@ -2027,7 +2027,7 @@
           }
         ],
         "name": "a",
-        "tokens": [
+        "type": [
           {
             "link": {
               "url": true,
@@ -2048,7 +2048,7 @@
           }
         ],
         "name": "b",
-        "tokens": [
+        "type": [
           {
             "link": {
               "url": true,
@@ -2123,7 +2123,7 @@
           }
         ],
         "name": "a_number",
-        "tokens": [
+        "type": [
           {
             "link": {
               "url": true,
@@ -2153,7 +2153,7 @@
           }
         ],
         "name": "on_paper",
-        "tokens": [
+        "type": [
           {
             "link": {
               "url": true,

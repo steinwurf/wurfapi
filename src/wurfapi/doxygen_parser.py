@@ -677,7 +677,7 @@ def parse(xml, parser):
 
 @DoxygenParser.register(tag="type")
 @DoxygenParser.register(tag="defval")
-def parse(xml, parser):
+def parse(xml, parser, log):
     """ Parses Doxygen type and defval
 
     :return: Type list
@@ -690,7 +690,7 @@ def parse(xml, parser):
             return
         else:
             result.append(
-                {"value": content.strip()})
+                {"value": content.strip('\r\n')})
 
     append_text(xml.text)
 
@@ -761,7 +761,7 @@ def parse(xml, parser, log, scope):
     for param in xml.findall('param'):
 
         parameter = {}
-        parameter["tokens"] = parser.parse_element(xml=param.find("type"))
+        parameter["type"] = parser.parse_element(xml=param.find("type"))
 
         name = param.findtext('declname')
 
@@ -770,20 +770,20 @@ def parse(xml, parser, log, scope):
 
             # If we get a name from Doxygen we need to put a space between
             # the type and the actual name
-            parameter['tokens'].append({'value': ' ' + name})
+            parameter['type'].append({'value': ' ' + name})
 
         array = param.findtext('array')
 
         if array:
             # The parameter is an array
-            parameter['tokens'].append({'value': array})
+            parameter['type'][-1]['value'] += array
 
         # Parse the default value
         default = param.find("defval")
 
         if default is not None:
-            parameter["tokens"].append({'value': ' = '})
-            parameter["tokens"].extend(parser.parse_element(xml=default))
+            parameter["type"].append({'value': ' = '})
+            parameter["type"].extend(parser.parse_element(xml=default))
 
         parameters.append(parameter)
 
@@ -872,8 +872,8 @@ def parse(xml, parser, log, scope):
     parameters = []
     for parameter in result["parameters"]:
         values = []
-        for token in parameter['tokens']:
-            values.append(token['value'])
+        for value in parameter['type']:
+            values.append(value['value'])
         parameters.append(''.join(values))
 
     unique_name += ','.join(parameters)
