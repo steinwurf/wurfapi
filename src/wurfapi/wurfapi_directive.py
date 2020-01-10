@@ -93,6 +93,12 @@ class WurfapiDirective(docutils.parsers.rst.Directive):
             selector=self.options['selector'], api=app.wurfapi_api,
             filename=template_path)
 
+        # Dump the rst to a file - mostly for debugging purposes
+        rst_file = "".join([x for x in selector if x.isalnum()]) + ".rst"
+        rst_path = os.path.join(app.wurfapi_output_path, rst_file)
+        with open(rst_path, 'w') as f:
+            f.write(data)
+
         return self.insert_rst(data)
 
     def insert_rst(self, rst):
@@ -145,6 +151,9 @@ def generate_doxygen(app):
 
     if not os.path.exists(output_path):
         os.makedirs(name=output_path)
+
+    # Store the output path
+    app.wurfapi_output_path = output_path
 
     # Sphinx colorizes the log output differently on windows and linux
     # so we manually create a logger which, like sphinx, sends anything

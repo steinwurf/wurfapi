@@ -112,6 +112,7 @@ def _pytest(bld):
         venv.run(cmd='pip install sphinx')
         venv.run(cmd='pip install mock')
         venv.run(cmd='pip install vcrpy')
+        venv.run(cmd='pip install rstcheck')
         venv.run(cmd='pip install '
                  'git+https://github.com/steinwurf/pytest-datarecorder.git@'
                  '6a2c106c1a7f08236fcdd7b1b8742b010ec2403e')

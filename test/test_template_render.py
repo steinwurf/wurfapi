@@ -57,6 +57,9 @@ def test_template_finder_builtin(testdirectory):
     data = template.render(selector="project::v1_0_0::coffee::machine", api=api,
                            filename='class_synopsis.rst')
 
+    testdirectory.write_text(filename='out.rst', data=data, encoding='utf-8')
+    # testdirectory.run('rstcheck out.rst')
+
     mismatch_path = testdirectory.mkdir('mismatch')
 
     recorder = record.Record(
@@ -65,6 +68,8 @@ def test_template_finder_builtin(testdirectory):
         mismatch_path=mismatch_path.path())
 
     recorder.record(data=data)
+
+
 
 
 def test_template_finder_user(testdirectory):

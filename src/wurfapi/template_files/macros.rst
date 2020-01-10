@@ -60,6 +60,7 @@
 {% set value = item["value"] | replace('*', '\\*') %}
 {% if "link" in item and not as_code %}
 {{ format_link(value, item["link"]) -}}
+{% if loop.last %}{{" "}}{% endif %}
 {% else %}
 {{ value -}}
 {% endif %}
