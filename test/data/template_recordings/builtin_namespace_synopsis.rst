@@ -14,11 +14,11 @@ namespace v1_0_0
 
 
    * - namespace
-     - :ref:`coffee <project::v1_0_0::coffee>`
+     - :ref:`coffee <project::v1_0_0::coffee>`\ 
    * - function
-     - :ref:`print <project::v1_0_0::print(doublea,int*b)>`
+     - :ref:`print <project::v1_0_0::print(doublea,int*b)>`\ 
    * - function
-     - :ref:`print <project::v1_0_0::print(inta_number,boolon_paper)>`
+     - :ref:`print <project::v1_0_0::print(inta_number,boolon_paper)>`\ 
 
 
 Functions

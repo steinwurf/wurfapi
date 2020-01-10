@@ -291,7 +291,6 @@ class LinkMapper(object):
 
         mapped_api = copy.deepcopy(self.api)
 
-        # @todo remove below for type
         transform_key(data=mapped_api, search_key="type", scope=None,
                       function=self._map_type)
 

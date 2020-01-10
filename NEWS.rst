@@ -6,9 +6,11 @@ of every change, see the Git log.
 
 Latest
 ------
-* Major: Replaced `type` lists with a more generic `token` item. A list of
-  tokens should when concatenated constitute a valid C++ entity e.g. a type.
+* Major: Added a parameter type and better support for function parameters (
+  we were missing arrays and default arguments).
 * Major: Remove the `signature` item since it is not really used anywhere.
+* Minor: Output the rst generated for the different directives in the `tmp`
+  folder for debugging.
 
 3.0.0
 -----

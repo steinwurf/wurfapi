@@ -756,7 +756,7 @@
     "scope": "project::coffee::machine",
     "type": [
       {
-        "value": "std::unique_ptr<"
+        "value": "std::unique_ptr< "
       },
       {
         "link": {
@@ -766,7 +766,7 @@
         "value": "impl"
       },
       {
-        "value": ">"
+        "value": " >"
       }
     ]
   },
@@ -1434,7 +1434,7 @@
           "value": "water_tank"
         },
         {
-          "value": "&"
+          "value": " &"
         }
       ]
     },
@@ -1469,7 +1469,7 @@
       "description": [],
       "type": [
         {
-          "value": "const"
+          "value": "const "
         },
         {
           "link": {
@@ -1479,7 +1479,7 @@
           "value": "water_tank"
         },
         {
-          "value": "&"
+          "value": " &"
         }
       ]
     },
@@ -1521,7 +1521,7 @@
           "value": "std::vector"
         },
         {
-          "value": "<"
+          "value": "< "
         },
         {
           "link": {
@@ -1531,7 +1531,7 @@
           "value": "water_tank"
         },
         {
-          "value": ">"
+          "value": " >"
         }
       ]
     },
