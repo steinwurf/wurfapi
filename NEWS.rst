@@ -11,6 +11,7 @@ Latest
 * Major: Remove the `signature` item since it is not really used anywhere.
 * Minor: Output the rst generated for the different directives in the `tmp`
   folder for debugging.
+* Major: Remove testing of Python 3.4. since it has been deprecated.
 
 3.0.0
 -----
