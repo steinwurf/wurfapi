@@ -54,8 +54,7 @@
         }
       ]
     },
-    "scope": "header",
-    "signature": "headz_up()"
+    "scope": "header"
   },
   "project": {
     "briefdescription": [],
@@ -64,8 +63,8 @@
     "kind": "namespace",
     "members": [
       "project::coffee",
-      "project::print(double,int*)",
-      "project::print(int,bool)"
+      "project::print(doublea,int*b)",
+      "project::print(inta_number,boolon_paper)"
     ],
     "name": "project",
     "scope": null
@@ -97,8 +96,8 @@
     "kind": "struct",
     "location": {
       "include": "coffee/coffee.h",
-      "line-end": 163,
-      "line-start": 159,
+      "line-end": 166,
+      "line-start": 162,
       "path": "src/coffee/coffee.h"
     },
     "members": [
@@ -164,7 +163,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 162,
+      "line-start": 165,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_liquid",
@@ -187,8 +186,8 @@
     "kind": "struct",
     "location": {
       "include": "coffee/coffee.h",
-      "line-end": 180,
-      "line-start": 176,
+      "line-end": 183,
+      "line-start": 179,
       "path": "src/coffee/coffee.h"
     },
     "members": [
@@ -216,7 +215,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 179,
+      "line-start": 182,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_liquid",
@@ -239,8 +238,8 @@
     "kind": "struct",
     "location": {
       "include": "coffee/coffee.h",
-      "line-end": 172,
-      "line-start": 168,
+      "line-end": 175,
+      "line-start": 171,
       "path": "src/coffee/coffee.h"
     },
     "members": [
@@ -287,7 +286,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 171,
+      "line-start": 174,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_liquid",
@@ -339,12 +338,12 @@
     "kind": "class",
     "location": {
       "include": "coffee/coffee.h",
-      "line-end": 153,
+      "line-end": 156,
       "line-start": 16,
       "path": "src/coffee/coffee.h"
     },
     "members": [
-      "project::coffee::machine::add_beans<class,uint32_t>(constBeans&)",
+      "project::coffee::machine::add_beans<class,uint32_t>(constBeans&beans)",
       "project::coffee::machine::callback",
       "project::coffee::machine::cups_brewed",
       "project::coffee::machine::get_mug_size()const",
@@ -353,13 +352,14 @@
       "project::coffee::machine::m_impl",
       "project::coffee::machine::m_other_callback",
       "project::coffee::machine::machine()",
-      "project::coffee::machine::machine(power)",
+      "project::coffee::machine::machine(powerpwr)",
       "project::coffee::machine::number_cups()const",
       "project::coffee::machine::other_callback",
       "project::coffee::machine::power",
-      "project::coffee::machine::set(constheat&,int)const",
-      "project::coffee::machine::set_number_cups(std::string)",
-      "project::coffee::machine::set_number_cups(uint32_t)",
+      "project::coffee::machine::set(constheat&h,intmax)const",
+      "project::coffee::machine::set_name(constcharname[40])",
+      "project::coffee::machine::set_number_cups(std::stringcups)",
+      "project::coffee::machine::set_number_cups(uint32_tcups=0)",
       "project::coffee::machine::set_power(power)",
       "project::coffee::machine::tank()",
       "project::coffee::machine::tank()const",
@@ -374,7 +374,7 @@
     "name": "machine",
     "scope": "project::coffee"
   },
-  "project::coffee::machine::add_beans<class,uint32_t>(constBeans&)": {
+  "project::coffee::machine::add_beans<class,uint32_t>(constBeans&beans)": {
     "access": "public",
     "briefdescription": [],
     "detaileddescription": [
@@ -400,11 +400,10 @@
     "name": "add_beans",
     "parameters": [
       {
-        "description": [],
         "name": "beans",
         "type": [
           {
-            "value": "const Beans &"
+            "value": "const Beans & beans"
           }
         ]
       }
@@ -418,7 +417,6 @@
       ]
     },
     "scope": "project::coffee::machine",
-    "signature": "add_beans(const Beans &beans)",
     "template_parameters": [
       {
         "default": [
@@ -616,8 +614,7 @@
         }
       ]
     },
-    "scope": "project::coffee::machine",
-    "signature": "get_mug_size() const"
+    "scope": "project::coffee::machine"
   },
   "project::coffee::machine::help_brew()": {
     "access": "private",
@@ -634,7 +631,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 148,
+      "line-start": 151,
       "path": "src/coffee/coffee.h"
     },
     "name": "help_brew",
@@ -647,8 +644,7 @@
         }
       ]
     },
-    "scope": "project::coffee::machine",
-    "signature": "help_brew()"
+    "scope": "project::coffee::machine"
   },
   "project::coffee::machine::impl": {
     "access": "private",
@@ -705,8 +701,7 @@
         }
       ]
     },
-    "scope": "project::coffee::machine::impl",
-    "signature": "run()"
+    "scope": "project::coffee::machine::impl"
   },
   "project::coffee::machine::m_callback": {
     "access": "public",
@@ -754,14 +749,14 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 151,
+      "line-start": 154,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_impl",
     "scope": "project::coffee::machine",
     "type": [
       {
-        "value": "std::unique_ptr<"
+        "value": "std::unique_ptr< "
       },
       {
         "link": {
@@ -771,7 +766,7 @@
         "value": "impl"
       },
       {
-        "value": ">"
+        "value": " >"
       }
     ]
   },
@@ -833,10 +828,9 @@
     },
     "name": "machine",
     "parameters": [],
-    "scope": "project::coffee::machine",
-    "signature": "machine()"
+    "scope": "project::coffee::machine"
   },
-  "project::coffee::machine::machine(power)": {
+  "project::coffee::machine::machine(powerpwr)": {
     "access": "public",
     "briefdescription": [
       {
@@ -862,7 +856,6 @@
     "name": "machine",
     "parameters": [
       {
-        "description": [],
         "name": "pwr",
         "type": [
           {
@@ -871,12 +864,14 @@
               "value": "project::coffee::machine::power"
             },
             "value": "power"
+          },
+          {
+            "value": " pwr"
           }
         ]
       }
     ],
-    "scope": "project::coffee::machine",
-    "signature": "machine(power pwr)"
+    "scope": "project::coffee::machine"
   },
   "project::coffee::machine::number_cups()const": {
     "access": "public",
@@ -915,8 +910,7 @@
         }
       ]
     },
-    "scope": "project::coffee::machine",
-    "signature": "number_cups() const"
+    "scope": "project::coffee::machine"
   },
   "project::coffee::machine::other_callback": {
     "access": "public",
@@ -987,7 +981,7 @@
       }
     ]
   },
-  "project::coffee::machine::set(constheat&,int)const": {
+  "project::coffee::machine::set(constheat&h,intmax)const": {
     "access": "protected",
     "briefdescription": [
       {
@@ -1012,22 +1006,20 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 145,
+      "line-start": 148,
       "path": "src/coffee/coffee.h"
     },
     "name": "set",
     "parameters": [
       {
-        "description": [],
         "name": "h",
         "type": [
           {
-            "value": "const heat &"
+            "value": "const heat & h"
           }
         ]
       },
       {
-        "description": [],
         "name": "max",
         "type": [
           {
@@ -1036,6 +1028,9 @@
               "value": "https://en.cppreference.com/w/cpp/language/types"
             },
             "value": "int"
+          },
+          {
+            "value": " max"
           }
         ]
       }
@@ -1048,10 +1043,53 @@
         }
       ]
     },
-    "scope": "project::coffee::machine",
-    "signature": "set(const heat &h, int max) const"
+    "scope": "project::coffee::machine"
   },
-  "project::coffee::machine::set_number_cups(std::string)": {
+  "project::coffee::machine::set_name(constcharname[40])": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "Set the machine name.",
+        "kind": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constructor": false,
+    "is_destructor": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "kind": "function",
+    "location": {
+      "include": "coffee/coffee.h",
+      "line-end": null,
+      "line-start": 141,
+      "path": "src/coffee/coffee.h"
+    },
+    "name": "set_name",
+    "parameters": [
+      {
+        "name": "name",
+        "type": [
+          {
+            "value": "const char name[40]"
+          }
+        ]
+      }
+    ],
+    "return": {
+      "description": [],
+      "type": [
+        {
+          "value": "void"
+        }
+      ]
+    },
+    "scope": "project::coffee::machine"
+  },
+  "project::coffee::machine::set_number_cups(std::stringcups)": {
     "access": "public",
     "briefdescription": [
       {
@@ -1165,6 +1203,9 @@
               "value": "https://en.cppreference.com/w/cpp/string/basic_string"
             },
             "value": "std::string"
+          },
+          {
+            "value": " cups"
           }
         ]
       }
@@ -1177,10 +1218,9 @@
         }
       ]
     },
-    "scope": "project::coffee::machine",
-    "signature": "set_number_cups(std::string cups)"
+    "scope": "project::coffee::machine"
   },
-  "project::coffee::machine::set_number_cups(uint32_t)": {
+  "project::coffee::machine::set_number_cups(uint32_tcups=0)": {
     "access": "public",
     "briefdescription": [
       {
@@ -1294,6 +1334,9 @@
               "value": "https://en.cppreference.com/w/cpp/types/integer"
             },
             "value": "uint32_t"
+          },
+          {
+            "value": " cups = 0"
           }
         ]
       }
@@ -1306,8 +1349,7 @@
         }
       ]
     },
-    "scope": "project::coffee::machine",
-    "signature": "set_number_cups(uint32_t cups=0)"
+    "scope": "project::coffee::machine"
   },
   "project::coffee::machine::set_power(power)": {
     "access": "public",
@@ -1335,7 +1377,6 @@
     "name": "set_power",
     "parameters": [
       {
-        "description": [],
         "type": [
           {
             "link": {
@@ -1355,8 +1396,7 @@
         }
       ]
     },
-    "scope": "project::coffee::machine",
-    "signature": "set_power(power)"
+    "scope": "project::coffee::machine"
   },
   "project::coffee::machine::tank()": {
     "access": "public",
@@ -1394,12 +1434,11 @@
           "value": "water_tank"
         },
         {
-          "value": "&"
+          "value": " &"
         }
       ]
     },
-    "scope": "project::coffee::machine",
-    "signature": "tank()"
+    "scope": "project::coffee::machine"
   },
   "project::coffee::machine::tank()const": {
     "access": "public",
@@ -1430,7 +1469,7 @@
       "description": [],
       "type": [
         {
-          "value": "const"
+          "value": "const "
         },
         {
           "link": {
@@ -1440,12 +1479,11 @@
           "value": "water_tank"
         },
         {
-          "value": "&"
+          "value": " &"
         }
       ]
     },
-    "scope": "project::coffee::machine",
-    "signature": "tank() const"
+    "scope": "project::coffee::machine"
   },
   "project::coffee::machine::tanks()": {
     "access": "public",
@@ -1483,7 +1521,7 @@
           "value": "std::vector"
         },
         {
-          "value": "<"
+          "value": "< "
         },
         {
           "link": {
@@ -1493,12 +1531,11 @@
           "value": "water_tank"
         },
         {
-          "value": ">"
+          "value": " >"
         }
       ]
     },
-    "scope": "project::coffee::machine",
-    "signature": "tanks()"
+    "scope": "project::coffee::machine"
   },
   "project::coffee::machine::total_cups_brewed": {
     "access": "public",
@@ -1612,8 +1649,7 @@
         }
       ]
     },
-    "scope": "project::coffee::machine",
-    "signature": "version()"
+    "scope": "project::coffee::machine"
   },
   "project::coffee::machine::water_tank": {
     "access": "public",
@@ -1632,13 +1668,13 @@
       "path": "src/coffee/coffee.h"
     },
     "members": [
-      "project::coffee::machine::water_tank::fill(constcups&,bool)",
+      "project::coffee::machine::water_tank::fill(constcups&number_of_cups,boolsafety_valve)",
       "project::coffee::machine::water_tank::is_full()const"
     ],
     "name": "water_tank",
     "scope": "project::coffee::machine"
   },
-  "project::coffee::machine::water_tank::fill(constcups&,bool)": {
+  "project::coffee::machine::water_tank::fill(constcups&number_of_cups,boolsafety_valve)": {
     "access": "public",
     "briefdescription": [],
     "detaileddescription": [],
@@ -1668,7 +1704,7 @@
         "name": "number_of_cups",
         "type": [
           {
-            "value": "const cups &"
+            "value": "const cups & number_of_cups"
           }
         ]
       },
@@ -1705,6 +1741,9 @@
               "value": "https://en.cppreference.com/w/cpp/language/types"
             },
             "value": "bool"
+          },
+          {
+            "value": " safety_valve"
           }
         ]
       }
@@ -1736,8 +1775,7 @@
         }
       ]
     },
-    "scope": "project::coffee::machine::water_tank",
-    "signature": "fill(const cups &number_of_cups, bool safety_valve)"
+    "scope": "project::coffee::machine::water_tank"
   },
   "project::coffee::machine::water_tank::is_full()const": {
     "access": "public",
@@ -1790,8 +1828,7 @@
         }
       ]
     },
-    "scope": "project::coffee::machine::water_tank",
-    "signature": "is_full() const"
+    "scope": "project::coffee::machine::water_tank"
   },
   "project::coffee::machine::~machine()": {
     "access": "public",
@@ -1818,8 +1855,7 @@
     },
     "name": "~machine",
     "parameters": [],
-    "scope": "project::coffee::machine",
-    "signature": "~machine()"
+    "scope": "project::coffee::machine"
   },
   "project::coffee::mug_size": {
     "access": "public",
@@ -1908,7 +1944,7 @@
       }
     ]
   },
-  "project::print(double,int*)": {
+  "project::print(doublea,int*b)": {
     "access": "public",
     "briefdescription": [
       {
@@ -1978,7 +2014,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 199,
+      "line-start": 202,
       "path": "src/coffee/coffee.h"
     },
     "name": "print",
@@ -1998,6 +2034,9 @@
               "value": "https://en.cppreference.com/w/cpp/language/types"
             },
             "value": "double"
+          },
+          {
+            "value": " a"
           }
         ]
       },
@@ -2018,7 +2057,7 @@
             "value": "int"
           },
           {
-            "value": " *"
+            "value": " * b"
           }
         ]
       }
@@ -2045,10 +2084,9 @@
         }
       ]
     },
-    "scope": "project",
-    "signature": "print(double a, int *b)"
+    "scope": "project"
   },
-  "project::print(int,bool)": {
+  "project::print(inta_number,boolon_paper)": {
     "access": "public",
     "briefdescription": [],
     "detaileddescription": [],
@@ -2063,7 +2101,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 209,
+      "line-start": 212,
       "path": "src/coffee/coffee.h"
     },
     "name": "print",
@@ -2092,6 +2130,9 @@
               "value": "https://en.cppreference.com/w/cpp/language/types"
             },
             "value": "int"
+          },
+          {
+            "value": " a_number"
           }
         ]
       },
@@ -2119,6 +2160,9 @@
               "value": "https://en.cppreference.com/w/cpp/language/types"
             },
             "value": "bool"
+          },
+          {
+            "value": " on_paper"
           }
         ]
       }
@@ -2131,8 +2175,7 @@
         }
       ]
     },
-    "scope": "project",
-    "signature": "print(int a_number, bool on_paper)"
+    "scope": "project"
   },
   "version()": {
     "access": "public",
@@ -2149,7 +2192,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 212,
+      "line-start": 215,
       "path": "src/coffee/coffee.h"
     },
     "name": "version",
@@ -2162,7 +2205,6 @@
         }
       ]
     },
-    "scope": null,
-    "signature": "version()"
+    "scope": null
   }
 }

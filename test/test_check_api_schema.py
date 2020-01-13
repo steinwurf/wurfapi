@@ -121,7 +121,6 @@ test_api = {
                 {'kind': 'text', 'content': 'bla bla'}
             ]
         },
-        'signature': 'void some(int a)',
         'is_const': True,
         'is_static': False,
         'is_virtual': True,
@@ -161,7 +160,6 @@ test_api = {
         'name': "dfsfdsfddfsdfs",
         'location': {'path': 'sdd.h', 'line-start': 10, 'line-end': 15},
         'scope': 'dfsds::ds',
-        'signature': 'void some(int a)',
         'is_const': True,
         'is_static': False,
         'is_virtual': True,

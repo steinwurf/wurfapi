@@ -4,14 +4,14 @@
 {%- from 'macros.rst' import format_function -%}
 
 {%- set function = api[selector] -%}
-{%- set parameters_out = [] -%}
+{%- set params = [] -%}
 {%- for parameter in function["parameters"] -%}
-{%- do parameters_out.append(format_type_list(parameter["type"])) -%}
+{%- do params.append(format_type_list(parameter["type"])) -%}
 {%- if not loop.last -%}
-{%- do parameters_out.append(", ") -%}
+{%- do params.append(", ") -%}
 {%- endif -%}
 {%- endfor -%}
-{{ format_heading(function["kind"] + " " + function["name"] + "(" + parameters_out|join('') + ")", "-") }}
+{{ format_heading(function["kind"] + " " + function["name"] + "(" + params|join('') + ")", "-") }}
 
 {% if function["scope"] %}
 **Scope:** {{ function["scope"] }}

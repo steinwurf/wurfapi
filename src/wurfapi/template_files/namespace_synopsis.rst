@@ -9,6 +9,7 @@
 .. list-table::
    :header-rows: 0
    :widths: auto
+   :align: left
 
 {% for selector in selectors %}
    {%- set member = api[selector] %}

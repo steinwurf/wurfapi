@@ -7,6 +7,8 @@ import contextlib
 import copy
 import re
 
+from .compat import IS_PY2
+
 
 def match(xml, tag, attrib={}):
     """ Matches whether the XML has the specified tag and attributes.
@@ -199,7 +201,11 @@ class DoxygenParser(object):
         # Inject needed arguments
         args = {'xml': xml}
 
-        require_arguments = inspect.getargspec(parser.function)[0]
+        if IS_PY2:
+            require_arguments = inspect.getargspec(parser.function)[0]
+
+        else:
+            require_arguments = inspect.getfullargspec(parser.function)[0]
 
         for argument in require_arguments:
             if argument == "parser":
@@ -671,7 +677,7 @@ def parse(xml, parser):
 
 @DoxygenParser.register(tag="type")
 @DoxygenParser.register(tag="defval")
-def parse(xml, parser):
+def parse(xml, parser, log):
     """ Parses Doxygen type and defval
 
     :return: Type list
@@ -684,7 +690,7 @@ def parse(xml, parser):
             return
         else:
             result.append(
-                {"value": content.strip()})
+                {"value": content.strip('\r\n')})
 
     append_text(xml.text)
 
@@ -762,7 +768,22 @@ def parse(xml, parser, log, scope):
         if name:
             parameter['name'] = name
 
-        parameter['description'] = []
+            # If we get a name from Doxygen we need to put a space between
+            # the type and the actual name
+            parameter['type'].append({'value': ' ' + name})
+
+        array = param.findtext('array')
+
+        if array:
+            # The parameter is an array
+            parameter['type'][-1]['value'] += array
+
+        # Parse the default value
+        default = param.find("defval")
+
+        if default is not None:
+            parameter["type"].append({'value': ' = '})
+            parameter["type"].extend(parser.parse_element(xml=default))
 
         parameters.append(parameter)
 
@@ -814,7 +835,6 @@ def parse(xml, parser, log, scope):
         return_info["description"] = return_description
         result["return"] = return_info
 
-    result["signature"] = result["name"] + xml.findtext("argsstring")
     result["is_const"] = xml.attrib["const"] == "yes"
     result["is_static"] = xml.attrib["static"] == "yes"
     result["is_explicit"] = xml.attrib["explicit"] == "yes"
@@ -849,12 +869,14 @@ def parse(xml, parser, log, scope):
         unique_name += '>'
 
     unique_name += '('
-    types = []
+    parameters = []
     for parameter in result["parameters"]:
+        values = []
         for value in parameter['type']:
-            types.append(value['value'])
+            values.append(value['value'])
+        parameters.append(''.join(values))
 
-    unique_name += ','.join(types)
+    unique_name += ','.join(parameters)
     unique_name += ')'
 
     if result["is_const"]:

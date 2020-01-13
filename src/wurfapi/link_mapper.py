@@ -140,7 +140,7 @@ def join_typelist(typelist):
 
 
 def split_cppscope(cppscope):
-    """ Split a C++ sceop into a list of more an more general scopes.
+    """ Split a C++ scope into a list of more general scopes.
 
     Example:
 

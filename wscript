@@ -30,6 +30,10 @@ def options(opt):
         help='Run all unit tests')
 
     opt.add_option(
+        '--stepwise', default=False, action='store_true',
+        help='Run until first failure')
+
+    opt.add_option(
         '--pytest_basetemp', default='pytest_temp',
         help='Set the prefix folder where pytest executes the tests')
 
@@ -108,6 +112,7 @@ def _pytest(bld):
         venv.run(cmd='pip install sphinx')
         venv.run(cmd='pip install mock')
         venv.run(cmd='pip install vcrpy')
+        venv.run(cmd='pip install rstcheck')
         venv.run(cmd='pip install '
                  'git+https://github.com/steinwurf/pytest-datarecorder.git@'
                  '6a2c106c1a7f08236fcdd7b1b8742b010ec2403e')
@@ -135,7 +140,8 @@ def _pytest(bld):
         os.makedirs(basetemp)
 
         # Main test command
-        command = 'python -B -m pytest {} --basetemp {}'.format(
+        command = 'python -B -m pytest {} ' \
+            '--basetemp {}'.format(
             testdir.abspath(), os.path.join(basetemp, 'unit_tests'))
 
         # Skip the tests that have the "download_test" marker
@@ -144,6 +150,10 @@ def _pytest(bld):
         # Adds the test filter if specified
         if bld.options.test_filter:
             command += ' -k "{}"'.format(bld.options.test_filter)
+
+        # Adds the test filter if specified
+        if bld.options.stepwise:
+            command += ' --stepwise'
 
         # Make python not write any .pyc files. These may linger around
         # in the file system and make some tests pass although their .py

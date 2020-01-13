@@ -137,6 +137,9 @@ public:
     /// @return the mug_size
     mug_size get_mug_size() const;
 
+    /// Set the machine name
+    void set_name(const char name[40]);
+
 protected:
     /// @brief Set the heat.
     ///

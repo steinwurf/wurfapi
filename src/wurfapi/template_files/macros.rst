@@ -32,21 +32,29 @@
 {# ESCAPE_REF #}
 
 {% macro escape_ref(content) -%}
-{{ content | replace('<', '\<') | replace('>', '\>') }}
+{{ content | replace('<', '\\<') | replace('>', '\\>') }}
 {%- endmacro %}
 
-{# FORMAT_REF #}
+{# FORMAT_REF
+
+The escaped space is needed to that the inline markup ends with
+a non-character. Otherwise rst will fail with an error.
+#}
 
 {% macro format_ref(content, reference) -%}
-:ref:`{{ escape_ref(content) }} <{{ escape_ref(reference)  }}>`
+:ref:`{{ escape_ref(content) }} <{{ escape_ref(reference)  }}>`{{"\ "}}
 {%- endmacro %}
 
 
-{# FORMAT_LINK #}
+{# FORMAT_LINK
+
+The escaped space is needed to that the inline markup ends with
+a non-character. Otherwise rst will fail with an error.
+#}
 
 {% macro format_link(content, link) %}
 {% if link["url"] -%}
-`{{ escape_ref(content) }} <{{ escape_ref(link["value"]) }}>`_
+`{{ escape_ref(content) }} <{{ escape_ref(link["value"]) }}>`_{{"\ "}}
 {%- else -%}
 {{ format_ref(content, link["value"]) }}
 {%- endif %}
@@ -57,13 +65,12 @@
 
 {% macro format_type_list(element, as_code=False) %}
 {% for item in element %}
-{% set value = item["value"] | replace('*', '\*') %}
+{% set value = item["value"] | replace('*', '\\*') %}
 {% if "link" in item and not as_code %}
 {{ format_link(value, item["link"]) -}}
 {% else %}
 {{ value -}}
 {% endif %}
-{{ " " if not loop.last -}}
 {% endfor %}
 {% endmacro %}
 
@@ -155,15 +162,11 @@ using **{{ alias["name"] }}** = {{ format_type_list(alias["type"]) }}
 
 {# FORMAT_PARAMETERS #}
 
-{% macro format_parameters(parameters) -%}
+{% macro format_parameters(parameters, as_code=False) -%}
 (
 {%- for parameter in parameters -%}
     {% set type = parameter["type"] %}
-    {% set name = parameter["name"] %}
-    {{- format_type_list(type) + " " -}}
-    {% if name %}
-    {{- name -}}
-    {% endif %}
+    {{- format_type_list(type, as_code=as_code) -}}
     {{- ", " if not loop.last -}}
 {% endfor -%}
 )

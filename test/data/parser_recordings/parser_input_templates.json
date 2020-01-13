@@ -1,5 +1,5 @@
 {
-  "f<template<class>class,class>(constH<S>&)": {
+  "f<template<class>class,class>(constH<S>&value)": {
     "access": "public",
     "briefdescription": [],
     "detaileddescription": [
@@ -24,11 +24,13 @@
     "name": "f",
     "parameters": [
       {
-        "description": [],
         "name": "value",
         "type": [
           {
             "value": "const H< S > &"
+          },
+          {
+            "value": " value"
           }
         ]
       }
@@ -42,7 +44,6 @@
       ]
     },
     "scope": null,
-    "signature": "f(const H< S > &value)",
     "template_parameters": [
       {
         "description": [
@@ -168,7 +169,7 @@
       "path": "templates.hpp"
     },
     "members": [
-      "our_type::our_type(constT&)"
+      "our_type::our_type(constT&t)"
     ],
     "name": "our_type",
     "scope": null,
@@ -189,7 +190,7 @@
       }
     ]
   },
-  "our_type::our_type(constT&)": {
+  "our_type::our_type(constT&t)": {
     "access": "public",
     "briefdescription": [
       {
@@ -214,17 +215,18 @@
     "name": "our_type",
     "parameters": [
       {
-        "description": [],
         "name": "t",
         "type": [
           {
             "value": "const T &"
+          },
+          {
+            "value": " t"
           }
         ]
       }
     ],
-    "scope": "our_type",
-    "signature": "our_type(const T &t)"
+    "scope": "our_type"
   },
   "our_type<int>": {
     "access": "public",
@@ -242,13 +244,13 @@
       "path": "templates.hpp"
     },
     "members": [
-      "our_type<int>::our_type(constint&)"
+      "our_type<int>::our_type(constint&t)"
     ],
     "name": "our_type< int >",
     "scope": null,
     "template_parameters": []
   },
-  "our_type<int>::our_type(constint&)": {
+  "our_type<int>::our_type(constint&t)": {
     "access": "public",
     "briefdescription": [
       {
@@ -273,17 +275,18 @@
     "name": "our_type",
     "parameters": [
       {
-        "description": [],
         "name": "t",
         "type": [
           {
             "value": "const int &"
+          },
+          {
+            "value": " t"
           }
         ]
       }
     ],
-    "scope": "our_type<int>",
-    "signature": "our_type(const int &t)"
+    "scope": "our_type<int>"
   },
   "test": {
     "briefdescription": [],
@@ -313,7 +316,7 @@
     },
     "members": [
       "test::another_type::nested",
-      "test::another_type::another_type(constT&)"
+      "test::another_type::another_type(constT&t)"
     ],
     "name": "another_type",
     "scope": "test",
@@ -366,7 +369,7 @@
       }
     ]
   },
-  "test::another_type::another_type(constT&)": {
+  "test::another_type::another_type(constT&t)": {
     "access": "public",
     "briefdescription": [
       {
@@ -391,17 +394,18 @@
     "name": "another_type",
     "parameters": [
       {
-        "description": [],
         "name": "t",
         "type": [
           {
             "value": "const T &"
+          },
+          {
+            "value": " t"
           }
         ]
       }
     ],
-    "scope": "test::another_type",
-    "signature": "another_type(const T &t)"
+    "scope": "test::another_type"
   },
   "test::another_type::nested": {
     "access": "public",
@@ -461,8 +465,7 @@
         }
       ]
     },
-    "scope": "test::another_type::nested",
-    "signature": "print()"
+    "scope": "test::another_type::nested"
   },
   "test<class,class>()": {
     "access": "public",
@@ -492,7 +495,6 @@
       ]
     },
     "scope": null,
-    "signature": "test()",
     "template_parameters": [
       {
         "name": "A",
@@ -545,7 +547,6 @@
       ]
     },
     "scope": null,
-    "signature": "test()",
     "template_parameters": [
       {
         "name": "A",

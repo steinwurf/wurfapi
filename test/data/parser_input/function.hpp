@@ -21,3 +21,16 @@
 /// And then some text
 ///
 uint32_t set(const heat& h, int max) const;
+
+/// Test array parameters
+/// @param array The name of the heat source as a const array
+void set_array(const uint8_t array[100]) const;
+
+/// Test default parameters
+/// @param test Testing bools
+void set_bool(bool test = false);
+
+/// Test convoluted stuff - Doxygen does not parse such things. So we cannot
+/// document the parameter x. It seems the recommended way is to create a
+/// typedef for the function pointer (which is also easier to read).
+void set_stuff(int (*(*x)(double))[3] = nullptr);

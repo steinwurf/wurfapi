@@ -646,6 +646,10 @@ This could look like::
       }
     ]
 
+Any spaces in the type list should be preseved all the way from the Doxygen
+output and into the type list. In the rst it should be sufficient to simply
+output the values of the type. No spaces or other stuff should be injected.
+
 ``link`` item
 .............
 
@@ -655,6 +659,37 @@ Python dictionary representing a link::
 
 If `url` is `True` we have a basic extrenal reference otherwise we have a
 link to an internal type in the API.
+
+``parameter`` item
+...................
+
+Dictionary representing a function parameter::
+
+    parameter = {
+      'type': type,
+      Optional('name'): 'somestring',
+      Optional('description'): paragraphs
+    }
+
+For the parameter the name is also included into the type list. The reason
+is that some parameters can be pretty complex, with the name embedded
+inside the type e.g.::
+
+    void function(int (*(*foo)())[3]);
+
+This is a function which takes one parameter `foo` which is pointer
+function returning pointer to array 3 of int - nice right? Anyway, in
+such cases the parameter name is embedded inside the type of the parameter.
+We therefore took the easy out and `wurfapi` will always include the
+parameter name in the type.
+
+As an example the parameter dictionary for a function `void test(int b)`
+could be::
+
+    {
+       'type': [{'value': 'int '}, {'value': 'b'}],
+       'name': 'b'
+    }
 
 ``template_parameters`` item
 .............................
@@ -735,7 +770,9 @@ Since we are going to be using Doxygen's XML output as input to the
 extension we need a place to store it. We store it system temporary folder e.g.
 if the project name is "foobar" on Linux this would be
 ``/tmp/wurfapi-foobar-123456`` where ``123456`` is a hash of the source
-directory paths.
+directory paths. In addition to Doxygen's XML we also store the generated rst
+for the different directives there. This is nice for debugging to see whether
+we generate broken rst.
 
 The API in json format can be found in the ``_build/.doctree/wurfapi_api.json``.
 
