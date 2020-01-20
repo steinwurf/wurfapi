@@ -42,7 +42,7 @@ a non-character. Otherwise rst will fail with an error.
 #}
 
 {% macro format_ref(content, reference) -%}
-:ref:`{{ escape_ref(content) }} <{{ escape_ref(reference)  }}>`{{"\ "}}
+:ref:`{{ escape_ref(content) }} <{{ escape_ref(reference)  }}>`{{"\\ "}}
 {%- endmacro %}
 
 
@@ -54,7 +54,7 @@ a non-character. Otherwise rst will fail with an error.
 
 {% macro format_link(content, link) %}
 {% if link["url"] -%}
-`{{ escape_ref(content) }} <{{ escape_ref(link["value"]) }}>`_{{"\ "}}
+`{{ escape_ref(content) }} <{{ escape_ref(link["value"]) }}>`_{{"\\ "}}
 {%- else -%}
 {{ format_ref(content, link["value"]) }}
 {%- endif %}
