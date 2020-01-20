@@ -6,6 +6,10 @@ of every change, see the Git log.
 
 Latest
 ------
+* tbd
+
+4.0.0
+-----
 * Major: Added a parameter type and better support for function parameters (
   we were missing arrays and default arguments).
 * Major: Remove the `signature` item since it is not really used anywhere.
