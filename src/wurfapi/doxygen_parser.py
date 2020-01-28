@@ -345,16 +345,34 @@ def parse(log, xml):
 
 
 @DoxygenParser.register(tag='compounddef', attrib={'kind': 'file'})
-def parse(parser, xml):
+def parse(parser, xml, location_mapper):
     """ Parses Doxygen compounddefType of kind 'file'
 
     :return: API dictionary
     """
 
-    # In this tag we find
-    #  - free functions in sectiondef tags
-    api = {}
+    full_path = xml.find("location").attrib["file"]
+    relative_path = location_mapper.to_path(path=full_path)
 
+    result = {}
+    result["kind"] = "file"
+    result["name"] = xml.findtext('compoundname')
+    result["path"] = relative_path
+
+    # Doxygen assigned an id to the different entities it parse including
+    # files. However, when it creates links it seems it appends _source to
+    # the id. So we add two mappings for the files
+    refid = xml.attrib["id"]
+
+    # Save mapping from doxygen id to unique name - we use the relative path
+    # from the project dir as unique name
+    parser.id_mapping[refid] = relative_path
+    parser.id_mapping[refid + '_source'] = relative_path
+
+    api = {}
+    api[relative_path] = result
+
+    #  We also parse free functions found in sectiondef tags
     for sectiondef in xml.findall('sectiondef'):
         api.update(parser.parse_element(xml=sectiondef))
 
