@@ -134,6 +134,7 @@ public:
     /// The number of cups brewed by all machines.
     static uint32_t total_cups_brewed;
 
+    /// This header is coffee.h if this is important?
     /// @return the mug_size
     mug_size get_mug_size() const;
 
