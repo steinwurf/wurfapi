@@ -139,7 +139,7 @@ def _pytest(bld):
         #
         #     'test/test_run.py::test_create_context'
         #
-        test_filter = 'test/test_doxygen_parser.py::test_coffee'
+        test_filter = 'test'
 
         # Main test command
         command = f'python -B -m pytest {test_filter} --basetemp {basetemp}'

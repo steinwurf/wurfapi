@@ -42,7 +42,11 @@ a non-character. Otherwise rst will fail with an error.
 #}
 
 {% macro format_ref(content, reference) -%}
+{% if api[reference]["kind"] == "file" -%}
+filepath.txt
+{%- else -%}
 :ref:`{{ escape_ref(content) }} <{{ escape_ref(reference)  }}>`{{"\\ "}}
+{%- endif %}
 {%- endmacro %}
 
 

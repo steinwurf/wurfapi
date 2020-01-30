@@ -15,6 +15,11 @@ test_api = {
             {'kind': 'text', 'content': 'bla bla'}
         ]
     },
+    'file_dfsd': {
+        'kind': 'file',
+        'name': "dfsf",
+        'path': "/bla/bla/file.exe"
+    },
     'class_dfdsfsd': {
         'kind': 'class',
         'name': 'sdfsdfsd',

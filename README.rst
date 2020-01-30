@@ -402,6 +402,9 @@ scopes e.g. ``foo::bar::baz``.
       template<>
       class foo<int> {};
 
+* In addition to types, we also have entries for the parsed files. For files
+  the unique name will be the relative path from the project root.
+
 .. _cppreference: http://en.cppreference.com/w/cpp/language/member_functions
 .. _standardese: https://github.com/foonathan/standardese#linking
 

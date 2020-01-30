@@ -186,6 +186,13 @@ def check_api_schema(api):
         'detaileddescription': paragraphs_schema
     })
 
+    # File schema
+    file_schema = schema.Schema({
+        'kind': 'file',
+        'name': string_schema,
+        'path': string_schema
+    })
+
     # Typedef / using schema
     typedef_using_schema = schema.Schema({
         'kind': schema.Or('typedef', 'using'),
@@ -245,6 +252,7 @@ def check_api_schema(api):
     # schema.Or(...) clause but it makes the error output hard to read
     api_schemas = {
         'namespace': namespace_schema,
+        'file': file_schema,
         'class': class_struct_schema,
         'struct': class_struct_schema,
         'enum': enum_schema,
