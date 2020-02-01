@@ -6,7 +6,7 @@ of every change, see the Git log.
 
 Latest
 ------
-* tbd
+* Minor: Add support file file links.
 
 4.0.0
 -----
