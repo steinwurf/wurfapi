@@ -1,4 +1,5 @@
 
+
 .. _project::v1_0_0::coffee::machine:
 
 class machine
@@ -344,6 +345,8 @@ Member Function Description
 .. _project::v1_0_0::coffee::machine::get_mug_size()const:
 
 | mug_size **get_mug_size** ()
+
+    This header is `src/coffee/coffee.h` if this is important? Also there is an example in `examples/header/header.h` 
 
     Returns:
         the mug_size 

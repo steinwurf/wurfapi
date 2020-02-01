@@ -21,6 +21,11 @@
     "name": "type_definitions",
     "scope": null
   },
+  "type_definitions.hpp": {
+    "kind": "file",
+    "name": "type_definitions.hpp",
+    "path": "type_definitions.hpp"
+  },
   "type_definitions::my_bool": {
     "access": "public",
     "briefdescription": [

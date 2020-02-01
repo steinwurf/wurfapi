@@ -76,5 +76,10 @@
         "value": "20"
       }
     ]
+  },
+  "enum_class.hpp": {
+    "kind": "file",
+    "name": "enum_class.hpp",
+    "path": "enum_class.hpp"
   }
 }
