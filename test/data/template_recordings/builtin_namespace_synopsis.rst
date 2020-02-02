@@ -1,4 +1,5 @@
 
+
 .. _project::v1_0_0:
 
 namespace v1_0_0
@@ -15,6 +16,8 @@ namespace v1_0_0
 
    * - namespace
      - :ref:`coffee <project::v1_0_0::coffee>`\ 
+   * - namespace
+     - :ref:`deprecated <project::v1_0_0::deprecated>`\ 
    * - function
      - :ref:`print <project::v1_0_0::print(doublea,int*b)>`\ 
    * - function

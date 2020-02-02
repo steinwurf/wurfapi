@@ -288,6 +288,11 @@
     ],
     "scope": "our_type<int>"
   },
+  "templates.hpp": {
+    "kind": "file",
+    "name": "templates.hpp",
+    "path": "templates.hpp"
+  },
   "test": {
     "briefdescription": [],
     "detaileddescription": [],

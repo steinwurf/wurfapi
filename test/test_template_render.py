@@ -1,5 +1,6 @@
 import os
 import mock
+import json
 
 import wurfapi
 import wurfapi.doxygen_generator
@@ -54,6 +55,9 @@ def test_template_finder_builtin(testdirectory):
 
     api = generate_coffee_api(testdirectory=testdirectory)
 
+    testdirectory.write_text(filename="api.json", data=json.dumps(
+        api, indent=4, sort_keys=True), encoding='utf-8')
+
     data = template.render(selector="project::v1_0_0::coffee::machine", api=api,
                            filename='class_synopsis.rst')
 
@@ -68,8 +72,6 @@ def test_template_finder_builtin(testdirectory):
         mismatch_path=mismatch_path.path())
 
     recorder.record(data=data)
-
-
 
 
 def test_template_finder_user(testdirectory):

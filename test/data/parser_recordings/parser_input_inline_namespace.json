@@ -34,5 +34,10 @@
     "members": [],
     "name": "test_inline",
     "scope": "coffee::VERSION"
+  },
+  "inline_namespace.hpp": {
+    "kind": "file",
+    "name": "inline_namespace.hpp",
+    "path": "inline_namespace.hpp"
   }
 }

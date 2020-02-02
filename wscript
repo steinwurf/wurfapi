@@ -134,15 +134,15 @@ def _pytest(bld):
         if os.path.exists(basetemp):
             waflib.extras.wurf.directory.remove_directory(path=basetemp)
 
-        testdir = bld.path.find_node('test')
-
-        # Make the basetemp directory
-        os.makedirs(basetemp)
+        # Run all tests by just passing the test directory. Specific tests can
+        # be enabled by specifying the full path e.g.:
+        #
+        #     'test/test_run.py::test_create_context'
+        #
+        test_filter = 'test'
 
         # Main test command
-        command = 'python -B -m pytest {} ' \
-            '--basetemp {}'.format(
-            testdir.abspath(), os.path.join(basetemp, 'unit_tests'))
+        command = f'python -B -m pytest {test_filter} --basetemp {basetemp}'
 
         # Skip the tests that have the "download_test" marker
         command += ' -m "not download_test and not ensure_doxygen"'

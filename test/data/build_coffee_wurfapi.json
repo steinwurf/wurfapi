@@ -1,4 +1,9 @@
 {
+  "examples/header/header.h": {
+    "kind": "file",
+    "name": "header.h",
+    "path": "examples/header/header.h"
+  },
   "header": {
     "access": "public",
     "briefdescription": [
@@ -63,6 +68,7 @@
     "kind": "namespace",
     "members": [
       "project::coffee",
+      "project::deprecated",
       "project::print(doublea,int*b)",
       "project::print(inta_number,boolon_paper)"
     ],
@@ -96,8 +102,8 @@
     "kind": "struct",
     "location": {
       "include": "coffee/coffee.h",
-      "line-end": 166,
-      "line-start": 162,
+      "line-end": 168,
+      "line-start": 164,
       "path": "src/coffee/coffee.h"
     },
     "members": [
@@ -163,7 +169,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 165,
+      "line-start": 167,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_liquid",
@@ -186,8 +192,8 @@
     "kind": "struct",
     "location": {
       "include": "coffee/coffee.h",
-      "line-end": 183,
-      "line-start": 179,
+      "line-end": 185,
+      "line-start": 181,
       "path": "src/coffee/coffee.h"
     },
     "members": [
@@ -215,7 +221,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 182,
+      "line-start": 184,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_liquid",
@@ -238,8 +244,8 @@
     "kind": "struct",
     "location": {
       "include": "coffee/coffee.h",
-      "line-end": 175,
-      "line-start": 171,
+      "line-end": 177,
+      "line-start": 173,
       "path": "src/coffee/coffee.h"
     },
     "members": [
@@ -286,7 +292,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 174,
+      "line-start": 176,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_liquid",
@@ -338,7 +344,7 @@
     "kind": "class",
     "location": {
       "include": "coffee/coffee.h",
-      "line-end": 156,
+      "line-end": 158,
       "line-start": 16,
       "path": "src/coffee/coffee.h"
     },
@@ -580,7 +586,32 @@
   "project::coffee::machine::get_mug_size()const": {
     "access": "public",
     "briefdescription": [],
-    "detaileddescription": [],
+    "detaileddescription": [
+      {
+        "content": "This header is",
+        "kind": "text"
+      },
+      {
+        "content": "coffee.h",
+        "kind": "text",
+        "link": {
+          "url": false,
+          "value": "src/coffee/coffee.h"
+        }
+      },
+      {
+        "content": "if this is important? Also there is an example in",
+        "kind": "text"
+      },
+      {
+        "content": "header.h",
+        "kind": "text",
+        "link": {
+          "url": false,
+          "value": "examples/header/header.h"
+        }
+      }
+    ],
     "is_const": true,
     "is_constructor": false,
     "is_destructor": false,
@@ -592,7 +623,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 138,
+      "line-start": 140,
       "path": "src/coffee/coffee.h"
     },
     "name": "get_mug_size",
@@ -631,7 +662,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 151,
+      "line-start": 153,
       "path": "src/coffee/coffee.h"
     },
     "name": "help_brew",
@@ -749,7 +780,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 154,
+      "line-start": 156,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_impl",
@@ -1006,7 +1037,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 148,
+      "line-start": 150,
       "path": "src/coffee/coffee.h"
     },
     "name": "set",
@@ -1065,7 +1096,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 141,
+      "line-start": 143,
       "path": "src/coffee/coffee.h"
     },
     "name": "set_name",
@@ -1944,6 +1975,104 @@
       }
     ]
   },
+  "project::deprecated": {
+    "briefdescription": [],
+    "detaileddescription": [],
+    "inline": false,
+    "kind": "namespace",
+    "members": [
+      "project::deprecated::mug_size"
+    ],
+    "name": "deprecated",
+    "scope": "project"
+  },
+  "project::deprecated::mug_size": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "Different size coffee mugs.",
+        "kind": "text"
+      }
+    ],
+    "detaileddescription": [
+      {
+        "content": "This lets you choose the size of your coffee mug",
+        "kind": "text"
+      }
+    ],
+    "kind": "enum",
+    "location": {
+      "include": "coffee/deprecated/mug_size.h",
+      "line-end": 32,
+      "line-start": 12,
+      "path": "src/coffee/deprecated/mug_size.h"
+    },
+    "name": "mug_size",
+    "scope": "project::deprecated",
+    "values": [
+      {
+        "briefdescription": [
+          {
+            "content": "The Short version.",
+            "kind": "text"
+          }
+        ],
+        "detaileddescription": [],
+        "name": "Short",
+        "value": "8"
+      },
+      {
+        "briefdescription": [
+          {
+            "content": "The Tall version.",
+            "kind": "text"
+          }
+        ],
+        "detaileddescription": [],
+        "name": "Tall"
+      },
+      {
+        "briefdescription": [],
+        "detaileddescription": [
+          {
+            "content": "The Grande version Use it like so:",
+            "kind": "text"
+          },
+          {
+            "content": "std::cout << mug_size::Grande << std::endl;",
+            "is_block": false,
+            "kind": "code"
+          }
+        ],
+        "name": "Grande"
+      },
+      {
+        "briefdescription": [
+          {
+            "content": "The Venti version 20 ounces.",
+            "kind": "text"
+          }
+        ],
+        "detaileddescription": [
+          {
+            "content": "This one will keep you up all night!",
+            "kind": "text"
+          },
+          {
+            "content": "std::cout << mug_size::Venti << std::endl;\n",
+            "is_block": true,
+            "kind": "code"
+          },
+          {
+            "content": "I hope you enjoy.",
+            "kind": "text"
+          }
+        ],
+        "name": "Venti",
+        "value": "20"
+      }
+    ]
+  },
   "project::print(doublea,int*b)": {
     "access": "public",
     "briefdescription": [
@@ -2014,7 +2143,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 202,
+      "line-start": 204,
       "path": "src/coffee/coffee.h"
     },
     "name": "print",
@@ -2101,7 +2230,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 212,
+      "line-start": 214,
       "path": "src/coffee/coffee.h"
     },
     "name": "print",
@@ -2177,6 +2306,26 @@
     },
     "scope": "project"
   },
+  "src/coffee/coffee.cpp": {
+    "kind": "file",
+    "name": "coffee.cpp",
+    "path": "src/coffee/coffee.cpp"
+  },
+  "src/coffee/coffee.h": {
+    "kind": "file",
+    "name": "coffee.h",
+    "path": "src/coffee/coffee.h"
+  },
+  "src/coffee/deprecated/mug_size.h": {
+    "kind": "file",
+    "name": "mug_size.h",
+    "path": "src/coffee/deprecated/mug_size.h"
+  },
+  "src/coffee/mug_size.h": {
+    "kind": "file",
+    "name": "mug_size.h",
+    "path": "src/coffee/mug_size.h"
+  },
   "version()": {
     "access": "public",
     "briefdescription": [],
@@ -2192,7 +2341,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 215,
+      "line-start": 217,
       "path": "src/coffee/coffee.h"
     },
     "name": "version",

@@ -1,21 +1,13 @@
-{%- from 'macros.rst' import format_heading -%}
-{%- from 'macros.rst' import format_description -%}
-{%- from 'macros.rst' import format_type_list -%}
-{%- from 'macros.rst' import format_type_alias -%}
-{%- from 'macros.rst' import merge_description -%}
-{%- from 'macros.rst' import format_function -%}
-{%- from 'macros.rst' import format_parameters -%}
-{%- from 'macros.rst' import format_template_parameters -%}
-{%- from 'macros.rst' import format_template_parameters_description -%}
+{% import 'macros.rst' as macros with context %}
 
 {# FORMAT_MEMBER_TABLE_ROW #}
 
 {%- macro format_member_table_row(selector) -%}
 {%- set function = api[selector] %}
-{%- set signature = format_parameters(function["parameters"]) %}
+{%- set signature = macros.format_parameters(function["parameters"]) %}
 {%- set signature = signature + " const" if function["is_const"] else signature -%}
 {% if "return" in function -%}
-{%- set return_type = format_type_list(function["return"]["type"]) -%}
+{%- set return_type = macros.format_type_list(function["return"]["type"]) -%}
 {% else %}
 {%- set return_type = "" -%}
 {%- endif %}
@@ -79,10 +71,10 @@
      - Description
 {% for selector in selectors %}
 {%- set variable = api[selector] %}
-   * - {{ format_type_list(variable["type"]) }}
+   * - {{ macros.format_type_list(variable["type"]) }}
      - {{ variable["name"] }}
      - {{ variable["value"] }}
-     - {{ merge_description(variable) | indent(width=7) }}
+     - {{ macros.merge_description(variable) | indent(width=7) }}
 {% endfor %}
 {% endmacro -%}
 
@@ -90,7 +82,7 @@
 
 .. _{{selector}}:
 
-{{ format_heading(class["kind"] + " " + class["name"]) }}
+{{ macros.format_heading(class["kind"] + " " + class["name"]) }}
 
 {% if class["scope"] %}
 **Scope:** {{ class["scope"] }}
@@ -103,7 +95,7 @@
 {% if class["briefdescription"] %}
 Brief description
 -----------------
-{{ format_description(class["briefdescription"]) }}
+{{ macros.format_description(class["briefdescription"]) }}
 {% endif %}
 
 {% if class["template_parameters"] %}
@@ -112,7 +104,7 @@ Template parameters
 
 .. code-block:: c++
 
-     template {{ format_template_parameters(class["template_parameters"], as_code=True) }}
+     template {{ macros.format_template_parameters(class["template_parameters"], as_code=True) }}
      {{ class["kind"] }} {{ class["name"] }}
 
 {% if class["template_parameters"] | selectattr("description") | list | count -%}
@@ -191,7 +183,7 @@ Static member variables (public)
 {% if class["detaileddescription"] %}
 Description
 -----------
-{{ format_description(class["detaileddescription"]) }}
+{{ macros.format_description(class["detaileddescription"]) }}
 {% endif %}
 
 
@@ -206,7 +198,7 @@ Member Function Description
 ---------------------------
 
 {% for function in functions -%}
-    {{ format_function(api, function) }}
+    {{ macros.format_function(api, function) }}
 
 {{ "-----" if not loop.last }}
 
@@ -230,11 +222,11 @@ Type Description
 
 .. _{{selector}}:
 
-{{ format_type_alias(api[selector]) }}
+{{ macros.format_type_alias(api[selector]) }}
 
-    {{ format_description(api[selector]["briefdescription"])|indent }}
+    {{ macros.format_description(api[selector]["briefdescription"])|indent }}
 
-    {{ format_description(api[selector]["detaileddescription"])|indent }}
+    {{ macros.format_description(api[selector]["detaileddescription"])|indent }}
 
 {{ "-----" if not loop.last }}
 
@@ -259,9 +251,9 @@ Type Description
 {%- set name = parameter["name"] | default("")-%}
 {%- set default = parameter["default"] | default([]) -%}
 {%- set description = parameter["description"] | default([]) %}
-   * - {{ format_type_list(type) }} {{ name }}
-     - {{ format_type_list(default) }}
-     - {{ format_description(description) | indent(width=7) }}
+   * - {{ macros.format_type_list(type) }} {{ name }}
+     - {{ macros.format_type_list(default) }}
+     - {{ macros.format_description(description) | indent(width=7) }}
 {% endfor %}
 {% endmacro -%}
 
@@ -271,7 +263,7 @@ Template parameter description
 
 .. _{{selector}}_template_parameter_description:
 
-{{ format_template_parameters_description(class["template_parameters"]) }}
+{{ macros.format_template_parameters_description(class["template_parameters"]) }}
 
 {% endif %}
 

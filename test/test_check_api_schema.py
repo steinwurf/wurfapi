@@ -1,3 +1,4 @@
+import json
 import wurfapi.check_api_schema
 
 test_api = {
@@ -13,6 +14,11 @@ test_api = {
         'detaileddescription': [
             {'kind': 'text', 'content': 'bla bla'}
         ]
+    },
+    'file_dfsd': {
+        'kind': 'file',
+        'name': "dfsf",
+        'path': "/bla/bla/file.exe"
     },
     'class_dfdsfsd': {
         'kind': 'class',
@@ -206,3 +212,40 @@ test_api = {
 def test_check_schema():
 
     wurfapi.check_api_schema.check_api_schema(api=test_api)
+
+
+# def test_check_custom_schema():
+
+#     with open('/tmp/giit/data/build/stub-5d6b38/docs/update-docs/.doctrees/wurfapi_api.json') as f:
+#         test_api2 = json.load(f)
+
+#     reduced = {
+#         "stub::function<R(Args...)>": {
+#             "access": "public",
+#             "briefdescription": [
+#             ],
+#             "detaileddescription": [
+#                 {
+#                     "content": "return_handler.hpp",
+#                     "kind": "text",
+#                     "link": {
+#                         "url": False,
+#                         "value": "return__handler_8hpp_source"
+#                     }
+#                 }
+#             ],
+#             "kind": "class",
+#             "location": {
+#                 "include": "stub/function.hpp",
+#                 "line-end": 258,
+#                 "line-start": 67,
+#                 "path": "src/stub/function.hpp"
+#             },
+#             "members": [
+#             ],
+#             "name": "function< R(Args...)>",
+#             "scope": "stub",
+#         }
+#     }
+
+#     wurfapi.check_api_schema.check_api_schema(api=reduced)

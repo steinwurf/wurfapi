@@ -1,7 +1,5 @@
 
-{%- from 'macros.rst' import format_heading -%}
-{%- from 'macros.rst' import format_function -%}
-{%- from 'macros.rst' import format_ref -%}
+{% import 'macros.rst' as macros with context -%}
 
 {# FORMAT_MEMBER_TABLE #}
 
@@ -15,7 +13,7 @@
    {%- set member = api[selector] %}
 
    * - {{ member["kind"] }}
-     - {{ format_ref(member["name"], selector )}}
+     - {{ macros.format_ref(member["name"], selector )}}
 
 {%- endfor -%}
 
@@ -25,7 +23,7 @@
 
 .. _{{selector}}:
 
-{{ format_heading("namespace " + namespace["name"]) }}
+{{ macros.format_heading("namespace " + namespace["name"]) }}
 
 {% if namespace["scope"] %}
 **Scope:** {{ namespace["scope"] }}
@@ -48,7 +46,7 @@ Functions
 ---------
 
 {% for function in functions -%}
-    {{ format_function(api, function) }}
+    {{ macros.format_function(api, function) }}
 
 {{ "-----" if not loop.last }}
 

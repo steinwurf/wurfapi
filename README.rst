@@ -402,6 +402,9 @@ scopes e.g. ``foo::bar::baz``.
       template<>
       class foo<int> {};
 
+* In addition to types, we also have entries for the parsed files. For files
+  the unique name will be the relative path from the project root.
+
 .. _cppreference: http://en.cppreference.com/w/cpp/language/member_functions
 .. _standardese: https://github.com/foonathan/standardese#linking
 
@@ -450,7 +453,8 @@ Parsing the above code would produce the following API dictionary::
         'ns1::ns2': { 'kind': 'namespace', ... },
         'ns1::ns2::box': { 'kind': 'struct', ... },
         'ns1::ns2::box::hello()': { kind': function' ... },
-        'ns1::ns2::print()': { 'kind': 'function', ...}
+        'ns1::ns2::print()': { 'kind': 'function', ...},
+        'ns1.hpp': { 'kind': 'file', ...}
       }
 
 The different entity kinds expose different information about the
@@ -541,6 +545,17 @@ Python dictionary representing a C++ using or typedef statement::
       'type': type,
       'briefdescription': paragraphs,
       'detaileddescription': paragraphs
+    }
+
+``file`` Kind
+............................
+
+Python dictionary representing a file in the project::
+
+    info = {
+      'kind': 'file',
+      'name': 'somefile.hpp',
+      'path': 'relative/path/to/somefile.hpp',
     }
 
 ``function`` Kind

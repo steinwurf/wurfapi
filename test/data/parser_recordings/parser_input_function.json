@@ -1,4 +1,9 @@
 {
+  "function.hpp": {
+    "kind": "file",
+    "name": "function.hpp",
+    "path": "function.hpp"
+  },
   "set(constheat&h,intmax)const": {
     "access": "public",
     "briefdescription": [

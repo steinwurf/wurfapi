@@ -26,6 +26,11 @@
     "name": "variables",
     "scope": null
   },
+  "variables.hpp": {
+    "kind": "file",
+    "name": "variables.hpp",
+    "path": "variables.hpp"
+  },
   "variables::a": {
     "access": "public",
     "briefdescription": [
