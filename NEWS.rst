@@ -6,6 +6,10 @@ of every change, see the Git log.
 
 Latest
 ------
+* tbd
+
+5.0.0
+-----
 * Minor: Add support file file links.
 * Major: Drop Python 2.X support.
 

@@ -32,7 +32,7 @@ from . import check_api_schema
 from . import collapse_inline_namespaces
 
 
-VERSION = '4.0.0'
+VERSION = '5.0.0'
 
 
 class WurfapiDirective(docutils.parsers.rst.Directive):
