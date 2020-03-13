@@ -6,6 +6,7 @@
   },
   "set(constheat&h,intmax)const": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [
       {
         "content": "Set the heat.",
@@ -107,6 +108,7 @@
   },
   "set_array(constuint8_tarray[100])const": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [],
     "detaileddescription": [
       {
@@ -159,6 +161,7 @@
   },
   "set_bool(booltest=false)": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [],
     "detaileddescription": [
       {
@@ -217,6 +220,7 @@
   },
   "set_stuff(int(*(*x)(double))[3]=nullptr)": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [],
     "detaileddescription": [
       {

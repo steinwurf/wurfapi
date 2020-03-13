@@ -6,7 +6,7 @@ of every change, see the Git log.
 
 Latest
 ------
-* tbd
+* Minor: Add support for auto return types and auto return type specifiers.
 
 5.0.0
 -----

@@ -28,6 +28,7 @@
   },
   "header::headz_up()": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [
       {
         "content": "Check it out!",
@@ -102,8 +103,8 @@
     "kind": "struct",
     "location": {
       "include": "coffee/coffee.h",
-      "line-end": 168,
-      "line-start": 164,
+      "line-end": 171,
+      "line-start": 167,
       "path": "src/coffee/coffee.h"
     },
     "members": [
@@ -169,7 +170,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 167,
+      "line-start": 170,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_liquid",
@@ -192,8 +193,8 @@
     "kind": "struct",
     "location": {
       "include": "coffee/coffee.h",
-      "line-end": 185,
-      "line-start": 181,
+      "line-end": 188,
+      "line-start": 184,
       "path": "src/coffee/coffee.h"
     },
     "members": [
@@ -221,7 +222,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 184,
+      "line-start": 187,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_liquid",
@@ -244,8 +245,8 @@
     "kind": "struct",
     "location": {
       "include": "coffee/coffee.h",
-      "line-end": 177,
-      "line-start": 173,
+      "line-end": 180,
+      "line-start": 176,
       "path": "src/coffee/coffee.h"
     },
     "members": [
@@ -292,7 +293,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 176,
+      "line-start": 179,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_liquid",
@@ -344,7 +345,7 @@
     "kind": "class",
     "location": {
       "include": "coffee/coffee.h",
-      "line-end": 158,
+      "line-end": 161,
       "line-start": 16,
       "path": "src/coffee/coffee.h"
     },
@@ -352,6 +353,7 @@
       "project::coffee::machine::add_beans<class,uint32_t>(constBeans&beans)",
       "project::coffee::machine::callback",
       "project::coffee::machine::cups_brewed",
+      "project::coffee::machine::get_bean_count(mug_sizesize_of_mug)const",
       "project::coffee::machine::get_mug_size()const",
       "project::coffee::machine::help_brew()",
       "project::coffee::machine::m_callback",
@@ -382,6 +384,7 @@
   },
   "project::coffee::machine::add_beans<class,uint32_t>(constBeans&beans)": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [],
     "detaileddescription": [
       {
@@ -567,7 +570,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 132,
+      "line-start": 135,
       "path": "src/coffee/coffee.h"
     },
     "name": "cups_brewed",
@@ -583,8 +586,65 @@
     ],
     "value": "0"
   },
+  "project::coffee::machine::get_bean_count(mug_sizesize_of_mug)const": {
+    "access": "public",
+    "auto_return": true,
+    "briefdescription": [
+      {
+        "content": "Get the number of beans needed for a given mug.",
+        "kind": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": true,
+    "is_constructor": false,
+    "is_destructor": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "kind": "function",
+    "location": {
+      "include": "coffee/coffee.h",
+      "line-end": null,
+      "line-start": 132,
+      "path": "src/coffee/coffee.h"
+    },
+    "name": "get_bean_count",
+    "parameters": [
+      {
+        "name": "size_of_mug",
+        "type": [
+          {
+            "link": {
+              "url": false,
+              "value": "project::coffee::mug_size"
+            },
+            "value": "mug_size"
+          },
+          {
+            "value": " size_of_mug"
+          }
+        ]
+      }
+    ],
+    "return": {
+      "description": [],
+      "type": [
+        {
+          "link": {
+            "url": true,
+            "value": "https://en.cppreference.com/w/cpp/types/integer"
+          },
+          "value": "uint32_t"
+        }
+      ]
+    },
+    "scope": "project::coffee::machine"
+  },
   "project::coffee::machine::get_mug_size()const": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [],
     "detaileddescription": [
       {
@@ -623,7 +683,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 140,
+      "line-start": 143,
       "path": "src/coffee/coffee.h"
     },
     "name": "get_mug_size",
@@ -649,6 +709,7 @@
   },
   "project::coffee::machine::help_brew()": {
     "access": "private",
+    "auto_return": false,
     "briefdescription": [],
     "detaileddescription": [],
     "is_const": false,
@@ -662,7 +723,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 153,
+      "line-start": 156,
       "path": "src/coffee/coffee.h"
     },
     "name": "help_brew",
@@ -701,6 +762,7 @@
   },
   "project::coffee::machine::impl::run()": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [
       {
         "content": "Run the machine.",
@@ -780,7 +842,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 156,
+      "line-start": 159,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_impl",
@@ -836,6 +898,7 @@
   },
   "project::coffee::machine::machine()": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [
       {
         "content": "Constructor.",
@@ -863,6 +926,7 @@
   },
   "project::coffee::machine::machine(powerpwr)": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [
       {
         "content": "Constructor with power.",
@@ -906,6 +970,7 @@
   },
   "project::coffee::machine::number_cups()const": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [],
     "detaileddescription": [],
     "is_const": true,
@@ -1014,6 +1079,7 @@
   },
   "project::coffee::machine::set(constheat&h,intmax)const": {
     "access": "protected",
+    "auto_return": false,
     "briefdescription": [
       {
         "content": "Set the heat.",
@@ -1037,7 +1103,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 150,
+      "line-start": 153,
       "path": "src/coffee/coffee.h"
     },
     "name": "set",
@@ -1078,6 +1144,7 @@
   },
   "project::coffee::machine::set_name(constcharname[40])": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [
       {
         "content": "Set the machine name.",
@@ -1096,7 +1163,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 143,
+      "line-start": 146,
       "path": "src/coffee/coffee.h"
     },
     "name": "set_name",
@@ -1122,6 +1189,7 @@
   },
   "project::coffee::machine::set_number_cups(std::stringcups)": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [
       {
         "content": "Set the number of cups to brew.",
@@ -1253,6 +1321,7 @@
   },
   "project::coffee::machine::set_number_cups(uint32_tcups=0)": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [
       {
         "content": "Set the number of cups to brew.",
@@ -1384,6 +1453,7 @@
   },
   "project::coffee::machine::set_power(power)": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [
       {
         "content": "Set the power of the machine.",
@@ -1431,6 +1501,7 @@
   },
   "project::coffee::machine::tank()": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [
       {
         "content": "Get the first water tank.",
@@ -1473,6 +1544,7 @@
   },
   "project::coffee::machine::tank()const": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [
       {
         "content": "Get the first water tank.",
@@ -1518,6 +1590,7 @@
   },
   "project::coffee::machine::tanks()": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [
       {
         "content": "Get all water tanks.",
@@ -1586,7 +1659,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 135,
+      "line-start": 138,
       "path": "src/coffee/coffee.h"
     },
     "name": "total_cups_brewed",
@@ -1603,6 +1676,7 @@
   },
   "project::coffee::machine::version()": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [
       {
         "content": "The version of the machine.",
@@ -1707,6 +1781,7 @@
   },
   "project::coffee::machine::water_tank::fill(constcups&number_of_cups,boolsafety_valve)": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [],
     "detaileddescription": [],
     "is_const": false,
@@ -1810,6 +1885,7 @@
   },
   "project::coffee::machine::water_tank::is_full()const": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [],
     "detaileddescription": [],
     "is_const": true,
@@ -1863,6 +1939,7 @@
   },
   "project::coffee::machine::~machine()": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [
       {
         "content": "Destructor.",
@@ -2075,6 +2152,7 @@
   },
   "project::print(doublea,int*b)": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [
       {
         "content": "Prints the",
@@ -2143,7 +2221,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 204,
+      "line-start": 207,
       "path": "src/coffee/coffee.h"
     },
     "name": "print",
@@ -2217,6 +2295,7 @@
   },
   "project::print(inta_number,boolon_paper)": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [],
     "detaileddescription": [],
     "is_const": false,
@@ -2230,7 +2309,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 214,
+      "line-start": 217,
       "path": "src/coffee/coffee.h"
     },
     "name": "print",
@@ -2328,6 +2407,7 @@
   },
   "version()": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [],
     "detaileddescription": [],
     "is_const": false,
@@ -2341,7 +2421,7 @@
     "location": {
       "include": "coffee/coffee.h",
       "line-end": null,
-      "line-start": 217,
+      "line-start": 220,
       "path": "src/coffee/coffee.h"
     },
     "name": "version",

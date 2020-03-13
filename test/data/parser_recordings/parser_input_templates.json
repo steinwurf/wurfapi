@@ -1,6 +1,7 @@
 {
   "f<template<class>class,class>(constH<S>&value)": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [],
     "detaileddescription": [
       {
@@ -192,6 +193,7 @@
   },
   "our_type::our_type(constT&t)": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [
       {
         "content": "With constructor.",
@@ -252,6 +254,7 @@
   },
   "our_type<int>::our_type(constint&t)": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [
       {
         "content": "With int.",
@@ -376,6 +379,7 @@
   },
   "test::another_type::another_type(constT&t)": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [
       {
         "content": "With constructor.",
@@ -445,6 +449,7 @@
   },
   "test::another_type::nested::print()": {
     "access": "private",
+    "auto_return": false,
     "briefdescription": [],
     "detaileddescription": [],
     "is_const": false,
@@ -474,6 +479,7 @@
   },
   "test<class,class>()": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [],
     "detaileddescription": [],
     "is_const": false,
@@ -521,6 +527,7 @@
   },
   "test<class>()": {
     "access": "public",
+    "auto_return": false,
     "briefdescription": [],
     "detaileddescription": [
       {

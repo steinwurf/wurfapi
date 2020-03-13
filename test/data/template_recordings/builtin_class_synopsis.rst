@@ -63,6 +63,8 @@ Member functions (public)
      - :ref:`tanks<project::v1_0_0::coffee::machine::tanks()>` ()
    * - void
      - :ref:`add_beans<project::v1_0_0::coffee::machine::add_beans<class,uint32_t>(constBeans&beans)>` (const Beans & beans)
+   * - uint32_t
+     - :ref:`get_bean_count<project::v1_0_0::coffee::machine::get_bean_count(mug_sizesize_of_mug)const>` (mug_size size_of_mug) const
    * - mug_size
      - :ref:`get_mug_size<project::v1_0_0::coffee::machine::get_mug_size()const>` () const
    * - void
@@ -338,6 +340,15 @@ Member Function Description
     Template parameter: uint32_t ``BeanSize``  = 100
         The size of a bean 
 
+
+
+-----
+
+.. _project::v1_0_0::coffee::machine::get_bean_count(mug_sizesize_of_mug)const:
+
+| uint32_t **get_bean_count** (mug_size size_of_mug)
+
+    Get the number of beans needed for a given mug. 
 
 
 -----
