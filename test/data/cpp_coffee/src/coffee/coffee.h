@@ -121,7 +121,7 @@ public:
     /// Get all water tanks
     std::vector<water_tank> tanks();
 
-    /// Add a genearic beans
+    /// Add a generic beans
     ///
     /// @tparam Beans The generic bean type
     /// @tparam BeanSize The size of a bean

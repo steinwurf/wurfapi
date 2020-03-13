@@ -330,7 +330,7 @@ Member Function Description
 | template <class Beans = Arabica, uint32_t BeanSize = 100>
 | void **add_beans** (const Beans & beans)
 
-    Add a genearic beans 
+    Add a generic beans 
 
     Template parameter: class ``Beans``  = Arabica
         The generic bean type 

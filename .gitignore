@@ -2,6 +2,7 @@
 .pytest_cache/
 .vscode/
 .waf-*
+.waf3-*
 build/
 build_current
 dist/
