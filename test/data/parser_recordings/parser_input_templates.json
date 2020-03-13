@@ -1,7 +1,6 @@
 {
   "f<template<class>class,class>(constH<S>&value)": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [],
     "detaileddescription": [
       {
@@ -86,7 +85,8 @@
           }
         ]
       }
-    ]
+    ],
+    "trailing_return": false
   },
   "function<R(Args...)>": {
     "access": "public",
@@ -193,7 +193,6 @@
   },
   "our_type::our_type(constT&t)": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [
       {
         "content": "With constructor.",
@@ -228,7 +227,8 @@
         ]
       }
     ],
-    "scope": "our_type"
+    "scope": "our_type",
+    "trailing_return": false
   },
   "our_type<int>": {
     "access": "public",
@@ -254,7 +254,6 @@
   },
   "our_type<int>::our_type(constint&t)": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [
       {
         "content": "With int.",
@@ -289,7 +288,8 @@
         ]
       }
     ],
-    "scope": "our_type<int>"
+    "scope": "our_type<int>",
+    "trailing_return": false
   },
   "templates.hpp": {
     "kind": "file",
@@ -379,7 +379,6 @@
   },
   "test::another_type::another_type(constT&t)": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [
       {
         "content": "With constructor.",
@@ -414,7 +413,8 @@
         ]
       }
     ],
-    "scope": "test::another_type"
+    "scope": "test::another_type",
+    "trailing_return": false
   },
   "test::another_type::nested": {
     "access": "public",
@@ -449,7 +449,6 @@
   },
   "test::another_type::nested::print()": {
     "access": "private",
-    "trailing_return": false,
     "briefdescription": [],
     "detaileddescription": [],
     "is_const": false,
@@ -475,11 +474,11 @@
         }
       ]
     },
-    "scope": "test::another_type::nested"
+    "scope": "test::another_type::nested",
+    "trailing_return": false
   },
   "test<class,class>()": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [],
     "detaileddescription": [],
     "is_const": false,
@@ -523,11 +522,11 @@
           }
         ]
       }
-    ]
+    ],
+    "trailing_return": false
   },
   "test<class>()": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [],
     "detaileddescription": [
       {
@@ -568,7 +567,8 @@
           }
         ]
       }
-    ]
+    ],
+    "trailing_return": false
   },
   "testtest": {
     "access": "public",
