@@ -216,7 +216,7 @@ def check_api_schema(api):
             'description': paragraphs_schema
         },
         schema.Optional('template_parameters'): template_parameter_schema,
-        'auto_return': bool,
+        'trailing_return': bool,
         'is_const': bool,
         'is_static': bool,
         'is_virtual': bool,

@@ -134,7 +134,7 @@ test_api = {
         'is_inline': True,
         'is_constructor': False,
         'is_destructor': True,
-        'auto_return': False,
+        'trailing_return': False,
         'access': 'public',
         'briefdescription': [
             {'kind': 'text', 'content': 'bla bla'}
@@ -174,7 +174,7 @@ test_api = {
         'is_inline': True,
         'is_constructor': False,
         'is_destructor': True,
-        'auto_return': False,
+        'trailing_return': False,
         'access': 'public',
         'briefdescription': [
             {'kind': 'text', 'content': 'bla bla'}

@@ -836,13 +836,13 @@ def parse(xml, parser, log, scope):
     # Description of the return type
     return_type = parser.parse_element(xml=xml.find("type"))
 
-    result["auto_return"] = False
+    result["trailing_return"] = False
     if return_type:
 
         if return_type[0]['value'] == "auto":
-            result["auto_return"] = True
             argsstring = xml.find("argsstring").text.split('->')
             if len(argsstring) == 2:
+                result["trailing_return"] = True
                 return_type[0]['value'] = argsstring[1].strip()
 
         # If we have a return type we might also have a description of it

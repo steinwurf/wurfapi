@@ -28,7 +28,7 @@
   },
   "header::headz_up()": {
     "access": "public",
-    "auto_return": false,
+    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Check it out!",
@@ -384,7 +384,7 @@
   },
   "project::coffee::machine::add_beans<class,uint32_t>(constBeans&beans)": {
     "access": "public",
-    "auto_return": false,
+    "trailing_return": false,
     "briefdescription": [],
     "detaileddescription": [
       {
@@ -588,7 +588,7 @@
   },
   "project::coffee::machine::get_bean_count(mug_sizesize_of_mug)const": {
     "access": "public",
-    "auto_return": true,
+    "trailing_return": true,
     "briefdescription": [
       {
         "content": "Get the number of beans needed for a given mug.",
@@ -644,7 +644,7 @@
   },
   "project::coffee::machine::get_mug_size()const": {
     "access": "public",
-    "auto_return": false,
+    "trailing_return": false,
     "briefdescription": [],
     "detaileddescription": [
       {
@@ -709,7 +709,7 @@
   },
   "project::coffee::machine::help_brew()": {
     "access": "private",
-    "auto_return": false,
+    "trailing_return": false,
     "briefdescription": [],
     "detaileddescription": [],
     "is_const": false,
@@ -762,7 +762,7 @@
   },
   "project::coffee::machine::impl::run()": {
     "access": "public",
-    "auto_return": false,
+    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Run the machine.",
@@ -898,7 +898,7 @@
   },
   "project::coffee::machine::machine()": {
     "access": "public",
-    "auto_return": false,
+    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Constructor.",
@@ -926,7 +926,7 @@
   },
   "project::coffee::machine::machine(powerpwr)": {
     "access": "public",
-    "auto_return": false,
+    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Constructor with power.",
@@ -970,7 +970,7 @@
   },
   "project::coffee::machine::number_cups()const": {
     "access": "public",
-    "auto_return": false,
+    "trailing_return": false,
     "briefdescription": [],
     "detaileddescription": [],
     "is_const": true,
@@ -1079,7 +1079,7 @@
   },
   "project::coffee::machine::set(constheat&h,intmax)const": {
     "access": "protected",
-    "auto_return": false,
+    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Set the heat.",
@@ -1144,7 +1144,7 @@
   },
   "project::coffee::machine::set_name(constcharname[40])": {
     "access": "public",
-    "auto_return": false,
+    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Set the machine name.",
@@ -1189,7 +1189,7 @@
   },
   "project::coffee::machine::set_number_cups(std::stringcups)": {
     "access": "public",
-    "auto_return": false,
+    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Set the number of cups to brew.",
@@ -1321,7 +1321,7 @@
   },
   "project::coffee::machine::set_number_cups(uint32_tcups=0)": {
     "access": "public",
-    "auto_return": false,
+    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Set the number of cups to brew.",
@@ -1453,7 +1453,7 @@
   },
   "project::coffee::machine::set_power(power)": {
     "access": "public",
-    "auto_return": false,
+    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Set the power of the machine.",
@@ -1501,7 +1501,7 @@
   },
   "project::coffee::machine::tank()": {
     "access": "public",
-    "auto_return": false,
+    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Get the first water tank.",
@@ -1544,7 +1544,7 @@
   },
   "project::coffee::machine::tank()const": {
     "access": "public",
-    "auto_return": false,
+    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Get the first water tank.",
@@ -1590,7 +1590,7 @@
   },
   "project::coffee::machine::tanks()": {
     "access": "public",
-    "auto_return": false,
+    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Get all water tanks.",
@@ -1676,7 +1676,7 @@
   },
   "project::coffee::machine::version()": {
     "access": "public",
-    "auto_return": false,
+    "trailing_return": false,
     "briefdescription": [
       {
         "content": "The version of the machine.",
@@ -1781,7 +1781,7 @@
   },
   "project::coffee::machine::water_tank::fill(constcups&number_of_cups,boolsafety_valve)": {
     "access": "public",
-    "auto_return": false,
+    "trailing_return": false,
     "briefdescription": [],
     "detaileddescription": [],
     "is_const": false,
@@ -1885,7 +1885,7 @@
   },
   "project::coffee::machine::water_tank::is_full()const": {
     "access": "public",
-    "auto_return": false,
+    "trailing_return": false,
     "briefdescription": [],
     "detaileddescription": [],
     "is_const": true,
@@ -1939,7 +1939,7 @@
   },
   "project::coffee::machine::~machine()": {
     "access": "public",
-    "auto_return": false,
+    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Destructor.",
@@ -2152,7 +2152,7 @@
   },
   "project::print(doublea,int*b)": {
     "access": "public",
-    "auto_return": false,
+    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Prints the",
@@ -2295,7 +2295,7 @@
   },
   "project::print(inta_number,boolon_paper)": {
     "access": "public",
-    "auto_return": false,
+    "trailing_return": false,
     "briefdescription": [],
     "detaileddescription": [],
     "is_const": false,
@@ -2407,7 +2407,7 @@
   },
   "version()": {
     "access": "public",
-    "auto_return": false,
+    "trailing_return": false,
     "briefdescription": [],
     "detaileddescription": [],
     "is_const": false,
