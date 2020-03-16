@@ -284,9 +284,9 @@ Template parameter: {{ type }} ``{{ name }}`` {{ " = " + default if default }}
 {% endif %}
 {% if return_value is defined %}
 {% if function["trailing_return"] %}
-| auto **{{ name }}** {{ parameters }} -> {{ return_value }}
+| auto **{{ name }}** {{ parameters }}{{" const" if function["is_const"] else ""}} -> {{ return_value }}
 {% else %}
-| {{ return_value }} **{{ name }}** {{ parameters }}
+| {{ return_value }} **{{ name }}** {{ parameters }}{{" const" if function["is_const"] else ""}}
 {% endif %}
 {% else %}
 | **{{ name }}** {{ parameters }}

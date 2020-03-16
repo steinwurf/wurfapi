@@ -263,7 +263,7 @@ Member Function Description
 
 .. _project::v1_0_0::coffee::machine::number_cups()const:
 
-| uint32_t **number_cups** ()
+| uint32_t **number_cups** () const
 
     Returns:
         The number of cups 
@@ -302,7 +302,7 @@ Member Function Description
 
 .. _project::v1_0_0::coffee::machine::tank()const:
 
-| const :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>`\  & **tank** ()
+| const :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>`\  & **tank** () const
 
     Get the first water tank. 
 
@@ -346,7 +346,7 @@ Member Function Description
 
 .. _project::v1_0_0::coffee::machine::get_bean_count(mug_sizesize_of_mug)const:
 
-| auto **get_bean_count** (mug_size size_of_mug) -> uint32_t
+| auto **get_bean_count** (mug_size size_of_mug) const -> uint32_t
 
     Get the number of beans needed for a given mug. 
 
@@ -355,7 +355,7 @@ Member Function Description
 
 .. _project::v1_0_0::coffee::machine::get_mug_size()const:
 
-| mug_size **get_mug_size** ()
+| mug_size **get_mug_size** () const
 
     This header is `src/coffee/coffee.h` if this is important? Also there is an example in `examples/header/header.h` 
 
