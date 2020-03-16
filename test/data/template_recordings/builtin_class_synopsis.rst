@@ -65,6 +65,8 @@ Member functions (public)
      - :ref:`add_beans<project::v1_0_0::coffee::machine::add_beans<class,uint32_t>(constBeans&beans)>` (const Beans & beans)
    * - uint32_t
      - :ref:`get_bean_count<project::v1_0_0::coffee::machine::get_bean_count(mug_sizesize_of_mug)const>` (mug_size size_of_mug) const
+   * - auto
+     - :ref:`get_last_cup<project::v1_0_0::coffee::machine::get_last_cup()const>` () const
    * - mug_size
      - :ref:`get_mug_size<project::v1_0_0::coffee::machine::get_mug_size()const>` () const
    * - void
@@ -349,6 +351,15 @@ Member Function Description
 | auto **get_bean_count** (mug_size size_of_mug) const -> uint32_t
 
     Get the number of beans needed for a given mug. 
+
+
+-----
+
+.. _project::v1_0_0::coffee::machine::get_last_cup()const:
+
+| auto **get_last_cup** () const
+
+    Get the last cup of coffee. 
 
 
 -----

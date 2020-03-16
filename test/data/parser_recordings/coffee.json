@@ -111,8 +111,8 @@
     "detaileddescription": [],
     "kind": "struct",
     "location": {
-      "line-end": 171,
-      "line-start": 167,
+      "line-end": 174,
+      "line-start": 170,
       "path": "src/coffee/coffee.h"
     },
     "members": [
@@ -173,7 +173,7 @@
     "kind": "variable",
     "location": {
       "line-end": null,
-      "line-start": 170,
+      "line-start": 173,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_liquid",
@@ -195,8 +195,8 @@
     "detaileddescription": [],
     "kind": "struct",
     "location": {
-      "line-end": 188,
-      "line-start": 184,
+      "line-end": 191,
+      "line-start": 187,
       "path": "src/coffee/coffee.h"
     },
     "members": [
@@ -223,7 +223,7 @@
     "kind": "variable",
     "location": {
       "line-end": null,
-      "line-start": 187,
+      "line-start": 190,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_liquid",
@@ -245,8 +245,8 @@
     "detaileddescription": [],
     "kind": "struct",
     "location": {
-      "line-end": 180,
-      "line-start": 176,
+      "line-end": 183,
+      "line-start": 179,
       "path": "src/coffee/coffee.h"
     },
     "members": [
@@ -288,7 +288,7 @@
     "kind": "variable",
     "location": {
       "line-end": null,
-      "line-start": 179,
+      "line-start": 182,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_liquid",
@@ -327,7 +327,7 @@
     ],
     "kind": "class",
     "location": {
-      "line-end": 161,
+      "line-end": 164,
       "line-start": 16,
       "path": "src/coffee/coffee.h"
     },
@@ -336,6 +336,7 @@
       "project::v1_0_0::coffee::machine::callback",
       "project::v1_0_0::coffee::machine::cups_brewed",
       "project::v1_0_0::coffee::machine::get_bean_count(mug_sizesize_of_mug)const",
+      "project::v1_0_0::coffee::machine::get_last_cup()const",
       "project::v1_0_0::coffee::machine::get_mug_size()const",
       "project::v1_0_0::coffee::machine::help_brew()",
       "project::v1_0_0::coffee::machine::m_callback",
@@ -535,7 +536,7 @@
     "kind": "variable",
     "location": {
       "line-end": null,
-      "line-start": 135,
+      "line-start": 138,
       "path": "src/coffee/coffee.h"
     },
     "name": "cups_brewed",
@@ -594,6 +595,41 @@
     "scope": "project::v1_0_0::coffee::machine",
     "trailing_return": true
   },
+  "project::v1_0_0::coffee::machine::get_last_cup()const": {
+    "access": "public",
+    "briefdescription": [
+      {
+        "content": "Get the last cup of coffee.",
+        "kind": "text"
+      }
+    ],
+    "detaileddescription": [],
+    "is_const": true,
+    "is_constructor": false,
+    "is_destructor": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "kind": "function",
+    "location": {
+      "line-end": null,
+      "line-start": 135,
+      "path": "src/coffee/coffee.h"
+    },
+    "name": "get_last_cup",
+    "parameters": [],
+    "return": {
+      "description": [],
+      "type": [
+        {
+          "value": "auto"
+        }
+      ]
+    },
+    "scope": "project::v1_0_0::coffee::machine",
+    "trailing_return": false
+  },
   "project::v1_0_0::coffee::machine::get_mug_size()const": {
     "access": "public",
     "briefdescription": [],
@@ -633,7 +669,7 @@
     "kind": "function",
     "location": {
       "line-end": null,
-      "line-start": 143,
+      "line-start": 146,
       "path": "src/coffee/coffee.h"
     },
     "name": "get_mug_size",
@@ -668,7 +704,7 @@
     "kind": "function",
     "location": {
       "line-end": null,
-      "line-start": 156,
+      "line-start": 159,
       "path": "src/coffee/coffee.h"
     },
     "name": "help_brew",
@@ -784,7 +820,7 @@
     "kind": "variable",
     "location": {
       "line-end": null,
-      "line-start": 159,
+      "line-start": 162,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_impl",
@@ -1033,7 +1069,7 @@
     "kind": "function",
     "location": {
       "line-end": null,
-      "line-start": 153,
+      "line-start": 156,
       "path": "src/coffee/coffee.h"
     },
     "name": "set",
@@ -1091,7 +1127,7 @@
     "kind": "function",
     "location": {
       "line-end": null,
-      "line-start": 146,
+      "line-start": 149,
       "path": "src/coffee/coffee.h"
     },
     "name": "set_name",
@@ -1575,7 +1611,7 @@
     "kind": "variable",
     "location": {
       "line-end": null,
-      "line-start": 138,
+      "line-start": 141,
       "path": "src/coffee/coffee.h"
     },
     "name": "total_cups_brewed",
@@ -2115,7 +2151,7 @@
     "kind": "function",
     "location": {
       "line-end": null,
-      "line-start": 207,
+      "line-start": 210,
       "path": "src/coffee/coffee.h"
     },
     "name": "print",
@@ -2194,7 +2230,7 @@
     "kind": "function",
     "location": {
       "line-end": null,
-      "line-start": 217,
+      "line-start": 220,
       "path": "src/coffee/coffee.h"
     },
     "name": "print",
@@ -2297,7 +2333,7 @@
     "kind": "function",
     "location": {
       "line-end": null,
-      "line-start": 220,
+      "line-start": 223,
       "path": "src/coffee/coffee.h"
     },
     "name": "version",

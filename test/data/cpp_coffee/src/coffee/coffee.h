@@ -131,6 +131,9 @@ public:
     /// Get the number of beans needed for a given mug
     auto get_bean_count(mug_size size_of_mug) const -> uint32_t;
 
+    /// Get the last cup of coffee
+    auto get_last_cup() const;
+
     /// The number of cups brewed by this machine.
     uint32_t cups_brewed = 0;
 
