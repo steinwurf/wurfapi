@@ -6,6 +6,10 @@ of every change, see the Git log.
 
 Latest
 ------
+* tbd
+
+5.1.0
+-----
 * Minor: Add support for trailing return types.
 * Minor: Added const specifier in member the class synopsis template.
 
