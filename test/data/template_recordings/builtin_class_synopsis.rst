@@ -346,7 +346,7 @@ Member Function Description
 
 .. _project::v1_0_0::coffee::machine::get_bean_count(mug_sizesize_of_mug)const:
 
-| uint32_t **get_bean_count** (mug_size size_of_mug)
+| auto **get_bean_count** (mug_size size_of_mug) -> uint32_t
 
     Get the number of beans needed for a given mug. 
 

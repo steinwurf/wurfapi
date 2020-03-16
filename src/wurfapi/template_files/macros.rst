@@ -284,7 +284,7 @@ Template parameter: {{ type }} ``{{ name }}`` {{ " = " + default if default }}
 {% endif %}
 {% if return_value is defined %}
 {% if function["trailing_return"] %}
-| :abbr:`{{ return_value }} (trailing return)` **{{ name }}** {{ parameters }}
+| auto **{{ name }}** {{ parameters }} -> {{ return_value }}
 {% else %}
 | {{ return_value }} **{{ name }}** {{ parameters }}
 {% endif %}

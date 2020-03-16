@@ -12,9 +12,6 @@
 {%- set return_type = "" -%}
 {%- endif %}
 {%- set return_type = "virtual " + return_type if function["is_virtual"] else return_type -%}
-{%- if function["trailing_return"] -%}
-{%- set return_type = ":abbr:`" + return_type + " (trailing return)`"-%}
-{%- endif %}
 * - {{ return_type }}
   - :ref:`{{ function["name"] }}<{{selector}}>` {{ signature }}
 {% endmacro -%}

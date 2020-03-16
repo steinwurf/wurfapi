@@ -6,7 +6,6 @@
   },
   "set(constheat&h,intmax)const": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Set the heat.",
@@ -104,11 +103,11 @@
         }
       ]
     },
-    "scope": null
+    "scope": null,
+    "trailing_return": false
   },
   "set_array(constuint8_tarray[100])const": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [],
     "detaileddescription": [
       {
@@ -157,11 +156,11 @@
         }
       ]
     },
-    "scope": null
+    "scope": null,
+    "trailing_return": false
   },
   "set_bool(booltest=false)": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [],
     "detaileddescription": [
       {
@@ -216,11 +215,11 @@
         }
       ]
     },
-    "scope": null
+    "scope": null,
+    "trailing_return": false
   },
   "set_stuff(int(*(*x)(double))[3]=nullptr)": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [],
     "detaileddescription": [
       {
@@ -265,6 +264,7 @@
         }
       ]
     },
-    "scope": null
+    "scope": null,
+    "trailing_return": false
   }
 }

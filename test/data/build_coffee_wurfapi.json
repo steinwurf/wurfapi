@@ -28,7 +28,6 @@
   },
   "header::headz_up()": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Check it out!",
@@ -60,7 +59,8 @@
         }
       ]
     },
-    "scope": "header"
+    "scope": "header",
+    "trailing_return": false
   },
   "project": {
     "briefdescription": [],
@@ -384,7 +384,6 @@
   },
   "project::coffee::machine::add_beans<class,uint32_t>(constBeans&beans)": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [],
     "detaileddescription": [
       {
@@ -469,7 +468,8 @@
           }
         ]
       }
-    ]
+    ],
+    "trailing_return": false
   },
   "project::coffee::machine::brew_state": {
     "access": "private",
@@ -588,7 +588,6 @@
   },
   "project::coffee::machine::get_bean_count(mug_sizesize_of_mug)const": {
     "access": "public",
-    "trailing_return": true,
     "briefdescription": [
       {
         "content": "Get the number of beans needed for a given mug.",
@@ -640,11 +639,11 @@
         }
       ]
     },
-    "scope": "project::coffee::machine"
+    "scope": "project::coffee::machine",
+    "trailing_return": true
   },
   "project::coffee::machine::get_mug_size()const": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [],
     "detaileddescription": [
       {
@@ -705,11 +704,11 @@
         }
       ]
     },
-    "scope": "project::coffee::machine"
+    "scope": "project::coffee::machine",
+    "trailing_return": false
   },
   "project::coffee::machine::help_brew()": {
     "access": "private",
-    "trailing_return": false,
     "briefdescription": [],
     "detaileddescription": [],
     "is_const": false,
@@ -736,7 +735,8 @@
         }
       ]
     },
-    "scope": "project::coffee::machine"
+    "scope": "project::coffee::machine",
+    "trailing_return": false
   },
   "project::coffee::machine::impl": {
     "access": "private",
@@ -762,7 +762,6 @@
   },
   "project::coffee::machine::impl::run()": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Run the machine.",
@@ -794,7 +793,8 @@
         }
       ]
     },
-    "scope": "project::coffee::machine::impl"
+    "scope": "project::coffee::machine::impl",
+    "trailing_return": false
   },
   "project::coffee::machine::m_callback": {
     "access": "public",
@@ -898,7 +898,6 @@
   },
   "project::coffee::machine::machine()": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Constructor.",
@@ -922,11 +921,11 @@
     },
     "name": "machine",
     "parameters": [],
-    "scope": "project::coffee::machine"
+    "scope": "project::coffee::machine",
+    "trailing_return": false
   },
   "project::coffee::machine::machine(powerpwr)": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Constructor with power.",
@@ -966,11 +965,11 @@
         ]
       }
     ],
-    "scope": "project::coffee::machine"
+    "scope": "project::coffee::machine",
+    "trailing_return": false
   },
   "project::coffee::machine::number_cups()const": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [],
     "detaileddescription": [],
     "is_const": true,
@@ -1006,7 +1005,8 @@
         }
       ]
     },
-    "scope": "project::coffee::machine"
+    "scope": "project::coffee::machine",
+    "trailing_return": false
   },
   "project::coffee::machine::other_callback": {
     "access": "public",
@@ -1079,7 +1079,6 @@
   },
   "project::coffee::machine::set(constheat&h,intmax)const": {
     "access": "protected",
-    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Set the heat.",
@@ -1140,11 +1139,11 @@
         }
       ]
     },
-    "scope": "project::coffee::machine"
+    "scope": "project::coffee::machine",
+    "trailing_return": false
   },
   "project::coffee::machine::set_name(constcharname[40])": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Set the machine name.",
@@ -1185,11 +1184,11 @@
         }
       ]
     },
-    "scope": "project::coffee::machine"
+    "scope": "project::coffee::machine",
+    "trailing_return": false
   },
   "project::coffee::machine::set_number_cups(std::stringcups)": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Set the number of cups to brew.",
@@ -1317,11 +1316,11 @@
         }
       ]
     },
-    "scope": "project::coffee::machine"
+    "scope": "project::coffee::machine",
+    "trailing_return": false
   },
   "project::coffee::machine::set_number_cups(uint32_tcups=0)": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Set the number of cups to brew.",
@@ -1449,11 +1448,11 @@
         }
       ]
     },
-    "scope": "project::coffee::machine"
+    "scope": "project::coffee::machine",
+    "trailing_return": false
   },
   "project::coffee::machine::set_power(power)": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Set the power of the machine.",
@@ -1497,11 +1496,11 @@
         }
       ]
     },
-    "scope": "project::coffee::machine"
+    "scope": "project::coffee::machine",
+    "trailing_return": false
   },
   "project::coffee::machine::tank()": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Get the first water tank.",
@@ -1540,11 +1539,11 @@
         }
       ]
     },
-    "scope": "project::coffee::machine"
+    "scope": "project::coffee::machine",
+    "trailing_return": false
   },
   "project::coffee::machine::tank()const": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Get the first water tank.",
@@ -1586,11 +1585,11 @@
         }
       ]
     },
-    "scope": "project::coffee::machine"
+    "scope": "project::coffee::machine",
+    "trailing_return": false
   },
   "project::coffee::machine::tanks()": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Get all water tanks.",
@@ -1639,7 +1638,8 @@
         }
       ]
     },
-    "scope": "project::coffee::machine"
+    "scope": "project::coffee::machine",
+    "trailing_return": false
   },
   "project::coffee::machine::total_cups_brewed": {
     "access": "public",
@@ -1676,7 +1676,6 @@
   },
   "project::coffee::machine::version()": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [
       {
         "content": "The version of the machine.",
@@ -1754,7 +1753,8 @@
         }
       ]
     },
-    "scope": "project::coffee::machine"
+    "scope": "project::coffee::machine",
+    "trailing_return": false
   },
   "project::coffee::machine::water_tank": {
     "access": "public",
@@ -1781,7 +1781,6 @@
   },
   "project::coffee::machine::water_tank::fill(constcups&number_of_cups,boolsafety_valve)": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [],
     "detaileddescription": [],
     "is_const": false,
@@ -1881,11 +1880,11 @@
         }
       ]
     },
-    "scope": "project::coffee::machine::water_tank"
+    "scope": "project::coffee::machine::water_tank",
+    "trailing_return": false
   },
   "project::coffee::machine::water_tank::is_full()const": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [],
     "detaileddescription": [],
     "is_const": true,
@@ -1935,11 +1934,11 @@
         }
       ]
     },
-    "scope": "project::coffee::machine::water_tank"
+    "scope": "project::coffee::machine::water_tank",
+    "trailing_return": false
   },
   "project::coffee::machine::~machine()": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Destructor.",
@@ -1963,7 +1962,8 @@
     },
     "name": "~machine",
     "parameters": [],
-    "scope": "project::coffee::machine"
+    "scope": "project::coffee::machine",
+    "trailing_return": false
   },
   "project::coffee::mug_size": {
     "access": "public",
@@ -2152,7 +2152,6 @@
   },
   "project::print(doublea,int*b)": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [
       {
         "content": "Prints the",
@@ -2291,11 +2290,11 @@
         }
       ]
     },
-    "scope": "project"
+    "scope": "project",
+    "trailing_return": false
   },
   "project::print(inta_number,boolon_paper)": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [],
     "detaileddescription": [],
     "is_const": false,
@@ -2383,7 +2382,8 @@
         }
       ]
     },
-    "scope": "project"
+    "scope": "project",
+    "trailing_return": false
   },
   "src/coffee/coffee.cpp": {
     "kind": "file",
@@ -2407,7 +2407,6 @@
   },
   "version()": {
     "access": "public",
-    "trailing_return": false,
     "briefdescription": [],
     "detaileddescription": [],
     "is_const": false,
@@ -2434,6 +2433,7 @@
         }
       ]
     },
-    "scope": null
+    "scope": null,
+    "trailing_return": false
   }
 }
