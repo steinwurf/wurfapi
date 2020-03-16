@@ -103,7 +103,8 @@
         }
       ]
     },
-    "scope": null
+    "scope": null,
+    "trailing_return": false
   },
   "set_array(constuint8_tarray[100])const": {
     "access": "public",
@@ -155,7 +156,8 @@
         }
       ]
     },
-    "scope": null
+    "scope": null,
+    "trailing_return": false
   },
   "set_bool(booltest=false)": {
     "access": "public",
@@ -213,7 +215,8 @@
         }
       ]
     },
-    "scope": null
+    "scope": null,
+    "trailing_return": false
   },
   "set_stuff(int(*(*x)(double))[3]=nullptr)": {
     "access": "public",
@@ -261,6 +264,7 @@
         }
       ]
     },
-    "scope": null
+    "scope": null,
+    "trailing_return": false
   }
 }

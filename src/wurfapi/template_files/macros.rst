@@ -283,7 +283,11 @@ Template parameter: {{ type }} ``{{ name }}`` {{ " = " + default if default }}
 | template {{ format_template_parameters(function["template_parameters"]) }}
 {% endif %}
 {% if return_value is defined %}
-| {{ return_value }} **{{ name }}** {{ parameters }}
+{% if function["trailing_return"] %}
+| auto **{{ name }}** {{ parameters }}{{" const" if function["is_const"] else ""}} -> {{ return_value }}
+{% else %}
+| {{ return_value }} **{{ name }}** {{ parameters }}{{" const" if function["is_const"] else ""}}
+{% endif %}
 {% else %}
 | **{{ name }}** {{ parameters }}
 {% endif %}

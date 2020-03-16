@@ -63,6 +63,10 @@ Member functions (public)
      - :ref:`tanks<project::v1_0_0::coffee::machine::tanks()>` ()
    * - void
      - :ref:`add_beans<project::v1_0_0::coffee::machine::add_beans<class,uint32_t>(constBeans&beans)>` (const Beans & beans)
+   * - uint32_t
+     - :ref:`get_bean_count<project::v1_0_0::coffee::machine::get_bean_count(mug_sizesize_of_mug)const>` (mug_size size_of_mug) const
+   * - auto
+     - :ref:`get_last_cup<project::v1_0_0::coffee::machine::get_last_cup()const>` () const
    * - mug_size
      - :ref:`get_mug_size<project::v1_0_0::coffee::machine::get_mug_size()const>` () const
    * - void
@@ -261,7 +265,7 @@ Member Function Description
 
 .. _project::v1_0_0::coffee::machine::number_cups()const:
 
-| uint32_t **number_cups** ()
+| uint32_t **number_cups** () const
 
     Returns:
         The number of cups 
@@ -300,7 +304,7 @@ Member Function Description
 
 .. _project::v1_0_0::coffee::machine::tank()const:
 
-| const :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>`\  & **tank** ()
+| const :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>`\  & **tank** () const
 
     Get the first water tank. 
 
@@ -342,9 +346,27 @@ Member Function Description
 
 -----
 
+.. _project::v1_0_0::coffee::machine::get_bean_count(mug_sizesize_of_mug)const:
+
+| auto **get_bean_count** (mug_size size_of_mug) const -> uint32_t
+
+    Get the number of beans needed for a given mug. 
+
+
+-----
+
+.. _project::v1_0_0::coffee::machine::get_last_cup()const:
+
+| auto **get_last_cup** () const
+
+    Get the last cup of coffee. 
+
+
+-----
+
 .. _project::v1_0_0::coffee::machine::get_mug_size()const:
 
-| mug_size **get_mug_size** ()
+| mug_size **get_mug_size** () const
 
     This header is `src/coffee/coffee.h` if this is important? Also there is an example in `examples/header/header.h` 
 

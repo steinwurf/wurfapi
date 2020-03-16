@@ -85,7 +85,8 @@
           }
         ]
       }
-    ]
+    ],
+    "trailing_return": false
   },
   "function<R(Args...)>": {
     "access": "public",
@@ -226,7 +227,8 @@
         ]
       }
     ],
-    "scope": "our_type"
+    "scope": "our_type",
+    "trailing_return": false
   },
   "our_type<int>": {
     "access": "public",
@@ -286,7 +288,8 @@
         ]
       }
     ],
-    "scope": "our_type<int>"
+    "scope": "our_type<int>",
+    "trailing_return": false
   },
   "templates.hpp": {
     "kind": "file",
@@ -410,7 +413,8 @@
         ]
       }
     ],
-    "scope": "test::another_type"
+    "scope": "test::another_type",
+    "trailing_return": false
   },
   "test::another_type::nested": {
     "access": "public",
@@ -470,7 +474,8 @@
         }
       ]
     },
-    "scope": "test::another_type::nested"
+    "scope": "test::another_type::nested",
+    "trailing_return": false
   },
   "test<class,class>()": {
     "access": "public",
@@ -517,7 +522,8 @@
           }
         ]
       }
-    ]
+    ],
+    "trailing_return": false
   },
   "test<class>()": {
     "access": "public",
@@ -561,7 +567,8 @@
           }
         ]
       }
-    ]
+    ],
+    "trailing_return": false
   },
   "testtest": {
     "access": "public",

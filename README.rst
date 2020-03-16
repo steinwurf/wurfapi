@@ -581,6 +581,7 @@ Python dictionary representing a C++ function::
       'is_inline': True | False,
       'is_constructor': True | False,
       'is_destructor': True | False,
+      'trailing_return': True | False,
       'access': 'public' | 'protected' | 'private',
       'briefdescription: paragraphs,
       'detaileddescription: paragraphs,
