@@ -108,7 +108,7 @@ setup(
     #
     package_data={"wurfapi": ["template_files/*"]},
 
-    install_requires=['pyquery', 'python-archive', 'schema', 'six',
+    install_requires=['pyquery', 'python-archive', 'schema', 'six', 'sphinx>3',
                       # https://hynek.me/articles/conditional-python-dependencies/
                       'pathlib2 ; python_version<"3.4"'],
 )
