@@ -271,7 +271,7 @@ def setup(app):
     #
     #    ..wurfapi::
     #
-    app.add_directive('wurfapi', WurfapiDirective)
+    app.add_directive(name='wurfapi', cls=WurfapiDirective)
 
     # Generate the XML
     app.connect(event="builder-inited", callback=generate_doxygen)

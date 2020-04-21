@@ -103,13 +103,6 @@ def _pytest(bld):
 
         venv.run(cmd='pip install pytest')
         venv.run(cmd='pip install pytest-testdirectory')
-        # Docutils released a broken 0.15 package. Which caused a lot of
-        # problems - for now we pin the version:
-        # https://sourceforge.net/p/docutils/bugs/365/
-        # The problem has been fixed but travis and appveyor etc. still us the
-        # broken 0.15 package so lets wait a while before unpinning
-        venv.run(cmd='pip install docutils==0.14')
-        venv.run(cmd='pip install sphinx')
         venv.run(cmd='pip install mock')
         venv.run(cmd='pip install vcrpy')
         venv.run(cmd='pip install rstcheck')

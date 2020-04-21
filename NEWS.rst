@@ -6,8 +6,8 @@ of every change, see the Git log.
 
 Latest
 ------
-* Patch: Don't use named arguments for Sphinx.add_directive as the names have
-  changed from sphinx 2 to sphinx 3.
+* Patch: Specified use named arguments for Sphinx.add_directive and added
+  requirement for sphinx<3.
 
 5.1.0
 -----
