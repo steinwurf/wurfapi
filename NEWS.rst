@@ -6,7 +6,8 @@ of every change, see the Git log.
 
 Latest
 ------
-* tbd
+* Patch: Don't use named arguments for Sphinx.add_directive as the names have
+  changed from sphinx 2 to sphinx 3.
 
 5.1.0
 -----
