@@ -6,6 +6,10 @@ of every change, see the Git log.
 
 Latest
 ------
+* tbd
+
+5.1.1
+-----
 * Patch: Changed named argument for Sphinx.add_directive and added
   requirement for sphinx>3.
 
