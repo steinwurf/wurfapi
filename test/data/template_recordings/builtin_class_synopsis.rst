@@ -489,6 +489,3 @@ typedef :ref:`callback <project::v1_0_0::coffee::machine::callback>`\  **other_c
 
 
 
-
-
-
