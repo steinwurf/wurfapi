@@ -188,8 +188,6 @@ def split_paragraphs(paragraphs):
     newlist = []
 
     for paragraph in paragraphs:
-        if type(paragraph) is list:
-            print(paragraph)
         if paragraph['kind'] is "code":
             newlist.append(paragraph)
             continue
