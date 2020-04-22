@@ -4,6 +4,7 @@
 
 {% set enum = api[selector] %}
 .. _{{selector}}:
+
 {{ format_heading("enum " + enum["name"]) }}
 
 {% if enum["scope"] is not none %}
