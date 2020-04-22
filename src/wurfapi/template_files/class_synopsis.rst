@@ -266,7 +266,3 @@ Template parameter description
 {{ macros.format_template_parameters_description(class["template_parameters"]) }}
 
 {% endif %}
-
-
-
-

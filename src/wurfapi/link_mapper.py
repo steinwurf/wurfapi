@@ -196,11 +196,10 @@ def split_paragraphs(paragraphs):
 
             items = []
             for item in paragraph['items']:
-                out = []
-                for i in item:
-                    out.append(split_paragraphs(paragraphs=i))
-                items.append(out)
-                # items.append(split_paragraphs(paragraphs=item))
+                paras = []
+                for para in item:
+                    paras.append(split_paragraphs(paragraphs=para))
+                items.append(paras)
 
             paragraph['items'] = items
 
@@ -321,8 +320,8 @@ class LinkMapper(object):
                 if paragraph['kind'] is 'list':
 
                     for item in paragraph['items']:
-                        for p in item:
-                            _add_links(p)
+                        for paras in item:
+                            _add_links(paras)
 
                     continue
 
