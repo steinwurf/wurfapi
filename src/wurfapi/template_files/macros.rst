@@ -99,25 +99,31 @@ a non-character. Otherwise rst will fail with an error.
 
 
 {{ item_type }}{{format_description(item) | indent(width=item_type|length)}}
-
-{% endfor %}
+{%- endfor %}
 {% endmacro %}
 
 
 {# FORMAT_DESCRIPTION #}
 
 {% macro format_description(description) %}
-{% for para in description %}
+{% for paragraphs in description %}
+{{format_paragraphs(paragraphs)}}
+{% endfor %}
+{% endmacro %}
+
+{# FORMAT_PARAGRAPHS #}
+
+{% macro format_paragraphs(paragraphs) %}
+{% for para in paragraphs %}
 {% if para["kind"] == "text" %}
 {{ format_text(para) -}}
-{% endif %}
-{% if para["kind"] == "code" %}
+{% elif para["kind"] == "code" %}
 {{ format_code(para) -}}
-{% endif %}
-{% if para["kind"] == "list" %}
+{% elif para["kind"] == "list" %}
 {{ format_list(para) -}}
 {% endif %}
 {% endfor %}
+
 {% endmacro %}
 
 {# FORMAT_HEADING #}

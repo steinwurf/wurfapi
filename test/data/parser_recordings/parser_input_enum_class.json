@@ -13,16 +13,20 @@
   "coffee::mug_size": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "Different size coffee mugs.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Different size coffee mugs.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [
-      {
-        "content": "This lets you choose the size of your coffee mug",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "This lets you choose the size of your coffee mug",
+          "kind": "text"
+        }
+      ]
     ],
     "kind": "enum",
     "location": {
@@ -35,10 +39,12 @@
     "values": [
       {
         "briefdescription": [
-          {
-            "content": "The Short version.",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "The Short version.",
+              "kind": "text"
+            }
+          ]
         ],
         "detaileddescription": [],
         "name": "Short",
@@ -46,30 +52,36 @@
       },
       {
         "briefdescription": [
-          {
-            "content": "The Tall version.",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "The Tall version.",
+              "kind": "text"
+            }
+          ]
         ],
         "detaileddescription": [],
         "name": "Tall"
       },
       {
         "briefdescription": [
-          {
-            "content": "The Grande version.",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "The Grande version.",
+              "kind": "text"
+            }
+          ]
         ],
         "detaileddescription": [],
         "name": "Grande"
       },
       {
         "briefdescription": [
-          {
-            "content": "The Venti version 20 ounces.",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "The Venti version 20 ounces.",
+              "kind": "text"
+            }
+          ]
         ],
         "detaileddescription": [],
         "name": "Venti",

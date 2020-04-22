@@ -725,10 +725,12 @@ Text information
 Text information is stored in a list of paragraphs::
 
     paragraphs = [
-        {
-          "kind": "text" | "code" | "list",
-          ...
-        },
+        [
+          {
+            "kind": "text" | "code" | "list",
+            ...
+          },
+        ]
         ...
       ]
 

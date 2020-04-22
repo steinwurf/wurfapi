@@ -178,7 +178,7 @@ def split_text(text):
 
 
 def split_paragraphs(paragraphs):
-    """ Takes a list of pragraphs and splits it into as many compenents
+    """ Takes a list of paragraphs and splits it into as many components
     as possible.
 
     :param paragraphs: A list of paragraphs
@@ -188,7 +188,8 @@ def split_paragraphs(paragraphs):
     newlist = []
 
     for paragraph in paragraphs:
-
+        if type(paragraph) is list:
+            print(paragraph)
         if paragraph['kind'] is "code":
             newlist.append(paragraph)
             continue
@@ -197,7 +198,11 @@ def split_paragraphs(paragraphs):
 
             items = []
             for item in paragraph['items']:
-                items.append(split_paragraphs(paragraphs=item))
+                out = []
+                for i in item:
+                    out.append(split_paragraphs(paragraphs=i))
+                items.append(out)
+                # items.append(split_paragraphs(paragraphs=item))
 
             paragraph['items'] = items
 
@@ -250,7 +255,10 @@ def join_paragraphs(paragraphs):
             items = []
 
             for item in paragraph['items']:
-                items.append(join_paragraphs(paragraphs=item))
+                paras = []
+                for para in item:
+                    paras.append(join_paragraphs(paragraphs=para))
+                items.append(paras)
 
             paragraph['items'] = items
 
@@ -285,7 +293,7 @@ class LinkMapper(object):
     def map(self):
         """ Perform the actual mapping.
 
-        :return: A modified API with links expanced. The original API dict is
+        :return: A modified API with links expanded. The original API dict is
             not modified.
         """
 
@@ -305,10 +313,6 @@ class LinkMapper(object):
     def _map_paragraphs(self, value, scope):
         """ Find links in the 'text' elements """
 
-        # 1. Split all the paragraphs into
-
-        paragraphs = split_paragraphs(paragraphs=value)
-
         def _add_links(paragraphs):
 
             for paragraph in paragraphs:
@@ -317,8 +321,10 @@ class LinkMapper(object):
                     continue
 
                 if paragraph['kind'] is 'list':
+
                     for item in paragraph['items']:
-                        _add_links(item)
+                        for p in item:
+                            _add_links(p)
 
                     continue
 
@@ -337,11 +343,16 @@ class LinkMapper(object):
                 if link:
                     paragraph['link'] = link
 
-        _add_links(paragraphs=paragraphs)
+        result = []
+        for paragraphs in value:
+            # 1. Split all the paragraphs into
+            split_paras = split_paragraphs(paragraphs=paragraphs)
 
-        paragraphs = join_paragraphs(paragraphs=paragraphs)
+            _add_links(paragraphs=split_paras)
 
-        return paragraphs
+            result.append(join_paragraphs(paragraphs=split_paras))
+
+        return result
 
     def _map_type(self, value, scope):
         """ Find links in the 'type' lists """
