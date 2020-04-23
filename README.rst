@@ -391,7 +391,7 @@ scopes e.g. ``foo::bar::baz``.
   or ``foo::bar::baz::func(int a, char*) const``. See cppreference_ for more
   information.
 
-* For class template specilizations the unique name includes the specilization
+* For class template specializations the unique name includes the specialization
   arguments. For example::
 
       // Here the unique-name is just 'foo'
@@ -662,7 +662,7 @@ This could look like::
       }
     ]
 
-Any spaces in the type list should be preseved all the way from the Doxygen
+Any spaces in the type list should be preserved all the way from the Doxygen
 output and into the type list. In the rst it should be sufficient to simply
 output the values of the type. No spaces or other stuff should be injected.
 
@@ -722,7 +722,7 @@ Python list of dictionaries representing template parameters::
 Text information
 .................
 
-Text information is stored in a list paragraphs::
+Text information is stored in a of list paragraphs::
 
     paragraphs = [paragraph]
 
@@ -765,7 +765,7 @@ different ways::
   void hello(const int *x); // x is a pointer to const int
   void hello(int const *x); // x is a pointer to const int
 
-We can also move the asterix (``*``) to the left::
+We can also move the asterisk (``*``) to the left::
 
   void hello(const int* x); // x is a pointer to const int
   void hello(int const* x); // x is a pointer to const int

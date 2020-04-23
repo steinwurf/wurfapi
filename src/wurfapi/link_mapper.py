@@ -357,11 +357,11 @@ class LinkMapper(object):
 
         return new_paragraphs
 
-    def _map_type(self, value, scope):
+    def _map_type(self, typelist, scope):
         """ Find links in the 'type' lists """
 
         # 1. Split the type into it most basic elements
-        typelist = split_typelist(typelist=value)
+        typelist = split_typelist(typelist=typelist)
 
         # 2. Check if we have a link for each of the items
         for item in typelist:

@@ -1015,10 +1015,10 @@ def parse(xml, log, parser):
     for child in xml.getchildren():
 
         if child.tag == 'para':
-            out = parser.parse_element(xml=child)
+            paragraph = parser.parse_element(xml=child)
             # skip empty
-            if out:
-                paragraphs.append(out)
+            if paragraph:
+                paragraphs.append(paragraph)
 
         else:
             log.debug("Not parsing %s", child.tag)

@@ -98,29 +98,29 @@ a non-character. Otherwise rst will fail with an error.
 {% for item in list["items"] %}
 
 
-{{ item_type }}{{format_description(item) | indent(width=item_type|length)}}
+{{ item_type }}{{format_paragraphs(item) | indent(width=item_type|length)}}
 {%- endfor %}
 {% endmacro %}
 
 
-{# FORMAT_DESCRIPTION #}
-
-{% macro format_description(description) %}
-{% for paragraphs in description %}
-{{format_paragraphs(paragraphs)}}
-{% endfor %}
-{% endmacro %}
-
 {# FORMAT_PARAGRAPHS #}
 
 {% macro format_paragraphs(paragraphs) %}
-{% for para in paragraphs %}
-{% if para["kind"] == "text" %}
-{{ format_text(para) -}}
-{% elif para["kind"] == "code" %}
-{{ format_code(para) -}}
-{% elif para["kind"] == "list" %}
-{{ format_list(para) -}}
+{% for paragraph in paragraphs %}
+{{format_paragraph(paragraph)}}
+{% endfor %}
+{% endmacro %}
+
+{# FORMAT_PARAGRAPH #}
+
+{% macro format_paragraph(paragraph) %}
+{% for paragraph_element in paragraph %}
+{% if paragraph_element["kind"] == "text" %}
+{{ format_text(paragraph_element) -}}
+{% elif paragraph_element["kind"] == "code" %}
+{{ format_code(paragraph_element) -}}
+{% elif paragraph_element["kind"] == "list" %}
+{{ format_list(paragraph_element) -}}
 {% endif %}
 {% endfor %}
 
@@ -162,10 +162,10 @@ using **{{ alias["name"] }}** = {{ format_type_list(alias["type"]) }}
 {# MERGE_DESCRIPTION #}
 {%- macro merge_description(item) -%}
 {%- if item["briefdescription"] -%}
-{{format_description(item["briefdescription"])}}
+{{format_paragraphs(item["briefdescription"])}}
 {%- endif -%}
 {%- if item["detaileddescription"] -%}
-{{format_description(item["detaileddescription"])}}
+{{format_paragraphs(item["detaileddescription"])}}
 {%- endif -%}
 {%- endmacro -%}
 
@@ -208,7 +208,7 @@ using **{{ alias["name"] }}** = {{ format_type_list(alias["type"]) }}
 {% macro format_return_description(description) %}
 {% if description|length %}
 Returns:
-    {{ format_description(description) | indent -}}
+    {{ format_paragraphs(description) | indent -}}
 {% endif %}
 {% endmacro %}
 
@@ -218,7 +218,7 @@ Returns:
 {% macro format_parameter_description(parameter) %}
 {% if parameter["description"] | length %}
 Parameter ``{{parameter["name"]}}``:
-    {{ format_description(parameter["description"]) | indent }}
+    {{ format_paragraphs(parameter["description"]) | indent }}
 
 {% endif %}
 {% endmacro %}
@@ -243,7 +243,7 @@ Parameter ``{{parameter["name"]}}``:
 {% set type = format_type_list(parameter["type"]) %}
 {% set name = parameter["name"] %}
 {% set default = format_type_list(parameter["default"]) | default("") %}
-{% set description = format_description(parameter["description"]) %}
+{% set description = format_paragraphs(parameter["description"]) %}
 Template parameter: {{ type }} ``{{ name }}`` {{ " = " + default if default }}
     {{ description | indent -}}
 {% endif %}
@@ -279,8 +279,8 @@ Template parameter: {{ type }} ``{{ name }}`` {{ " = " + default if default }}
     format_return_description(function["return"]["description"]) %}
 {% endif %}
 {% set name = function["name"] %}
-{% set briefdescription = format_description(function["briefdescription"]) %}
-{% set detaileddescription = format_description(function["detaileddescription"]) %}
+{% set briefdescription = format_paragraphs(function["briefdescription"]) %}
+{% set detaileddescription = format_paragraphs(function["detaileddescription"]) %}
 {% set parameters =
     format_parameters(function["parameters"]) %}
 {% set parameters_description =

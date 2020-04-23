@@ -1,5 +1,5 @@
 {%- from 'macros.rst' import format_heading -%}
-{%- from 'macros.rst' import format_description -%}
+{%- from 'macros.rst' import format_paragraphs -%}
 {%- from 'macros.rst' import merge_description -%}
 
 {% set enum = api[selector] %}
@@ -19,7 +19,7 @@
 Brief Description
 -----------------
 
-{{ format_description(enum["briefdescription"]) }}
+{{ format_paragraphs(enum["briefdescription"]) }}
 {% endif %}
 
 {% if enum["values"] %}
@@ -45,5 +45,5 @@ Values
 Detailed Description
 ---------------------
 
-{{ format_description(enum["detaileddescription"]) }}
+{{ format_paragraphs(enum["detaileddescription"]) }}
 {% endif %}

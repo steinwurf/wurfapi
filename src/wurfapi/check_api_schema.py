@@ -99,8 +99,8 @@ def check_api_schema(api):
             return self.use_schema.validate(data)
 
     # We define a validator object but defer the initialization of the schema to
-    # use. The reason is the item kind is itself a list of paragraphs so we
-    # have a recursive dependency.
+    # use. The reason is the list kind's items is itself a list of paragraphs so
+    # we have a recursive dependency.
     item_paragraphs = ItemParagraphs()
 
     paragraph_list_schema = schema.Schema({
