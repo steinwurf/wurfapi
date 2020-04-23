@@ -6,7 +6,7 @@ of every change, see the Git log.
 
 Latest
 ------
-* tbd
+* Major: Reworked the way paragraphs are handled.
 
 5.1.1
 -----
