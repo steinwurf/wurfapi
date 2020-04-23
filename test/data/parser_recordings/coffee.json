@@ -7,10 +7,12 @@
   "header": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "This is header.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "This is header.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "kind": "struct",
@@ -28,10 +30,12 @@
   "header::headz_up()": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "Check it out!",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Check it out!",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "is_const": false,
@@ -103,10 +107,12 @@
   "project::v1_0_0::coffee::cup": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "A genric cup.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "A genric cup.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "kind": "struct",
@@ -128,10 +134,12 @@
           }
         ],
         "description": [
-          {
-            "content": "The liquid for the cup",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "The liquid for the cup",
+              "kind": "text"
+            }
+          ]
         ],
         "name": "T",
         "type": [
@@ -142,10 +150,12 @@
       },
       {
         "description": [
-          {
-            "content": "The number of liters",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "The number of liters",
+              "kind": "text"
+            }
+          ]
         ],
         "name": "Liter",
         "type": [
@@ -159,10 +169,12 @@
   "project::v1_0_0::coffee::cup::m_liquid": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "The liquid contained.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "The liquid contained.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "is_const": false,
@@ -187,10 +199,12 @@
   "project::v1_0_0::coffee::cup<tea,5>": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "A 5 liter tea cup.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "A 5 liter tea cup.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "kind": "struct",
@@ -209,10 +223,12 @@
   "project::v1_0_0::coffee::cup<tea,5>::m_liquid": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "The liquid contained.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "The liquid contained.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "is_const": false,
@@ -237,10 +253,12 @@
   "project::v1_0_0::coffee::cup<tea,Liter>": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "A tea cup.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "A tea cup.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "kind": "struct",
@@ -257,10 +275,12 @@
     "template_parameters": [
       {
         "description": [
-          {
-            "content": "The number of liters",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "The number of liters",
+              "kind": "text"
+            }
+          ]
         ],
         "name": "Liter",
         "type": [
@@ -274,10 +294,12 @@
   "project::v1_0_0::coffee::cup<tea,Liter>::m_liquid": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "The liquid contained.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "The liquid contained.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "is_const": false,
@@ -302,28 +324,32 @@
   "project::v1_0_0::coffee::machine": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "A machine to brew your coffee. Docs by",
-        "kind": "text"
-      },
-      {
-        "content": "http://steinwurf.com",
-        "kind": "text",
-        "link": {
-          "url": true,
-          "value": "http://steinwurf.com"
+      [
+        {
+          "content": "A machine to brew your coffee. Docs by",
+          "kind": "text"
+        },
+        {
+          "content": "http://steinwurf.com",
+          "kind": "text",
+          "link": {
+            "url": true,
+            "value": "http://steinwurf.com"
+          }
+        },
+        {
+          "content": ".",
+          "kind": "text"
         }
-      },
-      {
-        "content": ".",
-        "kind": "text"
-      }
+      ]
     ],
     "detaileddescription": [
-      {
-        "content": "The coffee machine object serves as your applications entry point for brewing coffee. You have to remember to fill the project::coffee::machine::water_tank though.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "The coffee machine object serves as your applications entry point for brewing coffee. You have to remember to fill the project::coffee::machine::water_tank though.",
+          "kind": "text"
+        }
+      ]
     ],
     "kind": "class",
     "location": {
@@ -369,10 +395,12 @@
     "access": "public",
     "briefdescription": [],
     "detaileddescription": [
-      {
-        "content": "Add a generic beans",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Add a generic beans",
+          "kind": "text"
+        }
+      ]
     ],
     "is_const": false,
     "is_constructor": false,
@@ -418,10 +446,12 @@
           }
         ],
         "description": [
-          {
-            "content": "The generic bean type",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "The generic bean type",
+              "kind": "text"
+            }
+          ]
         ],
         "name": "Beans",
         "type": [
@@ -437,10 +467,12 @@
           }
         ],
         "description": [
-          {
-            "content": "The size of a bean",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "The size of a bean",
+              "kind": "text"
+            }
+          ]
         ],
         "name": "BeanSize",
         "type": [
@@ -455,10 +487,12 @@
   "project::v1_0_0::coffee::machine::brew_state": {
     "access": "private",
     "briefdescription": [
-      {
-        "content": "Internal brewing state.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Internal brewing state.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "kind": "struct",
@@ -499,10 +533,12 @@
   "project::v1_0_0::coffee::machine::callback": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "The generic callback type.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "The generic callback type.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "kind": "using",
@@ -522,10 +558,12 @@
   "project::v1_0_0::coffee::machine::cups_brewed": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "The number of cups brewed by this machine.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "The number of cups brewed by this machine.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "is_const": false,
@@ -551,10 +589,12 @@
   "project::v1_0_0::coffee::machine::get_bean_count(mug_sizesize_of_mug)const": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "Get the number of beans needed for a given mug.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Get the number of beans needed for a given mug.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "is_const": true,
@@ -598,10 +638,12 @@
   "project::v1_0_0::coffee::machine::get_last_cup()const": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "Get the last cup of coffee.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Get the last cup of coffee.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "is_const": true,
@@ -634,30 +676,32 @@
     "access": "public",
     "briefdescription": [],
     "detaileddescription": [
-      {
-        "content": "This header is",
-        "kind": "text"
-      },
-      {
-        "content": "coffee.h",
-        "kind": "text",
-        "link": {
-          "url": false,
-          "value": "src/coffee/coffee.h"
+      [
+        {
+          "content": "This header is",
+          "kind": "text"
+        },
+        {
+          "content": "coffee.h",
+          "kind": "text",
+          "link": {
+            "url": false,
+            "value": "src/coffee/coffee.h"
+          }
+        },
+        {
+          "content": "if this is important? Also there is an example in",
+          "kind": "text"
+        },
+        {
+          "content": "header.h",
+          "kind": "text",
+          "link": {
+            "url": false,
+            "value": "examples/header/header.h"
+          }
         }
-      },
-      {
-        "content": "if this is important? Also there is an example in",
-        "kind": "text"
-      },
-      {
-        "content": "header.h",
-        "kind": "text",
-        "link": {
-          "url": false,
-          "value": "examples/header/header.h"
-        }
-      }
+      ]
     ],
     "is_const": true,
     "is_constructor": false,
@@ -676,10 +720,12 @@
     "parameters": [],
     "return": {
       "description": [
-        {
-          "content": "the mug_size",
-          "kind": "text"
-        }
+        [
+          {
+            "content": "the mug_size",
+            "kind": "text"
+          }
+        ]
       ],
       "type": [
         {
@@ -723,10 +769,12 @@
   "project::v1_0_0::coffee::machine::impl": {
     "access": "private",
     "briefdescription": [
-      {
-        "content": "Implementation details.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Implementation details.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "kind": "struct",
@@ -744,10 +792,12 @@
   "project::v1_0_0::coffee::machine::impl::run()": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "Run the machine.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Run the machine.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "is_const": false,
@@ -779,10 +829,12 @@
   "project::v1_0_0::coffee::machine::m_callback": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "A variable which uses the callback using statement.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "A variable which uses the callback using statement.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "is_const": false,
@@ -844,10 +896,12 @@
   "project::v1_0_0::coffee::machine::m_other_callback": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "A variable which uses the other_callback typedef statement.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "A variable which uses the other_callback typedef statement.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "is_const": false,
@@ -876,10 +930,12 @@
   "project::v1_0_0::coffee::machine::machine()": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "Constructor.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Constructor.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "is_const": false,
@@ -903,10 +959,12 @@
   "project::v1_0_0::coffee::machine::machine(powerpwr)": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "Constructor with power.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Constructor with power.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "is_const": false,
@@ -964,10 +1022,12 @@
     "parameters": [],
     "return": {
       "description": [
-        {
-          "content": "The number of cups",
-          "kind": "text"
-        }
+        [
+          {
+            "content": "The number of cups",
+            "kind": "text"
+          }
+        ]
       ],
       "type": [
         {
@@ -981,10 +1041,12 @@
   "project::v1_0_0::coffee::machine::other_callback": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "Another way to define a type is a typedef.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Another way to define a type is a typedef.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "kind": "typedef",
@@ -1008,10 +1070,12 @@
   "project::v1_0_0::coffee::machine::power": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "The power state.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "The power state.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "kind": "enum",
@@ -1025,20 +1089,24 @@
     "values": [
       {
         "briefdescription": [
-          {
-            "content": "Turn power on.",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "Turn power on.",
+              "kind": "text"
+            }
+          ]
         ],
         "detaileddescription": [],
         "name": "on"
       },
       {
         "briefdescription": [
-          {
-            "content": "Turn power off.",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "Turn power off.",
+              "kind": "text"
+            }
+          ]
         ],
         "detaileddescription": [],
         "name": "off"
@@ -1048,16 +1116,20 @@
   "project::v1_0_0::coffee::machine::set(constheat&h,intmax)const": {
     "access": "protected",
     "briefdescription": [
-      {
-        "content": "Set the heat.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Set the heat.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [
-      {
-        "content": "This function is use to set the head of the machine.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "This function is use to set the head of the machine.",
+          "kind": "text"
+        }
+      ]
     ],
     "is_const": true,
     "is_constructor": false,
@@ -1111,10 +1183,12 @@
   "project::v1_0_0::coffee::machine::set_name(constcharname[40])": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "Set the machine name.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Set the machine name.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "is_const": false,
@@ -1158,85 +1232,99 @@
   "project::v1_0_0::coffee::machine::set_number_cups(std::stringcups)": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "Set the number of cups to brew.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Set the number of cups to brew.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [
-      {
-        "content": "Before setting number of cups, check the following:",
-        "kind": "text"
-      },
-      {
-        "items": [
-          [
-            {
-              "content": "You have enough water in the",
-              "kind": "text"
-            },
-            {
-              "content": "water_tank",
-              "kind": "text",
-              "link": {
-                "url": false,
-                "value": "project::v1_0_0::coffee::machine::water_tank"
-              }
-            },
-            {
-              "content": ".",
-              "kind": "text"
-            },
-            {
-              "items": [
-                [
-                  {
-                    "content": "Of course you also need power.",
-                    "kind": "text"
-                  },
-                  {
-                    "content": "std::cout << \"You need power\" << std::endl;\nstd::cout << \"So plug it in\" << std::endl;\n",
-                    "is_block": true,
-                    "kind": "code"
+      [
+        {
+          "content": "Before setting number of cups, check the following:",
+          "kind": "text"
+        },
+        {
+          "items": [
+            [
+              [
+                {
+                  "content": "You have enough water in the",
+                  "kind": "text"
+                },
+                {
+                  "content": "water_tank",
+                  "kind": "text",
+                  "link": {
+                    "url": false,
+                    "value": "project::v1_0_0::coffee::machine::water_tank"
                   }
-                ],
-                [
-                  {
-                    "content": "A stable surface is also important!",
-                    "kind": "text"
-                  }
-                ]
-              ],
-              "kind": "list",
-              "ordered": false
-            }
+                },
+                {
+                  "content": ".",
+                  "kind": "text"
+                },
+                {
+                  "items": [
+                    [
+                      [
+                        {
+                          "content": "Of course you also need power.",
+                          "kind": "text"
+                        },
+                        {
+                          "content": "std::cout << \"You need power\" << std::endl;\nstd::cout << \"So plug it in\" << std::endl;\n",
+                          "is_block": true,
+                          "kind": "code"
+                        }
+                      ]
+                    ],
+                    [
+                      [
+                        {
+                          "content": "A stable surface is also important!",
+                          "kind": "text"
+                        }
+                      ]
+                    ]
+                  ],
+                  "kind": "list",
+                  "ordered": false
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "content": "Your coffee mug is clean.",
+                  "kind": "text"
+                }
+              ]
+            ]
           ],
-          [
-            {
-              "content": "Your coffee mug is clean.",
-              "kind": "text"
-            }
-          ]
-        ],
-        "kind": "list",
-        "ordered": true
-      },
-      {
-        "content": "You can see",
-        "kind": "text"
-      },
-      {
-        "content": "number_cups()",
-        "kind": "text",
-        "link": {
-          "url": false,
-          "value": "project::v1_0_0::coffee::machine::number_cups()const"
+          "kind": "list",
+          "ordered": true
         }
-      },
-      {
-        "content": "for how many cups",
-        "kind": "text"
-      }
+      ],
+      [
+        {
+          "content": "You can see",
+          "kind": "text"
+        },
+        {
+          "content": "number_cups()",
+          "kind": "text",
+          "link": {
+            "url": false,
+            "value": "project::v1_0_0::coffee::machine::number_cups()const"
+          }
+        },
+        {
+          "content": "for how many cups",
+          "kind": "text"
+        }
+      ]
     ],
     "is_const": false,
     "is_constructor": false,
@@ -1255,10 +1343,12 @@
     "parameters": [
       {
         "description": [
-          {
-            "content": "The number of cups",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "The number of cups",
+              "kind": "text"
+            }
+          ]
         ],
         "name": "cups",
         "type": [
@@ -1285,85 +1375,99 @@
   "project::v1_0_0::coffee::machine::set_number_cups(uint32_tcups=0)": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "Set the number of cups to brew.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Set the number of cups to brew.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [
-      {
-        "content": "Before setting number of cups, check the following:",
-        "kind": "text"
-      },
-      {
-        "items": [
-          [
-            {
-              "content": "You have enough water in the",
-              "kind": "text"
-            },
-            {
-              "content": "water_tank",
-              "kind": "text",
-              "link": {
-                "url": false,
-                "value": "project::v1_0_0::coffee::machine::water_tank"
-              }
-            },
-            {
-              "content": ".",
-              "kind": "text"
-            },
-            {
-              "items": [
-                [
-                  {
-                    "content": "Of course you also need power.",
-                    "kind": "text"
-                  },
-                  {
-                    "content": "std::cout << \"You need power\" << std::endl;\nstd::cout << \"So plug it in\" << std::endl;\n",
-                    "is_block": true,
-                    "kind": "code"
+      [
+        {
+          "content": "Before setting number of cups, check the following:",
+          "kind": "text"
+        },
+        {
+          "items": [
+            [
+              [
+                {
+                  "content": "You have enough water in the",
+                  "kind": "text"
+                },
+                {
+                  "content": "water_tank",
+                  "kind": "text",
+                  "link": {
+                    "url": false,
+                    "value": "project::v1_0_0::coffee::machine::water_tank"
                   }
-                ],
-                [
-                  {
-                    "content": "A stable surface is also important!",
-                    "kind": "text"
-                  }
-                ]
-              ],
-              "kind": "list",
-              "ordered": false
-            }
+                },
+                {
+                  "content": ".",
+                  "kind": "text"
+                },
+                {
+                  "items": [
+                    [
+                      [
+                        {
+                          "content": "Of course you also need power.",
+                          "kind": "text"
+                        },
+                        {
+                          "content": "std::cout << \"You need power\" << std::endl;\nstd::cout << \"So plug it in\" << std::endl;\n",
+                          "is_block": true,
+                          "kind": "code"
+                        }
+                      ]
+                    ],
+                    [
+                      [
+                        {
+                          "content": "A stable surface is also important!",
+                          "kind": "text"
+                        }
+                      ]
+                    ]
+                  ],
+                  "kind": "list",
+                  "ordered": false
+                }
+              ]
+            ],
+            [
+              [
+                {
+                  "content": "Your coffee mug is clean.",
+                  "kind": "text"
+                }
+              ]
+            ]
           ],
-          [
-            {
-              "content": "Your coffee mug is clean.",
-              "kind": "text"
-            }
-          ]
-        ],
-        "kind": "list",
-        "ordered": true
-      },
-      {
-        "content": "You can see",
-        "kind": "text"
-      },
-      {
-        "content": "number_cups()",
-        "kind": "text",
-        "link": {
-          "url": false,
-          "value": "project::v1_0_0::coffee::machine::number_cups()const"
+          "kind": "list",
+          "ordered": true
         }
-      },
-      {
-        "content": "for how many cups",
-        "kind": "text"
-      }
+      ],
+      [
+        {
+          "content": "You can see",
+          "kind": "text"
+        },
+        {
+          "content": "number_cups()",
+          "kind": "text",
+          "link": {
+            "url": false,
+            "value": "project::v1_0_0::coffee::machine::number_cups()const"
+          }
+        },
+        {
+          "content": "for how many cups",
+          "kind": "text"
+        }
+      ]
     ],
     "is_const": false,
     "is_constructor": false,
@@ -1382,10 +1486,12 @@
     "parameters": [
       {
         "description": [
-          {
-            "content": "The number of cups",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "The number of cups",
+              "kind": "text"
+            }
+          ]
         ],
         "name": "cups",
         "type": [
@@ -1418,10 +1524,12 @@
   "project::v1_0_0::coffee::machine::set_power(power)": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "Set the power of the machine.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Set the power of the machine.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "is_const": false,
@@ -1465,10 +1573,12 @@
   "project::v1_0_0::coffee::machine::tank()": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "Get the first water tank.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Get the first water tank.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "is_const": false,
@@ -1507,10 +1617,12 @@
   "project::v1_0_0::coffee::machine::tank()const": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "Get the first water tank.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Get the first water tank.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "is_const": true,
@@ -1552,10 +1664,12 @@
   "project::v1_0_0::coffee::machine::tanks()": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "Get all water tanks.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Get all water tanks.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "is_const": false,
@@ -1597,10 +1711,12 @@
   "project::v1_0_0::coffee::machine::total_cups_brewed": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "The number of cups brewed by all machines.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "The number of cups brewed by all machines.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "is_const": false,
@@ -1625,43 +1741,49 @@
   "project::v1_0_0::coffee::machine::version()": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "The version of the machine.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "The version of the machine.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [
-      {
-        "content": "Example:",
-        "kind": "text"
-      },
-      {
-        "content": "std::cout << \"The version\";\n           << project::coffee::machine::version() << \"\\n\";\n",
-        "is_block": true,
-        "kind": "code"
-      },
-      {
-        "content": "Remember to use",
-        "kind": "text"
-      },
-      {
-        "content": "\\n",
-        "is_block": false,
-        "kind": "code"
-      },
-      {
-        "content": "rather than",
-        "kind": "text"
-      },
-      {
-        "content": "std::endl",
-        "is_block": false,
-        "kind": "code"
-      },
-      {
-        "content": "it is more efficient.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Example:",
+          "kind": "text"
+        },
+        {
+          "content": "std::cout << \"The version\";\n          << project::coffee::machine::version() << \"\\n\";\n",
+          "is_block": true,
+          "kind": "code"
+        }
+      ],
+      [
+        {
+          "content": "Remember to use",
+          "kind": "text"
+        },
+        {
+          "content": "\\n",
+          "is_block": false,
+          "kind": "code"
+        },
+        {
+          "content": "rather than",
+          "kind": "text"
+        },
+        {
+          "content": "std::endl",
+          "is_block": false,
+          "kind": "code"
+        },
+        {
+          "content": "it is more efficient.",
+          "kind": "text"
+        }
+      ]
     ],
     "is_const": false,
     "is_constructor": false,
@@ -1680,15 +1802,17 @@
     "parameters": [],
     "return": {
       "description": [
-        {
-          "content": "The version of the machine. Example:",
-          "kind": "text"
-        },
-        {
-          "content": "std::cout << machine::version();\nstd::cout << \"\\n\";",
-          "is_block": true,
-          "kind": "code"
-        }
+        [
+          {
+            "content": "The version of the machine. Example:",
+            "kind": "text"
+          },
+          {
+            "content": "std::cout << machine::version();\nstd::cout << \"\\n\";",
+            "is_block": true,
+            "kind": "code"
+          }
+        ]
       ],
       "type": [
         {
@@ -1702,10 +1826,12 @@
   "project::v1_0_0::coffee::machine::water_tank": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "The water thank.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "The water thank.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "kind": "struct",
@@ -1742,10 +1868,12 @@
     "parameters": [
       {
         "description": [
-          {
-            "content": "Fill the water tank with the specified number number of cups.",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "Fill the water tank with the specified number number of cups.",
+              "kind": "text"
+            }
+          ]
         ],
         "name": "number_of_cups",
         "type": [
@@ -1759,28 +1887,30 @@
       },
       {
         "description": [
-          {
-            "content": "Set",
-            "kind": "text"
-          },
-          {
-            "content": "true",
-            "is_block": false,
-            "kind": "code"
-          },
-          {
-            "content": "to enable the safety valve this will sound and alarm if the water tank is too full. To disable the safety valve set",
-            "kind": "text"
-          },
-          {
-            "content": "false",
-            "is_block": false,
-            "kind": "code"
-          },
-          {
-            "content": ".",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "Set",
+              "kind": "text"
+            },
+            {
+              "content": "true",
+              "is_block": false,
+              "kind": "code"
+            },
+            {
+              "content": "to enable the safety valve this will sound and alarm if the water tank is too full. To disable the safety valve set",
+              "kind": "text"
+            },
+            {
+              "content": "false",
+              "is_block": false,
+              "kind": "code"
+            },
+            {
+              "content": ".",
+              "kind": "text"
+            }
+          ]
         ],
         "name": "safety_valve",
         "type": [
@@ -1795,20 +1925,22 @@
     ],
     "return": {
       "description": [
-        {
-          "content": "true",
-          "is_block": false,
-          "kind": "code"
-        },
-        {
-          "content": "if filling was successfull otherwise",
-          "kind": "text"
-        },
-        {
-          "content": "false",
-          "is_block": false,
-          "kind": "code"
-        }
+        [
+          {
+            "content": "true",
+            "is_block": false,
+            "kind": "code"
+          },
+          {
+            "content": "if filling was successfull otherwise",
+            "kind": "text"
+          },
+          {
+            "content": "false",
+            "is_block": false,
+            "kind": "code"
+          }
+        ]
       ],
       "type": [
         {
@@ -1840,24 +1972,26 @@
     "parameters": [],
     "return": {
       "description": [
-        {
-          "content": "true",
-          "is_block": false,
-          "kind": "code"
-        },
-        {
-          "content": "if the water tank is full otherwise",
-          "kind": "text"
-        },
-        {
-          "content": "false",
-          "is_block": false,
-          "kind": "code"
-        },
-        {
-          "content": ".",
-          "kind": "text"
-        }
+        [
+          {
+            "content": "true",
+            "is_block": false,
+            "kind": "code"
+          },
+          {
+            "content": "if the water tank is full otherwise",
+            "kind": "text"
+          },
+          {
+            "content": "false",
+            "is_block": false,
+            "kind": "code"
+          },
+          {
+            "content": ".",
+            "kind": "text"
+          }
+        ]
       ],
       "type": [
         {
@@ -1871,10 +2005,12 @@
   "project::v1_0_0::coffee::machine::~machine()": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "Destructor.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Destructor.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "is_const": false,
@@ -1898,16 +2034,20 @@
   "project::v1_0_0::coffee::mug_size": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "Different size coffee mugs.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Different size coffee mugs.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [
-      {
-        "content": "This lets you choose the size of your coffee mug",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "This lets you choose the size of your coffee mug",
+          "kind": "text"
+        }
+      ]
     ],
     "kind": "enum",
     "location": {
@@ -1920,10 +2060,12 @@
     "values": [
       {
         "briefdescription": [
-          {
-            "content": "The Short version.",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "The Short version.",
+              "kind": "text"
+            }
+          ]
         ],
         "detaileddescription": [],
         "name": "Short",
@@ -1931,10 +2073,12 @@
       },
       {
         "briefdescription": [
-          {
-            "content": "The Tall version.",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "The Tall version.",
+              "kind": "text"
+            }
+          ]
         ],
         "detaileddescription": [],
         "name": "Tall"
@@ -1942,39 +2086,47 @@
       {
         "briefdescription": [],
         "detaileddescription": [
-          {
-            "content": "The Grande version Use it like so:",
-            "kind": "text"
-          },
-          {
-            "content": "std::cout << mug_size::Grande << std::endl;",
-            "is_block": false,
-            "kind": "code"
-          }
+          [
+            {
+              "content": "The Grande version Use it like so:",
+              "kind": "text"
+            },
+            {
+              "content": "std::cout << mug_size::Grande << std::endl;",
+              "is_block": false,
+              "kind": "code"
+            }
+          ]
         ],
         "name": "Grande"
       },
       {
         "briefdescription": [
-          {
-            "content": "The Venti version 20 ounces.",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "The Venti version 20 ounces.",
+              "kind": "text"
+            }
+          ]
         ],
         "detaileddescription": [
-          {
-            "content": "This one will keep you up all night!",
-            "kind": "text"
-          },
-          {
-            "content": "std::cout << mug_size::Venti << std::endl;\n",
-            "is_block": true,
-            "kind": "code"
-          },
-          {
-            "content": "I hope you enjoy.",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "This one will keep you up all night!",
+              "kind": "text"
+            },
+            {
+              "content": "std::cout << mug_size::Venti << std::endl;\n",
+              "is_block": true,
+              "kind": "code"
+            }
+          ],
+          [
+            {
+              "content": "I hope you enjoy.",
+              "kind": "text"
+            }
+          ]
         ],
         "name": "Venti",
         "value": "20"
@@ -1995,16 +2147,20 @@
   "project::v1_0_0::deprecated::mug_size": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "Different size coffee mugs.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Different size coffee mugs.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [
-      {
-        "content": "This lets you choose the size of your coffee mug",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "This lets you choose the size of your coffee mug",
+          "kind": "text"
+        }
+      ]
     ],
     "kind": "enum",
     "location": {
@@ -2017,10 +2173,12 @@
     "values": [
       {
         "briefdescription": [
-          {
-            "content": "The Short version.",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "The Short version.",
+              "kind": "text"
+            }
+          ]
         ],
         "detaileddescription": [],
         "name": "Short",
@@ -2028,10 +2186,12 @@
       },
       {
         "briefdescription": [
-          {
-            "content": "The Tall version.",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "The Tall version.",
+              "kind": "text"
+            }
+          ]
         ],
         "detaileddescription": [],
         "name": "Tall"
@@ -2039,39 +2199,47 @@
       {
         "briefdescription": [],
         "detaileddescription": [
-          {
-            "content": "The Grande version Use it like so:",
-            "kind": "text"
-          },
-          {
-            "content": "std::cout << mug_size::Grande << std::endl;",
-            "is_block": false,
-            "kind": "code"
-          }
+          [
+            {
+              "content": "The Grande version Use it like so:",
+              "kind": "text"
+            },
+            {
+              "content": "std::cout << mug_size::Grande << std::endl;",
+              "is_block": false,
+              "kind": "code"
+            }
+          ]
         ],
         "name": "Grande"
       },
       {
         "briefdescription": [
-          {
-            "content": "The Venti version 20 ounces.",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "The Venti version 20 ounces.",
+              "kind": "text"
+            }
+          ]
         ],
         "detaileddescription": [
-          {
-            "content": "This one will keep you up all night!",
-            "kind": "text"
-          },
-          {
-            "content": "std::cout << mug_size::Venti << std::endl;\n",
-            "is_block": true,
-            "kind": "code"
-          },
-          {
-            "content": "I hope you enjoy.",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "This one will keep you up all night!",
+              "kind": "text"
+            },
+            {
+              "content": "std::cout << mug_size::Venti << std::endl;\n",
+              "is_block": true,
+              "kind": "code"
+            }
+          ],
+          [
+            {
+              "content": "I hope you enjoy.",
+              "kind": "text"
+            }
+          ]
         ],
         "name": "Venti",
         "value": "20"
@@ -2081,65 +2249,73 @@
   "project::v1_0_0::print(doublea,int*b)": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "Prints the",
-        "kind": "text"
-      },
-      {
-        "content": "a",
-        "is_block": false,
-        "kind": "code"
-      },
-      {
-        "content": "and then the value pointed to by",
-        "kind": "text"
-      },
-      {
-        "content": "b",
-        "is_block": false,
-        "kind": "code"
-      },
-      {
-        "content": ".",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Prints the",
+          "kind": "text"
+        },
+        {
+          "content": "a",
+          "is_block": false,
+          "kind": "code"
+        },
+        {
+          "content": "and then the value pointed to by",
+          "kind": "text"
+        },
+        {
+          "content": "b",
+          "is_block": false,
+          "kind": "code"
+        },
+        {
+          "content": ".",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [
-      {
-        "content": "This is really handy in case you need to see them.",
-        "kind": "text"
-      },
-      {
-        "content": "Example:",
-        "kind": "text"
-      },
-      {
-        "content": "std::cout << project::coffee::print(2.0, &value) << \"\\n\";\n",
-        "is_block": true,
-        "kind": "code"
-      },
-      {
-        "content": "Remember to use",
-        "kind": "text"
-      },
-      {
-        "content": "\\n",
-        "is_block": false,
-        "kind": "code"
-      },
-      {
-        "content": "rather than",
-        "kind": "text"
-      },
-      {
-        "content": "std::endl",
-        "is_block": false,
-        "kind": "code"
-      },
-      {
-        "content": "it is more efficient.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "This is really handy in case you need to see them.",
+          "kind": "text"
+        }
+      ],
+      [
+        {
+          "content": "Example:",
+          "kind": "text"
+        },
+        {
+          "content": "std::cout << project::coffee::print(2.0, &value) << \"\\n\";\n",
+          "is_block": true,
+          "kind": "code"
+        }
+      ],
+      [
+        {
+          "content": "Remember to use",
+          "kind": "text"
+        },
+        {
+          "content": "\\n",
+          "is_block": false,
+          "kind": "code"
+        },
+        {
+          "content": "rather than",
+          "kind": "text"
+        },
+        {
+          "content": "std::endl",
+          "is_block": false,
+          "kind": "code"
+        },
+        {
+          "content": "it is more efficient.",
+          "kind": "text"
+        }
+      ]
     ],
     "is_const": false,
     "is_constructor": false,
@@ -2158,10 +2334,12 @@
     "parameters": [
       {
         "description": [
-          {
-            "content": "A is actually a double.",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "A is actually a double.",
+              "kind": "text"
+            }
+          ]
         ],
         "name": "a",
         "type": [
@@ -2175,10 +2353,12 @@
       },
       {
         "description": [
-          {
-            "content": "Whereas b is a pointer to an int.",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "Whereas b is a pointer to an int.",
+              "kind": "text"
+            }
+          ]
         ],
         "name": "b",
         "type": [
@@ -2193,19 +2373,21 @@
     ],
     "return": {
       "description": [
-        {
-          "content": "This does not really return anything because it is",
-          "kind": "text"
-        },
-        {
-          "content": "void",
-          "is_block": false,
-          "kind": "code"
-        },
-        {
-          "content": "but it could!",
-          "kind": "text"
-        }
+        [
+          {
+            "content": "This does not really return anything because it is",
+            "kind": "text"
+          },
+          {
+            "content": "void",
+            "is_block": false,
+            "kind": "code"
+          },
+          {
+            "content": "but it could!",
+            "kind": "text"
+          }
+        ]
       ],
       "type": [
         {
@@ -2237,19 +2419,21 @@
     "parameters": [
       {
         "description": [
-          {
-            "content": "This is the most important parameter. Without it the function will not work. Example:",
-            "kind": "text"
-          },
-          {
-            "content": "project::coffee::print(3);\n",
-            "is_block": true,
-            "kind": "code"
-          },
-          {
-            "content": "Does this work",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "This is the most important parameter. Without it the function will not work. Example:",
+              "kind": "text"
+            },
+            {
+              "content": "project::coffee::print(3);\n",
+              "is_block": true,
+              "kind": "code"
+            },
+            {
+              "content": "Does this work",
+              "kind": "text"
+            }
+          ]
         ],
         "name": "a_number",
         "type": [
@@ -2263,19 +2447,21 @@
       },
       {
         "description": [
-          {
-            "content": "If",
-            "kind": "text"
-          },
-          {
-            "content": "true",
-            "is_block": false,
-            "kind": "code"
-          },
-          {
-            "content": "print on some actual paper.",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "If",
+              "kind": "text"
+            },
+            {
+              "content": "true",
+              "is_block": false,
+              "kind": "code"
+            },
+            {
+              "content": "print on some actual paper.",
+              "kind": "text"
+            }
+          ]
         ],
         "name": "on_paper",
         "type": [

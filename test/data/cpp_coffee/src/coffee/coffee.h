@@ -99,7 +99,7 @@ public:
     /// Example:
     ///
     ///     std::cout << "The version";
-    ///                << project::coffee::machine::version() << "\n";
+    ///               << project::coffee::machine::version() << "\n";
     ///
     /// Remember to use `\n` rather than `std::endl` it is more
     /// efficient.

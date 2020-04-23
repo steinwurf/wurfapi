@@ -95,7 +95,7 @@
 {% if class["briefdescription"] %}
 Brief description
 -----------------
-{{ macros.format_description(class["briefdescription"]) }}
+{{ macros.format_paragraphs(class["briefdescription"]) }}
 {% endif %}
 
 {% if class["template_parameters"] %}
@@ -183,7 +183,7 @@ Static member variables (public)
 {% if class["detaileddescription"] %}
 Description
 -----------
-{{ macros.format_description(class["detaileddescription"]) }}
+{{ macros.format_paragraphs(class["detaileddescription"]) }}
 {% endif %}
 
 
@@ -224,9 +224,9 @@ Type Description
 
 {{ macros.format_type_alias(api[selector]) }}
 
-    {{ macros.format_description(api[selector]["briefdescription"])|indent }}
+    {{ macros.format_paragraphs(api[selector]["briefdescription"])|indent }}
 
-    {{ macros.format_description(api[selector]["detaileddescription"])|indent }}
+    {{ macros.format_paragraphs(api[selector]["detaileddescription"])|indent }}
 
 {{ "-----" if not loop.last }}
 
@@ -253,7 +253,7 @@ Type Description
 {%- set description = parameter["description"] | default([]) %}
    * - {{ macros.format_type_list(type) }} {{ name }}
      - {{ macros.format_type_list(default) }}
-     - {{ macros.format_description(description) | indent(width=7) }}
+     - {{ macros.format_paragraphs(description) | indent(width=7) }}
 {% endfor %}
 {% endmacro -%}
 
@@ -266,7 +266,3 @@ Template parameter description
 {{ macros.format_template_parameters_description(class["template_parameters"]) }}
 
 {% endif %}
-
-
-
-

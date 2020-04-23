@@ -14,6 +14,8 @@ Brief description
 A machine to brew your coffee. Docs by `http://steinwurf.com <http://steinwurf.com>`_\  . 
 
 
+
+
 Member types (public)
 ---------------------
 
@@ -104,14 +106,20 @@ Member variables (public)
      - cups_brewed
      - 0
      - The number of cups brewed by this machine. 
+
+
    * - :ref:`callback <project::v1_0_0::coffee::machine::callback>`\ 
      - m_callback
      - 
      - A variable which uses the callback using statement. 
+
+
    * - :ref:`other_callback <project::v1_0_0::coffee::machine::other_callback>`\ 
      - m_other_callback
      - 
      - A variable which uses the other_callback typedef statement. 
+
+
 
 
 
@@ -135,9 +143,13 @@ Static member variables (public)
 
 
 
+
+
 Description
 -----------
 The coffee machine object serves as your applications entry point for brewing coffee. You have to remember to fill the project::coffee::machine::water_tank though. 
+
+
 
 
 
@@ -152,6 +164,8 @@ Member Function Description
     Constructor. 
 
 
+
+
 -----
 
 .. _project::v1_0_0::coffee::machine::machine(powerpwr):
@@ -159,6 +173,8 @@ Member Function Description
 | **machine** (:ref:`power <project::v1_0_0::coffee::machine::power>`\  pwr)
 
     Constructor with power. 
+
+
 
 
 -----
@@ -170,6 +186,8 @@ Member Function Description
     Destructor. 
 
 
+
+
 -----
 
 .. _project::v1_0_0::coffee::machine::set_power(power):
@@ -179,6 +197,8 @@ Member Function Description
     Set the power of the machine. 
 
 
+
+
 -----
 
 .. _project::v1_0_0::coffee::machine::set_number_cups(uint32_tcups=0):
@@ -186,6 +206,8 @@ Member Function Description
 | void **set_number_cups** (uint32_t cups = 0)
 
     Set the number of cups to brew. 
+
+
 
     Before setting number of cups, check the following: 
 
@@ -211,10 +233,16 @@ Member Function Description
 
     #. Your coffee mug is clean. 
 
+
+
     You can see :ref:`number_cups() <project::v1_0_0::coffee::machine::number_cups()const>`\  for how many cups 
+
+
 
     Parameter ``cups``:
         The number of cups 
+
+
 
 
 
@@ -228,6 +256,8 @@ Member Function Description
 
     Set the number of cups to brew. 
 
+
+
     Before setting number of cups, check the following: 
 
     #. You have enough water in the :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>`\  . 
@@ -252,10 +282,16 @@ Member Function Description
 
     #. Your coffee mug is clean. 
 
+
+
     You can see :ref:`number_cups() <project::v1_0_0::coffee::machine::number_cups()const>`\  for how many cups 
+
+
 
     Parameter ``cups``:
         The number of cups 
+
+
 
 
 
@@ -271,6 +307,8 @@ Member Function Description
         The number of cups 
 
 
+
+
 -----
 
 .. _project::v1_0_0::coffee::machine::version():
@@ -279,15 +317,21 @@ Member Function Description
 
     The version of the machine. 
 
+
+
     Example: 
 
     .. code-block:: c++
 
         std::cout << "The version";
-                   << project::coffee::machine::version() << "\n";
+                  << project::coffee::machine::version() << "\n";
+
+
 
 
     Remember to use ``\n`` rather than ``std::endl`` it is more efficient. 
+
+
 
     Returns:
         The version of the machine. Example: 
@@ -296,6 +340,8 @@ Member Function Description
 
             std::cout << machine::version();
             std::cout << "\n";
+
+
 
 
 
@@ -309,6 +355,8 @@ Member Function Description
     Get the first water tank. 
 
 
+
+
 -----
 
 .. _project::v1_0_0::coffee::machine::tank():
@@ -316,6 +364,8 @@ Member Function Description
 | :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>`\  & **tank** ()
 
     Get the first water tank. 
+
+
 
 
 -----
@@ -327,6 +377,8 @@ Member Function Description
     Get all water tanks. 
 
 
+
+
 -----
 
 .. _project::v1_0_0::coffee::machine::add_beans<class,uint32_t>(constBeans&beans):
@@ -336,11 +388,17 @@ Member Function Description
 
     Add a generic beans 
 
+
+
     Template parameter: class ``Beans``  = Arabica
         The generic bean type 
 
+
+
     Template parameter: uint32_t ``BeanSize``  = 100
         The size of a bean 
+
+
 
 
 
@@ -353,6 +411,8 @@ Member Function Description
     Get the number of beans needed for a given mug. 
 
 
+
+
 -----
 
 .. _project::v1_0_0::coffee::machine::get_last_cup()const:
@@ -360,6 +420,8 @@ Member Function Description
 | auto **get_last_cup** () const
 
     Get the last cup of coffee. 
+
+
 
 
 -----
@@ -370,8 +432,12 @@ Member Function Description
 
     This header is `src/coffee/coffee.h` if this is important? Also there is an example in `examples/header/header.h` 
 
+
+
     Returns:
         the mug_size 
+
+
 
 
 -----
@@ -391,6 +457,8 @@ Member Function Description
 
 
 
+
+
 Type Description
 ----------------
 
@@ -399,6 +467,8 @@ Type Description
 using **callback** = std::function< void()>
 
     The generic callback type. 
+
+
 
     
 
@@ -410,10 +480,9 @@ typedef :ref:`callback <project::v1_0_0::coffee::machine::callback>`\  **other_c
 
     Another way to define a type is a typedef. 
 
+
+
     
-
-
-
 
 
 

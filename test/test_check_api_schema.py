@@ -9,10 +9,10 @@ test_api = {
         'inline': True,
         'members': ['class_dfdsfsd'],
         'briefdescription': [
-            {'kind': 'text', 'content': 'bla bla'}
+            [{'kind': 'text', 'content': 'bla bla'}]
         ],
         'detaileddescription': [
-            {'kind': 'text', 'content': 'bla bla'}
+            [{'kind': 'text', 'content': 'bla bla'}]
         ]
     },
     'file_dfsd': {
@@ -37,18 +37,23 @@ test_api = {
         'access': 'private',
         'members': ["variable_fsdfsddsfsdfs"],
         'briefdescription': [
-            {'kind': 'text', 'content': 'bla bla'}
+            [{'kind': 'text', 'content': 'bla bla'}]
         ],
         'detaileddescription': [
-            {'kind': 'code', 'content': 'bla bla', 'is_block': True},
-            {'kind': 'list', 'ordered': True, 'items': [[
+            [
                 {'kind': 'code', 'content': 'bla bla', 'is_block': True},
-                {'kind': 'text', 'content': 'bla bla'},
-                {'kind': 'list', 'ordered': True, 'items': [[
-                    {'kind': 'code', 'content': 'bla', 'is_block': True},
-                    {'kind': 'text', 'content': 'bla'}]]
-                 }]]
-             }
+                {'kind': 'list', 'ordered': True, 'items': [
+                    [
+                        [{'kind': 'code', 'content': 'bla bla', 'is_block': True},
+                         {'kind': 'text', 'content': 'bla bla'}],
+                        [{'kind': 'text', 'content': 'bla bla'}],
+                        [{'kind': 'list', 'ordered': True, 'items': [
+                            [[{'kind': 'code', 'content': 'bla', 'is_block': True}]],
+                            [[{'kind': 'text', 'content': 'bla'}]]
+                        ]}]
+                    ]
+                ]
+            }]
         ]
     },
     'enum_dfsdd': {
@@ -66,28 +71,28 @@ test_api = {
             {
                 'name': 'a',
                 'briefdescription': [
-                    {'kind': 'text', 'content': 'bla bla'}
+                    [{'kind': 'text', 'content': 'bla bla'}]
                 ],
                 'detaileddescription': [
-                    {'kind': 'text', 'content': 'bla bla'}
+                    [{'kind': 'text', 'content': 'bla bla'}]
                 ],
                 'value': "dsf"
             },
             {
                 'name': 'b',
                 'briefdescription': [
-                    {'kind': 'text', 'content': 'bla bla'}
+                    [{'kind': 'text', 'content': 'bla bla'}]
                 ],
                 'detaileddescription': [
-                    {'kind': 'text', 'content': 'bla bla'}
+                    [{'kind': 'text', 'content': 'bla bla'}]
                 ]
             }
         ],
         'briefdescription': [
-            {'kind': 'text', 'content': 'bla bla'}
+            [{'kind': 'text', 'content': 'bla bla'}]
         ],
         'detaileddescription': [
-            {'kind': 'text', 'content': 'bla bla'}
+            [{'kind': 'text', 'content': 'bla bla'}]
         ]
     },
     'using_tryrt': {
@@ -102,14 +107,16 @@ test_api = {
             }
         }],
         'briefdescription': [
-            {
-                'kind': 'text', 'content': 'bla bla', 'link': {
-                    'url': True, 'value': 'www.steinwurf.com'
+            [
+                {
+                    'kind': 'text', 'content': 'bla bla', 'link': {
+                        'url': True, 'value': 'www.steinwurf.com'
+                    }
                 }
-            }
+            ]
         ],
         'detaileddescription': [
-            {'kind': 'text', 'content': 'bla bla'}
+            [{'kind': 'text', 'content': 'bla bla'}]
         ]
     },
     'function_fsdfsdfs': {
@@ -124,7 +131,7 @@ test_api = {
                 }
             }],
             'description': [
-                {'kind': 'text', 'content': 'bla bla'}
+                [{'kind': 'text', 'content': 'bla bla'}]
             ]
         },
         'is_const': True,
@@ -137,10 +144,10 @@ test_api = {
         'trailing_return': False,
         'access': 'public',
         'briefdescription': [
-            {'kind': 'text', 'content': 'bla bla'}
+            [{'kind': 'text', 'content': 'bla bla'}]
         ],
         'detaileddescription': [
-            {'kind': 'text', 'content': 'bla bla'}
+            [{'kind': 'text', 'content': 'bla bla'}]
         ],
         'parameters': [
             {
@@ -151,13 +158,13 @@ test_api = {
                 }],
                 'name': 'aaa',
                 'description': [
-                    {'kind': 'text', 'content': 'bla bla'}
+                    [{'kind': 'text', 'content': 'bla bla'}]
                 ]
             },
             {
                 'type': [{'value': 'uint32_t'}],
                 'description': [
-                    {'kind': 'text', 'content': 'bla bla'}
+                    [{'kind': 'text', 'content': 'bla bla'}]
                 ]
             }
         ],
@@ -177,10 +184,10 @@ test_api = {
         'trailing_return': False,
         'access': 'public',
         'briefdescription': [
-            {'kind': 'text', 'content': 'bla bla'}
+            [{'kind': 'text', 'content': 'bla bla'}]
         ],
         'detaileddescription': [
-            {'kind': 'text', 'content': 'bla bla'}
+            [{'kind': 'text', 'content': 'bla bla'}]
         ],
         'parameters': []
     },
@@ -202,10 +209,10 @@ test_api = {
         'scope': 'dfsds::ds',
         'access': 'public',
         'briefdescription': [
-            {'kind': 'text', 'content': 'bla bla'}
+            [{'kind': 'text', 'content': 'bla bla'}]
         ],
         'detaileddescription': [
-            {'kind': 'text', 'content': 'bla bla'}
+            [{'kind': 'text', 'content': 'bla bla'}]
         ]
     },
 }

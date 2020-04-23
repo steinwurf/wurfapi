@@ -2,10 +2,12 @@
   "variables": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "Not important.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Not important.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "kind": "struct",
@@ -34,10 +36,12 @@
   "variables::a": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "This is a a variable.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "This is a a variable.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "is_const": false,
@@ -66,10 +70,12 @@
   "variables::b": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "This is a b variable.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "This is a b variable.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "is_const": true,
@@ -95,10 +101,12 @@
   "variables::c": {
     "access": "private",
     "briefdescription": [
-      {
-        "content": "This is a c variable.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "This is a c variable.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "is_const": false,
@@ -124,10 +132,12 @@
   "variables::dddd": {
     "access": "protected",
     "briefdescription": [
-      {
-        "content": "This is a dddd variable.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "This is a dddd variable.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "is_const": false,
@@ -153,10 +163,12 @@
   "variables::eeee": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "Test with alias.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Test with alias.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "is_const": false,
@@ -185,10 +197,12 @@
   "variables::my_type_const": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "Special type for the variable a.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Special type for the variable a.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "kind": "using",
@@ -208,10 +222,12 @@
   "variables::size": {
     "access": "protected",
     "briefdescription": [
-      {
-        "content": "This is the size of dddd.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "This is the size of dddd.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "is_const": false,

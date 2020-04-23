@@ -1,4 +1,3 @@
-{%- from 'macros.rst' import format_description -%}
 {%- from 'macros.rst' import format_type_list -%}
 {%- from 'macros.rst' import format_heading -%}
 {%- from 'macros.rst' import format_function -%}

@@ -7,33 +7,43 @@
   "set(constheat&h,intmax)const": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "Set the heat.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Set the heat.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [
-      {
-        "content": "This function is use to set the head of the machine.",
-        "kind": "text"
-      },
-      {
-        "content": "void yes();\n",
-        "is_block": true,
-        "kind": "code"
-      },
-      {
-        "content": "But maybe it also does other things?",
-        "kind": "text"
-      },
-      {
-        "content": "Test this break",
-        "kind": "text"
-      },
-      {
-        "content": "And then some text",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "This function is use to set the head of the machine.",
+          "kind": "text"
+        },
+        {
+          "content": "void yes();\n",
+          "is_block": true,
+          "kind": "code"
+        }
+      ],
+      [
+        {
+          "content": "But maybe it also does other things?",
+          "kind": "text"
+        }
+      ],
+      [
+        {
+          "content": "Test this break",
+          "kind": "text"
+        }
+      ],
+      [
+        {
+          "content": "And then some text",
+          "kind": "text"
+        }
+      ]
     ],
     "is_const": true,
     "is_constructor": false,
@@ -52,10 +62,12 @@
     "parameters": [
       {
         "description": [
-          {
-            "content": "Set the heat object.",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "Set the heat object.",
+              "kind": "text"
+            }
+          ]
         ],
         "name": "h",
         "type": [
@@ -69,10 +81,12 @@
       },
       {
         "description": [
-          {
-            "content": "The maximum heat value.",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "The maximum heat value.",
+              "kind": "text"
+            }
+          ]
         ],
         "name": "max",
         "type": [
@@ -87,15 +101,17 @@
     ],
     "return": {
       "description": [
-        {
-          "content": "The current heat.",
-          "kind": "text"
-        },
-        {
-          "content": "for (uint64_t i = 0; i < 3; ++i)\n{\n    std::cout << i << \"\\n\";\n}\n",
-          "is_block": true,
-          "kind": "code"
-        }
+        [
+          {
+            "content": "The current heat.",
+            "kind": "text"
+          },
+          {
+            "content": "for (uint64_t i = 0; i < 3; ++i)\n{\n    std::cout << i << \"\\n\";\n}\n",
+            "is_block": true,
+            "kind": "code"
+          }
+        ]
       ],
       "type": [
         {
@@ -110,10 +126,12 @@
     "access": "public",
     "briefdescription": [],
     "detaileddescription": [
-      {
-        "content": "Test array parameters",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Test array parameters",
+          "kind": "text"
+        }
+      ]
     ],
     "is_const": true,
     "is_constructor": false,
@@ -132,10 +150,12 @@
     "parameters": [
       {
         "description": [
-          {
-            "content": "The name of the heat source as a const array",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "The name of the heat source as a const array",
+              "kind": "text"
+            }
+          ]
         ],
         "name": "array",
         "type": [
@@ -163,10 +183,12 @@
     "access": "public",
     "briefdescription": [],
     "detaileddescription": [
-      {
-        "content": "Test default parameters",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Test default parameters",
+          "kind": "text"
+        }
+      ]
     ],
     "is_const": false,
     "is_constructor": false,
@@ -185,10 +207,12 @@
     "parameters": [
       {
         "description": [
-          {
-            "content": "Testing bools",
-            "kind": "text"
-          }
+          [
+            {
+              "content": "Testing bools",
+              "kind": "text"
+            }
+          ]
         ],
         "name": "test",
         "type": [
@@ -222,10 +246,12 @@
     "access": "public",
     "briefdescription": [],
     "detaileddescription": [
-      {
-        "content": "Test convoluted stuff - Doxygen does not parse such things. So we cannot document the parameter x. It seems the recommended way is to create a typedef for the function pointer (which is also easier to read).",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Test convoluted stuff - Doxygen does not parse such things. So we cannot document the parameter x. It seems the recommended way is to create a typedef for the function pointer (which is also easier to read).",
+          "kind": "text"
+        }
+      ]
     ],
     "is_const": false,
     "is_constructor": false,

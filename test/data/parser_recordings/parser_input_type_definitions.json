@@ -2,10 +2,12 @@
   "type_definitions": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "Not important.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "Not important.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "kind": "struct",
@@ -29,10 +31,12 @@
   "type_definitions::my_bool": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "This is my bool.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "This is my bool.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "kind": "using",
@@ -52,10 +56,12 @@
   "type_definitions::really_a_string": {
     "access": "public",
     "briefdescription": [
-      {
-        "content": "This is really a string.",
-        "kind": "text"
-      }
+      [
+        {
+          "content": "This is really a string.",
+          "kind": "text"
+        }
+      ]
     ],
     "detaileddescription": [],
     "kind": "using",
