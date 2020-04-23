@@ -722,17 +722,20 @@ Python list of dictionaries representing template parameters::
 Text information
 .................
 
-Text information is stored in a list of paragraphs::
+Text information is stored in a list paragraphs::
 
-    paragraphs = [
-        [
+    paragraphs = [paragraph]
+
+A paragraph consists of a list of paragraph elements::
+
+    paragraph = [
           {
             "kind": "text" | "code" | "list",
             ...
           },
         ]
-        ...
-      ]
+
+Paragraph elements can be one of three kinds, "text", "code" or "list"::
 
     text = {
       'kind': 'text',
@@ -749,9 +752,8 @@ Text information is stored in a list of paragraphs::
     list = {
       'kind': 'list',
       'ordered': true | false,
-      'items': paragraphs # Each item is a list of paragraphs
+      'items': [paragraphs] # Each item is a list of paragraphs
     }
-
 
 
 Problem with ``unique-name`` for functions

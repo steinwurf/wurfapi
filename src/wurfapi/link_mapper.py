@@ -177,42 +177,43 @@ def split_text(text):
     return result
 
 
-def split_paragraphs(paragraphs):
-    """ Takes a list of paragraphs and splits it into as many components
+def split_paragraph(paragraph):
+    """ Takes a paragraph and splits it into as many paragraph elements
     as possible.
 
-    :param paragraphs: A list of paragraphs
-    :return: An expanded list of paragraphs
+    :param paragraph: A list of paragraph elements
+    :return: An expanded list of paragraph elements
     """
 
-    newlist = []
+    new_paragraph = []
 
-    for paragraph in paragraphs:
-        if paragraph['kind'] is "code":
-            newlist.append(paragraph)
+    for paragraph_element in paragraph:
+        if paragraph_element['kind'] is "code":
+            new_paragraph.append(paragraph_element)
             continue
 
-        if paragraph['kind'] is "list":
+        if paragraph_element['kind'] is "list":
 
             items = []
-            for item in paragraph['items']:
-                paras = []
-                for para in item:
-                    paras.append(split_paragraphs(paragraphs=para))
-                items.append(paras)
+            for item_paragraphs in paragraph_element['items']:
+                new_item_paragraphs = []
+                for item_paragraph in item_paragraphs:
+                    new_item_paragraphs.append(
+                        split_paragraph(paragraph=item_paragraph))
+                items.append(new_item_paragraphs)
 
-            paragraph['items'] = items
+            paragraph_element['items'] = items
 
-            newlist.append(paragraph)
+            new_paragraph.append(paragraph_element)
             continue
 
-        if "link" in paragraph:
-            newlist.append(paragraph)
+        if "link" in paragraph_element:
+            new_paragraph.append(paragraph_element)
             continue
 
-        newlist += split_text(paragraph)
+        new_paragraph += split_text(paragraph_element)
 
-    return newlist
+    return new_paragraph
 
 
 def join_paragraphs(paragraphs):
@@ -343,7 +344,7 @@ class LinkMapper(object):
         result = []
         for paragraphs in value:
             # 1. Split all the paragraphs into
-            split_paras = split_paragraphs(paragraphs=paragraphs)
+            split_paras = split_paragraph(paragraph=paragraphs)
 
             _add_links(paragraphs=split_paras)
 

@@ -168,11 +168,13 @@ def test_split_text():
 # def test_split_paragraphs():
 
 #     paragraphs = [
-#         {'kind': 'code'},
-#         {'content': 'some list of words', 'kind': 'text'},
-#         {'kind': 'list', 'items': [[
-#             {'content': 'some words', 'kind': 'text'}]
-#         ]}
+#         [
+#             {'kind': 'code'},
+#             {'kind': 'text', 'content': 'some list of words'},
+#             {'kind': 'list', 'items': [[
+#                 [{'content': 'some words', 'kind': 'text'}]
+#             ]]}
+#         ]
 #     ]
 
 #     result = wurfapi.link_mapper.split_paragraphs(paragraphs=paragraphs)
@@ -184,11 +186,10 @@ def test_split_text():
 #         {'content': 'of', 'kind': 'text'},
 #         {'content': 'words', 'kind': 'text'},
 #         {'kind': 'list',
-#          'items': [[
-#              {'content': 'some', 'kind': 'text'},
-#              {'content': 'words', 'kind': 'text'}
-#          ]]
-#          }
+#         'items': [[
+#             {'content': 'some', 'kind': 'text'},
+#             {'content': 'words', 'kind': 'text'}
+#         ]]}
 #     ]
 
 #     assert result == expected
