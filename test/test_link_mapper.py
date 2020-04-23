@@ -165,60 +165,55 @@ def test_split_text():
     assert result == expected
 
 
-# def test_split_paragraphs():
+def test_split_paragraph():
 
-#     paragraphs = [
-#         [
-#             {'kind': 'code'},
-#             {'kind': 'text', 'content': 'some list of words'},
-#             {'kind': 'list', 'items': [[
-#                 [{'content': 'some words', 'kind': 'text'}]
-#             ]]}
-#         ]
-#     ]
+    paragraph = [
+        {'kind': 'code'},
+        {'kind': 'text', 'content': 'some list of words'},
+        {'kind': 'list', 'items': [[
+            [{'content': 'some words', 'kind': 'text'}]
+        ]]}
+    ]
 
-#     result = wurfapi.link_mapper.split_paragraphs(paragraphs=paragraphs)
+    result = wurfapi.link_mapper.split_paragraph(paragraph=paragraph)
 
-#     expected = [
-#         {'kind': 'code'},
-#         {'content': 'some', 'kind': 'text'},
-#         {'content': 'list', 'kind': 'text'},
-#         {'content': 'of', 'kind': 'text'},
-#         {'content': 'words', 'kind': 'text'},
-#         {'kind': 'list',
-#         'items': [[
-#             {'content': 'some', 'kind': 'text'},
-#             {'content': 'words', 'kind': 'text'}
-#         ]]}
-#     ]
+    expected = [
+        {'kind': 'code'},
+        {'content': 'some', 'kind': 'text'},
+        {'content': 'list', 'kind': 'text'},
+        {'content': 'of', 'kind': 'text'},
+        {'content': 'words', 'kind': 'text'},
+        {'kind': 'list', 'items': [[
+            [{'content': 'some', 'kind': 'text'},
+             {'content': 'words', 'kind': 'text'}]
+        ]]}
+    ]
 
-#     assert result == expected
+    assert result == expected
 
 
-# def test_join_paragraphs():
+def test_join_paragraph():
 
-#     paragraphs = [
-#         {'kind': 'code'},
-#         {'content': 'some', 'kind': 'text'},
-#         {'content': 'list', 'kind': 'text'},
-#         {'content': 'of', 'kind': 'text'},
-#         {'content': 'words', 'kind': 'text'},
-#         {'kind': 'list',
-#          'items': [[
-#              {'content': 'some', 'kind': 'text'},
-#              {'content': 'words', 'kind': 'text'}
-#          ]]
-#          }
-#     ]
+    paragraph = [
+        {'kind': 'code'},
+        {'content': 'some', 'kind': 'text'},
+        {'content': 'list', 'kind': 'text'},
+        {'content': 'of', 'kind': 'text'},
+        {'content': 'words', 'kind': 'text'},
+        {'kind': 'list', 'items': [[
+             [{'content': 'some', 'kind': 'text'},
+              {'content': 'words', 'kind': 'text'}]
+        ]]}
+    ]
 
-#     result = wurfapi.link_mapper.join_paragraphs(paragraphs=paragraphs)
+    result = wurfapi.link_mapper.join_paragraph(paragraph=paragraph)
 
-#     expected = [
-#         {'kind': 'code'},
-#         {'content': 'some list of words', 'kind': 'text'},
-#         {'kind': 'list', 'items': [[
-#             {'content': 'some words', 'kind': 'text'}
-#         ]]}
-#     ]
+    expected = [
+        {'kind': 'code'},
+        {'content': 'some list of words', 'kind': 'text'},
+        {'kind': 'list', 'items': [[
+            [{'content': 'some words', 'kind': 'text'}]
+        ]]}
+    ]
 
-#     assert result == expected
+    assert result == expected

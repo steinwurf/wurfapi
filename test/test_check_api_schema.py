@@ -40,16 +40,19 @@ test_api = {
             [{'kind': 'text', 'content': 'bla bla'}]
         ],
         'detaileddescription': [
-            [{'kind': 'code', 'content': 'bla bla', 'is_block': True},
-             {'kind': 'list', 'ordered': True, 'items': [[
-                [{'kind': 'code', 'content': 'bla bla', 'is_block': True}],
-                [{'kind': 'text', 'content': 'bla bla'}],
-                [
-                    {'kind': 'list', 'ordered': True, 'items': [[
-                        [{'kind': 'code', 'content': 'bla', 'is_block': True}],
-                        [{'kind': 'text', 'content': 'bla'}]
-                    ]]
-                }]]]
+            [
+                {'kind': 'code', 'content': 'bla bla', 'is_block': True},
+                {'kind': 'list', 'ordered': True, 'items': [
+                    [
+                        [{'kind': 'code', 'content': 'bla bla', 'is_block': True},
+                         {'kind': 'text', 'content': 'bla bla'}],
+                        [{'kind': 'text', 'content': 'bla bla'}],
+                        [{'kind': 'list', 'ordered': True, 'items': [
+                            [[{'kind': 'code', 'content': 'bla', 'is_block': True}]],
+                            [[{'kind': 'text', 'content': 'bla'}]]
+                        ]}]
+                    ]
+                ]
             }]
         ]
     },

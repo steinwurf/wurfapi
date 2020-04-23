@@ -24,7 +24,7 @@ def transform_key(data, search_key, scope, function):
                 continue
 
             if found_key == search_key:
-                data[found_key] = function(value=value, scope=scope)
+                data[found_key] = function(value, scope=scope)
 
             transform_key(data=value, search_key=search_key,
                           scope=scope, function=function)
@@ -216,65 +216,67 @@ def split_paragraph(paragraph):
     return new_paragraph
 
 
-def join_paragraphs(paragraphs):
-    """ Takes a list of pragraphs and joins it into as few compenents
+def join_paragraph(paragraph):
+    """ Takes a paragraph and joins it into as few paragraph elements
     as possible.
 
-    :param paragraphs: A list of paragraphs
-    :return: An recduced list of paragraphs
+    :param paragraph: A paragraph
+    :return: An reduced paragraph
     """
 
-    result = []
+    new_paragraph = []
 
     # We use this item to accumulate the content from adjacent
     # text elements
     text = []
 
-    def _flush(paragraphs, text):
+    def _flush(paragraph, text):
         if text:
-            paragraphs.append(
+            paragraph.append(
                 {'kind': 'text', 'content': " ".join(text)})
 
             # Remove all elements in the list
             del text[:]
 
-    flush = functools.partial(_flush, paragraphs=result, text=text)
+    flush = functools.partial(_flush, paragraph=new_paragraph, text=text)
 
-    for paragraph in paragraphs:
+    for paragraph_element in paragraph:
 
-        if paragraph['kind'] is "code":
+        if paragraph_element['kind'] is "code":
             flush()
-            result.append(paragraph)
+            new_paragraph.append(paragraph_element)
             continue
 
-        if paragraph['kind'] is "list":
+        if paragraph_element['kind'] is "list":
 
             # A list contains even more paragraphs
             items = []
 
-            for item in paragraph['items']:
-                paras = []
-                for para in item:
-                    paras.append(join_paragraphs(paragraphs=para))
-                items.append(paras)
+            for item_paragraphs in paragraph_element['items']:
+                new_item_paragraphs = []
+                for item_paragraph in item_paragraphs:
+                    new_item_paragraphs.append(
+                        join_paragraph(paragraph=item_paragraph))
 
-            paragraph['items'] = items
+                items.append(new_item_paragraphs)
+
+            paragraph_element['items'] = items
 
             flush()
-            result.append(paragraph)
+            new_paragraph.append(paragraph_element)
             continue
 
-        if "link" in paragraph:
+        if "link" in paragraph_element:
             flush()
-            result.append(paragraph)
+            new_paragraph.append(paragraph_element)
             continue
 
-        text.append(paragraph['content'])
+        text.append(paragraph_element['content'])
 
     # If anything remains in the temporary flush it out
     flush()
 
-    return result
+    return new_paragraph
 
 
 class LinkMapper(object):
@@ -308,49 +310,52 @@ class LinkMapper(object):
 
         return mapped_api
 
-    def _map_paragraphs(self, value, scope):
-        """ Find links in the 'text' elements """
+    def _map_paragraphs(self, paragraphs, scope):
+        """ Find links in the 'text' elements
+        :param self: The LinkMapper
+        :param paragraphs: The paragraphs the find links in.
+        :param scope: The scope
+        """
 
-        def _add_links(paragraphs):
+        def _add_links(paragraph):
 
-            for paragraph in paragraphs:
+            for element in paragraph:
 
-                if paragraph['kind'] is 'code':
+                if element['kind'] is 'code':
                     continue
 
-                if paragraph['kind'] is 'list':
+                if element['kind'] is 'list':
 
-                    for item in paragraph['items']:
-                        for paras in item:
-                            _add_links(paras)
+                    for item_paragraphs in element['items']:
+                        for item_paragraph in item_paragraphs:
+                            _add_links(item_paragraph)
 
                     continue
 
-                if 'link' in paragraph:
+                if 'link' in element:
                     continue
 
-                if "::" not in paragraph['content']:
+                if "::" not in element['content']:
                     # We skip over stuff that does not have a scope
                     # qualifier in it. Just to avoid making random
                     # characters into links..
                     continue
 
                 link = self._find_link(
-                    typename=paragraph['content'], scope=scope)
+                    typename=element['content'], scope=scope)
 
                 if link:
-                    paragraph['link'] = link
+                    element['link'] = link
 
-        result = []
-        for paragraphs in value:
-            # 1. Split all the paragraphs into
-            split_paras = split_paragraph(paragraph=paragraphs)
+        new_paragraphs = []
+        for paragraph in paragraphs:
+            new_paragraph = split_paragraph(paragraph=paragraph)
 
-            _add_links(paragraphs=split_paras)
+            _add_links(paragraph=new_paragraph)
 
-            result.append(join_paragraphs(paragraphs=split_paras))
+            new_paragraphs.append(join_paragraph(paragraph=new_paragraph))
 
-        return result
+        return new_paragraphs
 
     def _map_type(self, value, scope):
         """ Find links in the 'type' lists """
@@ -358,7 +363,7 @@ class LinkMapper(object):
         # 1. Split the type into it most basic elements
         typelist = split_typelist(typelist=value)
 
-        # 2. Check if we have a link for each of the itms
+        # 2. Check if we have a link for each of the items
         for item in typelist:
 
             if "link" in item:
@@ -392,7 +397,7 @@ class LinkMapper(object):
             return
 
         if typename in self.api:
-            # The typename was found diretly in the API
+            # The typename was found directly in the API
             return {"url": False, "value": typename}
 
         if scope is None:

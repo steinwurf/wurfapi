@@ -74,23 +74,23 @@ def check_api_schema(api):
 
             return data
 
-    # Paragraphs text schema
-    paragraphs_text_schema = schema.Schema({
+    # Paragraph text element schema
+    paragraph_text_schema = schema.Schema({
         'kind': 'text',
         'content': string_schema,
         schema.Optional('link'): LinkSchema(api=api)
     })
 
-    # Paragraphs code schema
-    paragraphs_code_schema = schema.Schema({
+    # Paragraph code element schema
+    paragraph_code_schema = schema.Schema({
         'kind': 'code',
         'content': string_schema,
         'is_block': bool
     })
 
-    # Paragraphs list schema
+    # Paragraph list element schema
 
-    class ItemsParagraphs(object):
+    class ItemParagraphs(object):
 
         def __init__(self):
             self.use_schema = None
@@ -99,30 +99,35 @@ def check_api_schema(api):
             return self.use_schema.validate(data)
 
     # We define a validator object but defer the initialization of the schema to
-    # use. The reason is the items kind is itself a list of paragraphs so we
+    # use. The reason is the item kind is itself a list of paragraphs so we
     # have a recursive dependency.
-    items_paragraphs = ItemsParagraphs()
+    item_paragraphs = ItemParagraphs()
 
-    paragraphs_list_schema = schema.Schema({
+    paragraph_list_schema = schema.Schema({
         'kind': 'list',
         'ordered': bool,
-        'items': [items_paragraphs]
+        'items': [item_paragraphs]
     })
 
-    # Paragraphs schema
-    paragraphs_schema = schema.Schema([[
+    # Paragraph Element schema
+    paragraph_element_schema = schema.Schema(
         schema.Or(
-            paragraphs_text_schema,
-            paragraphs_code_schema,
-            paragraphs_list_schema
+            paragraph_text_schema,
+            paragraph_code_schema,
+            paragraph_list_schema
         )
-    ]])
+    )
 
-    # Initilize the items schema which itself is a list of paragraphs
-    items_paragraphs.use_schema = paragraphs_schema
+    # Paragraph schema
+    paragraph_schema = schema.Schema([paragraph_element_schema])
+
+    # Paragraphs schema
+    paragraphs_schema = schema.Schema([paragraph_schema])
+
+    # Initialize the item schema which itself is a list of paragraphs
+    item_paragraphs.use_schema = paragraphs_schema
 
     # Type schema
-
     type_schema = schema.Schema([{
         'value': string_schema,
         schema.Optional('link'): LinkSchema(api=api)
