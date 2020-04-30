@@ -572,7 +572,6 @@ Python dictionary representing a C++ function::
         'type': type,
         'description': paragraphs
       }
-      'signature': 'text',
       Optional('template_parameters'): template_parameters,
       'is_const': True | False,
       'is_static': True | False,
