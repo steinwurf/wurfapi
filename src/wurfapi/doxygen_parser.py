@@ -322,8 +322,9 @@ def parse(parser, log, xml):
 
 @DoxygenParser.register(tag='sectiondef', attrib={'kind': 'enum'})
 @DoxygenParser.register(tag='sectiondef', attrib={'kind': 'func'})
+@DoxygenParser.register(tag='sectiondef', attrib={'kind': 'define'})
 def parse(parser, xml):
-    """ Parses Doxygen sectiondefType of kind 'func' """
+    """ Parses Doxygen sectiondefType """
 
     api = {}
 
@@ -605,6 +606,32 @@ def parse(xml, parser, log, scope):
     parser.id_mapping[xml.attrib["id"]] = unique_name
 
     return {unique_name: result}
+
+
+@DoxygenParser.register(tag="memberdef", attrib={"kind": "define"})
+def parse(xml, parser, log, scope):
+    """ Parses Doxygen memberdefType
+
+    :return: API dictionary
+    """
+    result = {}
+
+    name = xml.findtext("name")
+    result["name"] = name
+    result['location'] = parser.parse_element(xml=xml.find('location'))
+    result["briefdescription"] = parser.parse_element(
+        xml=xml.find("briefdescription"))
+    result["detaileddescription"] = parser.parse_element(
+        xml=xml.find("detaileddescription"))
+
+    initializer = xml.findtext("initializer", default=None)
+    if initializer:
+        result['initializer'] = initializer
+
+    # Save mapping from doxygen id to unique name
+    parser.id_mapping[xml.attrib["id"]] = result['name']
+
+    return {result['name']: result}
 
 
 @DoxygenParser.register(tag="location")

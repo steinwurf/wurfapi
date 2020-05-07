@@ -405,6 +405,12 @@ scopes e.g. ``foo::bar::baz``.
 * In addition to types, we also have entries for the parsed files. For files
   the unique name will be the relative path from the project root.
 
+* For defines we will use the name of the define. As an example::
+
+      #define PROJECT_VERSION "1.0.0"
+
+  Here ``unique-name`` will be ``PROJECT_VERSION``.
+
 .. _cppreference: http://en.cppreference.com/w/cpp/language/member_functions
 .. _standardese: https://github.com/foonathan/standardese#linking
 
@@ -543,6 +549,20 @@ Python dictionary representing a C++ using or typedef statement::
       'scope': 'unique-name' | None,
       'access': 'public' | 'protected' | 'private',
       'type': type,
+      'briefdescription': paragraphs,
+      'detaileddescription': paragraphs
+    }
+
+``define`` Kind
+...............
+
+Python dictionary representing a define statement::
+
+    info = {
+      'kind': 'define',
+      'name': 'name',
+      'location': location,
+      'initializer': 'some_value',
       'briefdescription': paragraphs,
       'detaileddescription': paragraphs
     }
