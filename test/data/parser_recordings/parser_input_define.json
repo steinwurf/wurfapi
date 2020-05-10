@@ -1,0 +1,105 @@
+{
+  "NOVALUE": {
+    "briefdescription": [],
+    "detaileddescription": [],
+    "kind": "macro",
+    "location": {
+      "line-end": null,
+      "line-start": 8,
+      "path": "define.hpp"
+    },
+    "name": "NOVALUE"
+  },
+  "REGISTER_MESSAGE_TYPE": {
+    "briefdescription": [],
+    "detaileddescription": [
+      [
+        {
+          "content": "Users must call this macro to register their messages...",
+          "kind": "text"
+        }
+      ],
+      [
+        {
+          "content": "...lest they be forced to type all sorts of boring and error-prone boiler plate code. blah blah blah... More specific documentation and explanation...",
+          "kind": "text"
+        }
+      ]
+    ],
+    "initializer": "do_some(MSG, TYPE);                  \\\n    seriously();                         \\\n    crazy_stuff(MSG, TYPE);",
+    "kind": "macro",
+    "location": {
+      "line-end": null,
+      "line-start": 39,
+      "path": "define.hpp"
+    },
+    "name": "REGISTER_MESSAGE_TYPE",
+    "parameters": [
+      {
+        "description": [
+          [
+            {
+              "content": "The type of message",
+              "kind": "text"
+            }
+          ]
+        ],
+        "name": "MSG"
+      },
+      {
+        "description": [
+          [
+            {
+              "content": "The type of message",
+              "kind": "text"
+            }
+          ]
+        ],
+        "name": "TYPE"
+      }
+    ]
+  },
+  "TEST": {
+    "briefdescription": [],
+    "detaileddescription": [],
+    "initializer": "0",
+    "kind": "macro",
+    "location": {
+      "line-end": null,
+      "line-start": 7,
+      "path": "define.hpp"
+    },
+    "name": "TEST"
+  },
+  "VERSION": {
+    "briefdescription": [
+      [
+        {
+          "content": "The version as a string.",
+          "kind": "text"
+        }
+      ]
+    ],
+    "detaileddescription": [
+      [
+        {
+          "content": "Some more detailed description of when to use this define.",
+          "kind": "text"
+        }
+      ]
+    ],
+    "initializer": "\"1.0.0\"",
+    "kind": "macro",
+    "location": {
+      "line-end": null,
+      "line-start": 6,
+      "path": "define.hpp"
+    },
+    "name": "VERSION"
+  },
+  "define.hpp": {
+    "kind": "file",
+    "name": "define.hpp",
+    "path": "define.hpp"
+  }
+}

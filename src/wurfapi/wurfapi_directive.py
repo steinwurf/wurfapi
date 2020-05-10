@@ -75,14 +75,14 @@ class WurfapiDirective(docutils.parsers.rst.Directive):
         env = self.state.document.settings.env
         app = env.app
         api = app.wurfapi_api
-        selector = self.options["selector"]
+        selector = self.options["selector"] if "selector" in self.options else None
         user_path = app.config.wurfapi.get('user_templates', None)
 
         if user_path:
             # Make sure it is relative to the documentation directory
             user_path = os.path.join(app.srcdir, user_path)
 
-        if selector not in api:
+        if selector and selector not in api:
             raise wurfapi_error.WurfapiError(
                 'Selector "{}" not in API possible values are {}'.format(
                     selector, api.keys()))
@@ -90,7 +90,7 @@ class WurfapiDirective(docutils.parsers.rst.Directive):
         template = template_render.TemplateRender(user_path=user_path)
 
         data = template.render(
-            selector=self.options['selector'], api=app.wurfapi_api,
+            selector=selector, api=app.wurfapi_api,
             filename=template_path)
 
         # Dump the rst to a file - mostly for debugging purposes

@@ -210,6 +210,20 @@ def check_api_schema(api):
         'detaileddescription': paragraphs_schema
     })
 
+    # Macro schema
+    macro_schema = schema.Schema({
+        'kind': 'macro',
+        'name': string_schema,
+        'location': location_schema,
+        schema.Optional('initializer'): string_schema,
+        schema.Optional('parameters'): [{
+            'name': string_schema,
+            schema.Optional('description'): paragraphs_schema
+        }],
+        'briefdescription': paragraphs_schema,
+        'detaileddescription': paragraphs_schema
+    })
+
     # Function schema
     function_schema = schema.Schema({
         'kind': 'function',
@@ -265,7 +279,8 @@ def check_api_schema(api):
         'typedef': typedef_using_schema,
         'using': typedef_using_schema,
         'function': function_schema,
-        'variable': variable_schema
+        'variable': variable_schema,
+        'macro': macro_schema
     }
 
     class SchemaApi(object):

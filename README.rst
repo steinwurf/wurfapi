@@ -553,19 +553,37 @@ Python dictionary representing a C++ using or typedef statement::
       'detaileddescription': paragraphs
     }
 
-``define`` Kind
+``macro`` Kind
 ...............
 
-Python dictionary representing a define statement::
+Python dictionary representing a C/C++ macro::
 
     info = {
-      'kind': 'define',
+      'kind': 'macro',
       'name': 'name',
       'location': location,
-      'initializer': 'some_value',
+      Optional('initializer'): 'some_value',
+      Optional('parameters'): [{
+          'name': 'somestring',
+          Optional('description'): paragraphs
+      }],
       'briefdescription': paragraphs,
       'detaileddescription': paragraphs
     }
+
+The content of the macro will be in the ``initializer`` field. If the macro
+takes documented paremeters these will be under the ``parameter`` key.
+
+Examples:
+
+1. Macro initializer::
+
+      #define VERSION "1.0.2"
+
+2. Macro initalizer with parameters::
+
+      #define min(X, Y)  ((X) < (Y) ? (X) : (Y))
+
 
 ``file`` Kind
 ............................

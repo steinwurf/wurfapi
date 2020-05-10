@@ -608,6 +608,36 @@ def parse(xml, parser, log, scope):
     return {unique_name: result}
 
 
+def parse_macro_parameters(xml, parser):
+    """ Helper for parsing macro parameters
+
+    :param xml: A doxygen memberdef element which may be a template
+    :return: A template_parameters list or None (an empty list indicates a
+        template specilization)
+    """
+    parameters = xml.find('parameterlist')
+
+    if parameters is None:
+        # We did not find a parameterlist element so this macro does not take
+        # any elements
+        return None
+
+    # The parser for the parameterlist XML element returns a dict which has
+    # parameter name as key and the description as the corresponding value
+    parameters = parser.parse_element(xml=parameters)
+
+    result = []
+
+    for name, description in parameters:
+        parameter = {'name': name}
+        if description:
+            parameter['description'] = description
+
+        result.append(parameter)
+
+    return result
+
+
 @DoxygenParser.register(tag="memberdef", attrib={"kind": "define"})
 def parse(xml, parser, log, scope):
     """ Parses Doxygen memberdefType
@@ -616,6 +646,7 @@ def parse(xml, parser, log, scope):
     """
     result = {}
 
+    result["kind"] = "macro"
     name = xml.findtext("name")
     result["name"] = name
     result['location'] = parser.parse_element(xml=xml.find('location'))
@@ -627,6 +658,33 @@ def parse(xml, parser, log, scope):
     initializer = xml.findtext("initializer", default=None)
     if initializer:
         result['initializer'] = initializer
+
+    # Description of the tempalte parameters are in the parameterlist tags
+    # with the attribute kind="param"
+    parameterlists = xml.findall(
+        './/parameterlist[@kind = "param"]')
+
+    parameters = []
+
+    for parameterlist in parameterlists:
+
+        parameterlist = parser.parse_element(xml=parameterlist)
+
+        log.debug("pameterlist {}".format(parameterlist))
+
+        for name in parameterlist:
+
+            parameter = {'name': name}
+
+            if parameterlist[name]:
+                parameter['description'] = parameterlist[name]
+
+            parameters.append(parameter)
+
+    if parameters:
+        result['parameters'] = parameters
+
+    log.debug("parse macro: {}".format(result))
 
     # Save mapping from doxygen id to unique name
     parser.id_mapping[xml.attrib["id"]] = result['name']
@@ -770,7 +828,7 @@ def parse_template_parameters(xml, parser):
     template_parameters = parser.parse_element(xml=templatelist)
 
     # Description of the tempalte parameters are in the parameterlist tags
-    # with the attribute kind="param"
+    # with the attribute kind="templateparam"
     parameterlists = xml.findall(
         './/parameterlist[@kind = "templateparam"]')
 
