@@ -267,7 +267,7 @@ Template parameter: {{ type }} ``{{ name }}`` {{ " = " + default if default }}
 
 {# FORMAT_FUNCTION #}
 
-{% macro format_function(api, selector, include_label=True) %}
+{% macro format_function(selector, include_label=True) %}
 {% if include_label %}
 .. _{{selector}}:
 

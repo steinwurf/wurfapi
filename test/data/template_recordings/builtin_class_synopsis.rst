@@ -1,5 +1,4 @@
 
-
 .. _project::v1_0_0::coffee::machine:
 
 class machine
