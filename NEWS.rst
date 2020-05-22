@@ -6,6 +6,10 @@ of every change, see the Git log.
 
 Latest
 ------
+* tbd
+
+6.0.1
+-----
 * Patch: Fix issue with context missing when using function_synopsis.
 
 6.0.0
