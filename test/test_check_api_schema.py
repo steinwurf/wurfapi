@@ -32,7 +32,7 @@ test_api = {
                 'value': 'uint32_t'
             }]
         }],
-        'location': {'path': 'some.h', 'line-start': 10, 'line-end': 11},
+        'location': {'path': 'some.h', 'line': 10},
         'scope': "fdsfd",
         'access': 'private',
         'members': ["variable_fsdfsddsfsdfs"],
@@ -62,8 +62,7 @@ test_api = {
         'location': {
             'path': 'some.h',
             'include': 'some.h',
-            'line-start': 10,
-            'line-end': None
+            'line': 10
         },
         'scope': None,
         'access': 'public',
@@ -98,7 +97,7 @@ test_api = {
     'using_tryrt': {
         'kind': 'using',
         'name': "dfsfdsfds",
-        'location': {'path': 'some.h', 'line-start': 10, 'line-end': None},
+        'location': {'path': 'some.h', 'line': 10},
         'scope': 'dfsds',
         'access': 'private',
         'type': [{
@@ -122,7 +121,7 @@ test_api = {
     'function_fsdfsdfs': {
         'kind': 'function',
         'name': "dfsfdsfddfsdfs",
-        'location': {'path': 'sdd.h', 'line-start': 10, 'line-end': 15},
+        'location': {'path': 'sdd.h', 'line': 10},
         'scope': 'dfsds::ds',
         'return': {
             'type': [{
@@ -172,7 +171,7 @@ test_api = {
     'function_fsdfsdfsaa': {
         'kind': 'function',
         'name': "dfsfdsfddfsdfs",
-        'location': {'path': 'sdd.h', 'line-start': 10, 'line-end': 15},
+        'location': {'path': 'sdd.h', 'line': 10},
         'scope': 'dfsds::ds',
         'is_const': True,
         'is_static': False,
@@ -200,7 +199,7 @@ test_api = {
                 'url': True, 'value': 'www.steinwurf.com'
             }
         }],
-        'location': {'path': 'sdd.h', 'line-start': 10, 'line-end': 15},
+        'location': {'path': 'sdd.h', 'line': 10},
         'is_static': False,
         'is_mutable': True,
         'is_volatile': False,
@@ -216,10 +215,10 @@ test_api = {
         ]
     },
     'define_fsdfsddsfsdfs': {
-        'kind': 'macro',
+        'kind': 'define',
         'name': 'VERSION',
         'initializer': '10',
-        'location': {'path': 'sdd.h', 'line-start': 10, 'line-end': 15},
+        'location': {'path': 'sdd.h', 'line': 10, },
         'briefdescription': [
             [{'kind': 'text', 'content': 'bla bla'}]
         ],
@@ -228,10 +227,10 @@ test_api = {
         ]
     },
     'define_fsddsfsdfs': {
-        'kind': 'macro',
+        'kind': 'define',
         'name': 'VERSION',
         'initializer': '10',
-        'location': {'path': 'sdd.h', 'line-start': 10, 'line-end': 15},
+        'location': {'path': 'sdd.h', 'line': 10},
         'parameters': [
             {'name': 'A', 'description': [
                 [{'kind': 'text', 'content': 'bla bla'}]]},

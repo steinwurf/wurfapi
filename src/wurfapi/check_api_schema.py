@@ -31,8 +31,7 @@ def check_api_schema(api):
     location_schema = schema.Schema({
         'path': string_schema,
         schema.Optional('include'): string_schema,
-        'line-start': int,
-        'line-end': schema.Or(int, None)
+        'line': int
     })
 
     # Check that members's 'unique-name' is in the API
@@ -210,9 +209,9 @@ def check_api_schema(api):
         'detaileddescription': paragraphs_schema
     })
 
-    # Macro schema
-    macro_schema = schema.Schema({
-        'kind': 'macro',
+    # Define schema
+    define_schema = schema.Schema({
+        'kind': 'define',
         'name': string_schema,
         'location': location_schema,
         schema.Optional('initializer'): string_schema,
@@ -280,7 +279,7 @@ def check_api_schema(api):
         'using': typedef_using_schema,
         'function': function_schema,
         'variable': variable_schema,
-        'macro': macro_schema
+        'define': define_schema
     }
 
     class SchemaApi(object):

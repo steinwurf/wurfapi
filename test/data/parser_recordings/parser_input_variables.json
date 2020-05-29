@@ -12,8 +12,7 @@
     "detaileddescription": [],
     "kind": "struct",
     "location": {
-      "line-end": 26,
-      "line-start": 2,
+      "line": 3,
       "path": "variables.hpp"
     },
     "members": [
@@ -51,8 +50,7 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "line-end": null,
-      "line-start": 8,
+      "line": 8,
       "path": "variables.hpp"
     },
     "name": "a",
@@ -85,8 +83,7 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "line-end": null,
-      "line-start": 11,
+      "line": 11,
       "path": "variables.hpp"
     },
     "name": "b",
@@ -116,8 +113,7 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "line-end": null,
-      "line-start": 18,
+      "line": 18,
       "path": "variables.hpp"
     },
     "name": "c",
@@ -147,8 +143,7 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "line-end": null,
-      "line-start": 22,
+      "line": 22,
       "path": "variables.hpp"
     },
     "name": "dddd",
@@ -178,8 +173,7 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "line-end": null,
-      "line-start": 14,
+      "line": 14,
       "path": "variables.hpp"
     },
     "name": "eeee",
@@ -207,8 +201,7 @@
     "detaileddescription": [],
     "kind": "using",
     "location": {
-      "line-end": null,
-      "line-start": 5,
+      "line": 5,
       "path": "variables.hpp"
     },
     "name": "my_type_const",
@@ -237,8 +230,7 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "line-end": null,
-      "line-start": 25,
+      "line": 25,
       "path": "variables.hpp"
     },
     "name": "size",

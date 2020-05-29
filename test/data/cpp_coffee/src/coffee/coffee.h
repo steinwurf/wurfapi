@@ -221,3 +221,6 @@ void print(int a_number, bool on_paper);
 }
 }
 std::string version();
+
+/// The coffee version
+#define COFFEE_VERSION "1.0.0"

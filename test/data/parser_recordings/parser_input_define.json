@@ -2,10 +2,9 @@
   "NOVALUE": {
     "briefdescription": [],
     "detaileddescription": [],
-    "kind": "macro",
+    "kind": "define",
     "location": {
-      "line-end": null,
-      "line-start": 8,
+      "line": 8,
       "path": "define.hpp"
     },
     "name": "NOVALUE"
@@ -27,10 +26,9 @@
       ]
     ],
     "initializer": "do_some(MSG, TYPE);                  \\\n    seriously();                         \\\n    crazy_stuff(MSG, TYPE);",
-    "kind": "macro",
+    "kind": "define",
     "location": {
-      "line-end": null,
-      "line-start": 39,
+      "line": 39,
       "path": "define.hpp"
     },
     "name": "REGISTER_MESSAGE_TYPE",
@@ -63,10 +61,9 @@
     "briefdescription": [],
     "detaileddescription": [],
     "initializer": "0",
-    "kind": "macro",
+    "kind": "define",
     "location": {
-      "line-end": null,
-      "line-start": 7,
+      "line": 7,
       "path": "define.hpp"
     },
     "name": "TEST"
@@ -89,10 +86,9 @@
       ]
     ],
     "initializer": "\"1.0.0\"",
-    "kind": "macro",
+    "kind": "define",
     "location": {
-      "line-end": null,
-      "line-start": 6,
+      "line": 6,
       "path": "define.hpp"
     },
     "name": "VERSION"

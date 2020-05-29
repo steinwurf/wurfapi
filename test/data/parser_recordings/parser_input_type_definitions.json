@@ -12,8 +12,7 @@
     "detaileddescription": [],
     "kind": "struct",
     "location": {
-      "line-end": 9,
-      "line-start": 2,
+      "line": 3,
       "path": "type_definitions.hpp"
     },
     "members": [
@@ -41,8 +40,7 @@
     "detaileddescription": [],
     "kind": "using",
     "location": {
-      "line-end": null,
-      "line-start": 5,
+      "line": 5,
       "path": "type_definitions.hpp"
     },
     "name": "my_bool",
@@ -66,8 +64,7 @@
     "detaileddescription": [],
     "kind": "using",
     "location": {
-      "line-end": null,
-      "line-start": 8,
+      "line": 8,
       "path": "type_definitions.hpp"
     },
     "name": "really_a_string",

@@ -15,3 +15,8 @@ struct machine::impl
 }
 }
 }
+
+std::string version()
+{
+    return "1.0.0";
+}

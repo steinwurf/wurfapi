@@ -14,10 +14,11 @@ import sphinx
 import sphinx.util
 import sphinx.util.logging
 import sphinx.util.nodes
+import sphinx.util.docutils
 
 import pyquery
 import json
-import logging
+import slugify
 
 from . import doxygen_generator
 from . import doxygen_parser
@@ -34,8 +35,14 @@ from . import collapse_inline_namespaces
 
 VERSION = '6.0.1'
 
+# Having a "global" logger er .py file seems to be the Sphinx way of
+# doing it. We are ok with that here since we don't have any way of
+# doing dependency injection anyway. However, our Sphinx independent
+# code should ask for the logger as a dependency.
+logger = sphinx.util.logging.getLogger(__name__)
 
-class WurfapiDirective(docutils.parsers.rst.Directive):
+
+class WurfapiDirective(sphinx.util.docutils.SphinxDirective):
 
     # The wurfapiDirective requires a single path argument, which is allowed to
     # contain whitepace. This is to allow for long paths which may span
@@ -67,15 +74,10 @@ class WurfapiDirective(docutils.parsers.rst.Directive):
         :return: List of Docutils/Sphinx nodes that will be inserted into the
                  document where the directive was encountered.
         """
-
-        # The path function returns the path argument unwrapped (with newlines
-        # removed). Raises ValueError if no argument is found.
-        template_path = docutils.parsers.rst.directives.path(self.arguments[0])
-
         env = self.state.document.settings.env
         app = env.app
         api = app.wurfapi_api
-        selector = self.options["selector"] if "selector" in self.options else None
+        selector = self._selector()
         user_path = app.config.wurfapi.get('user_templates', None)
 
         if user_path:
@@ -89,17 +91,55 @@ class WurfapiDirective(docutils.parsers.rst.Directive):
 
         template = template_render.TemplateRender(user_path=user_path)
 
-        data = template.render(
-            selector=selector, api=app.wurfapi_api,
-            filename=template_path)
+        data = template.render(selector=selector, api=api,
+                               filename=self._template_file())
 
         # Dump the rst to a file - mostly for debugging purposes
-        rst_file = "".join([x for x in selector if x.isalnum()]) + ".rst"
+        rst_file = self.slug() + ".rst"
+
+        logger.debug("writing rst output: %s", rst_file)
+
         rst_path = os.path.join(app.wurfapi_output_path, rst_file)
         with open(rst_path, 'w') as f:
             f.write(data)
 
         return self.insert_rst(data)
+
+    def _template_file(self):
+        """ Return the template file passed as an option to the directive """
+
+        # The path function returns the path argument unwrapped (with newlines
+        # removed). Raises ValueError if no argument is found.
+        return docutils.parsers.rst.directives.path(self.arguments[0])
+
+    def _source_file(self):
+        """ Return the source .rst file where the directive is located """
+        source_file, _ = self.get_source_info()
+        return source_file
+
+    def _selector(self):
+        """ Return the selector or None """
+        return self.options["selector"] if "selector" in self.options else None
+
+    def slug(self):
+        """ Return the slug for this directive """
+
+        project_root = self.config.wurfapi["project_root"]
+
+        source_file = self._source_file()
+        source_file = os.path.relpath(source_file, project_root)
+        source_file, _ = os.path.splitext(source_file)
+
+        template_file = self._template_file()
+        template_file = os.path.relpath(template_file, project_root)
+        template_file, _ = os.path.splitext(template_file)
+
+        selector = self._selector()
+
+        to_slug = source_file + '_' + template_file
+        to_slug += "" if not selector else "_" + selector
+
+        return slugify.slugify(text=to_slug, separator='_')
 
     def insert_rst(self, rst):
         """ Replaces the content of the directive with the rst generated
@@ -155,11 +195,6 @@ def generate_doxygen(app):
     # Store the output path
     app.wurfapi_output_path = output_path
 
-    # Sphinx colorizes the log output differently on windows and linux
-    # so we manually create a logger which, like sphinx, sends anything
-    # below debug to stdout and above to stderr
-    logger = sphinx.util.logging.getLogger('wurfapi')
-
     logger.info('wurfapi source_path={} output_path={}'.format(
         source_paths, output_path))
 
@@ -204,6 +239,7 @@ def generate_doxygen(app):
     else:
         project_root = str(run.run(
             command='git rev-parse --show-toplevel', cwd=app.srcdir).stdout).strip()
+        app.config.wurfapi['project_root'] = project_root
 
     if 'include_paths' in app.config.wurfapi:
         include_paths = app.config.wurfapi['include_paths']
@@ -261,7 +297,6 @@ def setup(app):
     """
 
     # Create a logger
-    logger = sphinx.util.logging.getLogger('wurfapi')
     logger.info('Initializing wurfapi extension')
 
     # Add the wurfapi configuration value

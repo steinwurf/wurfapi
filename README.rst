@@ -553,13 +553,13 @@ Python dictionary representing a C++ using or typedef statement::
       'detaileddescription': paragraphs
     }
 
-``macro`` Kind
+``define`` Kind
 ...............
 
-Python dictionary representing a C/C++ macro::
+Python dictionary representing a C/C++ define::
 
     info = {
-      'kind': 'macro',
+      'kind': 'define',
       'name': 'name',
       'location': location,
       Optional('initializer'): 'some_value',
@@ -571,16 +571,16 @@ Python dictionary representing a C/C++ macro::
       'detaileddescription': paragraphs
     }
 
-The content of the macro will be in the ``initializer`` field. If the macro
+The content of the define will be in the ``initializer`` field. If the define
 takes documented paremeters these will be under the ``parameter`` key.
 
 Examples:
 
-1. Macro initializer::
+1. Define initializer::
 
       #define VERSION "1.0.2"
 
-2. Macro initalizer with parameters::
+2. Define initalizer with parameters::
 
       #define min(X, Y)  ((X) < (Y) ? (X) : (Y))
 
@@ -661,8 +661,7 @@ Python dictionary representing a location::
     location = {
       Optional('include'): 'some/header.h',
       'path': 'src/project/header.h',
-      'line-start': 10,
-      'line-end': 12 | None
+      'line': 10
       }
 
 * The ``include`` will be relative to any ``include_paths`` specified in the

@@ -6,7 +6,12 @@ of every change, see the Git log.
 
 Latest
 ------
-* tbd
+* Major: Changed location info to contain only a line instead of line-start and
+  line-end. Location should point to where something is declared. Later we
+  may add a body-location which point to the definition. Previously we were
+  mixing the body location and that meant line numbers came from different files
+  and therefore were wrong.
+* Minor: Added the 'define' element to the API.
 
 6.0.1
 -----
