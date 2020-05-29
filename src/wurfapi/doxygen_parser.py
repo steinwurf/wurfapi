@@ -642,7 +642,7 @@ def parse_macro_parameters(xml, parser):
 
 
 @DoxygenParser.register(tag="memberdef", attrib={"kind": "define"})
-def parse(xml, parser, log, scope):
+def parse(xml, parser, log, scope, location_mapper):
     """ Parses Doxygen memberdefType
 
     :return: API dictionary
@@ -661,6 +661,10 @@ def parse(xml, parser, log, scope):
     # Unfortunately we loose the include information here - but we may
     # fix that sometime in the future
     location = {'path': body['path'], 'line': body['line-start']}
+
+    include_path = location_mapper.to_include(body['path'])
+    if include_path:
+        location['include'] = include_path
 
     result['location'] = location
     result["briefdescription"] = parser.parse_element(

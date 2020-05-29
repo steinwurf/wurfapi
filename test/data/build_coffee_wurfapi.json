@@ -12,6 +12,7 @@
     "initializer": "\"1.0.0\"",
     "kind": "define",
     "location": {
+      "include": "coffee/coffee.h",
       "line": 226,
       "path": "src/coffee/coffee.h"
     },
