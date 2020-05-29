@@ -1,4 +1,3 @@
-
 {% import 'macros.rst' as macros with context -%}
 
 {# FORMAT_MEMBER_TABLE #}
@@ -46,7 +45,7 @@ Functions
 ---------
 
 {% for function in functions -%}
-    {{ macros.format_function(api, function) }}
+    {{ macros.format_function(function) }}
 
 {{ "-----" if not loop.last }}
 

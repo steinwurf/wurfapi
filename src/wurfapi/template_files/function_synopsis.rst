@@ -1,16 +1,14 @@
-{%- from 'macros.rst' import format_type_list -%}
-{%- from 'macros.rst' import format_heading -%}
-{%- from 'macros.rst' import format_function -%}
+{% import 'macros.rst' as macros with context -%}
 
 {%- set function = api[selector] -%}
 {%- set params = [] -%}
 {%- for parameter in function["parameters"] -%}
-{%- do params.append(format_type_list(parameter["type"])) -%}
+{%- do params.append(macros.format_type_list(parameter["type"])) -%}
 {%- if not loop.last -%}
 {%- do params.append(", ") -%}
 {%- endif -%}
 {%- endfor -%}
-{{ format_heading(function["kind"] + " " + function["name"] + "(" + params|join('') + ")", "-") }}
+{{ macros.format_heading(function["kind"] + " " + function["name"] + "(" + params|join('') + ")", "-") }}
 
 {% if function["scope"] %}
 **Scope:** {{ function["scope"] }}
@@ -20,4 +18,4 @@
 **In header:** ``#include <{{ function["location"]["include"] }}>``
 {% endif %}
 
-{{ format_function(api, selector) }}
+{{ macros.format_function(selector) }}
