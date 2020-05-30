@@ -27,8 +27,12 @@ class LocationMapper(object):
         :param path: The path to a file as a string.
         :return: The include directive if file found in the include paths
         """
+        path = pathlib.Path(path)
 
-        path = pathlib.Path(path).resolve()
+        if not path.is_absolute():
+            path = self.project_root.joinpath(path)
+
+        path = path.resolve()
 
         for include_path in self.include_paths:
 
@@ -49,7 +53,12 @@ class LocationMapper(object):
         :return: The relative path to the file from the project root
         """
 
-        path = pathlib.Path(path).resolve()
+        path = pathlib.Path(path)
+
+        if not path.is_absolute():
+            path = self.project_root.joinpath(path)
+
+        path = path.resolve()
 
         relative_path = self._relative_path(path=path, start=self.project_root)
 

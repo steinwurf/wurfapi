@@ -30,8 +30,7 @@
     ],
     "kind": "enum",
     "location": {
-      "line-end": 17,
-      "line-start": 7,
+      "line": 8,
       "path": "enum_class.hpp"
     },
     "name": "mug_size",

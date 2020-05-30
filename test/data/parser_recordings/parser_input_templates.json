@@ -19,8 +19,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line-end": 47,
-      "line-start": 45,
+      "line": 45,
       "path": "templates.hpp"
     },
     "name": "f",
@@ -107,8 +106,7 @@
     "detaileddescription": [],
     "kind": "class",
     "location": {
-      "line-end": 78,
-      "line-start": 76,
+      "line": 77,
       "path": "templates.hpp"
     },
     "members": [],
@@ -146,8 +144,7 @@
     ],
     "kind": "class",
     "location": {
-      "line-end": 56,
-      "line-start": 53,
+      "line": 54,
       "path": "templates.hpp"
     },
     "members": [],
@@ -177,8 +174,7 @@
     ],
     "kind": "class",
     "location": {
-      "line-end": 10,
-      "line-start": 5,
+      "line": 6,
       "path": "templates.hpp"
     },
     "members": [
@@ -225,8 +221,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line-end": null,
-      "line-start": 9,
+      "line": 9,
       "path": "templates.hpp"
     },
     "name": "our_type",
@@ -259,8 +254,7 @@
     "detaileddescription": [],
     "kind": "class",
     "location": {
-      "line-end": 19,
-      "line-start": 14,
+      "line": 15,
       "path": "templates.hpp"
     },
     "members": [
@@ -290,8 +284,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line-end": null,
-      "line-start": 18,
+      "line": 18,
       "path": "templates.hpp"
     },
     "name": "our_type",
@@ -340,8 +333,7 @@
     ],
     "kind": "class",
     "location": {
-      "line-end": 39,
-      "line-start": 27,
+      "line": 28,
       "path": "templates.hpp"
     },
     "members": [
@@ -423,8 +415,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line-end": null,
-      "line-start": 31,
+      "line": 31,
       "path": "templates.hpp"
     },
     "name": "another_type",
@@ -457,8 +448,7 @@
     "detaileddescription": [],
     "kind": "class",
     "location": {
-      "line-end": 38,
-      "line-start": 35,
+      "line": 36,
       "path": "templates.hpp"
     },
     "members": [
@@ -490,8 +480,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line-end": null,
-      "line-start": 37,
+      "line": 37,
       "path": "templates.hpp"
     },
     "name": "print",
@@ -520,8 +509,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line-end": null,
-      "line-start": 72,
+      "line": 72,
       "path": "templates.hpp"
     },
     "name": "test",
@@ -575,8 +563,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line-end": null,
-      "line-start": 69,
+      "line": 69,
       "path": "templates.hpp"
     },
     "name": "test",
@@ -615,8 +602,7 @@
     ],
     "kind": "struct",
     "location": {
-      "line-end": 64,
-      "line-start": 62,
+      "line": 63,
       "path": "templates.hpp"
     },
     "members": [],

@@ -20,6 +20,7 @@ Welcome to Coffee's documentation!
    api_cup_tea
    api_cup_tea_5l
    deprecated/api_mug_size
+   api_defines
    examples
 
 Class list

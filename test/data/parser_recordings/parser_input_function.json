@@ -54,8 +54,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line-end": null,
-      "line-start": 23,
+      "line": 23,
       "path": "function.hpp"
     },
     "name": "set",
@@ -142,8 +141,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line-end": null,
-      "line-start": 27,
+      "line": 27,
       "path": "function.hpp"
     },
     "name": "set_array",
@@ -199,8 +197,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line-end": null,
-      "line-start": 31,
+      "line": 31,
       "path": "function.hpp"
     },
     "name": "set_bool",
@@ -262,8 +259,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line-end": null,
-      "line-start": 36,
+      "line": 36,
       "path": "function.hpp"
     },
     "name": "set_stuff",

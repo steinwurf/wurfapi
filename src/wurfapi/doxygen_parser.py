@@ -322,8 +322,9 @@ def parse(parser, log, xml):
 
 @DoxygenParser.register(tag='sectiondef', attrib={'kind': 'enum'})
 @DoxygenParser.register(tag='sectiondef', attrib={'kind': 'func'})
+@DoxygenParser.register(tag='sectiondef', attrib={'kind': 'define'})
 def parse(parser, xml):
-    """ Parses Doxygen sectiondefType of kind 'func' """
+    """ Parses Doxygen sectiondefType """
 
     api = {}
 
@@ -461,7 +462,8 @@ def parse(parser, xml):
 
     result["kind"] = xml.attrib['kind']
     result["name"] = name
-    result["location"] = parser.parse_element(xml=xml.find('location'))
+    location, body = parser.parse_element(xml=xml.find('location'))
+    result["location"] = location
     result["scope"] = scope if scope else None
     result["briefdescription"] = parser.parse_element(
         xml=xml.find("briefdescription"))
@@ -532,7 +534,8 @@ def parse(xml, parser, log, scope):
     result = {}
     result["kind"] = "enum"
     result["scope"] = scope
-    result['location'] = parser.parse_element(xml=xml.find('location'))
+    location, body = parser.parse_element(xml=xml.find('location'))
+    result['location'] = location
     result["name"] = xml.findtext("name")
     result["briefdescription"] = parser.parse_element(
         xml=xml.find("briefdescription"))
@@ -589,7 +592,8 @@ def parse(xml, parser, log, scope):
         raise RuntimeError("Unknown definition '{}'".format(definition))
 
     result["scope"] = scope
-    result['location'] = parser.parse_element(xml=xml.find('location'))
+    location, body = parser.parse_element(xml=xml.find('location'))
+    result['location'] = location
     result["name"] = xml.findtext("name")
     result["briefdescription"] = parser.parse_element(
         xml=xml.find("briefdescription"))
@@ -607,32 +611,160 @@ def parse(xml, parser, log, scope):
     return {unique_name: result}
 
 
+def parse_macro_parameters(xml, parser):
+    """ Helper for parsing macro parameters
+
+    :param xml: A doxygen memberdef element which may be a template
+    :return: A template_parameters list or None (an empty list indicates a
+        template specilization)
+    """
+    parameters = xml.find('parameterlist')
+
+    if parameters is None:
+        # We did not find a parameterlist element so this macro does not take
+        # any elements
+        return None
+
+    # The parser for the parameterlist XML element returns a dict which has
+    # parameter name as key and the description as the corresponding value
+    parameters = parser.parse_element(xml=parameters)
+
+    result = []
+
+    for name, description in parameters:
+        parameter = {'name': name}
+        if description:
+            parameter['description'] = description
+
+        result.append(parameter)
+
+    return result
+
+
+@DoxygenParser.register(tag="memberdef", attrib={"kind": "define"})
+def parse(xml, parser, log, scope, location_mapper):
+    """ Parses Doxygen memberdefType
+
+    :return: API dictionary
+    """
+    result = {}
+
+    result["kind"] = "define"
+    name = xml.findtext("name")
+    result["name"] = name
+    location, body = parser.parse_element(xml=xml.find('location'))
+
+    # Doxygen seems to be reporting the wrong location information for
+    # defines. I.e. the location is where the define was included - but the
+    # body information seems correct so lets use that.
+    #
+    # Unfortunately we loose the include information here - but we may
+    # fix that sometime in the future
+    location = {'path': body['path'], 'line': body['line-start']}
+
+    include_path = location_mapper.to_include(body['path'])
+    if include_path:
+        location['include'] = include_path
+
+    result['location'] = location
+    result["briefdescription"] = parser.parse_element(
+        xml=xml.find("briefdescription"))
+    result["detaileddescription"] = parser.parse_element(
+        xml=xml.find("detaileddescription"))
+
+    initializer = xml.findtext("initializer", default=None)
+    if initializer:
+        result['initializer'] = initializer
+
+    # Description of the tempalte parameters are in the parameterlist tags
+    # with the attribute kind="param"
+    parameterlists = xml.findall(
+        './/parameterlist[@kind = "param"]')
+
+    parameters = []
+
+    for parameterlist in parameterlists:
+
+        parameterlist = parser.parse_element(xml=parameterlist)
+
+        log.debug("pameterlist {}".format(parameterlist))
+
+        for name in parameterlist:
+
+            parameter = {'name': name}
+
+            if parameterlist[name]:
+                parameter['description'] = parameterlist[name]
+
+            parameters.append(parameter)
+
+    if parameters:
+        result['parameters'] = parameters
+
+    log.debug("parse macro: {}".format(result))
+
+    # Save mapping from doxygen id to unique name
+    parser.id_mapping[xml.attrib["id"]] = result['name']
+
+    return {result['name']: result}
+
+
 @DoxygenParser.register(tag="location")
 def parse(xml, parser, location_mapper):
     """ Parses Doxygen location
     :return: Location dict
     """
-    result = {}
 
-    file_path = xml.attrib["file"]
-    path = location_mapper.to_path(path=file_path)
-    include = location_mapper.to_include(path=file_path)
+    # Doxygen can report two locations:
+    #
+    # 1. The "file" attribute which seems to be where stuff was defined
+    # 2. The "bodyfile" attribute which seems to be where the body exists
+    #
+    # E.g. the "file" is the .h file and the "bodyfile" is the .cpp. However
+    # for some things like classes the "file" and "bodyfile" are the same.
+    #
+    # It can also be a function that is first declared and then later
+    # defined.
+    #
+    # In some cases we've found that the "file" and "bodyfile" point to the
+    # same entity. But the "line" and "bodystart" are not equal, sometimes
+    # one starts 1 line before or after the other. Which is correct actaully
+    # changes. So sometimes "line" is correct and sometimes "bodyline".
+    #
+    # So we cannot really fix Doxygen here - we just need to live with the
+    # line numbers sometimes being one off.
 
-    result['path'] = path
+    # First get the location info
+    location_path = location_mapper.to_path(path=xml.attrib["file"])
+    location_line = int(xml.attrib["line"])
+    location_include = location_mapper.to_include(path=xml.attrib["file"])
 
-    if include:
-        result['include'] = include
+    location = {}
+    location['path'] = location_path
+    location['line'] = location_line
 
-    result['line-end'] = None
-    if xml.attrib.has_key("bodystart"):
-        result['line-start'] = int(xml.attrib["bodystart"])
-        line_end = int(xml.attrib["bodyend"])
-        if line_end != -1:
-            result['line-end'] = line_end
-    else:
-        result['line-start'] = int(xml.attrib["line"])
+    if location_include:
+        # The file was found in the inlude_paths specified
+        # for the project
+        location['include'] = location_include
 
-    return result
+    # Lets find the body if it exists
+    body_file = xml.attrib.get('bodyfile', default=None)
+
+    if not body_file:
+        return location, None
+
+    body_path = location_mapper.to_path(path=body_file)
+    body_start = int(xml.attrib["bodystart"])
+    body_end = int(xml.attrib["bodyend"])
+
+    body = {}
+    body['path'] = body_path
+    body['line-start'] = body_start
+    if body_end > body_start:
+        body['line-end'] = body_end
+
+    return location, body
 
 
 @DoxygenParser.register(tag="parameterlist")
@@ -743,7 +875,7 @@ def parse_template_parameters(xml, parser):
     template_parameters = parser.parse_element(xml=templatelist)
 
     # Description of the tempalte parameters are in the parameterlist tags
-    # with the attribute kind="param"
+    # with the attribute kind="templateparam"
     parameterlists = xml.findall(
         './/parameterlist[@kind = "templateparam"]')
 
@@ -771,7 +903,10 @@ def parse(xml, parser, log, scope):
     result = {}
     result["kind"] = "function"
     result["scope"] = scope
-    result['location'] = parser.parse_element(xml=xml.find('location'))
+
+    location, body = parser.parse_element(xml=xml.find('location'))
+
+    result['location'] = location
     result["name"] = xml.findtext("name")
 
     # Get the name and type of the parameters
@@ -963,7 +1098,10 @@ def parse(xml, parser, log, scope):
     result = {}
     result["kind"] = "variable"
     result["scope"] = scope
-    result['location'] = parser.parse_element(xml=xml.find('location'))
+
+    location, body = parser.parse_element(xml=xml.find('location'))
+
+    result['location'] = location
     result["name"] = xml.findtext("name")
     result["briefdescription"] = parser.parse_element(
         xml=xml.find("briefdescription"))

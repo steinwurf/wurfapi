@@ -1,4 +1,15 @@
 {
+  "VERSION": {
+    "briefdescription": [],
+    "detaileddescription": [],
+    "initializer": "v2_3_4",
+    "kind": "define",
+    "location": {
+      "line": 4,
+      "path": "inline_namespace.hpp"
+    },
+    "name": "VERSION"
+  },
   "coffee": {
     "briefdescription": [],
     "detaileddescription": [],
@@ -27,8 +38,7 @@
     "detaileddescription": [],
     "kind": "struct",
     "location": {
-      "line-end": 10,
-      "line-start": 8,
+      "line": 9,
       "path": "inline_namespace.hpp"
     },
     "members": [],

@@ -110,5 +110,5 @@ setup(
 
     install_requires=['pyquery', 'python-archive', 'schema', 'six', 'sphinx>3',
                       # https://hynek.me/articles/conditional-python-dependencies/
-                      'pathlib2 ; python_version<"3.4"'],
+                      'pathlib2 ; python_version<"3.4"', 'python-slugify'],
 )

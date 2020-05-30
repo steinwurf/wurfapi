@@ -405,6 +405,12 @@ scopes e.g. ``foo::bar::baz``.
 * In addition to types, we also have entries for the parsed files. For files
   the unique name will be the relative path from the project root.
 
+* For defines we will use the name of the define. As an example::
+
+      #define PROJECT_VERSION "1.0.0"
+
+  Here ``unique-name`` will be ``PROJECT_VERSION``.
+
 .. _cppreference: http://en.cppreference.com/w/cpp/language/member_functions
 .. _standardese: https://github.com/foonathan/standardese#linking
 
@@ -547,6 +553,38 @@ Python dictionary representing a C++ using or typedef statement::
       'detaileddescription': paragraphs
     }
 
+``define`` Kind
+...............
+
+Python dictionary representing a C/C++ define::
+
+    info = {
+      'kind': 'define',
+      'name': 'name',
+      'location': location,
+      Optional('initializer'): 'some_value',
+      Optional('parameters'): [{
+          'name': 'somestring',
+          Optional('description'): paragraphs
+      }],
+      'briefdescription': paragraphs,
+      'detaileddescription': paragraphs
+    }
+
+The content of the define will be in the ``initializer`` field. If the define
+takes documented paremeters these will be under the ``parameter`` key.
+
+Examples:
+
+1. Define initializer::
+
+      #define VERSION "1.0.2"
+
+2. Define initalizer with parameters::
+
+      #define min(X, Y)  ((X) < (Y) ? (X) : (Y))
+
+
 ``file`` Kind
 ............................
 
@@ -623,8 +661,7 @@ Python dictionary representing a location::
     location = {
       Optional('include'): 'some/header.h',
       'path': 'src/project/header.h',
-      'line-start': 10,
-      'line-end': 12 | None
+      'line': 10
       }
 
 * The ``include`` will be relative to any ``include_paths`` specified in the

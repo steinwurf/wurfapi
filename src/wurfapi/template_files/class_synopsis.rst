@@ -24,7 +24,7 @@
    :widths: auto
    :align: left
 
-{% for selector in selectors | api_sort(keys=["location", "line-start"]) %}
+{% for selector in selectors | api_sort(keys=["location", "line"]) %}
    {{ format_member_table_row(selector) | indent(width=3) }}
 {%- endfor -%}
 
@@ -189,7 +189,7 @@ Description
 
 {% set functions = class["members"]
        | api_filter(kind="function", access="public")
-       | api_sort(keys=["location", "line-start"])
+       | api_sort(keys=["location", "line"])
 %}
 
 {% if functions %}
@@ -210,7 +210,7 @@ Member Function Description
 
 {% set types = class["members"]
        | api_filter(kind=["typedef", "using"], access="public")
-       | api_sort(keys=["location", "line-start"])
+       | api_sort(keys=["location", "line"])
 %}
 
 {% if types %}
