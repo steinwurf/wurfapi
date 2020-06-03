@@ -143,7 +143,7 @@ public:
     /// This header is coffee.h if this is important? Also there is an example
     /// in header.h
     /// @return the mug_size
-    mug_size get_mug_size() const;
+    mug_size mug_size() const;
 
     /// Set the machine name
     void set_name(const char name[40]);

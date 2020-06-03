@@ -367,12 +367,19 @@ class LinkMapper(object):
         for item in typelist:
 
             if "link" in item:
+                link_value = item["link"]["value"]
                 # If we do have a link to a type it should be in the API
-                assert item["link"]["value"] in self.api
+                assert link_value in self.api
 
-                continue
+                # Doxygen has a bug when a (member) function has the same name
+                # as a type. In this case it can wrongfully pick the function
+                # rather than the type.
+                # Remove the link if this is the case:
+                if self.api[link_value]['kind'] != 'function':
+                    continue
+                item.pop("link", None)
 
-            link = self._find_link(typename=item['value'], scope=scope)
+            link = self._find_link(typename=item['value'], scope=scope, is_type=True)
 
             if link is not None:
                 item['link'] = link
@@ -383,7 +390,7 @@ class LinkMapper(object):
 
         return typelist
 
-    def _find_link(self, typename, scope):
+    def _find_link(self, typename, scope, is_type=False):
         """ Given a token e.g. std::function see if we can find a link
 
         First we check if the type name is found directly in the API. After
@@ -411,6 +418,8 @@ class LinkMapper(object):
             scoped_name = scope + '::' + typename
 
             if scoped_name in self.api:
+                if is_type and self.api[scoped_name]['kind'] == 'function':
+                    continue
                 # The scope qualified name was found
                 return {"url": False, "value": scoped_name}
 
