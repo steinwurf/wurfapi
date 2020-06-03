@@ -6,6 +6,9 @@ of every change, see the Git log.
 
 Latest
 ------
+* Patch: Add fix to mitigate a doxygen bug which causes member functions
+  that shares the name a type to be linked as the parameter type in other member
+  functions.
 * Major: Changed location info to contain only a line instead of line-start and
   line-end. Location should point to where something is declared. Later we
   may add a body-location which point to the definition. Previously we were

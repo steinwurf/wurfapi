@@ -372,13 +372,13 @@
       "project::v1_0_0::coffee::machine::cups_brewed",
       "project::v1_0_0::coffee::machine::get_bean_count(mug_sizesize_of_mug)const",
       "project::v1_0_0::coffee::machine::get_last_cup()const",
-      "project::v1_0_0::coffee::machine::get_mug_size()const",
       "project::v1_0_0::coffee::machine::help_brew()",
       "project::v1_0_0::coffee::machine::m_callback",
       "project::v1_0_0::coffee::machine::m_impl",
       "project::v1_0_0::coffee::machine::m_other_callback",
       "project::v1_0_0::coffee::machine::machine()",
       "project::v1_0_0::coffee::machine::machine(powerpwr)",
+      "project::v1_0_0::coffee::machine::mug_size()const",
       "project::v1_0_0::coffee::machine::number_cups()const",
       "project::v1_0_0::coffee::machine::other_callback",
       "project::v1_0_0::coffee::machine::power",
@@ -619,6 +619,10 @@
         "name": "size_of_mug",
         "type": [
           {
+            "link": {
+              "url": false,
+              "value": "project::v1_0_0::coffee::machine::mug_size()const"
+            },
             "value": "mug_size"
           },
           {
@@ -668,69 +672,6 @@
       "type": [
         {
           "value": "auto"
-        }
-      ]
-    },
-    "scope": "project::v1_0_0::coffee::machine",
-    "trailing_return": false
-  },
-  "project::v1_0_0::coffee::machine::get_mug_size()const": {
-    "access": "public",
-    "briefdescription": [],
-    "detaileddescription": [
-      [
-        {
-          "content": "This header is",
-          "kind": "text"
-        },
-        {
-          "content": "coffee.h",
-          "kind": "text",
-          "link": {
-            "url": false,
-            "value": "src/coffee/coffee.h"
-          }
-        },
-        {
-          "content": "if this is important? Also there is an example in",
-          "kind": "text"
-        },
-        {
-          "content": "header.h",
-          "kind": "text",
-          "link": {
-            "url": false,
-            "value": "examples/header/header.h"
-          }
-        }
-      ]
-    ],
-    "is_const": true,
-    "is_constructor": false,
-    "is_destructor": false,
-    "is_explicit": false,
-    "is_inline": false,
-    "is_static": false,
-    "is_virtual": false,
-    "kind": "function",
-    "location": {
-      "line": 146,
-      "path": "src/coffee/coffee.h"
-    },
-    "name": "get_mug_size",
-    "parameters": [],
-    "return": {
-      "description": [
-        [
-          {
-            "content": "the mug_size",
-            "kind": "text"
-          }
-        ]
-      ],
-      "type": [
-        {
-          "value": "mug_size"
         }
       ]
     },
@@ -991,6 +932,69 @@
         ]
       }
     ],
+    "scope": "project::v1_0_0::coffee::machine",
+    "trailing_return": false
+  },
+  "project::v1_0_0::coffee::machine::mug_size()const": {
+    "access": "public",
+    "briefdescription": [],
+    "detaileddescription": [
+      [
+        {
+          "content": "This header is",
+          "kind": "text"
+        },
+        {
+          "content": "coffee.h",
+          "kind": "text",
+          "link": {
+            "url": false,
+            "value": "src/coffee/coffee.h"
+          }
+        },
+        {
+          "content": "if this is important? Also there is an example in",
+          "kind": "text"
+        },
+        {
+          "content": "header.h",
+          "kind": "text",
+          "link": {
+            "url": false,
+            "value": "examples/header/header.h"
+          }
+        }
+      ]
+    ],
+    "is_const": true,
+    "is_constructor": false,
+    "is_destructor": false,
+    "is_explicit": false,
+    "is_inline": false,
+    "is_static": false,
+    "is_virtual": false,
+    "kind": "function",
+    "location": {
+      "line": 146,
+      "path": "src/coffee/coffee.h"
+    },
+    "name": "mug_size",
+    "parameters": [],
+    "return": {
+      "description": [
+        [
+          {
+            "content": "the mug_size",
+            "kind": "text"
+          }
+        ]
+      ],
+      "type": [
+        {
+          "value": "mug_size"
+        }
+      ]
+    },
     "scope": "project::v1_0_0::coffee::machine",
     "trailing_return": false
   },
