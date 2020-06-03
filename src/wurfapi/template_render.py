@@ -93,9 +93,13 @@ class TemplateRender(object):
         self.environment.filters['api_sort'] = api_sort
         self.environment.filters['api_filter'] = api_filter
 
-    def render(self, selector, api, filename):
+    def render(self, selector, api, filename, user_data=None):
         """ Render the template
         """
 
         template = self.environment.get_template(name=filename)
-        return template.render(api=api, selector=selector)
+        params = {'api':api, 'selector':selector}
+        if user_data is not None:
+            params['user_data'] = user_data
+        return template.render(**params)
+

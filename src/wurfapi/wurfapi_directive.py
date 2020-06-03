@@ -77,6 +77,7 @@ class WurfapiDirective(sphinx.util.docutils.SphinxDirective):
         env = self.state.document.settings.env
         app = env.app
         api = app.wurfapi_api
+        user_data = self._user_data()
         selector = self._selector()
         user_path = app.config.wurfapi.get('user_templates', None)
 
@@ -91,8 +92,11 @@ class WurfapiDirective(sphinx.util.docutils.SphinxDirective):
 
         template = template_render.TemplateRender(user_path=user_path)
 
-        data = template.render(selector=selector, api=api,
-                               filename=self._template_file())
+        data = template.render(
+            selector=selector,
+            api=api,
+            filename=self._template_file(),
+            user_data=user_data)
 
         # Dump the rst to a file - mostly for debugging purposes
         rst_file = self.slug() + ".rst"
@@ -120,6 +124,10 @@ class WurfapiDirective(sphinx.util.docutils.SphinxDirective):
     def _selector(self):
         """ Return the selector or None """
         return self.options["selector"] if "selector" in self.options else None
+
+    def _user_data(self):
+        """ Return the selector or None """
+        return self.options["user_data"] if "user_data" in self.options else None
 
     def slug(self):
         """ Return the slug for this directive """

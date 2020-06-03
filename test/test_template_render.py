@@ -92,6 +92,37 @@ def test_template_finder_user(testdirectory):
     assert expect == data
 
 
+def test_template_user_data(testdirectory):
+
+    api = generate_coffee_api(testdirectory=testdirectory)
+
+    user_path = testdirectory.copy_file(
+        'test/data/custom_templates/with_user_data.rst')
+
+    template = wurfapi.template_render.TemplateRender(
+        user_path=testdirectory.path())
+
+    data = template.render(selector=None,
+                           api=api,
+                           filename='with_user_data.rst',
+                           user_data='123 user data user data 123'
+                           )
+
+    expect = r"""123 user data user data 123"""
+
+    assert expect == data
+
+
+    data = template.render(selector=None,
+                           api=api,
+                           filename='with_user_data.rst'
+                           )
+
+    expect = r"""user_data is not defined"""
+
+    assert expect == data
+
+
 def test_template_render_namespace(testdirectory):
 
     template = wurfapi.template_render.TemplateRender(user_path=None)
