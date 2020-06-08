@@ -93,7 +93,7 @@ class TemplateRender(object):
         self.environment.filters['api_sort'] = api_sort
         self.environment.filters['api_filter'] = api_filter
 
-    def render(self, selector, api, filename, user_data):
+    def render(self, selector, api, filename, user_data=None):
         """ Render the template
         """
 
