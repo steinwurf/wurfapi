@@ -60,7 +60,8 @@ class WurfapiDirective(sphinx.util.docutils.SphinxDirective):
     option_spec = {
         # unchanged: Returns the text argument, unchanged. Returns an empty
         # string ("") if no argument is found.
-        'selector': docutils.parsers.rst.directives.unchanged
+        'selector': docutils.parsers.rst.directives.unchanged,
+        'user_data': docutils.parsers.rst.directives.unchanged
     }
 
     def run(self):
@@ -126,7 +127,7 @@ class WurfapiDirective(sphinx.util.docutils.SphinxDirective):
         return self.options["selector"] if "selector" in self.options else None
 
     def _user_data(self):
-        """ Return the selector or None """
+        """ Return the user_data or None """
         return self.options["user_data"] if "user_data" in self.options else None
 
     def slug(self):
@@ -143,9 +144,11 @@ class WurfapiDirective(sphinx.util.docutils.SphinxDirective):
         template_file, _ = os.path.splitext(template_file)
 
         selector = self._selector()
+        user_data = self._user_data()
 
         to_slug = source_file + '_' + template_file
         to_slug += "" if not selector else "_" + selector
+        to_slug += "" if not user_data else "_" + user_data
 
         return slugify.slugify(text=to_slug, separator='_')
 
