@@ -148,7 +148,7 @@ class WurfapiDirective(sphinx.util.docutils.SphinxDirective):
 
         to_slug = source_file + '_' + template_file
         to_slug += "" if not selector else "_" + selector
-        to_slug += "" if not user_data else "_" + user_data
+        to_slug += "" if not user_data else "_u_" + user_data
 
         return slugify.slugify(text=to_slug, separator='_')
 
