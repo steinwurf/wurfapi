@@ -6,6 +6,10 @@ of every change, see the Git log.
 
 Latest
 ------
+* tbd
+
+7.0.0
+-----
 * Minor: Added user data option for templates.
 * Patch: Add fix to mitigate a doxygen bug which causes member functions
   that shares the name a type to be linked as the parameter type in other member
