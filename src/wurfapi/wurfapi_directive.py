@@ -60,7 +60,8 @@ class WurfapiDirective(sphinx.util.docutils.SphinxDirective):
     option_spec = {
         # unchanged: Returns the text argument, unchanged. Returns an empty
         # string ("") if no argument is found.
-        'selector': docutils.parsers.rst.directives.unchanged
+        'selector': docutils.parsers.rst.directives.unchanged,
+        'user_data': docutils.parsers.rst.directives.unchanged
     }
 
     def run(self):
@@ -77,6 +78,7 @@ class WurfapiDirective(sphinx.util.docutils.SphinxDirective):
         env = self.state.document.settings.env
         app = env.app
         api = app.wurfapi_api
+        user_data = self._user_data()
         selector = self._selector()
         user_path = app.config.wurfapi.get('user_templates', None)
 
@@ -91,8 +93,11 @@ class WurfapiDirective(sphinx.util.docutils.SphinxDirective):
 
         template = template_render.TemplateRender(user_path=user_path)
 
-        data = template.render(selector=selector, api=api,
-                               filename=self._template_file())
+        data = template.render(
+            selector=selector,
+            api=api,
+            filename=self._template_file(),
+            user_data=user_data)
 
         # Dump the rst to a file - mostly for debugging purposes
         rst_file = self.slug() + ".rst"
@@ -121,6 +126,10 @@ class WurfapiDirective(sphinx.util.docutils.SphinxDirective):
         """ Return the selector or None """
         return self.options["selector"] if "selector" in self.options else None
 
+    def _user_data(self):
+        """ Return the user_data or None """
+        return self.options["user_data"] if "user_data" in self.options else None
+
     def slug(self):
         """ Return the slug for this directive """
 
@@ -135,9 +144,11 @@ class WurfapiDirective(sphinx.util.docutils.SphinxDirective):
         template_file, _ = os.path.splitext(template_file)
 
         selector = self._selector()
+        user_data = self._user_data()
 
         to_slug = source_file + '_' + template_file
         to_slug += "" if not selector else "_" + selector
+        to_slug += "" if not user_data else "_u_" + user_data
 
         return slugify.slugify(text=to_slug, separator='_')
 
