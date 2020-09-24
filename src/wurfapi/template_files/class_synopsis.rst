@@ -13,7 +13,7 @@
 {%- endif %}
 {%- set return_type = "virtual " + return_type if function["is_virtual"] else return_type -%}
 * - {{ return_type }}
-  - :ref:`{{ function["name"] }}<{{selector}}>` {{ signature }}
+  - {{ macros.format_ref(function["name"], selector)}} {{ signature }}
 {% endmacro -%}
 
 {# FORMAT_MEMBER_TABLE #}

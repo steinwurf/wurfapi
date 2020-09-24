@@ -6,7 +6,10 @@ of every change, see the Git log.
 
 Latest
 ------
-* tbd
+* Minor: Added the WurfapiTarget directive for generating labels with default
+  captions. This allows function and other entities to be linked easily
+  without the need for creating e.g. a section or manually adding the label
+  caption (as described here: https://github.com/sphinx-doc/sphinx/issues/2025).
 
 7.0.0
 -----

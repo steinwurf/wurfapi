@@ -10,6 +10,12 @@ own application.
 Basic Example
 .............
 
+We should also be able to generate links to the member functions using ``ref``
+and the unique name of the entity.
+
+Let's see if it works:
+:ref:`project::coffee::machine::set_number_cups(std::stringcups)`
+
 .. literalinclude:: ../examples/basic_coffee/basic_coffee.cpp
     :language: c++
 
