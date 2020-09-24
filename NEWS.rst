@@ -6,6 +6,10 @@ of every change, see the Git log.
 
 Latest
 ------
+* tbd
+
+7.1.0
+-----
 * Minor: Added the WurfapiTarget directive for generating labels with default
   captions. This allows function and other entities to be linked easily
   without the need for creating e.g. a section or manually adding the label
