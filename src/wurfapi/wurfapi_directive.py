@@ -42,6 +42,62 @@ VERSION = '7.0.0'
 logger = sphinx.util.logging.getLogger(__name__)
 
 
+class WurfapiTarget(sphinx.util.docutils.SphinxDirective):
+
+    # The WurfapiTarget is used to generate named labels in the
+    # documentation e.g. to member functions etc.
+    # Solution adapted from here:
+    # https://github.com/sphinx-doc/sphinx/issues/2025
+    has_content = False
+    required_arguments = 1
+    optional_arguments = 0
+
+    # The options that may be passed to the directive
+    option_spec = {
+        # unchanged: Returns the text argument, unchanged. Returns an empty
+        # string ("") if no argument is found.
+        'label': docutils.parsers.rst.directives.unchanged
+    }
+
+    def run(self):
+        """ Called by Sphinx.
+
+        Process the directive.
+
+        Documentation on creating directives are available here:
+        http://docutils.sourceforge.net/docs/howto/rst-directives.html
+
+        :return: List of Docutils/Sphinx nodes that will be inserted into the
+                 document where the directive was encountered.
+        """
+
+        # Replace one or more spaces with a single space
+        targetname = sphinx.util.ws_re.sub(
+            ' ', self.arguments[0].strip()).lower()
+        node = docutils.nodes.target('', '', names=[targetname])
+        if 'label' in self.options:
+            node['label'] = self.options['label']
+        self.state.document.note_explicit_target(node)
+        return [node]
+
+
+def map_wurfapi_named_target(app, doctree):
+    def lookup_name(id):
+        for name, (docname, labelid) in app.env.domaindata['std']['anonlabels'].items():
+            if labelid == id:
+                return (name, docname)
+        else:
+            return (None, None)
+
+    labels = app.env.domaindata['std']['labels']
+    for node in doctree.traverse(docutils.nodes.target):
+        if 'label' in node:
+            name, docname = lookup_name(node['refid'])
+
+            if name not in labels:
+                labels[name] = (docname, node['refid'], node['label'])
+
+
 class WurfapiDirective(sphinx.util.docutils.SphinxDirective):
 
     # The wurfapiDirective requires a single path argument, which is allowed to
@@ -319,8 +375,14 @@ def setup(app):
     #
     app.add_directive(name='wurfapi', cls=WurfapiDirective)
 
+    # Add the ..wurfapitarget directive
+    app.add_directive(name='wurfapitarget', cls=WurfapiTarget)
+
     # Generate the XML
     app.connect(event="builder-inited", callback=generate_doxygen)
+
+    # Map labels
+    app.connect('doctree-read', map_wurfapi_named_target)
 
     # We use the doctreedir as build directory. The default for this
     # is inside _build/.doctree folder

@@ -264,15 +264,15 @@ Template parameter: {{ type }} ``{{ name }}`` {{ " = " + default if default }}
 {% endif %}
 {% endmacro %}
 
-
 {# FORMAT_FUNCTION #}
 
 {% macro format_function(selector, include_label=True) %}
+{% set function = api[selector] %}
 {% if include_label %}
-.. _{{selector}}:
+.. wurfapitarget:: {{selector}}
+    :label: {{ function["scope"] }}::{{function["name"]}}()
 
 {% endif %}
-{% set function = api[selector] %}
 {% if "return" in function %}
 {% set return_value = format_type_list(function["return"]["type"]) %}
 {% set return_description =
