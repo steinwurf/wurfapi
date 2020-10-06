@@ -15,7 +15,7 @@ import waflib
 
 top = '.'
 
-VERSION = '7.1.0'
+VERSION = '7.1.1'
 
 
 class UploadContext(BuildContext):

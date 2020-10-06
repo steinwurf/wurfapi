@@ -6,6 +6,10 @@ of every change, see the Git log.
 
 Latest
 ------
+* tbd
+
+7.1.1
+-----
 * Patch: Fix issue with links to free functions without scopes.
   The label is now ``function()`` rather than ``None::functions()``.
 
