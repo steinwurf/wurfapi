@@ -173,6 +173,18 @@ def test_template_render_function(testdirectory, datarecorder):
     datarecorder.record(data=data)
 
 
+def test_template_render_free_function(testdirectory, datarecorder):
+
+    template = wurfapi.template_render.TemplateRender(user_path=None)
+    api = generate_coffee_api(testdirectory=testdirectory)
+
+    data = template.render(selector='version()', api=api,
+                           filename='function_synopsis.rst')
+
+    datarecorder.recording_path = "test/data/template_recordings/builtin_free_function_synopsis.rst"
+    datarecorder.record(data=data)
+
+
 template_string = """\
 {%- from 'macros.rst' import escape_ref -%}
 {{ escape_ref(data) }}
