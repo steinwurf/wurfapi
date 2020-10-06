@@ -270,7 +270,11 @@ Template parameter: {{ type }} ``{{ name }}`` {{ " = " + default if default }}
 {% set function = api[selector] %}
 {% if include_label %}
 .. wurfapitarget:: {{selector}}
+{% if function["scope"] is not none %}
     :label: {{ function["scope"] }}::{{function["name"]}}()
+{% else %}
+    :label: {{function["name"]}}()
+{%endif %}
 
 {% endif %}
 {% if "return" in function %}
