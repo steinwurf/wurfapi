@@ -1,4 +1,3 @@
-
 {# FORMAT_CODE_BLOCK #}
 
 {% macro format_code_block(paragraph) %}
@@ -14,7 +13,7 @@
 {# FORMAT_CODE_INLINE #}
 
 {% macro format_code_inline(paragraph) %}
-``{{ paragraph["content"] }}``{{ " " }}
+``{{ paragraph["content"] }}``
 {%- endmacro %}
 
 
@@ -45,7 +44,7 @@ a non-character. Otherwise rst will fail with an error.
 {% if api[reference]["kind"] == "file" -%}
 `{{ api[reference]["path"] }}`
 {%- else -%}
-:ref:`{{ escape_ref(content) }} <{{ escape_ref(reference)  }}>`{{"\\ "}}
+:ref:`{{ escape_ref(content) }} <{{ escape_ref(reference) }}>`{{"\\ "}}
 {%- endif %}
 {%- endmacro %}
 
@@ -87,7 +86,6 @@ a non-character. Otherwise rst will fail with an error.
 {% else %}
 {{ paragraph["content"] -}}
 {% endif %}
-{{ " " -}}
 {% endmacro %}
 
 
@@ -115,6 +113,12 @@ a non-character. Otherwise rst will fail with an error.
 
 {% macro format_paragraph(paragraph) %}
 {% for paragraph_element in paragraph %}
+{% if not loop.first %}
+{%- if 'content' in paragraph_element and paragraph_element['content'][0] not in
+    ['.', ',' ,'"', "'", '-', '?', '!', ':', ';'] -%}
+{{ " " -}}
+{% endif %}
+{% endif %}
 {% if paragraph_element["kind"] == "text" %}
 {{ format_text(paragraph_element) -}}
 {% elif paragraph_element["kind"] == "code" %}
