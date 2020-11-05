@@ -16,23 +16,23 @@ namespace coffee
 ///
 /// The following links are followed by punctuation:
 ///
-/// http://steinwurf.com.
+/// http://dot.com.
 ///
-/// http://steinwurf.com,
+/// http://comma.com,
 ///
-/// http://steinwurf.com"
+/// http://doublepling.com"
 ///
-/// http://steinwurf.com'
+/// http://pling.com'
 ///
-/// http://steinwurf.com-
+/// http://dash.com-
 ///
-/// http://steinwurf.com?
+/// http://questionmark.com?
 ///
-/// http://steinwurf.com:
+/// http://colon.com:
 ///
-/// http://steinwurf.com!
+/// http://exclamationmark.com!
 ///
-/// http://steinwurf.com;
+/// http://semicolon.com;
 class machine
 {
 public:

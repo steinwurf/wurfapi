@@ -2,6 +2,7 @@ import os
 import re
 import copy
 import functools
+import string
 
 
 def transform_key(data, search_key, scope, function):
@@ -340,11 +341,18 @@ class LinkMapper(object):
                     # qualifier in it. Just to avoid making random
                     # characters into links..
                     continue
-
+                typename = element['content']
+                if typename[-1] in string.punctuation:
+                    typename = typename[:-1]
+                    
                 link = self._find_link(
-                    typename=element['content'], scope=scope)
+                    typename=typename, scope=scope)
 
                 if link:
+                    if element['content'][-1] in string.punctuation:
+                        element['content'] = element['content'][:-1]
+                        paragraph.append({'kind': 'text', 'content': element['content'][-1]})
+
                     element['link'] = link
 
         new_paragraphs = []
