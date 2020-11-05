@@ -6,7 +6,7 @@ of every change, see the Git log.
 
 Latest
 ------
-* tbd
+* Patch: Fix `Member Function Description` -> `Member Function Descriptions`.
 
 7.1.1
 -----

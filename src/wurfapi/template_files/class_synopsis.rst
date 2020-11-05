@@ -194,8 +194,8 @@ Description
 
 {% if functions %}
 
-Member Function Description
----------------------------
+Member Function Descriptions
+----------------------------
 
 {% for function in functions -%}
     {{ macros.format_function(function) }}

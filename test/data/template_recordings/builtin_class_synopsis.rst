@@ -153,8 +153,8 @@ The coffee machine object serves as your applications entry point for brewing co
 
 
 
-Member Function Description
----------------------------
+Member Function Descriptions
+----------------------------
 
 .. wurfapitarget:: project::v1_0_0::coffee::machine::machine()
     :label: project::v1_0_0::coffee::machine::machine()
