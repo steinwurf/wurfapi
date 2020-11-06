@@ -20,19 +20,15 @@ namespace coffee
 ///
 /// http://comma.com,
 ///
-/// http://doublepling.com"
-///
-/// http://pling.com'
-///
-/// http://dash.com-
+/// http://exclamationmark.com!
 ///
 /// http://questionmark.com?
 ///
 /// http://colon.com:
 ///
-/// http://exclamationmark.com!
-///
 /// http://semicolon.com;
+///
+/// http://backslash.com/ nothing should happen here.
 class machine
 {
 public:

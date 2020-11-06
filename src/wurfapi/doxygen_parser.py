@@ -1,7 +1,6 @@
 import glob
 import os
 import pyquery
-import string
 import lxml
 import inspect
 import contextlib
@@ -1205,7 +1204,7 @@ def parse(log, xml):
     :return: List of "Text information" paragraphs
     """
     value = xml.attrib["url"]
-    if value[-1] in  string.punctuation:
+    if value[-1] in ',.!?:;':
         return [{"kind": "text", "content": xml.text[:-1],
                  "link": {"url": True, "value": value[:-1]}},
                 {"kind": "text", "content": xml.text[-1]}]

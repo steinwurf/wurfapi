@@ -112,19 +112,18 @@ a non-character. Otherwise rst will fail with an error.
 {# FORMAT_PARAGRAPH #}
 
 {% macro format_paragraph(paragraph) %}
-{% for paragraph_element in paragraph %}
+{% for element in paragraph %}
 {% if not loop.first %}
-{%- if 'content' in paragraph_element and paragraph_element['content'][0] not in
-    ['.', ',' ,'"', "'", '-', '?', '!', ':', ';'] -%}
+{%- if 'content' in element and element.content[0] not in ',.!?:;' -%}
 {{ " " -}}
 {% endif %}
 {% endif %}
-{% if paragraph_element["kind"] == "text" %}
-{{ format_text(paragraph_element) -}}
-{% elif paragraph_element["kind"] == "code" %}
-{{ format_code(paragraph_element) -}}
-{% elif paragraph_element["kind"] == "list" %}
-{{ format_list(paragraph_element) -}}
+{% if element["kind"] == "text" %}
+{{ format_text(element) -}}
+{% elif element["kind"] == "code" %}
+{{ format_code(element) -}}
+{% elif element["kind"] == "list" %}
+{{ format_list(element) -}}
 {% endif %}
 {% endfor %}
 

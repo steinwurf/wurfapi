@@ -2,7 +2,6 @@ import os
 import re
 import copy
 import functools
-import string
 
 
 def transform_key(data, search_key, scope, function):
@@ -342,16 +341,17 @@ class LinkMapper(object):
                     # characters into links..
                     continue
                 typename = element['content']
-                if typename[-1] in string.punctuation:
+                last_char_is_punctuation =typename[-1] in ',.!?:;'
+                if last_char_is_punctuation:
                     typename = typename[:-1]
-                    
+
                 link = self._find_link(
                     typename=typename, scope=scope)
 
                 if link:
-                    if element['content'][-1] in string.punctuation:
-                        element['content'] = element['content'][:-1]
+                    if last_char_is_punctuation:
                         paragraph.append({'kind': 'text', 'content': element['content'][-1]})
+                        element['content'] = typename
 
                     element['link'] = link
 
