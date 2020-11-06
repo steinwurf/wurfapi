@@ -16,7 +16,6 @@ import sphinx.util.logging
 import sphinx.util.nodes
 import sphinx.util.docutils
 
-import pyquery
 import json
 import slugify
 
