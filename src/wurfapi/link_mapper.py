@@ -319,7 +319,7 @@ class LinkMapper(object):
 
         def _add_links(paragraph):
 
-            for element in paragraph:
+            for index, element in enumerate(paragraph):
 
                 if element['kind'] is 'code':
                     continue
@@ -341,7 +341,7 @@ class LinkMapper(object):
                     # characters into links..
                     continue
                 typename = element['content']
-                last_char_is_punctuation =typename[-1] in ',.!?:;'
+                last_char_is_punctuation = typename[-1] in ',.!?:;'
                 if last_char_is_punctuation:
                     typename = typename[:-1]
 
@@ -350,7 +350,8 @@ class LinkMapper(object):
 
                 if link:
                     if last_char_is_punctuation:
-                        paragraph.append({'kind': 'text', 'content': element['content'][-1]})
+                        paragraph.insert(
+                            index + 1, {'kind': 'text', 'content': element['content'][-1]})
                         element['content'] = typename
 
                     element['link'] = link
