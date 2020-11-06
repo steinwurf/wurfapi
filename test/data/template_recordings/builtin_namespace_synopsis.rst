@@ -31,11 +31,11 @@ Functions
 
 | void **print** (double a, int \* b)
 
-    Prints the ``a`` and then the value pointed to by ``b`` . 
+    Prints the ``a`` and then the value pointed to by ``b``.
 
 
 
-    This is really handy in case you need to see them. 
+    This is really handy in case you need to see them.
 
     Example: 
 
@@ -46,18 +46,18 @@ Functions
 
 
 
-    Remember to use ``\n`` rather than ``std::endl`` it is more efficient. 
+    Remember to use ``\n`` rather than ``std::endl`` it is more efficient.
 
 
 
     Parameter ``a``:
-        A is actually a double. 
+        A is actually a double.
 
 
 
 
     Parameter ``b``:
-        Whereas b is a pointer to an int. 
+        Whereas b is a pointer to an int.
 
 
 
@@ -65,7 +65,7 @@ Functions
 
 
     Returns:
-        This does not really return anything because it is ``void`` but it could! 
+        This does not really return anything because it is ``void`` but it could!
 
 
 
@@ -85,13 +85,13 @@ Functions
             project::coffee::print(3);
 
 
-        Does this work 
+        Does this work
 
 
 
 
     Parameter ``on_paper``:
-        If ``true`` print on some actual paper. 
+        If ``true`` print on some actual paper.
 
 
 

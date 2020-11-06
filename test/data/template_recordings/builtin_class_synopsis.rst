@@ -10,7 +10,7 @@ class machine
 
 Brief description
 -----------------
-A machine to brew your coffee. Docs by `http://steinwurf.com <http://steinwurf.com>`_\  . 
+A machine to brew your coffee. Docs by `http://steinwurf.com <http://steinwurf.com>`_\ .
 
 
 
@@ -104,19 +104,19 @@ Member variables (public)
    * - uint32_t
      - cups_brewed
      - 0
-     - The number of cups brewed by this machine. 
+     - The number of cups brewed by this machine.
 
 
    * - :ref:`callback <project::v1_0_0::coffee::machine::callback>`\ 
      - m_callback
      - 
-     - A variable which uses the callback using statement. 
+     - A variable which uses the callback using statement.
 
 
    * - :ref:`other_callback <project::v1_0_0::coffee::machine::other_callback>`\ 
      - m_other_callback
      - 
-     - A variable which uses the other_callback typedef statement. 
+     - A variable which uses the other_callback typedef statement.
 
 
 
@@ -138,7 +138,7 @@ Static member variables (public)
    * - uint32_t
      - total_cups_brewed
      - 
-     - The number of cups brewed by all machines. 
+     - The number of cups brewed by all machines.
 
 
 
@@ -146,7 +146,23 @@ Static member variables (public)
 
 Description
 -----------
-The coffee machine object serves as your applications entry point for brewing coffee. You have to remember to fill the project::coffee::machine::water_tank though. 
+The coffee machine object serves as your applications entry point for brewing coffee. You have to remember to fill the project::coffee::machine::water_tank though.
+
+The following links are followed by punctuation:
+
+`http://dot.com <http://dot.com>`_\ .
+
+`http://comma.com <http://comma.com>`_\ ,
+
+`http://exclamationmark.com <http://exclamationmark.com>`_\ !
+
+`http://questionmark.com <http://questionmark.com>`_\ ?
+
+`http://colon.com <http://colon.com>`_\ :
+
+`http://semicolon.com <http://semicolon.com>`_\ ;
+
+`http://backslash.com/ <http://backslash.com/>`_\  nothing should happen here.
 
 
 
@@ -161,7 +177,7 @@ Member Function Descriptions
 
 | **machine** ()
 
-    Constructor. 
+    Constructor.
 
 
 
@@ -173,7 +189,7 @@ Member Function Descriptions
 
 | **machine** (:ref:`power <project::v1_0_0::coffee::machine::power>`\  pwr)
 
-    Constructor with power. 
+    Constructor with power.
 
 
 
@@ -185,7 +201,7 @@ Member Function Descriptions
 
 | **~machine** ()
 
-    Destructor. 
+    Destructor.
 
 
 
@@ -197,7 +213,7 @@ Member Function Descriptions
 
 | void **set_power** (:ref:`power <project::v1_0_0::coffee::machine::power>`\ )
 
-    Set the power of the machine. 
+    Set the power of the machine.
 
 
 
@@ -209,13 +225,13 @@ Member Function Descriptions
 
 | void **set_number_cups** (uint32_t cups = 0)
 
-    Set the number of cups to brew. 
+    Set the number of cups to brew.
 
 
 
     Before setting number of cups, check the following: 
 
-    #. You have enough water in the :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>`\  . 
+    #. You have enough water in the :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>`\ . 
 
        - Of course you also need power. 
 
@@ -229,22 +245,22 @@ Member Function Descriptions
 
 
 
-       - A stable surface is also important! 
+       - A stable surface is also important!
 
 
 
 
 
-    #. Your coffee mug is clean. 
+    #. Your coffee mug is clean.
 
 
 
-    You can see :ref:`number_cups() <project::v1_0_0::coffee::machine::number_cups()const>`\  for how many cups 
+    You can see :ref:`number_cups() <project::v1_0_0::coffee::machine::number_cups()const>`\  for how many cups
 
 
 
     Parameter ``cups``:
-        The number of cups 
+        The number of cups
 
 
 
@@ -259,13 +275,13 @@ Member Function Descriptions
 
 | void **set_number_cups** (std::string cups)
 
-    Set the number of cups to brew. 
+    Set the number of cups to brew.
 
 
 
     Before setting number of cups, check the following: 
 
-    #. You have enough water in the :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>`\  . 
+    #. You have enough water in the :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>`\ . 
 
        - Of course you also need power. 
 
@@ -279,22 +295,22 @@ Member Function Descriptions
 
 
 
-       - A stable surface is also important! 
+       - A stable surface is also important!
 
 
 
 
 
-    #. Your coffee mug is clean. 
+    #. Your coffee mug is clean.
 
 
 
-    You can see :ref:`number_cups() <project::v1_0_0::coffee::machine::number_cups()const>`\  for how many cups 
+    You can see :ref:`number_cups() <project::v1_0_0::coffee::machine::number_cups()const>`\  for how many cups
 
 
 
     Parameter ``cups``:
-        The number of cups 
+        The number of cups
 
 
 
@@ -310,7 +326,7 @@ Member Function Descriptions
 | uint32_t **number_cups** () const
 
     Returns:
-        The number of cups 
+        The number of cups
 
 
 
@@ -322,7 +338,7 @@ Member Function Descriptions
 
 | std::string **version** ()
 
-    The version of the machine. 
+    The version of the machine.
 
 
 
@@ -336,7 +352,7 @@ Member Function Descriptions
 
 
 
-    Remember to use ``\n`` rather than ``std::endl`` it is more efficient. 
+    Remember to use ``\n`` rather than ``std::endl`` it is more efficient.
 
 
 
@@ -360,7 +376,7 @@ Member Function Descriptions
 
 | const :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>`\  & **tank** () const
 
-    Get the first water tank. 
+    Get the first water tank.
 
 
 
@@ -372,7 +388,7 @@ Member Function Descriptions
 
 | :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>`\  & **tank** ()
 
-    Get the first water tank. 
+    Get the first water tank.
 
 
 
@@ -384,7 +400,7 @@ Member Function Descriptions
 
 | std::vector< :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>`\  > **tanks** ()
 
-    Get all water tanks. 
+    Get all water tanks.
 
 
 
@@ -397,17 +413,17 @@ Member Function Descriptions
 | template <class Beans = Arabica, uint32_t BeanSize = 100>
 | void **add_beans** (const Beans & beans)
 
-    Add a generic beans 
+    Add a generic beans
 
 
 
     Template parameter: class ``Beans``  = Arabica
-        The generic bean type 
+        The generic bean type
 
 
 
     Template parameter: uint32_t ``BeanSize``  = 100
-        The size of a bean 
+        The size of a bean
 
 
 
@@ -420,7 +436,7 @@ Member Function Descriptions
 
 | auto **get_bean_count** (:ref:`mug_size <project::v1_0_0::coffee::machine::mug_size()const>`\  size_of_mug) const -> uint32_t
 
-    Get the number of beans needed for a given mug. 
+    Get the number of beans needed for a given mug.
 
 
 
@@ -432,7 +448,7 @@ Member Function Descriptions
 
 | auto **get_last_cup** () const
 
-    Get the last cup of coffee. 
+    Get the last cup of coffee.
 
 
 
@@ -444,12 +460,12 @@ Member Function Descriptions
 
 | mug_size **mug_size** () const
 
-    This header is `src/coffee/coffee.h` if this is important? Also there is an example in `examples/header/header.h` 
+    This header is `src/coffee/coffee.h` if this is important? Also there is an example in `examples/header/header.h`
 
 
 
     Returns:
-        the mug_size 
+        the mug_size
 
 
 
@@ -461,7 +477,7 @@ Member Function Descriptions
 
 | void **set_name** (const char name[40])
 
-    Set the machine name. 
+    Set the machine name.
 
 
 
@@ -481,7 +497,7 @@ Type Description
 
 using **callback** = std::function< void()>
 
-    The generic callback type. 
+    The generic callback type.
 
 
 
@@ -493,7 +509,7 @@ using **callback** = std::function< void()>
 
 typedef :ref:`callback <project::v1_0_0::coffee::machine::callback>`\  **other_callback**
 
-    Another way to define a type is a typedef. 
+    Another way to define a type is a typedef.
 
 
 

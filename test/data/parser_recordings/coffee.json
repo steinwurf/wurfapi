@@ -12,7 +12,7 @@
     "initializer": "\"1.0.0\"",
     "kind": "define",
     "location": {
-      "line": 226,
+      "line": 242,
       "path": "src/coffee/coffee.h"
     },
     "name": "COFFEE_VERSION"
@@ -133,7 +133,7 @@
     "detaileddescription": [],
     "kind": "struct",
     "location": {
-      "line": 171,
+      "line": 187,
       "path": "src/coffee/coffee.h"
     },
     "members": [
@@ -199,7 +199,7 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "line": 173,
+      "line": 189,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_liquid",
@@ -223,7 +223,7 @@
     "detaileddescription": [],
     "kind": "struct",
     "location": {
-      "line": 188,
+      "line": 204,
       "path": "src/coffee/coffee.h"
     },
     "members": [
@@ -251,7 +251,7 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "line": 190,
+      "line": 206,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_liquid",
@@ -275,7 +275,7 @@
     "detaileddescription": [],
     "kind": "struct",
     "location": {
-      "line": 180,
+      "line": 196,
       "path": "src/coffee/coffee.h"
     },
     "members": [
@@ -320,7 +320,7 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "line": 182,
+      "line": 198,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_liquid",
@@ -359,11 +359,115 @@
           "content": "The coffee machine object serves as your applications entry point for brewing coffee. You have to remember to fill the project::coffee::machine::water_tank though.",
           "kind": "text"
         }
+      ],
+      [
+        {
+          "content": "The following links are followed by punctuation:",
+          "kind": "text"
+        }
+      ],
+      [
+        {
+          "content": "http://dot.com",
+          "kind": "text",
+          "link": {
+            "url": true,
+            "value": "http://dot.com"
+          }
+        },
+        {
+          "content": ".",
+          "kind": "text"
+        }
+      ],
+      [
+        {
+          "content": "http://comma.com",
+          "kind": "text",
+          "link": {
+            "url": true,
+            "value": "http://comma.com"
+          }
+        },
+        {
+          "content": ",",
+          "kind": "text"
+        }
+      ],
+      [
+        {
+          "content": "http://exclamationmark.com",
+          "kind": "text",
+          "link": {
+            "url": true,
+            "value": "http://exclamationmark.com"
+          }
+        },
+        {
+          "content": "!",
+          "kind": "text"
+        }
+      ],
+      [
+        {
+          "content": "http://questionmark.com",
+          "kind": "text",
+          "link": {
+            "url": true,
+            "value": "http://questionmark.com"
+          }
+        },
+        {
+          "content": "?",
+          "kind": "text"
+        }
+      ],
+      [
+        {
+          "content": "http://colon.com",
+          "kind": "text",
+          "link": {
+            "url": true,
+            "value": "http://colon.com"
+          }
+        },
+        {
+          "content": ":",
+          "kind": "text"
+        }
+      ],
+      [
+        {
+          "content": "http://semicolon.com",
+          "kind": "text",
+          "link": {
+            "url": true,
+            "value": "http://semicolon.com"
+          }
+        },
+        {
+          "content": ";",
+          "kind": "text"
+        }
+      ],
+      [
+        {
+          "content": "http://backslash.com/",
+          "kind": "text",
+          "link": {
+            "url": true,
+            "value": "http://backslash.com/"
+          }
+        },
+        {
+          "content": "nothing should happen here.",
+          "kind": "text"
+        }
       ]
     ],
     "kind": "class",
     "location": {
-      "line": 17,
+      "line": 33,
       "path": "src/coffee/coffee.h"
     },
     "members": [
@@ -420,7 +524,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 129,
+      "line": 145,
       "path": "src/coffee/coffee.h"
     },
     "name": "add_beans",
@@ -505,7 +609,7 @@
     "detaileddescription": [],
     "kind": "struct",
     "location": {
-      "line": 49,
+      "line": 65,
       "path": "src/coffee/coffee.h"
     },
     "members": [
@@ -525,7 +629,7 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "line": 50,
+      "line": 66,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_on",
@@ -549,7 +653,7 @@
     "detaileddescription": [],
     "kind": "using",
     "location": {
-      "line": 35,
+      "line": 51,
       "path": "src/coffee/coffee.h"
     },
     "name": "callback",
@@ -578,7 +682,7 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "line": 138,
+      "line": 154,
       "path": "src/coffee/coffee.h"
     },
     "name": "cups_brewed",
@@ -610,7 +714,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 132,
+      "line": 148,
       "path": "src/coffee/coffee.h"
     },
     "name": "get_bean_count",
@@ -662,7 +766,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 135,
+      "line": 151,
       "path": "src/coffee/coffee.h"
     },
     "name": "get_last_cup",
@@ -691,7 +795,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 159,
+      "line": 175,
       "path": "src/coffee/coffee.h"
     },
     "name": "help_brew",
@@ -783,7 +887,7 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "line": 41,
+      "line": 57,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_callback",
@@ -809,7 +913,7 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "line": 163,
+      "line": 179,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_impl",
@@ -848,7 +952,7 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "line": 44,
+      "line": 60,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_other_callback",
@@ -883,7 +987,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 64,
+      "line": 80,
       "path": "src/coffee/coffee.h"
     },
     "name": "machine",
@@ -911,7 +1015,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 67,
+      "line": 83,
       "path": "src/coffee/coffee.h"
     },
     "name": "machine",
@@ -975,7 +1079,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 146,
+      "line": 162,
       "path": "src/coffee/coffee.h"
     },
     "name": "mug_size",
@@ -1011,7 +1115,7 @@
     "is_virtual": true,
     "kind": "function",
     "location": {
-      "line": 95,
+      "line": 111,
       "path": "src/coffee/coffee.h"
     },
     "name": "number_cups",
@@ -1047,7 +1151,7 @@
     "detaileddescription": [],
     "kind": "typedef",
     "location": {
-      "line": 38,
+      "line": 54,
       "path": "src/coffee/coffee.h"
     },
     "name": "other_callback",
@@ -1075,7 +1179,7 @@
     "detaileddescription": [],
     "kind": "enum",
     "location": {
-      "line": 56,
+      "line": 72,
       "path": "src/coffee/coffee.h"
     },
     "name": "power",
@@ -1134,7 +1238,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 156,
+      "line": 172,
       "path": "src/coffee/coffee.h"
     },
     "name": "set",
@@ -1193,7 +1297,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 149,
+      "line": 165,
       "path": "src/coffee/coffee.h"
     },
     "name": "set_name",
@@ -1327,7 +1431,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 92,
+      "line": 108,
       "path": "src/coffee/coffee.h"
     },
     "name": "set_number_cups",
@@ -1469,7 +1573,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 89,
+      "line": 105,
       "path": "src/coffee/coffee.h"
     },
     "name": "set_number_cups",
@@ -1531,7 +1635,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 73,
+      "line": 89,
       "path": "src/coffee/coffee.h"
     },
     "name": "set_power",
@@ -1579,7 +1683,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 119,
+      "line": 135,
       "path": "src/coffee/coffee.h"
     },
     "name": "tank",
@@ -1622,7 +1726,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 116,
+      "line": 132,
       "path": "src/coffee/coffee.h"
     },
     "name": "tank",
@@ -1668,7 +1772,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 122,
+      "line": 138,
       "path": "src/coffee/coffee.h"
     },
     "name": "tanks",
@@ -1712,7 +1816,7 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "line": 141,
+      "line": 157,
       "path": "src/coffee/coffee.h"
     },
     "name": "total_cups_brewed",
@@ -1779,7 +1883,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 113,
+      "line": 129,
       "path": "src/coffee/coffee.h"
     },
     "name": "version",
@@ -1820,7 +1924,7 @@
     "detaileddescription": [],
     "kind": "struct",
     "location": {
-      "line": 21,
+      "line": 37,
       "path": "src/coffee/coffee.h"
     },
     "members": [
@@ -1843,7 +1947,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 31,
+      "line": 47,
       "path": "src/coffee/coffee.h"
     },
     "name": "fill",
@@ -1946,7 +2050,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 23,
+      "line": 39,
       "path": "src/coffee/coffee.h"
     },
     "name": "is_full",
@@ -2003,7 +2107,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 70,
+      "line": 86,
       "path": "src/coffee/coffee.h"
     },
     "name": "~machine",
@@ -2304,7 +2408,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 210,
+      "line": 226,
       "path": "src/coffee/coffee.h"
     },
     "name": "print",
@@ -2388,7 +2492,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 220,
+      "line": 236,
       "path": "src/coffee/coffee.h"
     },
     "name": "print",
@@ -2494,7 +2598,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 223,
+      "line": 239,
       "path": "src/coffee/coffee.h"
     },
     "name": "version",

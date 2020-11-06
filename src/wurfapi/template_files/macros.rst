@@ -114,7 +114,10 @@ a non-character. Otherwise rst will fail with an error.
 {% macro format_paragraph(paragraph) %}
 {% for element in paragraph %}
 {% if not loop.first %}
-{%- if 'content' in element and element.content[0] not in ',.!?:;' -%}
+{% set last_element = paragraph[loop.index0 - 1] %}
+{% set last_was_code_block = (last_element.kind == "code" and last_element.is_block) %}
+{% set startswith_punctuation = 'content' in element and element.content[0] in ',.!?:;' %}
+{%- if not startswith_punctuation and not last_was_code_block -%}
 {{ " " -}}
 {% endif %}
 {% endif %}
