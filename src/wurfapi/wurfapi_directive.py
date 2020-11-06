@@ -32,7 +32,7 @@ from . import check_api_schema
 from . import collapse_inline_namespaces
 
 
-VERSION = '7.1.2'
+VERSION = '7.1.3'
 
 # Having a "global" logger er .py file seems to be the Sphinx way of
 # doing it. We are ok with that here since we don't have any way of

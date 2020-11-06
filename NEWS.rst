@@ -8,9 +8,12 @@ Latest
 ------
 * tbd
 
-7.1.2
+7.1.3
 -----
 * Patch: Fix issue with punctuations ending up in the wrong location.
+
+7.1.2
+-----
 * Patch: Changed how paragraphs are (re)constructed. This means there are no
   longer trailing spaces, and links can now be followed by punctuations.
 * Patch: Fix `Member Function Description` -> `Member Function Descriptions`.
