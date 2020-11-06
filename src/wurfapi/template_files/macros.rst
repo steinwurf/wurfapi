@@ -1,4 +1,3 @@
-
 {# FORMAT_CODE_BLOCK #}
 
 {% macro format_code_block(paragraph) %}
@@ -14,7 +13,7 @@
 {# FORMAT_CODE_INLINE #}
 
 {% macro format_code_inline(paragraph) %}
-``{{ paragraph["content"] }}``{{ " " }}
+``{{ paragraph["content"] }}``
 {%- endmacro %}
 
 
@@ -45,7 +44,7 @@ a non-character. Otherwise rst will fail with an error.
 {% if api[reference]["kind"] == "file" -%}
 `{{ api[reference]["path"] }}`
 {%- else -%}
-:ref:`{{ escape_ref(content) }} <{{ escape_ref(reference)  }}>`{{"\\ "}}
+:ref:`{{ escape_ref(content) }} <{{ escape_ref(reference) }}>`{{"\\ "}}
 {%- endif %}
 {%- endmacro %}
 
@@ -87,7 +86,6 @@ a non-character. Otherwise rst will fail with an error.
 {% else %}
 {{ paragraph["content"] -}}
 {% endif %}
-{{ " " -}}
 {% endmacro %}
 
 
@@ -114,13 +112,21 @@ a non-character. Otherwise rst will fail with an error.
 {# FORMAT_PARAGRAPH #}
 
 {% macro format_paragraph(paragraph) %}
-{% for paragraph_element in paragraph %}
-{% if paragraph_element["kind"] == "text" %}
-{{ format_text(paragraph_element) -}}
-{% elif paragraph_element["kind"] == "code" %}
-{{ format_code(paragraph_element) -}}
-{% elif paragraph_element["kind"] == "list" %}
-{{ format_list(paragraph_element) -}}
+{% for element in paragraph %}
+{% if not loop.first %}
+{% set last_element = paragraph[loop.index0 - 1] %}
+{% set last_was_code_block = (last_element.kind == "code" and last_element.is_block) %}
+{% set startswith_punctuation = 'content' in element and element.content[0] in ',.!?:;' %}
+{%- if not startswith_punctuation and not last_was_code_block -%}
+{{ " " -}}
+{% endif %}
+{% endif %}
+{% if element["kind"] == "text" %}
+{{ format_text(element) -}}
+{% elif element["kind"] == "code" %}
+{{ format_code(element) -}}
+{% elif element["kind"] == "list" %}
+{{ format_list(element) -}}
 {% endif %}
 {% endfor %}
 

@@ -10,11 +10,11 @@ function print(double a, int \* b)
 
 | void **print** (double a, int \* b)
 
-    Prints the ``a`` and then the value pointed to by ``b`` . 
+    Prints the ``a`` and then the value pointed to by ``b``.
 
 
 
-    This is really handy in case you need to see them. 
+    This is really handy in case you need to see them.
 
     Example: 
 
@@ -25,18 +25,18 @@ function print(double a, int \* b)
 
 
 
-    Remember to use ``\n`` rather than ``std::endl`` it is more efficient. 
+    Remember to use ``\n`` rather than ``std::endl`` it is more efficient.
 
 
 
     Parameter ``a``:
-        A is actually a double. 
+        A is actually a double.
 
 
 
 
     Parameter ``b``:
-        Whereas b is a pointer to an int. 
+        Whereas b is a pointer to an int.
 
 
 
@@ -44,6 +44,6 @@ function print(double a, int \* b)
 
 
     Returns:
-        This does not really return anything because it is ``void`` but it could! 
+        This does not really return anything because it is ``void`` but it could!
 
 

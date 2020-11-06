@@ -340,11 +340,19 @@ class LinkMapper(object):
                     # qualifier in it. Just to avoid making random
                     # characters into links..
                     continue
+                typename = element['content']
+                last_char_is_punctuation =typename[-1] in ',.!?:;'
+                if last_char_is_punctuation:
+                    typename = typename[:-1]
 
                 link = self._find_link(
-                    typename=element['content'], scope=scope)
+                    typename=typename, scope=scope)
 
                 if link:
+                    if last_char_is_punctuation:
+                        paragraph.append({'kind': 'text', 'content': element['content'][-1]})
+                        element['content'] = typename
+
                     element['link'] = link
 
         new_paragraphs = []

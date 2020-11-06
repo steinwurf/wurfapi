@@ -1203,8 +1203,14 @@ def parse(log, xml):
 
     :return: List of "Text information" paragraphs
     """
-    link = {"url": True, "value": xml.attrib["url"]}
-    return [{"kind": "text", "content": xml.text, "link": link}]
+    value = xml.attrib["url"]
+    if value[-1] in ',.!?:;':
+        return [{"kind": "text", "content": xml.text[:-1],
+                 "link": {"url": True, "value": value[:-1]}},
+                {"kind": "text", "content": xml.text[-1]}]
+    else:
+        return [{"kind": "text", "content": xml.text,
+                 "link": {"url": True, "value": value}}]
 
 
 @DoxygenParser.register(tag='listitem')

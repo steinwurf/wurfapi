@@ -8,11 +8,27 @@ inline namespace v1_0_0
 {
 namespace coffee
 {
-/// @brief A machine to brew your coffee. Docs by http://steinwurf.com
+/// @brief A machine to brew your coffee. Docs by http://steinwurf.com.
 ///
 /// The coffee machine object serves as your applications entry
 /// point for brewing coffee. You have to remember to fill the
 /// project::coffee::machine::water_tank though.
+///
+/// The following links are followed by punctuation:
+///
+/// http://dot.com.
+///
+/// http://comma.com,
+///
+/// http://exclamationmark.com!
+///
+/// http://questionmark.com?
+///
+/// http://colon.com:
+///
+/// http://semicolon.com;
+///
+/// http://backslash.com/ nothing should happen here.
 class machine
 {
 public:

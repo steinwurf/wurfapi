@@ -6,6 +6,8 @@ of every change, see the Git log.
 
 Latest
 ------
+* Patch: Changed how paragraphs are (re)constructed. This means there are no
+  longer trailing spaces, and links can now be followed by punctuations.
 * Patch: Fix `Member Function Description` -> `Member Function Descriptions`.
 
 7.1.1
