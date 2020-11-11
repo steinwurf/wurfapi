@@ -6,6 +6,10 @@ of every change, see the Git log.
 
 Latest
 ------
+* tbd
+
+7.2.0
+-----
 * Minor: Extend ``cppreference_mappings`` to also include ``size_t``.
 
 7.1.3
