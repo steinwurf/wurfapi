@@ -10,6 +10,12 @@ cppreference_mappings = [
             "value": "https://en.cppreference.com/w/cpp/types/integer"}
     },
     {
+        "pattern": "(std::)?size_t",
+        "link": {
+            "url": True,
+            "value": "https://en.cppreference.com/w/cpp/types/size_t"}
+    },
+    {
         "pattern": "std::(vector|map|array|deque|forward_list|list|set)",
         "link": {
             "url": True,
