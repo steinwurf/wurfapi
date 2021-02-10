@@ -1,22 +1,6 @@
 {% import 'macros.rst' as macros with context -%}
 
 
-
-
-{# FORMAT_MEMBER_TABLE #}
-
-{%- macro format_member_table(selectors) -%}
-.. list-table::
-   :header-rows: 0
-   :widths: auto
-   :align: left
-
-{% for selector in selectors | api_sort(keys=["location", "line"]) %}
-   {{ macros.format_function_table_row(selector) | indent(width=3) }}
-{%- endfor -%}
-
-{% endmacro -%}
-
 {# FORMAT_MEMBER_TYPE_VALUES #}
 
 {%- macro format_member_type_values(selector) -%}
