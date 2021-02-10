@@ -1,10 +1,3 @@
-function print(double a, int \* b)
-----------------------------------
-
-**Scope:** project::v1_0_0
-
-**In header:** ``#include <coffee/coffee.h>``
-
 .. wurfapitarget:: project::v1_0_0::print(doublea,int*b)
     :label: project::v1_0_0::print()
 
@@ -45,5 +38,13 @@ function print(double a, int \* b)
 
     Returns:
         This does not really return anything because it is ``void`` but it could!
+
+
+
+
+**Scope:** project::v1_0_0
+
+**In header:** ``#include <coffee/coffee.h>``
+
 
 

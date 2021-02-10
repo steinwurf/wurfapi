@@ -1,21 +1,31 @@
 {% import 'macros.rst' as macros with context -%}
 
-{%- set function = api[selector] -%}
-{%- set params = [] -%}
-{%- for parameter in function["parameters"] -%}
-{%- do params.append(macros.format_type_list(parameter["type"])) -%}
-{%- if not loop.last -%}
-{%- do params.append(", ") -%}
+{%- if api[selector]["kind"] == "function" -%}
+{%- set functions = [selector] -%}
+{%- else -%}
+{%- set functions = api[selector]["members"] | api_filter(kind="function")
+                                             | api_sort(keys=["location", "line"])
+                                             | api_sort(keys=["location", "path"]) -%}
 {%- endif -%}
-{%- endfor -%}
-{{ macros.format_heading(function["kind"] + " " + function["name"] + "(" + params|join('') + ")", "-") }}
 
-{% if function["scope"] %}
-**Scope:** {{ function["scope"] }}
+{%- if functions|length > 1 -%}
+{{ macros.format_function_table(functions) }}
+-----
+
+{% endif -%}
+
+{% for function in functions -%}
+
+{{ macros.format_function(function) }}
+
+{% if api[function]["scope"] %}
+**Scope:** {{ api[function]["scope"] }}
 {% endif %}
 
-{% if function["location"]["include"] %}
-**In header:** ``#include <{{ function["location"]["include"] }}>``
+{% if api[function]["location"]["include"] %}
+**In header:** ``#include <{{ api[function]["location"]["include"] }}>``
 {% endif %}
 
-{{ macros.format_function(selector) }}
+{{ "-----" if not loop.last }}
+
+{% endfor %}
