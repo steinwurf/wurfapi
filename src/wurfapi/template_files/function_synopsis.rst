@@ -9,6 +9,7 @@
 {%- if functions|length > 1 -%}
 {{ macros.format_function_table(functions) }}
 -----
+
 {% endif -%}
 
 {% for function in functions -%}
