@@ -12,7 +12,7 @@
     "initializer": "\"1.0.0\"",
     "kind": "define",
     "location": {
-      "line": 242,
+      "line": 244,
       "path": "src/coffee/coffee.h"
     },
     "name": "COFFEE_VERSION"
@@ -2598,13 +2598,20 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 239,
+      "line": 241,
       "path": "src/coffee/coffee.h"
     },
     "name": "version",
     "parameters": [],
     "return": {
-      "description": [],
+      "description": [
+        [
+          {
+            "content": "The version of the library as a string",
+            "kind": "text"
+          }
+        ]
+      ],
       "type": [
         {
           "value": "std::string"

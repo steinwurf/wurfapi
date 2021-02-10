@@ -236,6 +236,8 @@ void print(double a, int* b);
 void print(int a_number, bool on_paper);
 }
 }
+
+/// @return The version of the library as a string
 std::string version();
 
 /// The coffee version

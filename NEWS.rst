@@ -6,7 +6,8 @@ of every change, see the Git log.
 
 Latest
 ------
-* tbd
+* Major: Extend function_synopsis to support selectors that contain multiple
+  functions.
 
 7.2.0
 -----

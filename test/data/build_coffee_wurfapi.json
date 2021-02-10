@@ -13,7 +13,7 @@
     "kind": "define",
     "location": {
       "include": "coffee/coffee.h",
-      "line": 242,
+      "line": 244,
       "path": "src/coffee/coffee.h"
     },
     "name": "COFFEE_VERSION"
@@ -2723,13 +2723,20 @@
     "kind": "function",
     "location": {
       "include": "coffee/coffee.h",
-      "line": 239,
+      "line": 241,
       "path": "src/coffee/coffee.h"
     },
     "name": "version",
     "parameters": [],
     "return": {
-      "description": [],
+      "description": [
+        [
+          {
+            "content": "The version of the library as a string",
+            "kind": "text"
+          }
+        ]
+      ],
       "type": [
         {
           "value": "std::string"

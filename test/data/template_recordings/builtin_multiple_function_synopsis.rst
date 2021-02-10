@@ -46,5 +46,38 @@
 
 **In header:** ``#include <coffee/coffee.h>``
 
+-----
+
+.. wurfapitarget:: project::v1_0_0::print(inta_number,boolon_paper)
+    :label: project::v1_0_0::print()
+
+| void **print** (int a_number, bool on_paper)
+
+    Parameter ``a_number``:
+        This is the most important parameter. Without it the function will not work. Example: 
+
+        .. code-block:: c++
+
+            project::coffee::print(3);
+
+
+        Does this work
+
+
+
+
+    Parameter ``on_paper``:
+        If ``true`` print on some actual paper.
+
+
+
+
+
+
+
+**Scope:** project::v1_0_0
+
+**In header:** ``#include <coffee/coffee.h>``
+
 
 

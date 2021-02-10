@@ -1,20 +1,7 @@
 {% import 'macros.rst' as macros with context -%}
 
-{# FORMAT_MEMBER_TABLE_ROW #}
 
-{%- macro format_member_table_row(selector) -%}
-{%- set function = api[selector] %}
-{%- set signature = macros.format_parameters(function["parameters"]) %}
-{%- set signature = signature + " const" if function["is_const"] else signature -%}
-{% if "return" in function -%}
-{%- set return_type = macros.format_type_list(function["return"]["type"]) -%}
-{% else %}
-{%- set return_type = "" -%}
-{%- endif %}
-{%- set return_type = "virtual " + return_type if function["is_virtual"] else return_type -%}
-* - {{ return_type }}
-  - {{ macros.format_ref(function["name"], selector)}} {{ signature }}
-{% endmacro -%}
+
 
 {# FORMAT_MEMBER_TABLE #}
 
@@ -25,7 +12,7 @@
    :align: left
 
 {% for selector in selectors | api_sort(keys=["location", "line"]) %}
-   {{ format_member_table_row(selector) | indent(width=3) }}
+   {{ macros.format_function_table_row(selector) | indent(width=3) }}
 {%- endfor -%}
 
 {% endmacro -%}
@@ -135,7 +122,7 @@ Member types (public)
 Member functions (public)
 -------------------------
 
-{{ format_member_table(functions) }}
+{{ macros.format_function_table(functions) }}
 
 {% endif %}
 
@@ -149,7 +136,7 @@ Member functions (public)
 Static member functions (public)
 --------------------------------
 
-{{ format_member_table(functions) }}
+{{ macros.format_function_table(functions) }}
 
 {% endif %}
 

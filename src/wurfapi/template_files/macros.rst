@@ -330,3 +330,35 @@ Template parameter: {{ type }} ``{{ name }}`` {{ " = " + default if default }}
     {{ description | indent -}}
 {% endif %}
 {% endmacro %}
+
+
+{# FORMAT_FUNCTION_TABLE_ROW #}
+
+{%- macro format_function_table_row(selector) -%}
+{%- set function = api[selector] %}
+{%- set signature = format_parameters(function["parameters"]) %}
+{%- set signature = signature + " const" if function["is_const"] else signature -%}
+{% if "return" in function -%}
+{%- set return_type = format_type_list(function["return"]["type"]) -%}
+{% else %}
+{%- set return_type = "" -%}
+{%- endif %}
+{%- set return_type = "virtual " + return_type if function["is_virtual"] else return_type -%}
+* - {{ return_type }}
+  - {{ format_ref(function["name"], selector)}} {{ signature }}
+{% endmacro -%}
+
+
+{# FORMAT_FUNCTION_TABLE #}
+
+{%- macro format_function_table(selectors) -%}
+.. list-table::
+   :header-rows: 0
+   :widths: auto
+   :align: left
+
+{% for selector in selectors | api_sort(keys=["location", "line"]) %}
+   {{ format_function_table_row(selector) | indent(width=3) }}
+{%- endfor -%}
+
+{% endmacro -%}
