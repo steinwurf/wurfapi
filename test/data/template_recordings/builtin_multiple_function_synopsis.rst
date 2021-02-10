@@ -1,3 +1,15 @@
+.. list-table::
+   :header-rows: 0
+   :widths: auto
+   :align: left
+
+   * - void
+     - :ref:`print <project::v1_0_0::print(doublea,int*b)>`\  (double a, int \* b)
+   * - void
+     - :ref:`print <project::v1_0_0::print(inta_number,boolon_paper)>`\  (int a_number, bool on_paper)
+
+-----
+
 .. wurfapitarget:: project::v1_0_0::print(doublea,int*b)
     :label: project::v1_0_0::print()
 

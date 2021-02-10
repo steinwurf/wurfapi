@@ -3,7 +3,9 @@
 {%- if api[selector]["kind"] == "function" -%}
 {%- set functions = [selector] -%}
 {%- else -%}
-{%- set functions = api[selector]["members"] | api_filter(kind="function") -%}
+{%- set functions = api[selector]["members"] | api_filter(kind="function")
+                                             | api_sort(keys=["location", "line"])
+                                             | api_sort(keys=["location", "path"]) -%}
 {%- endif -%}
 
 {%- if functions|length > 1 -%}
