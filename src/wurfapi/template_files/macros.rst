@@ -357,7 +357,8 @@ Template parameter: {{ type }} ``{{ name }}`` {{ " = " + default if default }}
    :widths: auto
    :align: left
 
-{% for selector in selectors | api_sort(keys=["location", "line"]) %}
+{% for selector in selectors | api_sort(keys=["location", "line"])
+                             | api_sort(keys=["location", "path"]) %}
    {{ format_function_table_row(selector) | indent(width=3) }}
 {%- endfor -%}
 
