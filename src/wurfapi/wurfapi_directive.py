@@ -1,4 +1,3 @@
-# fmt: off
 import os
 import sys
 import hashlib
@@ -391,5 +390,3 @@ def setup(app):
     # Run Doxygen on the source code
 
     return {'version': VERSION}
-
-# fmt: on
