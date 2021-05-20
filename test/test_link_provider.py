@@ -10,7 +10,7 @@ def test_linkprovider():
 
     assert result == {
         "url": True,
-        "value": "https://en.cppreference.com/w/cpp/container/vector"
+        "value": "https://en.cppreference.com/w/cpp/container/vector",
     }
 
     # Test
@@ -18,18 +18,26 @@ def test_linkprovider():
 
     assert result == {
         "url": True,
-        "value": "https://en.cppreference.com/w/cpp/container/map"
+        "value": "https://en.cppreference.com/w/cpp/container/map",
     }
 
     # Test
 
-    typenames = ["uint8_t", "uint16_t", "uint32_t", "uint64_t",
-                 "int8_t", "int16_t", "int32_t", "int64_t"]
+    typenames = [
+        "uint8_t",
+        "uint16_t",
+        "uint32_t",
+        "uint64_t",
+        "int8_t",
+        "int16_t",
+        "int32_t",
+        "int64_t",
+    ]
 
     for typename in typenames:
         result = link_provider.find_link(typename=typename)
 
         assert result == {
             "url": True,
-            "value": "https://en.cppreference.com/w/cpp/types/integer"
+            "value": "https://en.cppreference.com/w/cpp/types/integer",
         }

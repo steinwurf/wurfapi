@@ -5,7 +5,7 @@ import functools
 
 
 def transform_key(data, search_key, scope, function):
-    """ Runs the function on all values with the specified key
+    """Runs the function on all values with the specified key
 
     :param data: The dict containing the keys
     :param key: The key to look for
@@ -15,35 +15,37 @@ def transform_key(data, search_key, scope, function):
 
     if isinstance(data, dict):
 
-        if 'scope' in data:
-            scope = data['scope']
+        if "scope" in data:
+            scope = data["scope"]
 
         for found_key, value in data.items():
 
-            if found_key == 'scope':
+            if found_key == "scope":
                 continue
 
             if found_key == search_key:
                 data[found_key] = function(value, scope=scope)
 
-            transform_key(data=value, search_key=search_key,
-                          scope=scope, function=function)
+            transform_key(
+                data=value, search_key=search_key, scope=scope, function=function
+            )
 
     if isinstance(data, list):
 
         for value in data:
-            transform_key(data=value, search_key=search_key,
-                          scope=scope, function=function)
+            transform_key(
+                data=value, search_key=search_key, scope=scope, function=function
+            )
 
 
 # Keywords used to split a C++ type into it's basic elements:
 keywords = ["<", ">", ")", "(", "&", "*", ",", "const", "constexpr"]
-keyword_pattern = '(' + '|'.join([re.escape(k) for k in keywords]) + ')'
+keyword_pattern = "(" + "|".join([re.escape(k) for k in keywords]) + ")"
 whitespace_pattern = "(^[ \t]|[ \t]$)"
 
 
 def split_cpptype(cpptype):
-    """ Split a C++ type into it's basic string components.
+    """Split a C++ type into it's basic string components.
 
     Example:
 
@@ -77,7 +79,7 @@ def split_cpptype(cpptype):
 
 
 def split_typelist(typelist):
-    """ Splits a type list into as small compoenets as possible
+    """Splits a type list into as small compoenets as possible
 
     :param typelist: A wurfapi type list.
     :return: An expanded wurfapi type list.
@@ -96,7 +98,7 @@ def split_typelist(typelist):
         # See if we can split the element out in more components
         # e.g. 'std::vector<uint8_t>' gets split into 'std::vector', '<',
         # 'uint8_t', '>'
-        tokens = split_cpptype(cpptype=item['value'])
+        tokens = split_cpptype(cpptype=item["value"])
 
         for token in tokens:
             newlist.append({"value": token})
@@ -105,7 +107,7 @@ def split_typelist(typelist):
 
 
 def join_typelist(typelist):
-    """ Takes a type list and joins it into as few components as possible
+    """Takes a type list and joins it into as few components as possible
 
     :param typelist: A wurfapi type list.
     :return: An reduced wurfapi type list.
@@ -113,7 +115,7 @@ def join_typelist(typelist):
 
     newlist = []
 
-    temporary_item = {'value': ""}
+    temporary_item = {"value": ""}
 
     for item in typelist:
 
@@ -126,7 +128,7 @@ def join_typelist(typelist):
             # We got an item with a link and we have already accumulated
             # something in the temporary_item
             newlist.append(temporary_item)
-            temporary_item = {'value': ""}
+            temporary_item = {"value": ""}
 
         if "link" in item:
             newlist.append(item)
@@ -140,7 +142,7 @@ def join_typelist(typelist):
 
 
 def split_cppscope(cppscope):
-    """ Split a C++ scope into a list of more general scopes.
+    """Split a C++ scope into a list of more general scopes.
 
     Example:
 
@@ -157,28 +159,28 @@ def split_cppscope(cppscope):
 
     while cppscope:
         scopes.append(cppscope)
-        cppscope, _, _ = cppscope.rpartition('::')
+        cppscope, _, _ = cppscope.rpartition("::")
 
     return scopes
 
 
 def split_text(text):
-    """ Takes a text item and splits it into a list of words.
+    """Takes a text item and splits it into a list of words.
 
     :return: List of text items
     """
 
-    words = text['content'].split()
+    words = text["content"].split()
 
     result = []
     for word in words:
-        result.append({'kind': 'text', 'content': word})
+        result.append({"kind": "text", "content": word})
 
     return result
 
 
 def split_paragraph(paragraph):
-    """ Takes a paragraph and splits it into as many paragraph elements
+    """Takes a paragraph and splits it into as many paragraph elements
     as possible.
 
     :param paragraph: A list of paragraph elements
@@ -188,21 +190,22 @@ def split_paragraph(paragraph):
     new_paragraph = []
 
     for paragraph_element in paragraph:
-        if paragraph_element['kind'] is "code":
+        if paragraph_element["kind"] is "code":
             new_paragraph.append(paragraph_element)
             continue
 
-        if paragraph_element['kind'] is "list":
+        if paragraph_element["kind"] is "list":
 
             items = []
-            for item_paragraphs in paragraph_element['items']:
+            for item_paragraphs in paragraph_element["items"]:
                 new_item_paragraphs = []
                 for item_paragraph in item_paragraphs:
                     new_item_paragraphs.append(
-                        split_paragraph(paragraph=item_paragraph))
+                        split_paragraph(paragraph=item_paragraph)
+                    )
                 items.append(new_item_paragraphs)
 
-            paragraph_element['items'] = items
+            paragraph_element["items"] = items
 
             new_paragraph.append(paragraph_element)
             continue
@@ -217,7 +220,7 @@ def split_paragraph(paragraph):
 
 
 def join_paragraph(paragraph):
-    """ Takes a paragraph and joins it into as few paragraph elements
+    """Takes a paragraph and joins it into as few paragraph elements
     as possible.
 
     :param paragraph: A paragraph
@@ -232,8 +235,7 @@ def join_paragraph(paragraph):
 
     def _flush(paragraph, text):
         if text:
-            paragraph.append(
-                {'kind': 'text', 'content': " ".join(text)})
+            paragraph.append({"kind": "text", "content": " ".join(text)})
 
             # Remove all elements in the list
             del text[:]
@@ -242,25 +244,24 @@ def join_paragraph(paragraph):
 
     for paragraph_element in paragraph:
 
-        if paragraph_element['kind'] is "code":
+        if paragraph_element["kind"] is "code":
             flush()
             new_paragraph.append(paragraph_element)
             continue
 
-        if paragraph_element['kind'] is "list":
+        if paragraph_element["kind"] is "list":
 
             # A list contains even more paragraphs
             items = []
 
-            for item_paragraphs in paragraph_element['items']:
+            for item_paragraphs in paragraph_element["items"]:
                 new_item_paragraphs = []
                 for item_paragraph in item_paragraphs:
-                    new_item_paragraphs.append(
-                        join_paragraph(paragraph=item_paragraph))
+                    new_item_paragraphs.append(join_paragraph(paragraph=item_paragraph))
 
                 items.append(new_item_paragraphs)
 
-            paragraph_element['items'] = items
+            paragraph_element["items"] = items
 
             flush()
             new_paragraph.append(paragraph_element)
@@ -271,7 +272,7 @@ def join_paragraph(paragraph):
             new_paragraph.append(paragraph_element)
             continue
 
-        text.append(paragraph_element['content'])
+        text.append(paragraph_element["content"])
 
     # If anything remains in the temporary flush it out
     flush()
@@ -280,9 +281,8 @@ def join_paragraph(paragraph):
 
 
 class LinkMapper(object):
-
     def __init__(self, api, link_provider):
-        """ Create a new instance
+        """Create a new instance
 
         :param api: The API to map
         :param link_provider: Helper to resolve links to more types
@@ -291,7 +291,7 @@ class LinkMapper(object):
         self.link_provider = link_provider
 
     def map(self):
-        """ Perform the actual mapping.
+        """Perform the actual mapping.
 
         :return: A modified API with links expanded. The original API dict is
             not modified.
@@ -299,19 +299,28 @@ class LinkMapper(object):
 
         mapped_api = copy.deepcopy(self.api)
 
-        transform_key(data=mapped_api, search_key="type", scope=None,
-                      function=self._map_type)
+        transform_key(
+            data=mapped_api, search_key="type", scope=None, function=self._map_type
+        )
 
-        transform_key(data=mapped_api, search_key="briefdescription",
-                      scope=None, function=self._map_paragraphs)
+        transform_key(
+            data=mapped_api,
+            search_key="briefdescription",
+            scope=None,
+            function=self._map_paragraphs,
+        )
 
-        transform_key(data=mapped_api, search_key="detaileddescription",
-                      scope=None, function=self._map_paragraphs)
+        transform_key(
+            data=mapped_api,
+            search_key="detaileddescription",
+            scope=None,
+            function=self._map_paragraphs,
+        )
 
         return mapped_api
 
     def _map_paragraphs(self, paragraphs, scope):
-        """ Find links in the 'text' elements
+        """Find links in the 'text' elements
         :param self: The LinkMapper
         :param paragraphs: The paragraphs the find links in.
         :param scope: The scope
@@ -321,40 +330,41 @@ class LinkMapper(object):
 
             for index, element in enumerate(paragraph):
 
-                if element['kind'] is 'code':
+                if element["kind"] is "code":
                     continue
 
-                if element['kind'] is 'list':
+                if element["kind"] is "list":
 
-                    for item_paragraphs in element['items']:
+                    for item_paragraphs in element["items"]:
                         for item_paragraph in item_paragraphs:
                             _add_links(item_paragraph)
 
                     continue
 
-                if 'link' in element:
+                if "link" in element:
                     continue
 
-                if "::" not in element['content']:
+                if "::" not in element["content"]:
                     # We skip over stuff that does not have a scope
                     # qualifier in it. Just to avoid making random
                     # characters into links..
                     continue
-                typename = element['content']
-                last_char_is_punctuation = typename[-1] in ',.!?:;'
+                typename = element["content"]
+                last_char_is_punctuation = typename[-1] in ",.!?:;"
                 if last_char_is_punctuation:
                     typename = typename[:-1]
 
-                link = self._find_link(
-                    typename=typename, scope=scope)
+                link = self._find_link(typename=typename, scope=scope)
 
                 if link:
                     if last_char_is_punctuation:
                         paragraph.insert(
-                            index + 1, {'kind': 'text', 'content': element['content'][-1]})
-                        element['content'] = typename
+                            index + 1,
+                            {"kind": "text", "content": element["content"][-1]},
+                        )
+                        element["content"] = typename
 
-                    element['link'] = link
+                    element["link"] = link
 
         new_paragraphs = []
         for paragraph in paragraphs:
@@ -367,7 +377,7 @@ class LinkMapper(object):
         return new_paragraphs
 
     def _map_type(self, typelist, scope):
-        """ Find links in the 'type' lists """
+        """Find links in the 'type' lists"""
 
         # 1. Split the type into it most basic elements
         typelist = split_typelist(typelist=typelist)
@@ -384,14 +394,14 @@ class LinkMapper(object):
                 # as a type. In this case it can wrongfully pick the function
                 # rather than the type.
                 # Remove the link if this is the case:
-                if self.api[link_value]['kind'] != 'function':
+                if self.api[link_value]["kind"] != "function":
                     continue
                 item.pop("link", None)
 
-            link = self._find_link(typename=item['value'], scope=scope, is_type=True)
+            link = self._find_link(typename=item["value"], scope=scope, is_type=True)
 
             if link is not None:
-                item['link'] = link
+                item["link"] = link
 
         # 3. Reduce the typelist such that only elements with links are
         #    kept standalone
@@ -400,7 +410,7 @@ class LinkMapper(object):
         return typelist
 
     def _find_link(self, typename, scope, is_type=False):
-        """ Given a token e.g. std::function see if we can find a link
+        """Given a token e.g. std::function see if we can find a link
 
         First we check if the type name is found directly in the API. After
         this we try to see if the link_provider has one.
@@ -424,10 +434,10 @@ class LinkMapper(object):
 
         for scope in scopes:
 
-            scoped_name = scope + '::' + typename
+            scoped_name = scope + "::" + typename
 
             if scoped_name in self.api:
-                if is_type and self.api[scoped_name]['kind'] == 'function':
+                if is_type and self.api[scoped_name]["kind"] == "function":
                     continue
                 # The scope qualified name was found
                 return {"url": False, "value": scoped_name}

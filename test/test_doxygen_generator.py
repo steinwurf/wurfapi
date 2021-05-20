@@ -9,8 +9,8 @@ import wurfapi.run
 
 def test_doxygen_generator(testdirectory):
 
-    output_dir = testdirectory.mkdir('output')
-    coffee_dir = testdirectory.copy_dir('test/data/cpp_coffee')
+    output_dir = testdirectory.mkdir("output")
+    coffee_dir = testdirectory.copy_dir("test/data/cpp_coffee")
 
     runner = mock.Mock()
 
@@ -22,11 +22,12 @@ def test_doxygen_generator(testdirectory):
         recursive=True,
         source_paths=[coffee_dir.path()],
         output_path=output_dir.path(),
-        warnings_as_error=True)
+        warnings_as_error=True,
+    )
 
     xml_output = generator.generate()
 
-    assert output_dir.contains_file('Doxyfile')
+    assert output_dir.contains_file("Doxyfile")
 
-    index_xml = os.path.join(xml_output, 'index.xml')
+    index_xml = os.path.join(xml_output, "index.xml")
     assert os.path.isfile(index_xml)

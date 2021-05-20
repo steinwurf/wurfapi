@@ -17,21 +17,21 @@ def run(command, cwd, **kwargs):
     """
 
     if isinstance(command, compat.string_type):
-        kwargs['shell'] = True
+        kwargs["shell"] = True
 
-    if 'env' not in kwargs:
+    if "env" not in kwargs:
         # If 'env' is not passed as keyword argument use a copy of the
         # current environment.
-        kwargs['env'] = os.environ.copy()
+        kwargs["env"] = os.environ.copy()
 
-    if 'stdout' not in kwargs:
-        kwargs['stdout'] = subprocess.PIPE
+    if "stdout" not in kwargs:
+        kwargs["stdout"] = subprocess.PIPE
 
-    if 'stderr' not in kwargs:
-        kwargs['stderr'] = subprocess.PIPE
+    if "stderr" not in kwargs:
+        kwargs["stderr"] = subprocess.PIPE
 
-    assert 'cwd' not in kwargs
-    kwargs['cwd'] = cwd
+    assert "cwd" not in kwargs
+    kwargs["cwd"] = cwd
 
     start_time = time.time()
 
@@ -40,7 +40,8 @@ def run(command, cwd, **kwargs):
         # Need to decode the stdout and stderr with the correct
         # character encoding (http://stackoverflow.com/a/28996987)
         universal_newlines=True,
-        **kwargs)
+        **kwargs
+    )
 
     stdout, stderr = popen.communicate()
 
@@ -56,12 +57,16 @@ def run(command, cwd, **kwargs):
         stderr = check_output.CheckOutput(output=stderr)
 
     if isinstance(command, list):
-        command = ' '.join(command)
+        command = " ".join(command)
 
     result = run_result.RunResult(
-        command=command, path=cwd,
-        stdout=stdout, stderr=stderr, returncode=popen.returncode,
-        time=end_time - start_time)
+        command=command,
+        path=cwd,
+        stdout=stdout,
+        stderr=stderr,
+        returncode=popen.returncode,
+        time=end_time - start_time,
+    )
 
     if popen.returncode != 0:
         raise run_error.RunError(result)

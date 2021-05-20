@@ -7,10 +7,9 @@ except (ImportError):
 
 
 class LocationMapper(object):
-
     def __init__(self, project_root, include_paths, log):
         # type: (str, List[str]) -> None
-        """ Instantiate new object
+        """Instantiate new object
 
         :param project_root: Absolute path to the root of the project as a
             string.
@@ -41,8 +40,9 @@ class LocationMapper(object):
             if relative_path:
                 return relative_path
 
-        self.log.debug("Unable to find file %s in includes %s", path,
-                       self.include_paths)
+        self.log.debug(
+            "Unable to find file %s in includes %s", path, self.include_paths
+        )
 
         return None
 
@@ -64,7 +64,10 @@ class LocationMapper(object):
 
         if not relative_path:
             raise RuntimeError(
-                "File {} not contained in project root {}".format(path, self.project_root))
+                "File {} not contained in project root {}".format(
+                    path, self.project_root
+                )
+            )
 
         return relative_path
 
@@ -78,6 +81,6 @@ class LocationMapper(object):
         relative_path = path.relative_to(start)
 
         # Make sure we use unix / linux style paths - also on windows
-        relative_path = str(relative_path).replace('\\', '/')
+        relative_path = str(relative_path).replace("\\", "/")
 
         return relative_path

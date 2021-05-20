@@ -7,7 +7,7 @@ import json
 import shutil
 import subprocess
 
-project_name = 'wurfapi'
+project_name = "wurfapi"
 
 
 def run_command(args, cwd=None, env=None):
@@ -17,17 +17,17 @@ def run_command(args, cwd=None, env=None):
 
 
 def configure(properties):
-    command = [sys.executable, 'waf', 'configure', '-v', '--zones=resolve']
+    command = [sys.executable, "waf", "configure", "-v", "--zones=resolve"]
     run_command(command)
 
 
 def build(properties):
-    command = [sys.executable, 'waf', 'build', '-v', '--zones=resolve']
+    command = [sys.executable, "waf", "build", "-v", "--zones=resolve"]
     run_command(command)
 
 
 def run_tests(properties):
-    command = [sys.executable, 'waf', '-v', '--run_tests', '--zones=resolve']
+    command = [sys.executable, "waf", "-v", "--run_tests", "--zones=resolve"]
     run_command(command)
 
 
@@ -47,20 +47,21 @@ def main():
     if len(argv) == 3:
         properties = json.loads(argv[2])
 
-    if cmd == 'configure':
+    if cmd == "configure":
         configure(properties)
-    elif cmd == 'build':
+    elif cmd == "build":
         build(properties)
-    elif cmd == 'run_tests':
+    elif cmd == "run_tests":
         run_tests(properties)
-    elif cmd == 'install':
+    elif cmd == "install":
         install(properties)
     else:
         print("Unknown command: {}".format(cmd))
+
 
 # def main():
 #     print("Enable tests")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

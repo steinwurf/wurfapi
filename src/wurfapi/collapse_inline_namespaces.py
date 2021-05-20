@@ -1,4 +1,3 @@
-
 import schema
 import six
 
@@ -34,7 +33,7 @@ import six
 
 
 def update_scope(api, from_scope, to_scope):
-    """ This function iterates though the API and substitutes the from_scope
+    """This function iterates though the API and substitutes the from_scope
     with the to_scope.
 
     So if we want to change "A::B::C" to "A::B" we run:
@@ -84,7 +83,7 @@ def update_scope(api, from_scope, to_scope):
 
 
 def collapse_inline_namespaces(api, selectors):
-    """ Collapses inline namespaces.
+    """Collapses inline namespaces.
 
     This function transforms the API JSON, this is done by:
     1. Remove the name of the inline namespace in the scope of the members.
@@ -101,13 +100,15 @@ def collapse_inline_namespaces(api, selectors):
     for selector in selectors:
 
         if selector not in api:
-            raise RuntimeError("Could not find {} selector in API. "
-                               "Available selectors are: {}".format(
-                                   selector, api.keys()))
+            raise RuntimeError(
+                "Could not find {} selector in API. "
+                "Available selectors are: {}".format(selector, api.keys())
+            )
 
         # Make sapi[selector]e selecting an inline namespace
-        schema.Schema({'kind': 'namespace', 'inline': True},
-                      ignore_extra_keys=True).validate(api[selector])
+        schema.Schema(
+            {"kind": "namespace", "inline": True}, ignore_extra_keys=True
+        ).validate(api[selector])
 
         # The selector is fully qualified name of the inline namespace e.g.
         # A::B::C where C is the inline namespace
@@ -121,17 +122,17 @@ def collapse_inline_namespaces(api, selectors):
         # E.g. we are collapsing an inline namespace A that contains a nested
         # type A::foo. Then the from scope is "A::" to ""
 
-        if api[selector]['scope']:
+        if api[selector]["scope"]:
             from_scope = selector
-            to_scope = api[selector]['scope']
+            to_scope = api[selector]["scope"]
         else:
             from_scope = selector + "::"
             to_scope = ""
 
         # Remove references to it
         if to_scope:
-            api[to_scope]['members'].remove(selector)
-            api[to_scope]['members'] += api[selector]['members']
+            api[to_scope]["members"].remove(selector)
+            api[to_scope]["members"] += api[selector]["members"]
 
         # Remove the inline namespace from the API
         del api[selector]
