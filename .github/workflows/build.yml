@@ -1,7 +1,11 @@
 name: Tests
 on: [push, pull_request]
 jobs:
-  name: Flake8 Syntax Check
+  syntax:
+    strategy:
+      fail-fast: false
+    runs-on: [self-hosted, docker]
+    name: Flake8 Syntax Check
     container:
       image: python:3.9.5
       options: --user 0:0
@@ -12,8 +16,6 @@ jobs:
         run: apt update && apt -y install openssh-client
       - name: Checkout source code
         uses: actions/checkout@v2
-      - name: Create flake file
-        run: echo "[flake8]\n\nexclude = deprecated" >> .flake8
       - name: Check python syntax
         uses: cclauss/Find-Python-syntax-errors-action@master
   # Pip performed in docker
