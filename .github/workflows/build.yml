@@ -16,6 +16,8 @@ jobs:
         run: apt update && apt -y install openssh-client
       - name: Checkout source code
         uses: actions/checkout@v2
+      - name: Create flake file
+        run: echo "[flake8]\n\nignore = F632" >> .flake8
       - name: Check python syntax
         uses: cclauss/Find-Python-syntax-errors-action@master
   # Pip performed in docker
