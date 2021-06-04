@@ -363,6 +363,46 @@ def generate_doxygen(app):
     app.wurfapi_api = api
 
 
+def wurfref_role(name, rawtext, text, lineno, inliner, options={}):
+    """
+    :param name: The role name used in the document.
+    :param rawtext: The entire markup snippet, with role.
+    :param text: The text marked with the role.
+    :param lineno: The line number where rawtext appears in the input.
+    :param inliner: The inliner instance that called us.
+    :param app: Sphinx application context.
+    :param options: Directive options for customization.
+    :param content: The directive content for customization.
+    """
+
+    app = inliner.document.settings.env.app
+    api = app.wurfapi_api
+    matches = []
+    for key in api.keys():
+        if key.startswith(text):
+            matches.append(key)
+
+    if len(matches) == 0:
+        msg = inliner.reporter.error(
+            f"Could not find a possible match for {text} in API (line:{lineno})."
+        )
+        prb = inliner.problematic(rawtext, rawtext, msg)
+        return [prb], [msg]
+
+    if len(matches) > 1:
+        msg = inliner.reporter.error(
+            f"More than one possible match for {text} in API (line:{lineno}).\n"
+            f"Possible matches:\n{', '.join(matches)}."
+        )
+        prb = inliner.problematic(rawtext, rawtext, msg)
+        return [prb], [msg]
+
+    key = matches[0]
+    match = api[key]
+    node = docutils.nodes.reference(rawtext, match["name"], refuri=key, **options)
+    return [node], []
+
+
 def setup(app):
     """Entry point for the extension. Sphinx will call this function when the
     module is added to the "extensions" list in Sphinx's conf.py file.
@@ -384,6 +424,9 @@ def setup(app):
 
     # Add the ..wurfapitarget directive
     app.add_directive(name="wurfapitarget", cls=WurfapiTarget)
+
+    # Add the wurfref role
+    app.add_role("wurfref", wurfref_role)
 
     # Generate the XML
     app.connect(event="builder-inited", callback=generate_doxygen)
