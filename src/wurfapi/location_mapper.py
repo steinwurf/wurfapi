@@ -8,7 +8,6 @@ except (ImportError):
 
 class LocationMapper(object):
     def __init__(self, project_root, include_paths, log):
-        # type: (str, List[str]) -> None
         """Instantiate new object
 
         :param project_root: Absolute path to the root of the project as a
@@ -21,7 +20,6 @@ class LocationMapper(object):
         self.log = log
 
     def to_include(self, path):
-        # type: (str) -> Optional[str]
         """
         :param path: The path to a file as a string.
         :return: The include directive if file found in the include paths

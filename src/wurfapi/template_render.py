@@ -41,8 +41,6 @@ def api_filter(ctx, selectors, **attributes):
 
 @jinja2.contextfilter
 def api_sort(ctx, selectors, keys, reverse=False):
-    # type: (jinja2.runtime.Context, List[str], List[str], bool) -> List[str]
-
     def compare(selector):
         # Get the nested value using approach described here:
         # https://stackoverflow.com/a/14692747/1717320
