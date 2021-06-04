@@ -9,7 +9,7 @@ time:\n{}"""
 
 
 class RunResult:
-    """ Stores the results from running a command
+    """Stores the results from running a command
     Attributes:
     :command: The command that was executed
     :path: Path where the command was executed
@@ -20,8 +20,7 @@ class RunResult:
     """
 
     def __init__(self, command, path, stdout, stderr, returncode, time):
-        """ Create a new RunResult object
-        """
+        """Create a new RunResult object"""
 
         self.command = command
         self.path = path
@@ -31,7 +30,12 @@ class RunResult:
         self.time = time
 
     def __str__(self):
-        """ Print the RunResult object as a string
-        """
-        return run_string.format(self.command, self.path, self.stdout,
-                                 self.stderr, self.returncode, self.time)
+        """Print the RunResult object as a string"""
+        return run_string.format(
+            self.command,
+            self.path,
+            self.stdout,
+            self.stderr,
+            self.returncode,
+            self.time,
+        )

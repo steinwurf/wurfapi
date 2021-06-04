@@ -7,55 +7,60 @@ cppreference_mappings = [
         "pattern": "(std::)?u?int\d*_t",
         "link": {
             "url": True,
-            "value": "https://en.cppreference.com/w/cpp/types/integer"}
+            "value": "https://en.cppreference.com/w/cpp/types/integer",
+        },
     },
     {
         "pattern": "(std::)?size_t",
         "link": {
             "url": True,
-            "value": "https://en.cppreference.com/w/cpp/types/size_t"}
+            "value": "https://en.cppreference.com/w/cpp/types/size_t",
+        },
     },
     {
         "pattern": "std::(vector|map|array|deque|forward_list|list|set)",
         "link": {
             "url": True,
-            "value": "https://en.cppreference.com/w/cpp/container/{0}"}
+            "value": "https://en.cppreference.com/w/cpp/container/{0}",
+        },
     },
     {
         "pattern": "std::string",
         "link": {
             "url": True,
-            "value": "https://en.cppreference.com/w/cpp/string/basic_string"}
+            "value": "https://en.cppreference.com/w/cpp/string/basic_string",
+        },
     },
     {
         "pattern": "std::function",
         "link": {
             "url": True,
-            "value": "https://en.cppreference.com/w/cpp/utility/functional/function"}
+            "value": "https://en.cppreference.com/w/cpp/utility/functional/function",
+        },
     },
     {
         "pattern": "(float|double|int|bool)",
         "link": {
             "url": True,
-            "value": "https://en.cppreference.com/w/cpp/language/types"}
+            "value": "https://en.cppreference.com/w/cpp/language/types",
+        },
     },
 ]
 
 
 class LinkProvider(object):
-
     def __init__(self, user_mappings):
         self.user_mappings = user_mappings
 
     def find_link(self, typename):
-        """ Given a token e.g. std::function see if we can find a link
+        """Given a token e.g. std::function see if we can find a link
 
-       First we check if the type name is found in the user mapping. After
-       this we try our default mappings.
+        First we check if the type name is found in the user mapping. After
+        this we try our default mappings.
 
-       :param typename: A C++ type name as a string
-       :return: A link dictionary or None
-       """
+        :param typename: A C++ type name as a string
+        :return: A link dictionary or None
+        """
 
         mappings_list = [self.user_mappings, cppreference_mappings]
 

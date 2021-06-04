@@ -27,10 +27,16 @@ XML_OUTPUT = xml
 
 
 class DoxygenGenerator(object):
-
-    def __init__(self, doxygen_executable, runner, recursive,
-                 source_paths, output_path, warnings_as_error):
-        """ Generate the doxygen XML.
+    def __init__(
+        self,
+        doxygen_executable,
+        runner,
+        recursive,
+        source_paths,
+        output_path,
+        warnings_as_error,
+    ):
+        """Generate the doxygen XML.
 
         :param doxygen_executable: Path to the Doxygen executable.
         :param runner: The subprocess run wrapper.
@@ -48,15 +54,15 @@ class DoxygenGenerator(object):
         self.output_path = output_path
         self.warnings_as_error = warnings_as_error
 
-        assert(type(self.source_paths) is list)
+        assert type(self.source_paths) is list
 
         for path in self.source_paths:
-            assert(os.path.exists(path))
+            assert os.path.exists(path)
 
-        assert(os.path.isdir(self.output_path))
+        assert os.path.isdir(self.output_path)
 
     def generate(self):
-        """ Generate the Doxygen XML.
+        """Generate the Doxygen XML.
 
         We do not have to remove any old XML or similar since we use the
         index.xml file to parse the rest.. So if some stale information is
@@ -67,14 +73,15 @@ class DoxygenGenerator(object):
 
         # Write Doxyfile
         doxyfile_content = DOXYFILE_TEMPLATE.format(
-            name='wurfapi',
+            name="wurfapi",
             output_path=self.output_path,
-            source_path=' '.join(self.source_paths),
+            source_path=" ".join(self.source_paths),
             recursive="YES" if self.recursive else "NO",
-            extra="")
+            extra="",
+        )
 
-        doxyfile_path = os.path.join(self.output_path, 'Doxyfile')
-        with open(doxyfile_path, 'w') as doxyfile:
+        doxyfile_path = os.path.join(self.output_path, "Doxyfile")
+        with open(doxyfile_path, "w") as doxyfile:
 
             doxyfile.write(doxyfile_content)
 
@@ -82,20 +89,19 @@ class DoxygenGenerator(object):
         #        propagate these somehow - if you want to know what
         #        has not been documented etc.
         result = self.runner.run(
-            command=self.doxygen_executable + ' Doxyfile',
-            cwd=self.output_path)
+            command=self.doxygen_executable + " Doxyfile", cwd=self.output_path
+        )
 
         # Doxygen reports warnings on stderr. So if we have some output
         # there raise it.
         self._suppress_incorrect_warnings(result.stderr)
 
         if result.stderr.output and self.warnings_as_error:
-            raise wurfapi.doxygen_error.DoxygenError(
-                result.stderr.output)
+            raise wurfapi.doxygen_error.DoxygenError(result.stderr.output)
 
         # The Doxygen XML is written to the 'xml' subfolder of the
         # output directory
-        return os.path.join(self.output_path, 'xml')
+        return os.path.join(self.output_path, "xml")
 
     def _suppress_incorrect_warnings(self, stderr):
 
@@ -108,7 +114,7 @@ class DoxygenGenerator(object):
         output = []
 
         for line in stderr.output:
-            if 'warning: Internal inconsistency:' in line:
+            if "warning: Internal inconsistency:" in line:
                 continue
             else:
                 output.append(line)

@@ -57,11 +57,10 @@ BASE_URL = "https://sourceforge.net/projects/doxygen/files/rel-1.8.12/"
 
 VERSION = "1.8.12"
 
-class DoxygenUnsupportedError(WurfapiError):
 
+class DoxygenUnsupportedError(WurfapiError):
     def __init__(self, platform):
-        msg = "Unsupported platform for doxygen auto download {}\n".format(
-            platform)
+        msg = "Unsupported platform for doxygen auto download {}\n".format(platform)
 
         msg += "See README.rst at github.com/steinwurf/wurfapi on how\n"
         msg += "to install Doxygen on your system and use that."
@@ -71,21 +70,21 @@ class DoxygenUnsupportedError(WurfapiError):
 
 def current_platform():
 
-    if sys.platform.startswith('linux'):
+    if sys.platform.startswith("linux"):
         # Checking for 64 bit
         # https://docs.python.org/3/library/platform.html#cross-platform
 
-        if sys.maxsize > 2**32:
+        if sys.maxsize > 2 ** 32:
             return "linux64"
         else:
             return "linux32"
 
-    if sys.platform.startswith('win'):
+    if sys.platform.startswith("win"):
 
         # Checking for 64 bit
         # https://docs.python.org/3/library/platform.html#cross-platform
 
-        if sys.maxsize > 2**32:
+        if sys.maxsize > 2 ** 32:
             return "win64"
         else:
             return "win32"
@@ -95,28 +94,28 @@ def current_platform():
 
 def archive_name(platform):
 
-    if platform == 'linux64':
-        return 'doxygen-' + VERSION + '.linux.bin.tar.gz'
+    if platform == "linux64":
+        return "doxygen-" + VERSION + ".linux.bin.tar.gz"
 
-    if platform == 'win32':
-        return 'doxygen-' + VERSION + '.windows.bin.zip'
+    if platform == "win32":
+        return "doxygen-" + VERSION + ".windows.bin.zip"
 
-    if platform == 'win64':
-        return 'doxygen-' + VERSION + '.windows.x64.bin.zip'
+    if platform == "win64":
+        return "doxygen-" + VERSION + ".windows.x64.bin.zip"
 
     raise DoxygenUnsupportedError(platform)
 
 
 def doxygen_executable(from_path, platform):
 
-    if platform == 'linux64':
-        return os.path.join(from_path, 'doxygen-' + VERSION, 'bin/doxygen')
+    if platform == "linux64":
+        return os.path.join(from_path, "doxygen-" + VERSION, "bin/doxygen")
 
-    if platform == 'win32':
-        return os.path.join(from_path, 'doxygen.exe')
+    if platform == "win32":
+        return os.path.join(from_path, "doxygen.exe")
 
-    if platform == 'win64':
-        return os.path.join(from_path, 'doxygen.exe')
+    if platform == "win64":
+        return os.path.join(from_path, "doxygen.exe")
 
     raise DoxygenUnsupportedError(platform)
 
@@ -129,11 +128,11 @@ def default_download_path():
 
     # https://stackoverflow.com/a/4028943
     home_path = os.path.join(os.path.expanduser("~"))
-    return os.path.join(home_path, '.wurfapi', 'local-doxygen', VERSION)
+    return os.path.join(home_path, ".wurfapi", "local-doxygen", VERSION)
 
 
 def download_archive(url, to_path):
-    """ Download the file specified by the source.
+    """Download the file specified by the source.
     :param cwd: The directory where to download the file.
     :param url: The URL of the file to download.
     :param filename: The filename to store the file under.
@@ -143,7 +142,7 @@ def download_archive(url, to_path):
 
     # From http://stackoverflow.com/a/1517728
     CHUNK = 16 * 1024
-    with open(to_path, 'wb') as f:
+    with open(to_path, "wb") as f:
         while True:
             chunk = response.read(CHUNK)
             if not chunk:

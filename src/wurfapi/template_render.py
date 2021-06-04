@@ -41,8 +41,6 @@ def api_filter(ctx, selectors, **attributes):
 
 @jinja2.contextfilter
 def api_sort(ctx, selectors, keys, reverse=False):
-    # type: (jinja2.runtime.Context, List[str], List[str], bool) -> List[str]
-
     def compare(selector):
         # Get the nested value using approach described here:
         # https://stackoverflow.com/a/14692747/1717320
@@ -53,10 +51,10 @@ def api_sort(ctx, selectors, keys, reverse=False):
 
 
 class TemplateRender(object):
-    """ Finds the template on the file system with a given name. """
+    """Finds the template on the file system with a given name."""
 
     def __init__(self, user_path):
-        """ Create a new instance.
+        """Create a new instance.
 
         :param user_path: The directory on the file system where the user
             provided templates are located as a string. If user_path is None
@@ -70,12 +68,11 @@ class TemplateRender(object):
         if user_path:
             assert os.path.isdir(user_path)
 
-            loaders.append(
-                jinja2.FileSystemLoader(searchpath=user_path))
+            loaders.append(jinja2.FileSystemLoader(searchpath=user_path))
 
         loaders.append(
-            jinja2.PackageLoader(
-                package_name='wurfapi', package_path='template_files'))
+            jinja2.PackageLoader(package_name="wurfapi", package_path="template_files")
+        )
 
         self.environment = jinja2.Environment(
             loader=jinja2.ChoiceLoader(loaders=loaders),
@@ -83,23 +80,22 @@ class TemplateRender(object):
             lstrip_blocks=True,
             # Enable the do statement:
             # https://stackoverflow.com/a/39858522/1717320
-            extensions=['jinja2.ext.do'])
+            extensions=["jinja2.ext.do"],
+        )
 
         # self.environment.globals.update(
         #     rst_create_heading=rst_create_heading,
         #     rst_create_signature=rst_create_signature,
         #     api_filter=api_filter)
 
-        self.environment.filters['api_sort'] = api_sort
-        self.environment.filters['api_filter'] = api_filter
+        self.environment.filters["api_sort"] = api_sort
+        self.environment.filters["api_filter"] = api_filter
 
     def render(self, selector, api, filename, user_data=None):
-        """ Render the template
-        """
+        """Render the template"""
 
         template = self.environment.get_template(name=filename)
-        params = {'api':api, 'selector':selector}
+        params = {"api": api, "selector": selector}
         if user_data is not None:
-            params['user_data'] = user_data
+            params["user_data"] = user_data
         return template.render(**params)
-
