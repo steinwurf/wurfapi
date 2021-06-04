@@ -30,9 +30,10 @@ from . import link_provider
 from . import location_mapper
 from . import check_api_schema
 from . import collapse_inline_namespaces
+import wurfapi
 
 
-VERSION = '8.0.0'
+VERSION = "8.0.0"
 
 # Having a "global" logger er .py file seems to be the Sphinx way of
 # doing it. We are ok with that here since we don't have any way of
@@ -55,11 +56,11 @@ class WurfapiTarget(sphinx.util.docutils.SphinxDirective):
     option_spec = {
         # unchanged: Returns the text argument, unchanged. Returns an empty
         # string ("") if no argument is found.
-        'label': docutils.parsers.rst.directives.unchanged
+        "label": docutils.parsers.rst.directives.unchanged
     }
 
     def run(self):
-        """ Called by Sphinx.
+        """Called by Sphinx.
 
         Process the directive.
 
@@ -71,30 +72,29 @@ class WurfapiTarget(sphinx.util.docutils.SphinxDirective):
         """
 
         # Replace one or more spaces with a single space
-        targetname = sphinx.util.ws_re.sub(
-            ' ', self.arguments[0].strip()).lower()
-        node = docutils.nodes.target('', '', names=[targetname])
-        if 'label' in self.options:
-            node['label'] = self.options['label']
+        targetname = sphinx.util.ws_re.sub(" ", self.arguments[0].strip()).lower()
+        node = docutils.nodes.target("", "", names=[targetname])
+        if "label" in self.options:
+            node["label"] = self.options["label"]
         self.state.document.note_explicit_target(node)
         return [node]
 
 
 def map_wurfapi_named_target(app, doctree):
     def lookup_name(id):
-        for name, (docname, labelid) in app.env.domaindata['std']['anonlabels'].items():
+        for name, (docname, labelid) in app.env.domaindata["std"]["anonlabels"].items():
             if labelid == id:
                 return (name, docname)
         else:
             return (None, None)
 
-    labels = app.env.domaindata['std']['labels']
+    labels = app.env.domaindata["std"]["labels"]
     for node in doctree.traverse(docutils.nodes.target):
-        if 'label' in node:
-            name, docname = lookup_name(node['refid'])
+        if "label" in node:
+            name, docname = lookup_name(node["refid"])
 
             if name not in labels:
-                labels[name] = (docname, node['refid'], node['label'])
+                labels[name] = (docname, node["refid"], node["label"])
 
 
 class WurfapiDirective(sphinx.util.docutils.SphinxDirective):
@@ -115,12 +115,12 @@ class WurfapiDirective(sphinx.util.docutils.SphinxDirective):
     option_spec = {
         # unchanged: Returns the text argument, unchanged. Returns an empty
         # string ("") if no argument is found.
-        'selector': docutils.parsers.rst.directives.unchanged,
-        'user_data': docutils.parsers.rst.directives.unchanged
+        "selector": docutils.parsers.rst.directives.unchanged,
+        "user_data": docutils.parsers.rst.directives.unchanged,
     }
 
     def run(self):
-        """ Called by Sphinx.
+        """Called by Sphinx.
 
         Process the directive.
 
@@ -135,7 +135,7 @@ class WurfapiDirective(sphinx.util.docutils.SphinxDirective):
         api = app.wurfapi_api
         user_data = self._user_data()
         selector = self._selector()
-        user_path = app.config.wurfapi.get('user_templates', None)
+        user_path = app.config.wurfapi.get("user_templates", None)
 
         if user_path:
             # Make sure it is relative to the documentation directory
@@ -144,7 +144,9 @@ class WurfapiDirective(sphinx.util.docutils.SphinxDirective):
         if selector and selector not in api:
             raise wurfapi_error.WurfapiError(
                 'Selector "{}" not in API possible values are {}'.format(
-                    selector, api.keys()))
+                    selector, api.keys()
+                )
+            )
 
         template = template_render.TemplateRender(user_path=user_path)
 
@@ -152,7 +154,8 @@ class WurfapiDirective(sphinx.util.docutils.SphinxDirective):
             selector=selector,
             api=api,
             filename=self._template_file(),
-            user_data=user_data)
+            user_data=user_data,
+        )
 
         # Dump the rst to a file - mostly for debugging purposes
         rst_file = self.slug() + ".rst"
@@ -160,33 +163,33 @@ class WurfapiDirective(sphinx.util.docutils.SphinxDirective):
         logger.debug("writing rst output: %s", rst_file)
 
         rst_path = os.path.join(app.wurfapi_output_path, rst_file)
-        with open(rst_path, 'w') as f:
+        with open(rst_path, "w") as f:
             f.write(data)
 
         return self.insert_rst(data)
 
     def _template_file(self):
-        """ Return the template file passed as an option to the directive """
+        """Return the template file passed as an option to the directive"""
 
         # The path function returns the path argument unwrapped (with newlines
         # removed). Raises ValueError if no argument is found.
         return docutils.parsers.rst.directives.path(self.arguments[0])
 
     def _source_file(self):
-        """ Return the source .rst file where the directive is located """
+        """Return the source .rst file where the directive is located"""
         source_file, _ = self.get_source_info()
         return source_file
 
     def _selector(self):
-        """ Return the selector or None """
+        """Return the selector or None"""
         return self.options["selector"] if "selector" in self.options else None
 
     def _user_data(self):
-        """ Return the user_data or None """
+        """Return the user_data or None"""
         return self.options["user_data"] if "user_data" in self.options else None
 
     def slug(self):
-        """ Return the slug for this directive """
+        """Return the slug for this directive"""
 
         project_root = self.config.wurfapi["project_root"]
 
@@ -201,25 +204,26 @@ class WurfapiDirective(sphinx.util.docutils.SphinxDirective):
         selector = self._selector()
         user_data = self._user_data()
 
-        to_slug = source_file + '_' + template_file
+        to_slug = source_file + "_" + template_file
         to_slug += "" if not selector else "_" + selector
         to_slug += "" if not user_data else "_u_" + user_data
 
-        return slugify.slugify(text=to_slug, separator='_')
+        return slugify.slugify(text=to_slug, separator="_")
 
     def insert_rst(self, rst):
-        """ Replaces the content of the directive with the rst generated
+        """Replaces the content of the directive with the rst generated
             content.
 
         Documentation on how to do this is available here:
         http://www.sphinx-doc.org/en/stable/extdev/markupapi.html
         """
-        rst = rst.split('\n')
+        rst = rst.split("\n")
         view = docutils.statemachine.ViewList(initlist=rst, source="wurfapi")
 
         node = docutils.nodes.paragraph()
         sphinx.util.nodes.nested_parse_with_titles(
-            state=self.state, content=view, node=node)
+            state=self.state, content=view, node=node
+        )
 
         return node.children
 
@@ -232,7 +236,7 @@ def main():
 def generate_doxygen(app):
 
     source_paths = []
-    for source_path in app.config.wurfapi['source_paths']:
+    for source_path in app.config.wurfapi["source_paths"]:
 
         source_path = os.path.join(app.srcdir, source_path)
 
@@ -246,11 +250,11 @@ def generate_doxygen(app):
     # Remove whitespace https://stackoverflow.com/a/2077944/1717320
     project = "_".join(project.split())
 
-    source_hash = hashlib.sha1(
-        ",".join(source_paths).encode('utf-8')).hexdigest()[:6]
+    source_hash = hashlib.sha1(",".join(source_paths).encode("utf-8")).hexdigest()[:6]
 
     output_path = os.path.join(
-        tempfile.gettempdir(), "wurfapi-"+project+"-"+source_hash)
+        tempfile.gettempdir(), "wurfapi-" + project + "-" + source_hash
+    )
 
     if os.path.isdir(output_path):
         shutil.rmtree(output_path, ignore_errors=True)
@@ -261,26 +265,28 @@ def generate_doxygen(app):
     # Store the output path
     app.wurfapi_output_path = output_path
 
-    logger.info('wurfapi source_path={} output_path={}'.format(
-        source_paths, output_path))
+    logger.info(
+        "wurfapi source_path={} output_path={}".format(source_paths, output_path)
+    )
 
-    parser_config = app.config.wurfapi['parser']
-    assert parser_config['type'] == 'doxygen'
+    parser_config = app.config.wurfapi["parser"]
+    assert parser_config["type"] == "doxygen"
 
-    if parser_config['download']:
+    if parser_config["download"]:
 
-        if 'download_path' in parser_config:
-            download_path = parser_config['download_path']
+        if "download_path" in parser_config:
+            download_path = parser_config["download_path"]
         else:
             download_path = None
 
         doxygen_executable = doxygen_downloader.ensure_doxygen(
-            download_path=download_path)
+            download_path=download_path
+        )
     else:
-        doxygen_executable = 'doxygen'
+        doxygen_executable = "doxygen"
 
     # Check if we should be recursive
-    recursive = app.config.wurfapi['recursive']
+    recursive = app.config.wurfapi["recursive"]
 
     generator = doxygen_generator.DoxygenGenerator(
         doxygen_executable=doxygen_executable,
@@ -288,27 +294,29 @@ def generate_doxygen(app):
         recursive=recursive,
         source_paths=source_paths,
         output_path=output_path,
-        warnings_as_error=parser_config['warnings_as_error'])
+        warnings_as_error=parser_config["warnings_as_error"],
+    )
 
     output = generator.generate()
 
-    logger.info('wurfapi doxygen XML {}'.format(output))
+    logger.info("wurfapi doxygen XML {}".format(output))
 
-    if 'patch_api' in parser_config:
-        patch_api = parser_config['patch_api']
+    if "patch_api" in parser_config:
+        patch_api = parser_config["patch_api"]
     else:
         patch_api = []
 
     # Get project root
-    if 'project_root' in app.config.wurfapi:
-        project_root = app.config.wurfapi['project_root']
+    if "project_root" in app.config.wurfapi:
+        project_root = app.config.wurfapi["project_root"]
     else:
-        project_root = str(run.run(
-            command='git rev-parse --show-toplevel', cwd=app.srcdir).stdout).strip()
-        app.config.wurfapi['project_root'] = project_root
+        project_root = str(
+            run.run(command="git rev-parse --show-toplevel", cwd=app.srcdir).stdout
+        ).strip()
+        app.config.wurfapi["project_root"] = project_root
 
-    if 'include_paths' in app.config.wurfapi:
-        include_paths = app.config.wurfapi['include_paths']
+    if "include_paths" in app.config.wurfapi:
+        include_paths = app.config.wurfapi["include_paths"]
 
         # These are specified relative to the conf.py
         include_paths = [os.path.join(app.srcdir, p) for p in include_paths]
@@ -318,23 +326,23 @@ def generate_doxygen(app):
 
     # Location mapper
     mapper = location_mapper.LocationMapper(
-        project_root=project_root, include_paths=include_paths, log=logger)
+        project_root=project_root, include_paths=include_paths, log=logger
+    )
 
     parser = doxygen_parser.DoxygenParser(
-        doxygen_path=output,
-        location_mapper=mapper,
-        patch_api=patch_api,
-        log=logger)
+        doxygen_path=output, location_mapper=mapper, patch_api=patch_api, log=logger
+    )
 
     api = parser.parse_index()
 
-    if 'collapse_inline_namespaces' in parser_config:
-        selectors = parser_config['collapse_inline_namespaces']
+    if "collapse_inline_namespaces" in parser_config:
+        selectors = parser_config["collapse_inline_namespaces"]
     else:
         selectors = []
 
     api = collapse_inline_namespaces.collapse_inline_namespaces(
-        api=api, selectors=selectors)
+        api=api, selectors=selectors
+    )
 
     # Instatiate the link provider
     provider = link_provider.LinkProvider(user_mappings=[])
@@ -345,7 +353,7 @@ def generate_doxygen(app):
     api = mapper.map()
 
     # Dump the API
-    with open(os.path.join(app.doctreedir, 'wurfapi_api.json'), 'w') as f:
+    with open(os.path.join(app.doctreedir, "wurfapi_api.json"), "w") as f:
         json.dump(api, f, indent=4, sort_keys=True)
 
     # Run schema checks on the API
@@ -356,37 +364,37 @@ def generate_doxygen(app):
 
 
 def setup(app):
-    """ Entry point for the extension. Sphinx will call this function when the
-        module is added to the "extensions" list in Sphinx's conf.py file.
+    """Entry point for the extension. Sphinx will call this function when the
+    module is added to the "extensions" list in Sphinx's conf.py file.
 
-        :param app: The application object, which is an instance of Sphinx.
+    :param app: The application object, which is an instance of Sphinx.
     """
 
     # Create a logger
-    logger.info('Initializing wurfapi extension')
+    logger.info("Initializing wurfapi extension")
 
     # Add the wurfapi configuration value
-    app.add_config_value(name='wurfapi', default=None, rebuild=True)
+    app.add_config_value(name="wurfapi", default=None, rebuild=True)
 
     # Add the new directive - added to the document by writing:
     #
     #    ..wurfapi::
     #
-    app.add_directive(name='wurfapi', cls=WurfapiDirective)
+    app.add_directive(name="wurfapi", cls=WurfapiDirective)
 
     # Add the ..wurfapitarget directive
-    app.add_directive(name='wurfapitarget', cls=WurfapiTarget)
+    app.add_directive(name="wurfapitarget", cls=WurfapiTarget)
 
     # Generate the XML
     app.connect(event="builder-inited", callback=generate_doxygen)
 
     # Map labels
-    app.connect('doctree-read', map_wurfapi_named_target)
+    app.connect("doctree-read", map_wurfapi_named_target)
 
     # We use the doctreedir as build directory. The default for this
     # is inside _build/.doctree folder
-    build_dir = os.path.join(app.doctreedir, 'wurfapi')
+    build_dir = os.path.join(app.doctreedir, "wurfapi")
 
     # Run Doxygen on the source code
 
-    return {'version': VERSION}
+    return {"version": VERSION}

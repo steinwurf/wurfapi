@@ -1,5 +1,3 @@
 [tool.black]
 
-extend-exclude = """
-    wurfapi_directive.py
-"""
+include = 'wscript'
