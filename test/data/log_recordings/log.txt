@@ -1,4 +1,0 @@
-/home/mikkel/projects/steinwurf/wurfapi/pytest_temp/test_build_docs0/cpp_coffee/docs/examples.rst:2: WARNING: More than one possible match for project::coffee::machine::set_number_cups in API (line:16).
-Possible matches:
-project::coffee::machine::set_number_cups(uint32_tcups=0), project::coffee::machine::set_number_cups(std::stringcups).
-/home/mikkel/projects/steinwurf/wurfapi/pytest_temp/test_build_docs0/cpp_coffee/docs/examples.rst:2: WARNING: Could not find a possible match for project::coffee::machine::set_number_hops in API (line:16).

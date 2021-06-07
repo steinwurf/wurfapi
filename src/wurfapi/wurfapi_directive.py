@@ -11,6 +11,7 @@ import docutils.parsers.rst.directives
 import docutils.statemachine
 
 import sphinx
+import sphinx.roles
 import sphinx.util
 import sphinx.util.logging
 import sphinx.util.nodes
@@ -363,44 +364,59 @@ def generate_doxygen(app):
     app.wurfapi_api = api
 
 
-def wurfref_role(name, rawtext, text, lineno, inliner, options={}):
-    """
-    :param name: The role name used in the document.
-    :param rawtext: The entire markup snippet, with role.
-    :param text: The text marked with the role.
-    :param lineno: The line number where rawtext appears in the input.
-    :param inliner: The inliner instance that called us.
-    :param app: Sphinx application context.
-    :param options: Directive options for customization.
-    :param content: The directive content for customization.
-    """
+class WurfapiRole(sphinx.util.docutils.ReferenceRole):
+    def run(self):
 
-    app = inliner.document.settings.env.app
-    api = app.wurfapi_api
-    matches = []
-    for key in api.keys():
-        if key.startswith(text):
-            matches.append(key)
+        app = self.inliner.document.settings.env.app
+        api = app.wurfapi_api
+        matches = []
+        for key in api.keys():
+            if key.startswith(self.target):
+                matches.append(key)
 
-    if len(matches) == 0:
-        msg = inliner.reporter.error(
-            f"Could not find a possible match for {text} in API (line:{lineno})."
+        if len(matches) == 0:
+            msg = self.inliner.reporter.error(
+                f"Could not find a possible match for {self.target} in API (line:{self.lineno})."
+            )
+            prb = self.inliner.problematic(self.rawtext, self.rawtext, msg)
+            return [prb], [msg]
+
+        if len(matches) > 1:
+            msg = self.inliner.reporter.error(
+                f"More than one possible match for {self.target} in API (line:{self.lineno}).\n"
+                f"Possible matches:\n{', '.join(matches)}."
+            )
+            prb = self.inliner.problematic(self.rawtext, self.rawtext, msg)
+            return [prb], [msg]
+
+        self.target = matches[0]
+        self.text = matches[0]
+
+        self.target = self.target.replace("::", "-")
+        self.target = self.target.replace("(", "-")
+        self.target = self.target[:-1]
+        self.target = self.target.replace("_", "-")
+
+        text = self.text.split("(")[0]
+        text = text.split("::")
+
+        name = text[-2]
+
+        sourcedir = app.srcdir
+        files = os.listdir(sourcedir)
+        file_name = ""
+
+        for file in files:
+            if name in file:
+                file_name = file.split(".")[0]
+                break
+
+        url = file_name + ".html" + "#" + self.target
+
+        node = docutils.nodes.reference(
+            self.rawtext, self.text, internal=True, refuri=url
         )
-        prb = inliner.problematic(rawtext, rawtext, msg)
-        return [prb], [msg]
-
-    if len(matches) > 1:
-        msg = inliner.reporter.error(
-            f"More than one possible match for {text} in API (line:{lineno}).\n"
-            f"Possible matches:\n{', '.join(matches)}."
-        )
-        prb = inliner.problematic(rawtext, rawtext, msg)
-        return [prb], [msg]
-
-    key = matches[0]
-    match = api[key]
-    node = docutils.nodes.reference(rawtext, match["name"], refuri=key, **options)
-    return [node], []
+        return [node], []
 
 
 def setup(app):
@@ -425,8 +441,8 @@ def setup(app):
     # Add the ..wurfapitarget directive
     app.add_directive(name="wurfapitarget", cls=WurfapiTarget)
 
-    # Add the wurfref role
-    app.add_role("wurfref", wurfref_role)
+    # Add the wurfapi role
+    app.add_role("wurfapi", WurfapiRole())
 
     # Generate the XML
     app.connect(event="builder-inited", callback=generate_doxygen)
