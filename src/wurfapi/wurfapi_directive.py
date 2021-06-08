@@ -35,7 +35,7 @@ from . import collapse_inline_namespaces
 import wurfapi
 
 
-VERSION = "8.0.0"
+VERSION = "8.1.0"
 
 # Having a "global" logger er .py file seems to be the Sphinx way of
 # doing it. We are ok with that here since we don't have any way of

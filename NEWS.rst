@@ -6,6 +6,10 @@ of every change, see the Git log.
 
 Latest
 ------
+* tbd
+
+8.1.0
+-----
 * Minor: Added WurfapiRole to wurfapi_directive.
 
 8.0.0
