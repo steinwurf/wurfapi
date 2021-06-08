@@ -11,6 +11,8 @@ import docutils.parsers.rst.directives
 import docutils.statemachine
 
 import sphinx
+import sphinx.domains.std
+import sphinx.roles
 import sphinx.util
 import sphinx.util.logging
 import sphinx.util.nodes
@@ -363,6 +365,76 @@ def generate_doxygen(app):
     app.wurfapi_api = api
 
 
+class WurfapiRole:
+    def __init__(self):
+        # We will piggyback on the XRefRole in sphinx. This XRefRole setup is called for 'ref'. See
+        # https://github.com/sphinx-doc/sphinx/blob/80b0a16e1c5f7266522a50284a003a0e17cf5ff7/sphinx/domains/std.py#L589
+        self.xref = sphinx.roles.XRefRole(
+            lowercase=True, innernodeclass=docutils.nodes.inline, warn_dangling=True
+        )
+
+    def __call__(self, name, rawtext, text, lineno, inliner, options={}, content=[]):
+        """
+        The call is passed into the Sphinx roles. From XRefRole to ReferenceRole to SphinxRole.
+        This ensures that Sphinx handles the .rst reference as if it was written as a full unique name
+        of an API element. This is ensured if enough information is given to be able to deduce and distinguish
+        the unique name from the text given.
+        All the function arguments are extracted from the .rst file where the role is called
+
+        :param name: The name of the role called e.g 'ref'
+        :param rawtext: The full text with :role:`text`
+        :param text: The text within the ``
+        :param lineno: The line number
+        :param inliner: The docutils inliner
+
+        Optional:
+        :param options: additional options to give to the role
+        :param content: additional content to pass
+        """
+        app = inliner.document.settings.env.app
+        api = app.wurfapi_api
+
+        # We will look for all possible matches for the text given in the .rst
+        matches = []
+        for key in api.keys():
+            if key == text:
+                matches = [key]
+                break
+            if key.startswith(text):
+                matches.append(key)
+
+        # No matches = error
+        if len(matches) == 0:
+            msg = inliner.reporter.error(
+                f"Could not find a possible match for {text} in API (line:{lineno})."
+            )
+            prb = inliner.problematic(rawtext, rawtext, msg)
+            return [prb], [msg]
+
+        # Multiple matches = error
+        if len(matches) > 1:
+            msg = inliner.reporter.error(
+                f"More than one possible match for {text} in API (line:{lineno}).\n"
+                f"Possible matches:\n{', '.join(matches)}."
+            )
+            prb = inliner.problematic(rawtext, rawtext, msg)
+            return [prb], [msg]
+
+        # Change the text to the correct match
+        text = matches[0]
+
+        # The XRefRole has to be invoked in the standard domain.
+        # We are not sure why, but for now it works.
+        name = "std:ref"
+        rawtext = f":std:ref:`{text}`"
+
+        # Let XRefRole handle the reference with the correct match.
+        nodes = self.xref.__call__(
+            name, rawtext, text, lineno, inliner, options, content
+        )
+        return nodes
+
+
 def setup(app):
     """Entry point for the extension. Sphinx will call this function when the
     module is added to the "extensions" list in Sphinx's conf.py file.
@@ -384,6 +456,12 @@ def setup(app):
 
     # Add the ..wurfapitarget directive
     app.add_directive(name="wurfapitarget", cls=WurfapiTarget)
+
+    # Add the wurfapi role
+    app.add_role(
+        "wurfapi",
+        WurfapiRole(),
+    )
 
     # Generate the XML
     app.connect(event="builder-inited", callback=generate_doxygen)
