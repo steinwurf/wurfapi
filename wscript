@@ -130,7 +130,8 @@ def _pytest(bld):
         # We override the pytest temp folder with the basetemp option,
         # so the test folders will be available at the specified location
         # on all platforms. The default location is the "pytest" local folder.
-        basetemp = os.path.abspath(os.path.expanduser(bld.options.pytest_basetemp))
+        basetemp = os.path.abspath(
+            os.path.expanduser(bld.options.pytest_basetemp))
 
         # We need to manually remove the previously created basetemp folder,
         # because pytest uses os.listdir in the removal process, and that fails
@@ -210,7 +211,7 @@ def prepare_release(ctx):
 
     # Rewrite version
     with ctx.rewrite_file(filename="src/wurfapi/wurfapi_directive.py") as f:
-        pattern = r"VERSION = '\d+\.\d+\.\d+'"
-        replacement = "VERSION = '{}'".format(VERSION)
+        pattern = r'VERSION = "\d+\.\d+\.\d+"'
+        replacement = 'VERSION = "{}"'.format(VERSION)
 
         f.regex_replace(pattern=pattern, replacement=replacement)
