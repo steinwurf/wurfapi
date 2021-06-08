@@ -150,6 +150,10 @@ E.g if you want to reference the ``unique-name`` ``foo::bar::baz::func(std::stri
 no other member functions in ``foo::bar::baz`` named ``func``, you can reference it
 by writing ``:wurfapi:`foo::bar::baz::func```.
 
+On the other hand if there was a function with ``unique-name`` ``foo::bar::baz::function(std::string var)``
+``:wurfapi:`foo::bar::baz::func``` could match with both func and function and will throw an error. In This
+case this can be fixed by adding the left parenthesis: ``:wurfapi:`foo::bar::baz::func(```.
+
 You can read more about unique names later in this README.
 
 Running on readthedocs.org

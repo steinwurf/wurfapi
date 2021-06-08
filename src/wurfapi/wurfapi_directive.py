@@ -397,6 +397,9 @@ class WurfapiRole:
         # We will look for all possible matches for the text given in the .rst
         matches = []
         for key in api.keys():
+            if key == text:
+                matches = [key]
+                break
             if key.startswith(text):
                 matches.append(key)
 
