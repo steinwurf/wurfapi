@@ -146,7 +146,7 @@ Labels and References
 To reference different elements in the API, we have added a custom Sphinx role ``:wurfapi:``
 
 The ``:wurfapi:`` role will try to deduce the ``unique-name`` from the text given.
-E.g if you want to reference ``foo::bar::baz::func(std::string var)`` and there are
+E.g if you want to reference the ``unique-name`` ``foo::bar::baz::func(std::string var)`` and there are
 no other member functions in ``foo::bar::baz`` named ``func``, you can reference it
 by writing ``:wurfapi:`foo::bar::baz::func```.
 
