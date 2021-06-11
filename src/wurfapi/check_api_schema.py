@@ -88,6 +88,14 @@ def check_api_schema(api):
         {"kind": "code", "content": string_schema, "is_block": bool}
     )
 
+    # Paragraph bold element schema
+    paragraph_bold_schema = schema.Schema({"kind": "bold", "content": string_schema})
+
+    # Paragraph italic element schema
+    paragraph_italic_schema = schema.Schema(
+        {"kind": "italic", "content": string_schema}
+    )
+
     # Paragraph list element schema
 
     class ItemParagraphs(object):
@@ -108,7 +116,13 @@ def check_api_schema(api):
 
     # Paragraph Element schema
     paragraph_element_schema = schema.Schema(
-        schema.Or(paragraph_text_schema, paragraph_code_schema, paragraph_list_schema)
+        schema.Or(
+            paragraph_text_schema,
+            paragraph_code_schema,
+            paragraph_list_schema,
+            paragraph_bold_schema,
+            paragraph_italic_schema,
+        )
     )
 
     # Paragraph schema

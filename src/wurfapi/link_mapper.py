@@ -190,7 +190,7 @@ def split_paragraph(paragraph):
     new_paragraph = []
 
     for paragraph_element in paragraph:
-        if paragraph_element["kind"] is "code":
+        if paragraph_element["kind"] in ["code", "bold", "italic"]:
             new_paragraph.append(paragraph_element)
             continue
 
@@ -244,7 +244,7 @@ def join_paragraph(paragraph):
 
     for paragraph_element in paragraph:
 
-        if paragraph_element["kind"] is "code":
+        if paragraph_element["kind"] in ["code", "bold", "italic"]:
             flush()
             new_paragraph.append(paragraph_element)
             continue

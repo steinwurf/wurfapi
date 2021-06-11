@@ -91,13 +91,13 @@ a non-character. Otherwise rst will fail with an error.
 {# FORMAT_BOLD #}
 
 {% macro format_bold(paragraph) %}
-BOLD **{{ paragraph["content"] -}}**
+**{{ paragraph["content"] }}**{{""-}}
 {% endmacro %}
 
 {# FORMAT_ITALIC #}
 
 {% macro format_italic(paragraph) %}
-*{{ paragraph["content"] -}}*
+*{{ paragraph["content"] }}*{{""-}}
 {% endmacro %}
 
 {# FORMAT_LIST #}
@@ -139,9 +139,9 @@ BOLD **{{ paragraph["content"] -}}**
 {% elif element["kind"] == "list" %}
 {{ format_list(element) -}}
 {% elif element["kind"] == "bold" %}
-{{ format_bold(element) -}}
+{{- format_bold(element) -}}
 {% elif element["kind"] == "italic" %}
-{{ format_italic(element) -}}
+{{- format_italic(element) -}}
 {% endif %}
 {% endfor %}
 
