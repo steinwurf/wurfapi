@@ -10,7 +10,7 @@ namespace coffee
 {
 /// @brief A machine to brew your coffee. Docs by http://steinwurf.com.
 ///
-/// The coffee machine object serves as your applications entry
+/// **The coffee machine** object *serves* as your applications entry
 /// point for brewing coffee. You have to remember to fill the
 /// project::coffee::machine::water_tank though.
 ///

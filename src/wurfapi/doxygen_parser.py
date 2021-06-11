@@ -1194,6 +1194,26 @@ def parse(log, xml):
     return [{"kind": "text", "content": xml.text, "link": link}]
 
 
+@DoxygenParser.register(tag="bold")
+def parse(log, xml):
+    """Parses Doxygen bold tag
+
+    :return: List of "Text information" paragraphs
+    """
+
+    return [{"kind": "bold", "content": xml.text}]
+
+
+@DoxygenParser.register(tag="emphasis")
+def parse(log, xml):
+    """Parses Doxygen emphasis tag
+
+    :return: List of "Text information" paragraphs
+    """
+
+    return [{"kind": "italic", "content": xml.text}]
+
+
 @DoxygenParser.register(tag="ulink")
 def parse(log, xml):
     """Parses Doxygen ulink tag
@@ -1285,6 +1305,12 @@ def parse(parser, log, xml):
             paragraphs += parser.parse_element(xml=child)
 
         elif match(xml=child, tag="simplesect", attrib={"kind": "see"}):
+            paragraphs += parser.parse_element(xml=child)
+
+        elif match(xml=child, tag="bold"):
+            paragraphs += parser.parse_element(xml=child)
+
+        elif match(xml=child, tag="emphasis"):
             paragraphs += parser.parse_element(xml=child)
 
         else:
