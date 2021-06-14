@@ -148,7 +148,7 @@ Description
 -----------
 The coffee machine object serves as your applications entry point for brewing coffee. You have to remember to fill the project::coffee::machine::water_tank though.
 
-The following links are followed by punctuation:
+The following links are followed by *punctuations*:
 
 `http://dot.com <http://dot.com>`_\ .
 
@@ -162,7 +162,7 @@ The following links are followed by punctuation:
 
 `http://semicolon.com <http://semicolon.com>`_\ ;
 
-`http://backslash.com/ <http://backslash.com/>`_\  nothing should happen here.
+`http://backslash.com/ <http://backslash.com/>`_\  **nothing** should happen here.
 
 
 

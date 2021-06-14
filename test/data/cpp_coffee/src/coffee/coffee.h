@@ -10,11 +10,11 @@ namespace coffee
 {
 /// @brief A machine to brew your coffee. Docs by http://steinwurf.com.
 ///
-/// This is insane `false` works **The coffee machine** object *serves*
-/// as your applications entry point for brewing coffee. You have to remember to
-/// fill the project::coffee::machine::water_tank though.
+/// The coffee machine object serves as your applications entry
+/// point for brewing coffee. You have to remember to fill the
+/// project::coffee::machine::water_tank though.
 ///
-/// The following links are followed by punctuation:
+/// The following links are followed by *punctuations*:
 ///
 /// http://dot.com.
 ///
@@ -28,7 +28,7 @@ namespace coffee
 ///
 /// http://semicolon.com;
 ///
-/// http://backslash.com/ nothing should happen here.
+/// http://backslash.com/ **nothing** should happen here.
 class machine
 {
 public:

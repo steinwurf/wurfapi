@@ -4,7 +4,7 @@ import operator
 import jinja2
 
 
-@jinja2.contextfilter
+@jinja2.pass_context
 def api_filter(ctx, selectors, **attributes):
 
     result = []
@@ -39,7 +39,7 @@ def api_filter(ctx, selectors, **attributes):
     return result
 
 
-@jinja2.contextfilter
+@jinja2.pass_context
 def api_sort(ctx, selectors, keys, reverse=False):
     def compare(selector):
         # Get the nested value using approach described here:
