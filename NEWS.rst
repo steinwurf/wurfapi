@@ -6,7 +6,7 @@ of every change, see the Git log.
 
 Latest
 ------
-* tbd
+* Minor: Added support for **bold** and *italic* text.
 
 8.1.0
 -----
