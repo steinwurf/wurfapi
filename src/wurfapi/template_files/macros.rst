@@ -88,6 +88,17 @@ a non-character. Otherwise rst will fail with an error.
 {% endif %}
 {% endmacro %}
 
+{# FORMAT_BOLD #}
+
+{% macro format_bold(paragraph) %}
+**{{ paragraph["content"] }}**{{""-}}
+{% endmacro %}
+
+{# FORMAT_ITALIC #}
+
+{% macro format_italic(paragraph) %}
+*{{ paragraph["content"] }}*{{""-}}
+{% endmacro %}
 
 {# FORMAT_LIST #}
 
@@ -127,6 +138,10 @@ a non-character. Otherwise rst will fail with an error.
 {{ format_code(element) -}}
 {% elif element["kind"] == "list" %}
 {{ format_list(element) -}}
+{% elif element["kind"] == "bold" %}
+{{- format_bold(element) -}}
+{% elif element["kind"] == "italic" %}
+{{- format_italic(element) -}}
 {% endif %}
 {% endfor %}
 

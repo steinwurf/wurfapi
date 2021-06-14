@@ -395,6 +395,8 @@ class WurfapiRole:
         api = app.wurfapi_api
 
         # We will look for all possible matches for the text given in the .rst
+        # If an exact match is found (e.g `rely::encoder` refers to the class and
+        # not any class-members) we choose this as the match.
         matches = []
         for key in api.keys():
             if key == text:

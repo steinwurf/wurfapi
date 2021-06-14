@@ -782,7 +782,7 @@ A paragraph consists of a list of paragraph elements::
 
     paragraph = [
           {
-            "kind": "text" | "code" | "list",
+            "kind": "text" | "code" | "list" | "bold" | "italic",
             ...
           },
         ]

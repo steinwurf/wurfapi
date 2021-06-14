@@ -14,7 +14,7 @@ namespace coffee
 /// point for brewing coffee. You have to remember to fill the
 /// project::coffee::machine::water_tank though.
 ///
-/// The following links are followed by punctuation:
+/// The following links are followed by *punctuations*:
 ///
 /// http://dot.com.
 ///
@@ -28,7 +28,7 @@ namespace coffee
 ///
 /// http://semicolon.com;
 ///
-/// http://backslash.com/ nothing should happen here.
+/// http://backslash.com/ **nothing** should happen here.
 class machine
 {
 public:

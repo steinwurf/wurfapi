@@ -380,7 +380,15 @@
       ],
       [
         {
-          "content": "The following links are followed by punctuation:",
+          "content": "The following links are followed by",
+          "kind": "text"
+        },
+        {
+          "content": "punctuations",
+          "kind": "italic"
+        },
+        {
+          "content": ":",
           "kind": "text"
         }
       ],
@@ -478,7 +486,11 @@
           }
         },
         {
-          "content": "nothing should happen here.",
+          "content": "nothing",
+          "kind": "bold"
+        },
+        {
+          "content": "should happen here.",
           "kind": "text"
         }
       ]
