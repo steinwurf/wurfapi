@@ -40,15 +40,3 @@ jobs:
         run: pip install sphinx
       - name: Install wurfapi
         run: pip install wurfapi
-  # Code Format Check
-  black:
-    name: Black
-    runs-on: [self-hosted, docker]
-    container:
-      image: kiwicom/black
-      options: --user 0:0
-    steps:
-      - name: Checkout source code
-        uses: actions/checkout@v2
-      - name: Run Black Check
-        run: black . --check
