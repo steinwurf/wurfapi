@@ -9,7 +9,7 @@ jobs:
   pip:
     name: Pip Install
     runs-on: [self-hosted, docker]
-     container:
+    container:
       image: python:3.9.5
       options: --user 0:0
       volumes:
