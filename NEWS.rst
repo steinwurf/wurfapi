@@ -6,6 +6,7 @@ of every change, see the Git log.
 
 Latest
 ------
+* Minor: Updated waf.
 * Minor: Added support for **bold** and *italic* text.
 
 8.1.0
