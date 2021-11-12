@@ -10,7 +10,7 @@ jobs:
     name: Black Format
     runs-on: [self-hosted, docker]
     container:
-      image: kiwicom/black
+      image: steinwurf/black:21
       options: --user 0:0
     steps:
       - name: Checkout source code
