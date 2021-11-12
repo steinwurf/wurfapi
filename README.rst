@@ -771,6 +771,7 @@ Python list of dictionaries representing template parameters::
       Optional('description'): paragraphs
     }]
 
+
 Text information
 .................
 
