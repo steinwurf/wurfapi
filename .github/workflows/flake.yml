@@ -10,7 +10,7 @@ jobs:
     name: Flake8 Syntax Check
     runs-on: [self-hosted, docker]
     container:
-      image: python:3.9.5
+      image: steinwurf/flake8:4
       options: --user 0:0
       volumes:
         - /home/buildbot/.ssh:/root/.ssh
@@ -22,4 +22,4 @@ jobs:
       - name: Create flake file
         run: echo "[flake8]\n\nignore = F632" >> .flake8
       - name: Check python syntax
-        uses: cclauss/Find-Python-syntax-errors-action@master
+        run: flake8 . --count --select=E9,F63,F72,F82 --show-source --statistics
