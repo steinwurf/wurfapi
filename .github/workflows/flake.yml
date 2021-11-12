@@ -17,7 +17,5 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
-      - name: Create flake file
-        run: echo "[flake8]\n\nignore = F632" >> .flake8
       - name: Check python syntax
-        run: flake8 . --count --select=E9,F63,F72,F82 --show-source --statistics
+        run: flake8 . --count --ignore F632 --select=E9,F63,F72,F82 --show-source --statistics
