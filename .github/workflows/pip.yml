@@ -8,7 +8,7 @@ on:
 jobs:
   pip:
     name: Pip Install
-    runs-on: [self-hosted, docker]
+    runs-on: [self-hosted, docker, builder]
     container:
       image: python:3.9.5
       options: --user 0:0
@@ -20,4 +20,4 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
       - name: Install package
-        run: echo 'pwd' >> pip install
+        run: pip install .
