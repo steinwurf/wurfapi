@@ -1,11 +1,22 @@
 wurfapi
 =======
 
-.. image:: https://ci.appveyor.com/api/projects/status/l41u9e7y50r685ep?svg=true&branch=master
-    :target: https://ci.appveyor.com/project/SteinwurfApS/wurfapi
+|PyPi| |Waf Python Tests| |Black| |Flake8| |Pip Install|
 
-.. image:: https://travis-ci.org/steinwurf/wurfapi.svg?branch=master
-    :target: https://travis-ci.org/steinwurf/wurfapi
+.. |PyPi| image:: https://badge.fury.io/py/wurfapi.svg
+    :target: https://badge.fury.io/py/wurfapi
+
+.. |Waf Python Tests| image:: https://github.com/steinwurf/wurfapi/actions/workflows/python-waf.yml/badge.svg
+   :target: https://github.com/steinwurf/wurfapi/actions/workflows/python-waf.yml
+
+.. |Flake8| image:: https://github.com/steinwurf/wurfapi/actions/workflows/flake8.yml/badge.svg
+    :target: https://github.com/steinwurf/wurfapi/actions/workflows/flake8.yml
+
+.. |Black| image:: https://github.com/steinwurf/wurfapi/actions/workflows/black.yml/badge.svg
+      :target: https://github.com/steinwurf/wurfapi/actions/workflows/black.yml
+
+.. |Pip Install| image:: https://github.com/steinwurf/wurfapi/actions/workflows/pip.yml/badge.svg
+      :target: https://github.com/steinwurf/wurfapi/actions/workflows/pip.yml
 
 We wanted to have a configurable and easy to use Sphinx API documentation
 generator for our C++ projects. To achieve this we leaned on others for
