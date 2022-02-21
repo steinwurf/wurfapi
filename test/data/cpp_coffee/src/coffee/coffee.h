@@ -45,6 +45,9 @@ public:
         ///    safety valve set `false`.
         /// @return `true` if filling was successfull otherwise `false`
         bool fill(const cups& number_of_cups, bool safety_valve);
+
+        /// The volume of the water tank.
+        double tank_volume;
     };
 
     /// The generic callback type
@@ -101,6 +104,9 @@ public:
     /// 2. Your coffee mug is clean.
     ///
     /// You can see number_cups() for how many cups
+    /// See water_tank::fill() for how to fill the water tank.
+    /// See the water_tank::tank_volume for the
+    /// volume of the tank.
     /// @param cups The number of cups
     void set_number_cups(uint32_t cups = 0);
 

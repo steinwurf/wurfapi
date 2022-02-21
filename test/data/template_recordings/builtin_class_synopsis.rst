@@ -1,10 +1,9 @@
 
 .. _project::v1_0_0::coffee::machine:
 
-class machine
-=============
 
-**Scope:** project::v1_0_0::coffee
+class project::v1_0_0::coffee::machine
+======================================
 
 **In header:** ``#include <coffee/coffee.h>``
 
@@ -102,19 +101,28 @@ Member variables (public)
      - Value
      - Description
    * - uint32_t
-     - cups_brewed
+     - .. wurfapitarget:: project::v1_0_0::coffee::machine::cups_brewed
+           :label: project::v1_0_0::coffee::machine::cups_brewed()
+
+       cups_brewed
      - 0
      - The number of cups brewed by this machine.
 
 
    * - :ref:`callback <project::v1_0_0::coffee::machine::callback>`\ 
-     - m_callback
+     - .. wurfapitarget:: project::v1_0_0::coffee::machine::m_callback
+           :label: project::v1_0_0::coffee::machine::m_callback()
+
+       m_callback
      - 
      - A variable which uses the callback using statement.
 
 
    * - :ref:`other_callback <project::v1_0_0::coffee::machine::other_callback>`\ 
-     - m_other_callback
+     - .. wurfapitarget:: project::v1_0_0::coffee::machine::m_other_callback
+           :label: project::v1_0_0::coffee::machine::m_other_callback()
+
+       m_other_callback
      - 
      - A variable which uses the other_callback typedef statement.
 
@@ -136,7 +144,10 @@ Static member variables (public)
      - Value
      - Description
    * - uint32_t
-     - total_cups_brewed
+     - .. wurfapitarget:: project::v1_0_0::coffee::machine::total_cups_brewed
+           :label: project::v1_0_0::coffee::machine::total_cups_brewed()
+
+       total_cups_brewed
      - 
      - The number of cups brewed by all machines.
 
@@ -255,7 +266,7 @@ Member Function Descriptions
 
 
 
-    You can see :ref:`number_cups() <project::v1_0_0::coffee::machine::number_cups()const>`\  for how many cups
+    You can see :ref:`number_cups() <project::v1_0_0::coffee::machine::number_cups()const>`\  for how many cups See :ref:`water_tank::fill() <project::v1_0_0::coffee::machine::water_tank::fill(constcups&number_of_cups,boolsafety_valve)>`\  for how to fill the water tank. See the :ref:`water_tank::tank_volume <project::v1_0_0::coffee::machine::water_tank::tank_volume>`\  for the volume of the tank.
 
 
 
@@ -305,7 +316,7 @@ Member Function Descriptions
 
 
 
-    You can see :ref:`number_cups() <project::v1_0_0::coffee::machine::number_cups()const>`\  for how many cups
+    You can see :ref:`number_cups() <project::v1_0_0::coffee::machine::number_cups()const>`\  for how many cups See :ref:`water_tank::fill() <project::v1_0_0::coffee::machine::water_tank::fill(constcups&number_of_cups,boolsafety_valve)>`\  for how to fill the water tank. See the :ref:`water_tank::tank_volume <project::v1_0_0::coffee::machine::water_tank::tank_volume>`\  for the volume of the tank.
 
 
 

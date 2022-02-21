@@ -43,7 +43,14 @@
 {% for selector in selectors %}
 {%- set variable = api[selector] %}
    * - {{ macros.format_type_list(variable["type"]) }}
-     - {{ variable["name"] }}
+     - .. wurfapitarget:: {{selector}}
+       {% if variable["scope"] is not none %}
+           :label: {{ variable["scope"] }}::{{variable["name"]}}()
+       {% else %}
+           :label: {{variable["name"]}}()
+       {% endif %}
+
+       {{ variable["name"]}}
      - {{ variable["value"] }}
      - {{ macros.merge_description(variable) | indent(width=7) }}
 {% endfor %}
@@ -53,10 +60,11 @@
 
 .. _{{selector}}:
 
-{{ macros.format_heading(class["kind"] + " " + class["name"]) }}
 
 {% if class["scope"] %}
-**Scope:** {{ class["scope"] }}
+{{ macros.format_heading(class["kind"] + " " + class["scope"] + "::" + class["name"]) }}
+{% else %}
+{{ macros.format_heading(class["kind"] + " " + class["name"]) }}
 {% endif %}
 
 {% if class["location"]["include"] %}

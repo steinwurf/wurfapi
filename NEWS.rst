@@ -8,6 +8,7 @@ Latest
 ------
 * Minor: Updated waf.
 * Minor: Added support for **bold** and *italic* text.
+* Minor: Added support for references to nested struct/class member variables.
 
 8.1.0
 -----

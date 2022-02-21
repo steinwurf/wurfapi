@@ -12,7 +12,7 @@
     "initializer": "\"1.0.0\"",
     "kind": "define",
     "location": {
-      "line": 244,
+      "line": 250,
       "path": "src/coffee/coffee.h"
     },
     "name": "COFFEE_VERSION"
@@ -133,7 +133,7 @@
     "detaileddescription": [],
     "kind": "struct",
     "location": {
-      "line": 187,
+      "line": 193,
       "path": "src/coffee/coffee.h"
     },
     "members": [
@@ -199,7 +199,7 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "line": 189,
+      "line": 195,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_liquid",
@@ -223,7 +223,7 @@
     "detaileddescription": [],
     "kind": "struct",
     "location": {
-      "line": 204,
+      "line": 210,
       "path": "src/coffee/coffee.h"
     },
     "members": [
@@ -251,7 +251,7 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "line": 206,
+      "line": 212,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_liquid",
@@ -275,7 +275,7 @@
     "detaileddescription": [],
     "kind": "struct",
     "location": {
-      "line": 196,
+      "line": 202,
       "path": "src/coffee/coffee.h"
     },
     "members": [
@@ -320,7 +320,7 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "line": 198,
+      "line": 204,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_liquid",
@@ -536,7 +536,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 145,
+      "line": 151,
       "path": "src/coffee/coffee.h"
     },
     "name": "add_beans",
@@ -621,7 +621,7 @@
     "detaileddescription": [],
     "kind": "struct",
     "location": {
-      "line": 65,
+      "line": 68,
       "path": "src/coffee/coffee.h"
     },
     "members": [
@@ -641,7 +641,7 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "line": 66,
+      "line": 69,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_on",
@@ -665,7 +665,7 @@
     "detaileddescription": [],
     "kind": "using",
     "location": {
-      "line": 51,
+      "line": 54,
       "path": "src/coffee/coffee.h"
     },
     "name": "callback",
@@ -694,7 +694,7 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "line": 154,
+      "line": 160,
       "path": "src/coffee/coffee.h"
     },
     "name": "cups_brewed",
@@ -726,7 +726,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 148,
+      "line": 154,
       "path": "src/coffee/coffee.h"
     },
     "name": "get_bean_count",
@@ -778,7 +778,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 151,
+      "line": 157,
       "path": "src/coffee/coffee.h"
     },
     "name": "get_last_cup",
@@ -807,7 +807,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 175,
+      "line": 181,
       "path": "src/coffee/coffee.h"
     },
     "name": "help_brew",
@@ -899,7 +899,7 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "line": 57,
+      "line": 60,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_callback",
@@ -925,7 +925,7 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "line": 179,
+      "line": 185,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_impl",
@@ -964,7 +964,7 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "line": 60,
+      "line": 63,
       "path": "src/coffee/coffee.h"
     },
     "name": "m_other_callback",
@@ -999,7 +999,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 80,
+      "line": 83,
       "path": "src/coffee/coffee.h"
     },
     "name": "machine",
@@ -1027,7 +1027,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 83,
+      "line": 86,
       "path": "src/coffee/coffee.h"
     },
     "name": "machine",
@@ -1091,7 +1091,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 162,
+      "line": 168,
       "path": "src/coffee/coffee.h"
     },
     "name": "mug_size",
@@ -1127,7 +1127,7 @@
     "is_virtual": true,
     "kind": "function",
     "location": {
-      "line": 111,
+      "line": 117,
       "path": "src/coffee/coffee.h"
     },
     "name": "number_cups",
@@ -1163,7 +1163,7 @@
     "detaileddescription": [],
     "kind": "typedef",
     "location": {
-      "line": 54,
+      "line": 57,
       "path": "src/coffee/coffee.h"
     },
     "name": "other_callback",
@@ -1191,7 +1191,7 @@
     "detaileddescription": [],
     "kind": "enum",
     "location": {
-      "line": 72,
+      "line": 75,
       "path": "src/coffee/coffee.h"
     },
     "name": "power",
@@ -1250,7 +1250,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 172,
+      "line": 178,
       "path": "src/coffee/coffee.h"
     },
     "name": "set",
@@ -1309,7 +1309,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 165,
+      "line": 171,
       "path": "src/coffee/coffee.h"
     },
     "name": "set_name",
@@ -1429,7 +1429,31 @@
           }
         },
         {
-          "content": "for how many cups",
+          "content": "for how many cups See",
+          "kind": "text"
+        },
+        {
+          "content": "water_tank::fill()",
+          "kind": "text",
+          "link": {
+            "url": false,
+            "value": "project::v1_0_0::coffee::machine::water_tank::fill(constcups&number_of_cups,boolsafety_valve)"
+          }
+        },
+        {
+          "content": "for how to fill the water tank. See the",
+          "kind": "text"
+        },
+        {
+          "content": "water_tank::tank_volume",
+          "kind": "text",
+          "link": {
+            "url": false,
+            "value": "project::v1_0_0::coffee::machine::water_tank::tank_volume"
+          }
+        },
+        {
+          "content": "for the volume of the tank.",
           "kind": "text"
         }
       ]
@@ -1443,7 +1467,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 108,
+      "line": 114,
       "path": "src/coffee/coffee.h"
     },
     "name": "set_number_cups",
@@ -1571,7 +1595,31 @@
           }
         },
         {
-          "content": "for how many cups",
+          "content": "for how many cups See",
+          "kind": "text"
+        },
+        {
+          "content": "water_tank::fill()",
+          "kind": "text",
+          "link": {
+            "url": false,
+            "value": "project::v1_0_0::coffee::machine::water_tank::fill(constcups&number_of_cups,boolsafety_valve)"
+          }
+        },
+        {
+          "content": "for how to fill the water tank. See the",
+          "kind": "text"
+        },
+        {
+          "content": "water_tank::tank_volume",
+          "kind": "text",
+          "link": {
+            "url": false,
+            "value": "project::v1_0_0::coffee::machine::water_tank::tank_volume"
+          }
+        },
+        {
+          "content": "for the volume of the tank.",
           "kind": "text"
         }
       ]
@@ -1585,7 +1633,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 105,
+      "line": 111,
       "path": "src/coffee/coffee.h"
     },
     "name": "set_number_cups",
@@ -1647,7 +1695,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 89,
+      "line": 92,
       "path": "src/coffee/coffee.h"
     },
     "name": "set_power",
@@ -1695,7 +1743,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 135,
+      "line": 141,
       "path": "src/coffee/coffee.h"
     },
     "name": "tank",
@@ -1738,7 +1786,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 132,
+      "line": 138,
       "path": "src/coffee/coffee.h"
     },
     "name": "tank",
@@ -1784,7 +1832,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 138,
+      "line": 144,
       "path": "src/coffee/coffee.h"
     },
     "name": "tanks",
@@ -1828,7 +1876,7 @@
     "is_volatile": false,
     "kind": "variable",
     "location": {
-      "line": 157,
+      "line": 163,
       "path": "src/coffee/coffee.h"
     },
     "name": "total_cups_brewed",
@@ -1895,7 +1943,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 129,
+      "line": 135,
       "path": "src/coffee/coffee.h"
     },
     "name": "version",
@@ -1941,7 +1989,8 @@
     },
     "members": [
       "project::v1_0_0::coffee::machine::water_tank::fill(constcups&number_of_cups,boolsafety_valve)",
-      "project::v1_0_0::coffee::machine::water_tank::is_full()const"
+      "project::v1_0_0::coffee::machine::water_tank::is_full()const",
+      "project::v1_0_0::coffee::machine::water_tank::tank_volume"
     ],
     "name": "water_tank",
     "scope": "project::v1_0_0::coffee::machine"
@@ -2099,6 +2148,35 @@
     "scope": "project::v1_0_0::coffee::machine::water_tank",
     "trailing_return": false
   },
+  "project::v1_0_0::coffee::machine::water_tank::tank_volume": {
+    "access": "public",
+    "briefdescription": [
+      [
+        {
+          "content": "The volume of the water tank.",
+          "kind": "text"
+        }
+      ]
+    ],
+    "detaileddescription": [],
+    "is_const": false,
+    "is_constexpr": false,
+    "is_mutable": false,
+    "is_static": false,
+    "is_volatile": false,
+    "kind": "variable",
+    "location": {
+      "line": 50,
+      "path": "src/coffee/coffee.h"
+    },
+    "name": "tank_volume",
+    "scope": "project::v1_0_0::coffee::machine::water_tank",
+    "type": [
+      {
+        "value": "double"
+      }
+    ]
+  },
   "project::v1_0_0::coffee::machine::~machine()": {
     "access": "public",
     "briefdescription": [
@@ -2119,7 +2197,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 86,
+      "line": 89,
       "path": "src/coffee/coffee.h"
     },
     "name": "~machine",
@@ -2420,7 +2498,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 226,
+      "line": 232,
       "path": "src/coffee/coffee.h"
     },
     "name": "print",
@@ -2504,7 +2582,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 236,
+      "line": 242,
       "path": "src/coffee/coffee.h"
     },
     "name": "print",
@@ -2610,7 +2688,7 @@
     "is_virtual": false,
     "kind": "function",
     "location": {
-      "line": 241,
+      "line": 247,
       "path": "src/coffee/coffee.h"
     },
     "name": "version",
