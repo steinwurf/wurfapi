@@ -1,8 +1,8 @@
 
 .. _project::v1_0_0:
 
-namespace v1_0_0
-================
+namespace project::v1_0_0
+=========================
 
 **Scope:** project
 
