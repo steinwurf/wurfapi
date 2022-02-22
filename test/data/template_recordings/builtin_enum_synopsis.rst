@@ -1,7 +1,8 @@
 .. _project::v1_0_0::coffee::mug_size:
 
-enum mug_size
-=============
+enum project::v1_0_0::coffee::mug_size
+======================================
+
 
 **Scope:** project::v1_0_0::coffee
 

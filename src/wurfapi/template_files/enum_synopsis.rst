@@ -3,7 +3,12 @@
 {% set enum = api[selector] %}
 .. _{{selector}}:
 
+{% if enum["scope"] is not none %}
+{{ macros.format_heading("enum " + enum["scope"] + "::" + enum["name"]) }}
+{% else %}
 {{ macros.format_heading("enum " + enum["name"]) }}
+{% endif %}
+
 
 {% if enum["scope"] is not none %}
 **Scope:** {{ enum["scope"] }}

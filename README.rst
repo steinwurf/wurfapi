@@ -49,12 +49,13 @@ So what is ``wurfapi``:
 Status
 ======
 
-We are still very much in the initial development phase - all things are
-subject to change.
+We currently use wurfapi in the following projects:
 
-* Parsing Doxygen XML: We do not support everything yet (and probably never
-  will). We still are missing some crucial elements like proper parsing of
-  the text elements in comments, parameter descriptions etc.
+* https://rely.steinwurf.com/docs/10.0.0/
+* https://kodo.steinwurf.com/docs/11.0.0/
+* https://otacast.steinwurf.com/docs/6.0.0/
+
+... and many more.
 
 Usage
 =====

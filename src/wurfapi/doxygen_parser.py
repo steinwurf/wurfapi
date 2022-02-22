@@ -1132,6 +1132,9 @@ def parse(xml, parser, log, scope):
     # Construct the unique name
     unique_name = scope + "::" + result["name"] if scope else result["name"]
 
+    # Save mapping from doxygen id to unique name
+    parser.id_mapping[xml.attrib["id"]] = unique_name
+
     return {unique_name: result}
 
 

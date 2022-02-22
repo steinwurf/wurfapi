@@ -22,7 +22,11 @@
 
 .. _{{selector}}:
 
+{% if namespace["scope"] is not none %}
+{{ macros.format_heading("namespace " + namespace["scope"] + "::" + namespace["name"]) }}
+{% else %}
 {{ macros.format_heading("namespace " + namespace["name"]) }}
+{% endif %}
 
 {% if namespace["scope"] %}
 **Scope:** {{ namespace["scope"] }}
