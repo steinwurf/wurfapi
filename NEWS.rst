@@ -9,6 +9,8 @@ Latest
 * Minor: Updated waf.
 * Minor: Added support for **bold** and *italic* text.
 * Minor: Added support for references to nested struct/class member variables.
+* Major: Changed the template files for the different c++ objects.
+         Scope is now a part of heading.
 
 8.1.0
 -----
