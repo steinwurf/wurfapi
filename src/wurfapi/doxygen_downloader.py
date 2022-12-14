@@ -74,7 +74,7 @@ def current_platform():
         # Checking for 64 bit
         # https://docs.python.org/3/library/platform.html#cross-platform
 
-        if sys.maxsize > 2 ** 32:
+        if sys.maxsize > 2**32:
             return "linux64"
         else:
             return "linux32"
@@ -84,7 +84,7 @@ def current_platform():
         # Checking for 64 bit
         # https://docs.python.org/3/library/platform.html#cross-platform
 
-        if sys.maxsize > 2 ** 32:
+        if sys.maxsize > 2**32:
             return "win64"
         else:
             return "win32"
