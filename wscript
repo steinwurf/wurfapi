@@ -107,98 +107,123 @@ def upload(bld):
         venv.run("python -m twine upload {}".format(wheel))
 
 
+def _create_venv(ctx, location):
+
+    requirements_txt = os.path.join(location, "requirements.txt")
+    requirements_in = os.path.join(location, "requirements.in")
+
+    if not os.path.isfile(requirements_txt):
+        with ctx.create_virtualenv() as venv:
+            venv.run("python -m pip install pip-tools")
+            venv.run(
+                "pip-compile {} --output-file {}".format(
+                    requirements_in, requirements_txt
+                )
+            )
+    # Hash the requirements.txt
+    sha1 = hashlib.sha1(
+        (open(requirements_txt, "r").read()).encode("utf-8")
+    ).hexdigest()[:6]
+
+    # venv name
+    name = "venv-{}-{}".format(location, sha1)
+
+    if os.path.isdir(name):
+        # If directly already exits we should already have installed everything
+        pip_install = False
+    else:
+        pip_install = True
+
+    # Crate the venv
+    venv = ctx.create_virtualenv(name=name, overwrite=False)
+
+    if pip_install:
+        venv.env["PIP_IGNORE_INSTALLED"] = ""
+        venv.run("python -m pip install -r {}".format(requirements_txt))
+
+    return venv
+
+
 def _pytest(bld):
 
-    with bld.create_virtualenv(cwd=bld.path.abspath()) as venv:
+    venv = _create_venv(ctx=bld, location="test")
 
-        venv.run(cmd="pip install pytest")
-        venv.run(cmd="pip install pytest-testdirectory")
-        venv.run(cmd="pip install mock")
-        venv.run(cmd="pip install vcrpy")
-        venv.run(cmd="pip install rstcheck")
-        venv.run(
-            cmd="pip install "
-            "git+https://github.com/steinwurf/pytest-datarecorder.git@"
-            "6a2c106c1a7f08236fcdd7b1b8742b010ec2403e"
+    # Install the pytest-testdirectory plugin in the virtualenv
+    wheel = _find_wheel(ctx=bld)
+
+    venv.run(cmd="python -m pip install --force-reinstall {}".format(wheel))
+
+    # We override the pytest temp folder with the basetemp option,
+    # so the test folders will be available at the specified location
+    # on all platforms. The default location is the "pytest" local folder.
+    basetemp = os.path.abspath(os.path.expanduser(bld.options.pytest_basetemp))
+
+    # We need to manually remove the previously created basetemp folder,
+    # because pytest uses os.listdir in the removal process, and that fails
+    # if there are any broken symlinks in that folder.
+    if os.path.exists(basetemp):
+        waflib.extras.wurf.directory.remove_directory(path=basetemp)
+
+    # Run all tests by just passing the test directory. Specific tests can
+    # be enabled by specifying the full path e.g.:
+    #
+    #     'test/test_run.py::test_create_context'
+    #
+    test_filter = "test"
+
+    # Main test command
+    command = f"python -B -m pytest {test_filter} --basetemp {basetemp}"
+
+    # Skip the tests that have the "download_test" marker
+    command += ' -m "not download_test and not ensure_doxygen"'
+
+    # Adds the test filter if specified
+    if bld.options.test_filter:
+        command += ' -k "{}"'.format(bld.options.test_filter)
+
+    # Adds the test filter if specified
+    if bld.options.stepwise:
+        command += " --stepwise"
+
+    # Make python not write any .pyc files. These may linger around
+    # in the file system and make some tests pass although their .py
+    # counter-part has been e.g. deleted
+    venv.run(cmd=command, cwd=bld.path)
+
+    if bld.options.run_download_tests:
+        # Main test command
+        command = "python -B -m pytest {} --basetemp {}".format(
+            testdir.abspath(), os.path.join(basetemp, "download_tests")
         )
 
-        # Install the pytest-testdirectory plugin in the virtualenv
-        wheel = _find_wheel(ctx=bld)
-
-        venv.run(cmd="python -m pip install {}".format(wheel))
-
-        # We override the pytest temp folder with the basetemp option,
-        # so the test folders will be available at the specified location
-        # on all platforms. The default location is the "pytest" local folder.
-        basetemp = os.path.abspath(
-            os.path.expanduser(bld.options.pytest_basetemp))
-
-        # We need to manually remove the previously created basetemp folder,
-        # because pytest uses os.listdir in the removal process, and that fails
-        # if there are any broken symlinks in that folder.
-        if os.path.exists(basetemp):
-            waflib.extras.wurf.directory.remove_directory(path=basetemp)
-
-        # Run all tests by just passing the test directory. Specific tests can
-        # be enabled by specifying the full path e.g.:
-        #
-        #     'test/test_run.py::test_create_context'
-        #
-        test_filter = "test"
-
-        # Main test command
-        command = f"python -B -m pytest {test_filter} --basetemp {basetemp}"
-
         # Skip the tests that have the "download_test" marker
-        command += ' -m "not download_test and not ensure_doxygen"'
-
-        # Adds the test filter if specified
-        if bld.options.test_filter:
-            command += ' -k "{}"'.format(bld.options.test_filter)
-
-        # Adds the test filter if specified
-        if bld.options.stepwise:
-            command += " --stepwise"
+        command += ' -m "download_test"'
 
         # Make python not write any .pyc files. These may linger around
         # in the file system and make some tests pass although their .py
         # counter-part has been e.g. deleted
         venv.run(cmd=command, cwd=bld.path)
 
-        if bld.options.run_download_tests:
-            # Main test command
-            command = "python -B -m pytest {} --basetemp {}".format(
-                testdir.abspath(), os.path.join(basetemp, "download_tests")
-            )
+    if bld.options.run_ensure_doxygen:
+        # Main test command
+        command = "python -B -m pytest {} --basetemp {}".format(
+            testdir.abspath(), os.path.join(basetemp, "ensure_doxygen")
+        )
 
-            # Skip the tests that have the "download_test" marker
-            command += ' -m "download_test"'
+        # Skip the tests that have the "download_test" marker
+        command += ' -m "ensure_doxygen"'
 
-            # Make python not write any .pyc files. These may linger around
-            # in the file system and make some tests pass although their .py
-            # counter-part has been e.g. deleted
-            venv.run(cmd=command, cwd=bld.path)
+        # Make python not write any .pyc files. These may linger around
+        # in the file system and make some tests pass although their .py
+        # counter-part has been e.g. deleted
+        venv.run(cmd=command, cwd=bld.path)
 
-        if bld.options.run_ensure_doxygen:
-            # Main test command
-            command = "python -B -m pytest {} --basetemp {}".format(
-                testdir.abspath(), os.path.join(basetemp, "ensure_doxygen")
-            )
+    # Check readme
+    # https://stackoverflow.com/a/49107899/1717320
+    venv.run(cmd="python setup.py check -r -s", cwd=bld.path)
 
-            # Skip the tests that have the "download_test" marker
-            command += ' -m "ensure_doxygen"'
-
-            # Make python not write any .pyc files. These may linger around
-            # in the file system and make some tests pass although their .py
-            # counter-part has been e.g. deleted
-            venv.run(cmd=command, cwd=bld.path)
-
-        # Check readme
-        # https://stackoverflow.com/a/49107899/1717320
-        venv.run(cmd="python setup.py check -r -s", cwd=bld.path)
-
-        venv.run(cmd="pip install collective.checkdocs")
-        venv.run(cmd="python setup.py checkdocs", cwd=bld.path)
+    venv.run(cmd="pip install collective.checkdocs")
+    venv.run(cmd="python setup.py checkdocs", cwd=bld.path)
 
 
 class ReleaseContext(BuildContext):
