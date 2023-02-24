@@ -18,8 +18,9 @@ def test_nested_ab_namespace(datarecorder):
         api, selectors=["A::B"]
     )
 
-    datarecorder.recording_path = "test/data/recordings/test_nested_ab_namespace.json"
-    datarecorder.record(data=api)
+    datarecorder.record_data(
+        data=api, recording_file="test/data/recordings/test_nested_ab_namespace.json"
+    )
 
 
 def test_nested_a_namespace(datarecorder):
@@ -39,5 +40,6 @@ def test_nested_a_namespace(datarecorder):
         api, selectors=["A"]
     )
 
-    datarecorder.recording_path = "test/data/recordings/test_nested_a_namespace.json"
-    datarecorder.record(data=api)
+    datarecorder.record_data(
+        data=api, recording_file="test/data/recordings/test_nested_a_namespace.json"
+    )

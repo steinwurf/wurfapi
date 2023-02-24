@@ -9,7 +9,6 @@ import wurfapi.template_render
 import wurfapi.doxygen_downloader
 import wurfapi.location_mapper
 
-import record
 import pytest_datarecorder
 
 
@@ -58,7 +57,7 @@ def generate_coffee_api(testdirectory):
     return reader.parse_index()
 
 
-def test_template_finder_builtin(testdirectory):
+def test_template_finder_builtin(testdirectory, datarecorder):
 
     template = wurfapi.template_render.TemplateRender(user_path=None)
 
@@ -70,31 +69,26 @@ def test_template_finder_builtin(testdirectory):
         encoding="utf-8",
     )
 
-    data = template.render(
+    data_render = template.render(
         selector="project::v1_0_0::coffee::machine",
         api=api,
         filename="class_synopsis.rst",
     )
 
-    testdirectory.write_text(filename="out.rst", data=data, encoding="utf-8")
+    testdirectory.write_text(filename="out.rst", data=data_render, encoding="utf-8")
     # testdirectory.run('rstcheck out.rst')
 
-    mismatch_path = testdirectory.mkdir("mismatch")
-
-    recorder = record.Record(
-        filename="builtin_class_synopsis.rst",
-        recording_path="test/data/template_recordings",
-        mismatch_path=mismatch_path.path(),
+    datarecorder.record_data(
+        data=data_render,
+        recording_file="test/data/template_recordings/builtin_class_synopsis.rst",
     )
-
-    recorder.record(data=data)
 
 
 def test_template_finder_user(testdirectory):
 
     api = generate_coffee_api(testdirectory=testdirectory)
 
-    user_path = testdirectory.copy_file("test/data/custom_templates/class_synopsis.rst")
+    testdirectory.copy_file("test/data/custom_templates/class_synopsis.rst")
 
     template = wurfapi.template_render.TemplateRender(user_path=testdirectory.path())
 
@@ -109,7 +103,7 @@ def test_template_user_data(testdirectory):
 
     api = generate_coffee_api(testdirectory=testdirectory)
 
-    user_path = testdirectory.copy_file("test/data/custom_templates/with_user_data.rst")
+    testdirectory.copy_file("test/data/custom_templates/with_user_data.rst")
 
     template = wurfapi.template_render.TemplateRender(user_path=testdirectory.path())
 
@@ -131,48 +125,38 @@ def test_template_user_data(testdirectory):
     assert expect == data
 
 
-def test_template_render_namespace(testdirectory):
+def test_template_render_namespace(testdirectory, datarecorder):
 
     template = wurfapi.template_render.TemplateRender(user_path=None)
 
     api = generate_coffee_api(testdirectory=testdirectory)
 
-    data = template.render(
+    data_render = template.render(
         selector="project::v1_0_0", api=api, filename="namespace_synopsis.rst"
     )
 
-    mismatch_path = testdirectory.mkdir("mismatch")
-
-    recorder = record.Record(
-        filename="builtin_namespace_synopsis.rst",
-        recording_path="test/data/template_recordings",
-        mismatch_path=mismatch_path.path(),
+    datarecorder.record_data(
+        data=data_render,
+        recording_file="test/data/template_recordings/builtin_namespace_synopsis.rst",
     )
 
-    recorder.record(data=data)
 
-
-def test_template_render_enum(testdirectory):
+def test_template_render_enum(testdirectory, datarecorder):
 
     template = wurfapi.template_render.TemplateRender(user_path=None)
 
     api = generate_coffee_api(testdirectory=testdirectory)
 
-    data = template.render(
+    data_render = template.render(
         selector="project::v1_0_0::coffee::mug_size",
         api=api,
         filename="enum_synopsis.rst",
     )
 
-    mismatch_path = testdirectory.mkdir("mismatch")
-
-    recorder = record.Record(
-        filename="builtin_enum_synopsis.rst",
-        recording_path="test/data/template_recordings",
-        mismatch_path=mismatch_path.path(),
+    datarecorder.record_data(
+        data=data_render,
+        recording_file="test/data/template_recordings/builtin_enum_synopsis.rst",
     )
-
-    recorder.record(data=data)
 
 
 def test_template_render_function(testdirectory, datarecorder):
@@ -186,10 +170,10 @@ def test_template_render_function(testdirectory, datarecorder):
         filename="function_synopsis.rst",
     )
 
-    datarecorder.recording_path = (
-        "test/data/template_recordings/builtin_function_synopsis.rst"
+    datarecorder.record_data(
+        data=data,
+        recording_file="test/data/template_recordings/builtin_function_synopsis.rst",
     )
-    datarecorder.record(data=data)
 
 
 def test_template_render_multiple_functions(testdirectory, datarecorder):
@@ -201,10 +185,10 @@ def test_template_render_multiple_functions(testdirectory, datarecorder):
         selector="project::v1_0_0", api=api, filename="function_synopsis.rst"
     )
 
-    datarecorder.recording_path = (
-        "test/data/template_recordings/builtin_multiple_function_synopsis.rst"
+    datarecorder.record_data(
+        data=data,
+        recording_file="test/data/template_recordings/builtin_multiple_function_synopsis.rst",
     )
-    datarecorder.record(data=data)
 
 
 def test_template_render_free_function(testdirectory, datarecorder):
@@ -216,10 +200,10 @@ def test_template_render_free_function(testdirectory, datarecorder):
         selector="version()", api=api, filename="function_synopsis.rst"
     )
 
-    datarecorder.recording_path = (
-        "test/data/template_recordings/builtin_free_function_synopsis.rst"
+    datarecorder.record_data(
+        data=data,
+        recording_file="test/data/template_recordings/builtin_free_function_synopsis.rst",
     )
-    datarecorder.record(data=data)
 
 
 template_string = """\
@@ -234,5 +218,6 @@ def test_template_render_macro(datarecorder):
     template = render.environment.from_string(template_string)
     data = template.render(data="<hello>")
 
-    datarecorder.recording_path = "test/data/template_recordings/macro_escape_ref.rst"
-    datarecorder.record(data=data)
+    datarecorder.record_data(
+        data=data, recording_file="test/data/template_recordings/macro_escape_ref.rst"
+    )

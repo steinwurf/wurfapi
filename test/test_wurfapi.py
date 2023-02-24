@@ -1,8 +1,6 @@
 import os
 import json
 
-import record
-
 
 def test_run(testdirectory):
 
@@ -10,7 +8,7 @@ def test_run(testdirectory):
     testdirectory.run("wurfapi")
 
 
-def test_build_docs(testdirectory):
+def test_build_docs(testdirectory, datarecorder):
 
     cpp_coffee = testdirectory.copy_dir(directory="test/data/cpp_coffee")
 
@@ -31,9 +29,7 @@ def test_build_docs(testdirectory):
     )
 
     docs = cpp_coffee.join("docs")
-    r = docs.run("sphinx-build --no-color -w log.txt -vvv -b html . _build")
-
-    # print(r)
+    docs.run("sphinx-build --no-color -w log.txt -vvv -b html . _build")
     log_file = os.path.join(docs.path(), "log.txt")
 
     # The log file should have zero size - i.e. now warnings or errors..
@@ -41,15 +37,9 @@ def test_build_docs(testdirectory):
     with open(log_file, "r") as log:
         log_data = log.read()
 
-    mismatch_path = testdirectory.mkdir("mismatch")
-
-    recorder = record.Record(
-        filename="log.txt",
-        recording_path="test/data/log_recordings",
-        mismatch_path=mismatch_path.path(),
+    datarecorder.record_data(
+        data=log_data, recording_file="test/data/log_recordings/log.txt"
     )
-
-    recorder.record(data=log_data)
 
     # Find and track changes to the wurfapi json file. This is the final API
     # output produced after parsing the sources and running our various steps
@@ -58,13 +48,9 @@ def test_build_docs(testdirectory):
         docs.path(), "_build", ".doctrees", "wurfapi_api.json"
     )
 
-    recorder = record.Record(
-        filename="build_coffee_wurfapi.json",
-        recording_path="test/data/",
-        mismatch_path=mismatch_path.path(),
-    )
-
     with open(wurfapi_json_file, "r") as wurfapi_json:
-        data = json.load(wurfapi_json)
+        wurfapi_data = json.load(wurfapi_json)
 
-    recorder.record(data=data)
+    datarecorder.record_data(
+        data=wurfapi_data, recording_file="test/data/build_coffee_wurfapi.json"
+    )

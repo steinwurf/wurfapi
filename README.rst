@@ -319,18 +319,17 @@ package in editable mode in a virtualenv.
 Recordings
 ----------
 
-A bunch of the tests use a class called ``Record``, defined in
-(``test/record.py``). The ``Record`` class is used to store output as
-files from different parsing and rendering operations.
+A bunch of the tests use a library called ``pytest-datarecorder``.
+The library is used to store the output as files from different parsing and
+rendering operations.
 
 E.g. say we want to make sure that a parser function returns a certain
 ``dict`` object. Then we can record that ``dict``::
 
-    recorder = record.Record(filename='test.json',
-                             recording_path='/tmp/recording',
-                             mismatch_path='/tmp/mismatch')
-
-    recorder.record(data={'foo': 2, 'bar': 3})
+    datarecorder.record_data(
+        data={'foo': 2, 'bar': 3},
+        recording_file="/tmp/recording/test.json"
+    )
 
 If ``data`` changes compared to a previous recording a mismatch will be
 detected. To update a recording simply delete the recording file.

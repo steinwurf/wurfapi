@@ -1,0 +1,5 @@
+pytest
+pytest-testdirectory
+mock
+rstcheck
+pytest-datarecorder

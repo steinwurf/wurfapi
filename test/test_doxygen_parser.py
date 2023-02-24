@@ -10,8 +10,6 @@ import wurfapi.doxygen_generator
 import wurfapi.doxygen_downloader
 import wurfapi.run
 
-import record
-
 
 def generate_coffee_xml(testdirectory):
     """Test helper - generate the XML."""
@@ -37,7 +35,7 @@ def generate_coffee_xml(testdirectory):
     return coffee_dir.path(), src_dirs, generator.generate()
 
 
-def test_coffee(testdirectory, caplog):
+def test_coffee(testdirectory, caplog, datarecorder):
 
     caplog.set_level(logging.DEBUG)
 
@@ -63,17 +61,12 @@ def test_coffee(testdirectory, caplog):
         log=log,
     )
 
-    api = parser.parse_index()
+    api_data = parser.parse_index()
 
-    mismatch_path = testdirectory.mkdir("mismatch")
-
-    recorder = record.Record(
-        filename="coffee.json",
-        recording_path="test/data/parser_recordings",
-        mismatch_path=mismatch_path.path(),
+    datarecorder.record_data(
+        data=api_data,
+        recording_file="test/data/parser_recordings/coffee.json",
     )
-
-    recorder.record(data=api)
 
 
 def generate_xml(testdirectory, source_file):
@@ -97,7 +90,7 @@ def generate_xml(testdirectory, source_file):
     return source_dir.path(), generator.generate()
 
 
-def test_parser_input_function(testdirectory, caplog):
+def test_parser_input_function(testdirectory, caplog, datarecorder):
 
     caplog.set_level(logging.DEBUG)
 
@@ -117,18 +110,13 @@ def test_parser_input_function(testdirectory, caplog):
 
     api = parser.parse_index()
 
-    mismatch_path = testdirectory.mkdir("mismatch")
-
-    recorder = record.Record(
-        filename="parser_input_function.json",
-        recording_path="test/data/parser_recordings",
-        mismatch_path=mismatch_path.path(),
+    datarecorder.record_data(
+        data=api,
+        recording_file="test/data/parser_recordings/parser_input_function.json",
     )
 
-    recorder.record(data=api)
 
-
-def test_parser_input_enum_class(testdirectory, caplog):
+def test_parser_input_enum_class(testdirectory, caplog, datarecorder):
 
     caplog.set_level(logging.DEBUG)
 
@@ -148,18 +136,13 @@ def test_parser_input_enum_class(testdirectory, caplog):
 
     api = parser.parse_index()
 
-    mismatch_path = testdirectory.mkdir("mismatch")
-
-    recorder = record.Record(
-        filename="parser_input_enum_class.json",
-        recording_path="test/data/parser_recordings",
-        mismatch_path=mismatch_path.path(),
+    datarecorder.record_data(
+        data=api,
+        recording_file="test/data/parser_recordings/parser_input_enum_class.json",
     )
 
-    recorder.record(data=api)
 
-
-def test_parser_input_variables(testdirectory, caplog):
+def test_parser_input_variables(testdirectory, caplog, datarecorder):
 
     caplog.set_level(logging.DEBUG)
 
@@ -179,18 +162,13 @@ def test_parser_input_variables(testdirectory, caplog):
 
     api = parser.parse_index()
 
-    mismatch_path = testdirectory.mkdir("mismatch")
-
-    recorder = record.Record(
-        filename="parser_input_variables.json",
-        recording_path="test/data/parser_recordings",
-        mismatch_path=mismatch_path.path(),
+    datarecorder.record_data(
+        data=api,
+        recording_file="test/data/parser_recordings/parser_input_variables.json",
     )
 
-    recorder.record(data=api)
 
-
-def test_parser_input_define(testdirectory, caplog):
+def test_parser_input_define(testdirectory, caplog, datarecorder):
 
     caplog.set_level(logging.DEBUG)
 
@@ -210,18 +188,13 @@ def test_parser_input_define(testdirectory, caplog):
 
     api = parser.parse_index()
 
-    mismatch_path = testdirectory.mkdir("mismatch")
-
-    recorder = record.Record(
-        filename="parser_input_define.json",
-        recording_path="test/data/parser_recordings",
-        mismatch_path=mismatch_path.path(),
+    datarecorder.record_data(
+        data=api,
+        recording_file="test/data/parser_recordings/parser_input_define.json",
     )
 
-    recorder.record(data=api)
 
-
-def test_parser_input_type_definitions(testdirectory, caplog):
+def test_parser_input_type_definitions(testdirectory, caplog, datarecorder):
 
     caplog.set_level(logging.DEBUG)
 
@@ -241,18 +214,13 @@ def test_parser_input_type_definitions(testdirectory, caplog):
 
     api = parser.parse_index()
 
-    mismatch_path = testdirectory.mkdir("mismatch")
-
-    recorder = record.Record(
-        filename="parser_input_type_definitions.json",
-        recording_path="test/data/parser_recordings",
-        mismatch_path=mismatch_path.path(),
+    datarecorder.record_data(
+        data=api,
+        recording_file="test/data/parser_recordings/parser_input_type_definitions.json",
     )
 
-    recorder.record(data=api)
 
-
-def test_parser_input_templates(testdirectory, caplog):
+def test_parser_input_templates(testdirectory, caplog, datarecorder):
 
     caplog.set_level(logging.DEBUG)
 
@@ -272,15 +240,10 @@ def test_parser_input_templates(testdirectory, caplog):
 
     api = parser.parse_index()
 
-    mismatch_path = testdirectory.mkdir("mismatch")
-
-    recorder = record.Record(
-        filename="parser_input_templates.json",
-        recording_path="test/data/parser_recordings",
-        mismatch_path=mismatch_path.path(),
+    datarecorder.record_data(
+        data=api,
+        recording_file="test/data/parser_recordings/parser_input_templates.json",
     )
-
-    recorder.record(data=api)
 
 
 def test_parser_replace_with():
@@ -404,8 +367,7 @@ def test_parser_input_inline_namespace(testdirectory, caplog, datarecorder):
 
     data = parser.parse_index()
 
-    datarecorder.recording_path = os.path.join(
-        "test/data/parser_recordings/parser_input_inline_namespace.json"
+    datarecorder.record_data(
+        data=data,
+        recording_file="test/data/parser_recordings/parser_input_inline_namespace.json",
     )
-
-    datarecorder.record(data=data)

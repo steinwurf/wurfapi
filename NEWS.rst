@@ -6,7 +6,10 @@ of every change, see the Git log.
 
 Latest
 ------
-* tbd
+* Minor: Removed record helper and replaced all recording functionality with
+  pytest-datarecorder.
+* Minor: Changed testing approach so that we now reuse the virtual environment
+  between test runs. This should speed up the testing process.
 
 9.0.0
 -----
@@ -158,4 +161,3 @@ Latest
 1.0.0
 -----
 * Initial release (still beta quality).
-
