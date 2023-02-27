@@ -587,13 +587,6 @@ def parse(xml, parser, log, scope):
             if parameterlist[param]:
                 parameter["description"] = parameterlist[param]
 
-    #     parameterlist = {"message": "The message"}
-    #     parameter = {}
-    #     parameter["name"] = parameterlist.keys()[0]
-    #     if parameterlist[parameter["name"]]:
-    #         parameter["description"] = parameterlist[parameter["name"]]
-    #     parameters.append(parameters)
-
     result["parameters"] = parameters
 
     # Construct the unique name
