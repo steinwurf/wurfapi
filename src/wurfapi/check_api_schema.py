@@ -14,7 +14,6 @@ def check_api_schema(api):
     # Link schema
     class StringSchema(object):
         def validate(self, data):
-
             # Check the basic properties
             schema.Schema(schema.Or(*six.string_types)).validate(data)
 
@@ -37,7 +36,6 @@ def check_api_schema(api):
             self.api = api
 
         def validate(self, data):
-
             if data not in self.api:
                 raise schema.SchemaError(
                     "%r not found in the API "
@@ -52,7 +50,6 @@ def check_api_schema(api):
             self.api = api
 
         def validate(self, data):
-
             # Check the basic properties
             schema.Schema(
                 {
@@ -227,6 +224,12 @@ def check_api_schema(api):
             "type": type_schema,
             "briefdescription": paragraphs_schema,
             "detaileddescription": paragraphs_schema,
+            schema.Optional("parameters"): [
+                {
+                    "name": string_schema,
+                    schema.Optional("description"): paragraphs_schema,
+                }
+            ],
         }
     )
 
@@ -313,7 +316,6 @@ def check_api_schema(api):
 
     class SchemaApi(object):
         def validate(self, data):
-
             if "kind" not in data:
                 raise schema.SchemaError("Required 'kind' key not found in %r" % data)
 

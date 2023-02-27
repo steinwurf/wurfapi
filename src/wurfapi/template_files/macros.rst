@@ -37,7 +37,7 @@
 {# FORMAT_REF
 
 The escaped space is needed to that the inline markup ends with
-a non-character. Otherwise rst will fail with an error.
+a non-character. Otherwise, rst will fail with an error.
 #}
 
 {% macro format_ref(content, reference) -%}
@@ -52,7 +52,7 @@ a non-character. Otherwise rst will fail with an error.
 {# FORMAT_LINK
 
 The escaped space is needed to that the inline markup ends with
-a non-character. Otherwise rst will fail with an error.
+a non-character. Otherwise, rst will fail with an error.
 #}
 
 {% macro format_link(content, link) %}
@@ -68,7 +68,7 @@ a non-character. Otherwise rst will fail with an error.
 
 {% macro format_type_list(element, as_code=False) %}
 {% for item in element %}
-{% set value = item["value"] | replace('*', '\\*') %}
+{% set value = item["value"] | replace(' *', '\\* ') | replace(' &', '& ') | replace('< ', '<\\ ')  %}
 {% if "link" in item and not as_code %}
 {{ format_link(value, item["link"]) -}}
 {% else %}
@@ -173,27 +173,25 @@ using **{{ alias["name"] }}** = {{ format_type_list(alias["type"]) }}
 {# FORMAT_TYPE_ALIAS #}
 
 {% macro format_type_alias(selector, include_label=True) %}
-{% set alias = api[selector] %}
+{% set type_alias = api[selector] %}
 {% if include_label %}
 .. wurfapitarget:: {{selector}}
-{% if alias["scope"] is not none %}
-    :label: {{ alias["scope"] }}::{{alias["name"]}}()
+{% if type_alias["scope"] is not none %}
+    :label: {{ type_alias["scope"] }}::{{type_alias["name"]}}()
 {% else %}
-    :label: {{alias["name"]}}()
+    :label: {{type_alias["name"]}}()
 {%endif %}
 
 {% endif %}
-{%- if alias["kind"] == "using" -%}
-    {{ format_using_alias(alias) }}
-{%- elif alias["kind"] == "typedef" -%}
-    {{ format_typedef_alias(alias) }}
-{%- else -%}
-    UNKNOWN TYPE ALIAS KIND: {{ alias["kind"] }}
+{%- if type_alias["kind"] == "using" -%}
+    {{ format_using_alias(type_alias) }}
+{%- elif type_alias["kind"] == "typedef" -%}
+    {{ format_typedef_alias(type_alias) }}
 {%- endif -%}
-
-{% set briefdescription = format_paragraphs(alias["briefdescription"]) %}
-{% set detaileddescription = format_paragraphs(alias["detaileddescription"]) %}
-
+{% set briefdescription = format_paragraphs(type_alias["briefdescription"]) %}
+{% set detaileddescription = format_paragraphs(type_alias["detaileddescription"]) %}
+{% set parameters_description =
+    format_parameters_description(type_alias["parameters"]) %}
 {% if briefdescription %}
 
     {{ briefdescription | indent }}
@@ -201,6 +199,10 @@ using **{{ alias["name"] }}** = {{ format_type_list(alias["type"]) }}
 {% if detaileddescription %}
 
     {{ detaileddescription | indent }}
+{% endif %}
+{% if parameters_description %}
+
+    {{ parameters_description | indent }}
 {% endif %}
 {%- endmacro -%}
 

@@ -6,4 +6,7 @@ struct type_definitions
 
     /// This is really a string
     using really_a_string = std::string;
+
+    /// This is a callback
+    using callback = std::function<void(int times, int, uint8_t* data)>;
 };

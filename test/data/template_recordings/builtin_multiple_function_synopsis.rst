@@ -4,7 +4,7 @@
    :align: left
 
    * - void
-     - :ref:`print <project::v1_0_0::print(doublea,int*b)>`\  (double a, int \* b)
+     - :ref:`print <project::v1_0_0::print(doublea,int*b)>`\  (double a, int\*  b)
    * - void
      - :ref:`print <project::v1_0_0::print(inta_number,boolon_paper)>`\  (int a_number, bool on_paper)
 
@@ -13,7 +13,7 @@
 .. wurfapitarget:: project::v1_0_0::print(doublea,int*b)
     :label: project::v1_0_0::print()
 
-| void **print** (double a, int \* b)
+| void **print** (double a, int\*  b)
 
     Prints the ``a`` and then the value pointed to by ``b``.
 

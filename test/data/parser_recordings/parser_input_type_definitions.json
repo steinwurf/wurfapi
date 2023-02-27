@@ -16,6 +16,7 @@
       "path": "type_definitions.hpp"
     },
     "members": [
+      "type_definitions::callback",
       "type_definitions::my_bool",
       "type_definitions::really_a_string"
     ],
@@ -26,6 +27,30 @@
     "kind": "file",
     "name": "type_definitions.hpp",
     "path": "type_definitions.hpp"
+  },
+  "type_definitions::callback": {
+    "access": "public",
+    "briefdescription": [
+      [
+        {
+          "content": "This is a callback.",
+          "kind": "text"
+        }
+      ]
+    ],
+    "detaileddescription": [],
+    "kind": "using",
+    "location": {
+      "line": 11,
+      "path": "type_definitions.hpp"
+    },
+    "name": "callback",
+    "scope": "type_definitions",
+    "type": [
+      {
+        "value": "std::function< void(int times, int, uint8_t *data)>"
+      }
+    ]
   },
   "type_definitions::my_bool": {
     "access": "public",
