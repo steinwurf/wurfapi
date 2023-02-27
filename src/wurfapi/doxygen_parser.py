@@ -325,6 +325,7 @@ def parse(parser, log, xml):
 @DoxygenParser.register(tag="sectiondef", attrib={"kind": "enum"})
 @DoxygenParser.register(tag="sectiondef", attrib={"kind": "func"})
 @DoxygenParser.register(tag="sectiondef", attrib={"kind": "define"})
+@DoxygenParser.register(tag="sectiondef", attrib={"kind": "typedef"})
 def parse(parser, xml):
     """Parses Doxygen sectiondefType"""
 

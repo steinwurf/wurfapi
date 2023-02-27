@@ -267,8 +267,8 @@ generating the documentation.
 Custom templates
 ----------------
 
-You can write you own custom templates for generating the rst output.
-To to this you simply write a Jinja2 compatible rst template and place
+You can write your own custom templates for generating the rst output.
+To this you simply write a Jinja2 compatible rst template and place
 it in some folder. Adding the ``user_templates`` key to the ``wurfapi``
 configuration dictionary in the ``conf.py`` file will make it available.
 
@@ -313,7 +313,7 @@ The tests will run automatically by passing ``--run_tests`` to waf::
 
     ./waf --run_tests
 
-This follows what seems to be "best practice" advise, namely to install the
+This follows what seems to be "best practice" advice, namely to install the
 package in editable mode in a virtualenv.
 
 Recordings
@@ -377,7 +377,7 @@ http://www.sphinx-doc.org/en/stable/extdev/index.html#dev-extensions
 * Understanding how to write stuff with docutils:
   * http://agateau.com/2015/docutils-snippets/
 
-* Creating custom directive
+* Creating a custom directive
   * http://www.xavierdupre.fr/blog/2015-06-07_nojs.html
 
 * Nice looking Sphinx extensions
@@ -782,10 +782,10 @@ Python list of dictionaries representing template parameters::
       Optional('description'): paragraphs
     }]
 
-Text information
-.................
+Text Information
+................
 
-Text information is stored in a of list paragraphs::
+Text information is stored in a list of paragraphs::
 
     paragraphs = [paragraph]
 

@@ -504,7 +504,8 @@ Member Function Descriptions
 Type Description
 ----------------
 
-.. _project::v1_0_0::coffee::machine::callback:
+.. wurfapitarget:: project::v1_0_0::coffee::machine::callback
+    :label: project::v1_0_0::coffee::machine::callback()
 
 using **callback** = std::function< void()>
 
@@ -512,11 +513,11 @@ using **callback** = std::function< void()>
 
 
 
-    
 
 -----
 
-.. _project::v1_0_0::coffee::machine::other_callback:
+.. wurfapitarget:: project::v1_0_0::coffee::machine::other_callback
+    :label: project::v1_0_0::coffee::machine::other_callback()
 
 typedef :ref:`callback <project::v1_0_0::coffee::machine::callback>`\  **other_callback**
 
@@ -524,7 +525,6 @@ typedef :ref:`callback <project::v1_0_0::coffee::machine::callback>`\  **other_c
 
 
 
-    
 
 
 

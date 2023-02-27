@@ -172,12 +172,36 @@ using **{{ alias["name"] }}** = {{ format_type_list(alias["type"]) }}
 
 {# FORMAT_TYPE_ALIAS #}
 
-{%- macro format_type_alias(alias) -%}
+{% macro format_type_alias(selector, include_label=True) %}
+{% set alias = api[selector] %}
+{% if include_label %}
+.. wurfapitarget:: {{selector}}
+{% if alias["scope"] is not none %}
+    :label: {{ alias["scope"] }}::{{alias["name"]}}()
+{% else %}
+    :label: {{alias["name"]}}()
+{%endif %}
+
+{% endif %}
 {%- if alias["kind"] == "using" -%}
     {{ format_using_alias(alias) }}
-{%- else -%}
+{%- elif alias["kind"] == "typedef" -%}
     {{ format_typedef_alias(alias) }}
+{%- else -%}
+    UNKNOWN TYPE ALIAS KIND: {{ alias["kind"] }}
 {%- endif -%}
+
+{% set briefdescription = format_paragraphs(alias["briefdescription"]) %}
+{% set detaileddescription = format_paragraphs(alias["detaileddescription"]) %}
+
+{% if briefdescription %}
+
+    {{ briefdescription | indent }}
+{% endif %}
+{% if detaileddescription %}
+
+    {{ detaileddescription | indent }}
+{% endif %}
 {%- endmacro -%}
 
 {# MERGE_DESCRIPTION #}
@@ -375,6 +399,31 @@ Template parameter: {{ type }} ``{{ name }}`` {{ " = " + default if default }}
 {% for selector in selectors | api_sort(keys=["location", "line"])
                              | api_sort(keys=["location", "path"]) %}
    {{ format_function_table_row(selector) | indent(width=3) }}
+{%- endfor -%}
+
+{% endmacro -%}
+
+
+{# FORMAT_TYPEDEF_TABLE_ROW #}
+
+{%- macro format_typedef_table_row(selector) -%}
+{%- set typedef = api[selector] %}
+* - {{ format_ref(typedef["name"], selector)}}
+  - {{ format_type_list(typedef["type"]) }}
+{% endmacro -%}
+
+
+{# FORMAT_TYPEDEF_TABLE #}
+
+{%- macro format_typedef_table(selectors) -%}
+.. list-table::
+   :header-rows: 0
+   :widths: auto
+   :align: left
+
+{% for selector in selectors | api_sort(keys=["location", "line"])
+                             | api_sort(keys=["location", "path"]) %}
+   {{ format_typedef_table_row(selector) | indent(width=3) }}
 {%- endfor -%}
 
 {% endmacro -%}
