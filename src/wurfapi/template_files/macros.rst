@@ -183,11 +183,11 @@ using **{{ alias["name"] }}** = {{ format_type_list(alias["type"]) }}
 {%endif %}
 
 {% endif %}
-{%- if type_alias["kind"] == "using" -%}
+{% if type_alias["kind"] == "using" -%}
     {{ format_using_alias(type_alias) }}
-{%- elif type_alias["kind"] == "typedef" -%}
+{% elif type_alias["kind"] == "typedef" -%}
     {{ format_typedef_alias(type_alias) }}
-{%- endif -%}
+{% endif -%}
 {% set briefdescription = format_paragraphs(type_alias["briefdescription"]) %}
 {% set detaileddescription = format_paragraphs(type_alias["detaileddescription"]) %}
 {% set parameters_description =
