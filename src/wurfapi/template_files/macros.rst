@@ -156,16 +156,16 @@ a non-character. Otherwise, rst will fail with an error.
 {%- endmacro -%}
 
 
-{# FORMAT_TYPEDEF_ALIAS #}
+{# FORMAT_TYPEDEF #}
 
-{%- macro format_typedef_alias(alias) -%}
+{%- macro format_typedef(alias) -%}
 typedef {{ format_type_list(alias["type"]) }} **{{ alias["name"] }}**
 {%- endmacro -%}
 
 
-{# FORMAT_USING_ALIAS #}
+{# FORMAT_USING #}
 
-{%- macro format_using_alias(alias) -%}
+{%- macro format_using(alias) -%}
 using **{{ alias["name"] }}** = {{ format_type_list(alias["type"]) }}
 {%- endmacro -%}
 
@@ -184,9 +184,9 @@ using **{{ alias["name"] }}** = {{ format_type_list(alias["type"]) }}
 
 {% endif %}
 {% if type_alias["kind"] == "using" -%}
-    {{ format_using_alias(type_alias) }}
+    {{ format_using(type_alias) }}
 {% elif type_alias["kind"] == "typedef" -%}
-    {{ format_typedef_alias(type_alias) }}
+    {{ format_typedef(type_alias) }}
 {% endif -%}
 {% set briefdescription = format_paragraphs(type_alias["briefdescription"]) %}
 {% set detaileddescription = format_paragraphs(type_alias["detaileddescription"]) %}
@@ -406,18 +406,18 @@ Template parameter: {{ type }} ``{{ name }}`` {{ " = " + default if default }}
 {% endmacro -%}
 
 
-{# FORMAT_TYPEDEF_TABLE_ROW #}
+{# FORMAT_TYPE_ALIAS_TABLE_ROW #}
 
-{%- macro format_typedef_table_row(selector) -%}
-{%- set typedef = api[selector] %}
-* - {{ format_ref(typedef["name"], selector)}}
-  - {{ format_type_list(typedef["type"]) }}
+{%- macro format_type_alias_table_row(selector) -%}
+{%- set type_alias = api[selector] %}
+* - {{ format_ref(type_alias["name"], selector)}}
+  - {{ format_type_list(type_alias["type"]) }}
 {% endmacro -%}
 
 
-{# FORMAT_TYPEDEF_TABLE #}
+{# FORMAT_TYPE_ALIAS_TABLE #}
 
-{%- macro format_typedef_table(selectors) -%}
+{%- macro format_type_alias_table(selectors) -%}
 .. list-table::
    :header-rows: 0
    :widths: auto
@@ -425,7 +425,7 @@ Template parameter: {{ type }} ``{{ name }}`` {{ " = " + default if default }}
 
 {% for selector in selectors | api_sort(keys=["location", "line"])
                              | api_sort(keys=["location", "path"]) %}
-   {{ format_typedef_table_row(selector) | indent(width=3) }}
+   {{ format_type_alias_table_row(selector) | indent(width=3) }}
 {%- endfor -%}
 
 {% endmacro -%}
