@@ -37,7 +37,7 @@
 {# FORMAT_REF
 
 The escaped space is needed to that the inline markup ends with
-a non-character. Otherwise rst will fail with an error.
+a non-character. Otherwise, rst will fail with an error.
 #}
 
 {% macro format_ref(content, reference) -%}
@@ -52,7 +52,7 @@ a non-character. Otherwise rst will fail with an error.
 {# FORMAT_LINK
 
 The escaped space is needed to that the inline markup ends with
-a non-character. Otherwise rst will fail with an error.
+a non-character. Otherwise, rst will fail with an error.
 #}
 
 {% macro format_link(content, link) %}
@@ -68,7 +68,7 @@ a non-character. Otherwise rst will fail with an error.
 
 {% macro format_type_list(element, as_code=False) %}
 {% for item in element %}
-{% set value = item["value"] | replace('*', '\\*') %}
+{% set value = item["value"] | replace(' *', '\\* ') | replace(' &', '& ') | replace('< ', '<\\ ')  %}
 {% if "link" in item and not as_code %}
 {{ format_link(value, item["link"]) -}}
 {% else %}
@@ -156,28 +156,54 @@ a non-character. Otherwise rst will fail with an error.
 {%- endmacro -%}
 
 
-{# FORMAT_TYPEDEF_ALIAS #}
+{# FORMAT_TYPEDEF #}
 
-{%- macro format_typedef_alias(alias) -%}
+{%- macro format_typedef(alias) -%}
 typedef {{ format_type_list(alias["type"]) }} **{{ alias["name"] }}**
 {%- endmacro -%}
 
 
-{# FORMAT_USING_ALIAS #}
+{# FORMAT_USING #}
 
-{%- macro format_using_alias(alias) -%}
+{%- macro format_using(alias) -%}
 using **{{ alias["name"] }}** = {{ format_type_list(alias["type"]) }}
 {%- endmacro -%}
 
 
 {# FORMAT_TYPE_ALIAS #}
 
-{%- macro format_type_alias(alias) -%}
-{%- if alias["kind"] == "using" -%}
-    {{ format_using_alias(alias) }}
-{%- else -%}
-    {{ format_typedef_alias(alias) }}
-{%- endif -%}
+{% macro format_type_alias(selector, include_label=True) %}
+{% set type_alias = api[selector] %}
+{% if include_label %}
+.. wurfapitarget:: {{selector}}
+{% if type_alias["scope"] is not none %}
+    :label: {{ type_alias["scope"] }}::{{type_alias["name"]}}()
+{% else %}
+    :label: {{type_alias["name"]}}()
+{%endif %}
+
+{% endif %}
+{% if type_alias["kind"] == "using" -%}
+    {{ format_using(type_alias) }}
+{% elif type_alias["kind"] == "typedef" -%}
+    {{ format_typedef(type_alias) }}
+{% endif -%}
+{% set briefdescription = format_paragraphs(type_alias["briefdescription"]) %}
+{% set detaileddescription = format_paragraphs(type_alias["detaileddescription"]) %}
+{% set parameters_description =
+    format_parameters_description(type_alias["parameters"]) %}
+{% if briefdescription %}
+
+    {{ briefdescription | indent }}
+{% endif %}
+{% if detaileddescription %}
+
+    {{ detaileddescription | indent }}
+{% endif %}
+{% if parameters_description %}
+
+    {{ parameters_description | indent }}
+{% endif %}
 {%- endmacro -%}
 
 {# MERGE_DESCRIPTION #}
@@ -375,6 +401,31 @@ Template parameter: {{ type }} ``{{ name }}`` {{ " = " + default if default }}
 {% for selector in selectors | api_sort(keys=["location", "line"])
                              | api_sort(keys=["location", "path"]) %}
    {{ format_function_table_row(selector) | indent(width=3) }}
+{%- endfor -%}
+
+{% endmacro -%}
+
+
+{# FORMAT_TYPE_ALIAS_TABLE_ROW #}
+
+{%- macro format_type_alias_table_row(selector) -%}
+{%- set type_alias = api[selector] %}
+* - {{ format_ref(type_alias["name"], selector)}}
+  - {{ format_type_list(type_alias["type"]) }}
+{% endmacro -%}
+
+
+{# FORMAT_TYPE_ALIAS_TABLE #}
+
+{%- macro format_type_alias_table(selectors) -%}
+.. list-table::
+   :header-rows: 0
+   :widths: auto
+   :align: left
+
+{% for selector in selectors | api_sort(keys=["location", "line"])
+                             | api_sort(keys=["location", "path"]) %}
+   {{ format_type_alias_table_row(selector) | indent(width=3) }}
 {%- endfor -%}
 
 {% endmacro -%}

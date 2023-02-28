@@ -176,8 +176,8 @@ Description
 Member Function Descriptions
 ----------------------------
 
-{% for function in functions -%}
-    {{ macros.format_function(function) }}
+{% for selector in functions -%}
+    {{ macros.format_function(selector) }}
 
 {{ "-----" if not loop.last }}
 
@@ -198,14 +198,7 @@ Type Description
 ----------------
 
 {% for selector in types -%}
-
-.. _{{selector}}:
-
-{{ macros.format_type_alias(api[selector]) }}
-
-    {{ macros.format_paragraphs(api[selector]["briefdescription"])|indent }}
-
-    {{ macros.format_paragraphs(api[selector]["detaileddescription"])|indent }}
+    {{ macros.format_type_alias(selector) }}
 
 {{ "-----" if not loop.last }}
 

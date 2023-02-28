@@ -4,7 +4,6 @@ import wurfapi.link_mapper
 
 
 def test_transform_key():
-
     data = [{"taco": 42}, {"salsa": [{"burrito": {"taco": 69}}]}]
 
     def map_taco(value, scope):
@@ -20,8 +19,7 @@ def test_transform_key():
 
 
 def test_split_cpptype():
-
-    cpptype = "const std::function<void(uint32_t*, long double)>&"
+    cpptype = "const std::function<void(uint32_t*, long double, int named)>&"
 
     result = wurfapi.link_mapper.split_cpptype(cpptype)
 
@@ -37,6 +35,11 @@ def test_split_cpptype():
         ",",
         " ",
         "long double",
+        ",",
+        " ",
+        "int",
+        " ",
+        "named",
         ")",
         ">",
         "&",
@@ -48,13 +51,12 @@ def test_split_cpptype():
 
     result = wurfapi.link_mapper.split_cpptype(cpptype)
 
-    expected = ["std::vector", "<", "unsigned long long int", ">", "&", "&"]
+    expected = ["std::vector", "<", "unsigned long long int", ">", "&&"]
 
     assert result == expected
 
 
 def test_split_typelist():
-
     typelist = [
         {"value": "const "},
         {"value": "std::function", "link": {"url": True, "value": "www.isocpp.org"}},
@@ -86,7 +88,6 @@ def test_split_typelist():
 
 
 def test_join_typelist():
-
     typelist = [
         {"value": "const"},
         {"value": " "},
@@ -118,7 +119,6 @@ def test_join_typelist():
 
 
 def test_linkmapper():
-
     api = {
         "object": {
             "type": [{"value": "const std::function<void(uint32_t*, long double)>&"}]
@@ -150,7 +150,6 @@ def test_linkmapper():
 
 
 def test_split_cppscope():
-
     cppscope = "std::function"
 
     result = wurfapi.link_mapper.split_cppscope(cppscope)
@@ -177,7 +176,6 @@ def test_split_cppscope():
 
 
 def test_split_text():
-
     text = {"content": "some list of words", "kind": "text"}
 
     result = wurfapi.link_mapper.split_text(text=text)
@@ -193,7 +191,6 @@ def test_split_text():
 
 
 def test_split_paragraph():
-
     paragraph = [
         {"kind": "code"},
         {"kind": "text", "content": "some list of words"},
@@ -225,7 +222,6 @@ def test_split_paragraph():
 
 
 def test_join_paragraph():
-
     paragraph = [
         {"kind": "code"},
         {"content": "some", "kind": "text"},

@@ -1,7 +1,7 @@
 .. wurfapitarget:: project::v1_0_0::print(doublea,int*b)
     :label: project::v1_0_0::print()
 
-| void **print** (double a, int \* b)
+| void **print** (double a, int\*  b)
 
     Prints the ``a`` and then the value pointed to by ``b``.
 

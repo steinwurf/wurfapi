@@ -41,9 +41,9 @@ public:
         /// @param number_of_cups Fill the water tank with the specified number
         ///     number of cups.
         /// @param safety_valve Set `true` to enable the safety valve this will
-        ///    sound and alarm if the water tank is too full. To disable the
+        ///    sound an alarm if the water tank is too full. To disable the
         ///    safety valve set `false`.
-        /// @return `true` if filling was successfull otherwise `false`
+        /// @return `true` if the filling was successful otherwise `false`
         bool fill(const cups& number_of_cups, bool safety_valve);
 
         /// The volume of the water tank.
@@ -51,7 +51,7 @@ public:
     };
 
     /// The generic callback type
-    using callback = std::function<void()>;
+    using callback = std::function<void(int cups, uint8_t* data)>;
 
     /// Another way to define a type is a typedef
     typedef callback other_callback;

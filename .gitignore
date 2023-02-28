@@ -9,3 +9,5 @@ dist/
 pytest_temp/
 resolve_symlinks/
 venv-*
+wurfapi.egg-info
+__pycache__

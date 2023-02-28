@@ -6,6 +6,10 @@ of every change, see the Git log.
 
 Latest
 ------
+* Minor: Added support for type aliases to have parameters documented. This is
+  useful for documenting type aliased functions.
+* Patch: Fix issue with links in type aliases.
+* Minor: Added type_alias synopsis for listing all type aliases in a namespace.
 * Minor: Removed record helper and replaced all recording functionality with
   pytest-datarecorder.
 * Minor: Changed testing approach so that we now reuse the virtual environment

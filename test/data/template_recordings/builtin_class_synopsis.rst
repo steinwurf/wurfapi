@@ -55,14 +55,14 @@ Member functions (public)
      - :ref:`set_number_cups <project::v1_0_0::coffee::machine::set_number_cups(std::stringcups)>`\  (std::string cups)
    * - virtual uint32_t
      - :ref:`number_cups <project::v1_0_0::coffee::machine::number_cups()const>`\  () const
-   * - const :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>`\  &
+   * - const :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>`\ & 
      - :ref:`tank <project::v1_0_0::coffee::machine::tank()const>`\  () const
-   * - :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>`\  &
+   * - :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>`\ & 
      - :ref:`tank <project::v1_0_0::coffee::machine::tank()>`\  ()
-   * - std::vector< :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>`\  >
+   * - std::vector<\ :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>`\  >
      - :ref:`tanks <project::v1_0_0::coffee::machine::tanks()>`\  ()
    * - void
-     - :ref:`add_beans <project::v1_0_0::coffee::machine::add_beans\<class,uint32_t\>(constBeans&beans)>`\  (const Beans & beans)
+     - :ref:`add_beans <project::v1_0_0::coffee::machine::add_beans\<class,uint32_t\>(constBeans&beans)>`\  (const Beans&  beans)
    * - uint32_t
      - :ref:`get_bean_count <project::v1_0_0::coffee::machine::get_bean_count(mug_sizesize_of_mug)const>`\  (:ref:`mug_size <project::v1_0_0::coffee::machine::mug_size()const>`\  size_of_mug) const
    * - auto
@@ -385,7 +385,7 @@ Member Function Descriptions
 .. wurfapitarget:: project::v1_0_0::coffee::machine::tank()const
     :label: project::v1_0_0::coffee::machine::tank()
 
-| const :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>`\  & **tank** () const
+| const :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>`\ &  **tank** () const
 
     Get the first water tank.
 
@@ -397,7 +397,7 @@ Member Function Descriptions
 .. wurfapitarget:: project::v1_0_0::coffee::machine::tank()
     :label: project::v1_0_0::coffee::machine::tank()
 
-| :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>`\  & **tank** ()
+| :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>`\ &  **tank** ()
 
     Get the first water tank.
 
@@ -409,7 +409,7 @@ Member Function Descriptions
 .. wurfapitarget:: project::v1_0_0::coffee::machine::tanks()
     :label: project::v1_0_0::coffee::machine::tanks()
 
-| std::vector< :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>`\  > **tanks** ()
+| std::vector<\ :ref:`water_tank <project::v1_0_0::coffee::machine::water_tank>`\  > **tanks** ()
 
     Get all water tanks.
 
@@ -422,7 +422,7 @@ Member Function Descriptions
     :label: project::v1_0_0::coffee::machine::add_beans()
 
 | template <class Beans = Arabica, uint32_t BeanSize = 100>
-| void **add_beans** (const Beans & beans)
+| void **add_beans** (const Beans&  beans)
 
     Add a generic beans
 
@@ -504,19 +504,20 @@ Member Function Descriptions
 Type Description
 ----------------
 
-.. _project::v1_0_0::coffee::machine::callback:
+.. wurfapitarget:: project::v1_0_0::coffee::machine::callback
+    :label: project::v1_0_0::coffee::machine::callback()
 
-using **callback** = std::function< void()>
+using **callback** = std::function<\ void(int cups, uint8_t\* data)>
 
     The generic callback type.
 
 
 
-    
 
 -----
 
-.. _project::v1_0_0::coffee::machine::other_callback:
+.. wurfapitarget:: project::v1_0_0::coffee::machine::other_callback
+    :label: project::v1_0_0::coffee::machine::other_callback()
 
 typedef :ref:`callback <project::v1_0_0::coffee::machine::callback>`\  **other_callback**
 
@@ -524,7 +525,6 @@ typedef :ref:`callback <project::v1_0_0::coffee::machine::callback>`\  **other_c
 
 
 
-    
 
 
 

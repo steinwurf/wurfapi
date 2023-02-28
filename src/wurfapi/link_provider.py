@@ -73,12 +73,10 @@ class LinkProvider(object):
         return None
 
     def _check_mapping(self, mappings, typename):
-
         for mapping in mappings:
             match = re.match(mapping["pattern"], typename)
 
             if match:
-
                 # We take the link dictionary and try to replace any format
                 # strings with the match (if any)
                 link = copy.deepcopy(mapping["link"])

@@ -707,7 +707,27 @@
         "value": "std::function"
       },
       {
-        "value": "< void()>"
+        "value": "< void("
+      },
+      {
+        "link": {
+          "url": true,
+          "value": "https://en.cppreference.com/w/cpp/language/types"
+        },
+        "value": "int"
+      },
+      {
+        "value": " cups, "
+      },
+      {
+        "link": {
+          "url": true,
+          "value": "https://en.cppreference.com/w/cpp/types/integer"
+        },
+        "value": "uint8_t"
+      },
+      {
+        "value": " *data)>"
       }
     ]
   },
@@ -2135,7 +2155,7 @@
               "kind": "code"
             },
             {
-              "content": "to enable the safety valve this will sound and alarm if the water tank is too full. To disable the safety valve set",
+              "content": "to enable the safety valve this will sound an alarm if the water tank is too full. To disable the safety valve set",
               "kind": "text"
             },
             {
@@ -2173,7 +2193,7 @@
             "kind": "code"
           },
           {
-            "content": "if filling was successfull otherwise",
+            "content": "if the filling was successful otherwise",
             "kind": "text"
           },
           {

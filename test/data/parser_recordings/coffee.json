@@ -672,7 +672,7 @@
     "scope": "project::v1_0_0::coffee::machine",
     "type": [
       {
-        "value": "std::function< void()>"
+        "value": "std::function< void(int cups, uint8_t *data)>"
       }
     ]
   },
@@ -2045,7 +2045,7 @@
               "kind": "code"
             },
             {
-              "content": "to enable the safety valve this will sound and alarm if the water tank is too full. To disable the safety valve set",
+              "content": "to enable the safety valve this will sound an alarm if the water tank is too full. To disable the safety valve set",
               "kind": "text"
             },
             {
@@ -2079,7 +2079,7 @@
             "kind": "code"
           },
           {
-            "content": "if filling was successfull otherwise",
+            "content": "if the filling was successful otherwise",
             "kind": "text"
           },
           {

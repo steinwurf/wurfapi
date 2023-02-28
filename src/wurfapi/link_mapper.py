@@ -14,12 +14,10 @@ def transform_key(data, search_key, scope, function):
     """
 
     if isinstance(data, dict):
-
         if "scope" in data:
             scope = data["scope"]
 
         for found_key, value in data.items():
-
             if found_key == "scope":
                 continue
 
@@ -31,7 +29,6 @@ def transform_key(data, search_key, scope, function):
             )
 
     if isinstance(data, list):
-
         for value in data:
             transform_key(
                 data=value, search_key=search_key, scope=scope, function=function
@@ -39,9 +36,24 @@ def transform_key(data, search_key, scope, function):
 
 
 # Keywords used to split a C++ type into it's basic elements:
-keywords = ["<", ">", ")", "(", "&", "*", ",", "const", "constexpr"]
+keywords = ["<", ">", ")", "(", "&&", "&", "*", ",", "const", "constexpr", " "]
 keyword_pattern = "(" + "|".join([re.escape(k) for k in keywords]) + ")"
 whitespace_pattern = "(^[ \t]|[ \t]$)"
+spaced_types = [
+    "unsigned long long int",
+    "long double",
+    "signed long int",
+    "signed short int",
+    "unsigned long int",
+    "unsigned short int",
+    "long int",
+    "long long int",
+    "short int",
+    "signed char",
+    "signed int",
+    "unsigned char",
+    "unsigned int",
+]
 
 
 def split_cpptype(cpptype):
@@ -68,6 +80,18 @@ def split_cpptype(cpptype):
     # Split based on keywords
     items = [res for res in re.split(keyword_pattern, cpptype) if res]
 
+    # Loop through each spaced type and merge it in the list
+    for spaced_type in spaced_types:
+        # split the spaced type into a list of items including spaces
+        spaced_type = [res for res in re.split(r"(\s+)", spaced_type) if res]
+
+        # Check if a subset of items is equal to a spaced type
+        for i in range(len(items) - len(spaced_type) + 1):
+            sub_items = items[i : i + len(spaced_type)]
+            if sub_items == spaced_type:
+                # If it is, remove the subset and insert the spaced type
+                items[i : i + len(spaced_type)] = ["".join(spaced_type)]
+
     # Build the final result
     result = []
 
@@ -88,9 +112,7 @@ def split_typelist(typelist):
     newlist = []
 
     for item in typelist:
-
         if "link" in item:
-
             # We already have a link for this item of the type
             newlist.append(item)
             continue
@@ -118,7 +140,6 @@ def join_typelist(typelist):
     temporary_item = {"value": ""}
 
     for item in typelist:
-
         # We have the following cases:
 
         # 1. We just get a new item with a link
@@ -194,8 +215,7 @@ def split_paragraph(paragraph):
             new_paragraph.append(paragraph_element)
             continue
 
-        if paragraph_element["kind"] is "list":
-
+        if paragraph_element["kind"] == "list":
             items = []
             for item_paragraphs in paragraph_element["items"]:
                 new_item_paragraphs = []
@@ -243,14 +263,12 @@ def join_paragraph(paragraph):
     flush = functools.partial(_flush, paragraph=new_paragraph, text=text)
 
     for paragraph_element in paragraph:
-
         if paragraph_element["kind"] in ["code", "bold", "italic"]:
             flush()
             new_paragraph.append(paragraph_element)
             continue
 
-        if paragraph_element["kind"] is "list":
-
+        if paragraph_element["kind"] == "list":
             # A list contains even more paragraphs
             items = []
 
@@ -327,14 +345,11 @@ class LinkMapper(object):
         """
 
         def _add_links(paragraph):
-
             for index, element in enumerate(paragraph):
-
-                if element["kind"] is "code":
+                if element["kind"] == "code":
                     continue
 
-                if element["kind"] is "list":
-
+                if element["kind"] == "list":
                     for item_paragraphs in element["items"]:
                         for item_paragraph in item_paragraphs:
                             _add_links(item_paragraph)
@@ -384,7 +399,6 @@ class LinkMapper(object):
 
         # 2. Check if we have a link for each of the items
         for item in typelist:
-
             if "link" in item:
                 link_value = item["link"]["value"]
                 # If we do have a link to a type it should be in the API
@@ -433,7 +447,6 @@ class LinkMapper(object):
         scopes = split_cppscope(cppscope=scope)
 
         for scope in scopes:
-
             scoped_name = scope + "::" + typename
 
             if scoped_name in self.api:

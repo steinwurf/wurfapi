@@ -29,36 +29,6 @@ def match(xml, tag, attrib={}):
     return True
 
 
-def parse_using_type(definition):
-    """Doxygen does not handle using statements the way we would like
-    so we extract the type from it
-    """
-
-    parser = re.compile(
-        r"""
-        using              # Match 'using'
-        \s+                # Match one or more spaces
-        (?P<name>          # Match and group ("name")
-            [\w:<>_&*()]+  #  Match on or more characters
-        )                  # End group
-        \s+                # Match one or more spaces
-        =                  # Match an equal operator
-        \s+                # Match one or more spaces
-        (?P<type>          # Match and group ("type")
-            [\w:<>_&*()]+  #  Match on or more characters
-        )                  # End group
-        """,
-        re.VERBOSE,
-    )
-
-    result = parser.match(definition)
-
-    if result is None:
-        raise RuntimeError("Failed to parse using statement {}".format(definition))
-
-    return result.group("type")
-
-
 def replace_with(replace, data):
     """Replaces values in the data using the mapping provided in the
         replace dict.
@@ -122,7 +92,6 @@ class ParserFunction(object):
 
 
 class DoxygenParser(object):
-
     # Default parsers
     default_parsers = []
 
@@ -180,7 +149,6 @@ class DoxygenParser(object):
 
         # Iterate thought the "compound" elements of the Doxygen index.xml
         for compound in index_xml.findall("compound"):
-
             compound_api = self.parse_element(xml=compound)
 
             api.update(compound_api)
@@ -226,7 +194,6 @@ class DoxygenParser(object):
         return parser.function(**args)
 
     def supports(self, xml):
-
         try:
             self._find_in_list(tag=xml.tag, attrib=xml.attrib)
         except RuntimeError:
@@ -244,9 +211,7 @@ class DoxygenParser(object):
         candidate = None
 
         for parser in self.parsers:
-
             if match(xml=xml, tag=parser.tag, attrib=parser.attrib):
-
                 if candidate is None:
                     candidate = parser
                 elif candidate.score < parser.score:
@@ -274,9 +239,7 @@ class DoxygenParser(object):
         """
 
         def _register(function):
-
             for parser in DoxygenParser.default_parsers:
-
                 if parser.tag != tag:
                     continue
 
@@ -315,7 +278,6 @@ def parse(parser, log, xml):
     # There can be multiple "compunddef" tags in each XML file
     # according to Doxygen's generated compound.xsd file
     for compounddef in compound_xml.findall("compounddef"):
-
         compunddef_api = parser.parse_element(xml=compounddef)
         api.update(compunddef_api)
 
@@ -325,6 +287,7 @@ def parse(parser, log, xml):
 @DoxygenParser.register(tag="sectiondef", attrib={"kind": "enum"})
 @DoxygenParser.register(tag="sectiondef", attrib={"kind": "func"})
 @DoxygenParser.register(tag="sectiondef", attrib={"kind": "define"})
+@DoxygenParser.register(tag="sectiondef", attrib={"kind": "typedef"})
 def parse(parser, xml):
     """Parses Doxygen sectiondefType"""
 
@@ -425,7 +388,6 @@ def parse(parser, xml):
     api = {}
 
     with parser.set_scope(scoped_name):
-
         for sectiondef in xml.findall("sectiondef"):
             sectiondef_api = parser.parse_element(xml=sectiondef)
             result["members"] += sectiondef_api.keys()
@@ -495,7 +457,6 @@ def parse(parser, xml):
     unique_name = unique_name.replace(" ", "")
 
     with parser.set_scope(unique_name):
-
         for member in xml.findall(".//memberdef"):
             member_api = parser.parse_element(xml=member)
             api.update(member_api)
@@ -548,7 +509,6 @@ def parse(xml, parser, log, scope):
     # Lets get all the values of the num
     values = []
     for enumvalue in xml.findall("enumvalue"):
-
         value = {}
 
         value["name"] = enumvalue.findtext("name")
@@ -605,6 +565,29 @@ def parse(xml, parser, log, scope):
     )
     result["access"] = xml.attrib["prot"]
     result["type"] = parser.parse_element(xml=xml.find("type"))
+
+    # In certain cases a typedef can have arguemnts (e.g. std::function)
+    # We need to parse these arguments
+    parameters = []
+
+    # The description of the parameter is in the
+    # detaileddescription section
+    detaileddescription = xml.find("detaileddescription")
+
+    # Description of the parameters are in the parameterlist tags with the
+    # attribute kind="param"
+    parameterlists = detaileddescription.findall('.//parameterlist[@kind = "param"]')
+
+    for parameterlist in parameterlists:
+        parameterlist = parser.parse_element(xml=parameterlist)
+        for param in parameterlist:
+            parameter = {}
+            parameter["name"] = param
+            parameters.append(parameter)
+            if parameterlist[param]:
+                parameter["description"] = parameterlist[param]
+    if parameters:
+        result["parameters"] = parameters
 
     # Construct the unique name
     unique_name = scope + "::" + result["name"] if scope else result["name"]
@@ -687,13 +670,11 @@ def parse(xml, parser, log, scope, location_mapper):
     parameters = []
 
     for parameterlist in parameterlists:
-
         parameterlist = parser.parse_element(xml=parameterlist)
 
         log.debug("pameterlist {}".format(parameterlist))
 
         for name in parameterlist:
-
             parameter = {"name": name}
 
             if parameterlist[name]:
@@ -784,7 +765,6 @@ def parse(xml, parser):
     # http://effbot.org/zone/element-xpath.htm
 
     for item in xml.findall("parameteritem"):
-
         name = item.find("parameternamelist/parametername").text
 
         result[name] = parser.parse_element(xml=item.find("parameterdescription"))
@@ -800,7 +780,6 @@ def parse(xml, parser):
     # Get the name and type of the parameters
     parameters = []
     for param in xml.findall("param"):
-
         parameter = {}
 
         # Look if we have a declname - sometimes Doxygen has it. It's the
@@ -846,9 +825,7 @@ def parse(xml, parser, log):
     append_text(xml.text)
 
     for child in xml.getchildren():
-
         if match(xml=child, tag="ref"):
-
             link = {"url": False, "value": child.attrib["refid"]}
 
             result.append({"value": child.text.strip(), "link": link})
@@ -880,11 +857,9 @@ def parse_template_parameters(xml, parser):
     parameterlists = xml.findall('.//parameterlist[@kind = "templateparam"]')
 
     for parameterlist in parameterlists:
-
         parameterlist = parser.parse_element(xml=parameterlist)
 
         for parameter in template_parameters:
-
             name = parameter["name"]
 
             if name in parameterlist:
@@ -912,7 +887,6 @@ def parse(xml, parser, log, scope):
     # Get the name and type of the parameters
     parameters = []
     for param in xml.findall("param"):
-
         parameter = {}
         parameter["type"] = parser.parse_element(xml=param.find("type"))
 
@@ -952,7 +926,6 @@ def parse(xml, parser, log, scope):
         parameterlist = parser.parse_element(xml=parameterlist)
 
         for parameter in parameters:
-
             if "name" not in parameter:
                 continue
 
@@ -972,7 +945,6 @@ def parse(xml, parser, log, scope):
 
     result["trailing_return"] = False
     if return_type:
-
         if return_type[0]["value"] == "auto":
             argsstring = xml.find("argsstring").text.split("->")
             if len(argsstring) == 2:
@@ -1060,7 +1032,6 @@ def parse_variable_type(variable_type):
     vars = {"is_const": False, "is_constexpr": False}
 
     def prune(item):
-
         # This prune tries to extract const and constexpr specifiers.
         tokens = item["value"].split(" ")
 
@@ -1110,7 +1081,6 @@ def parse(xml, parser, log, scope):
     # Lets get the value
     initializer_element = xml.find("initializer")
     if initializer_element is not None:
-
         value = initializer_element.xpath("string()")
 
         if value.startswith("= "):
@@ -1151,7 +1121,6 @@ def parse(xml, log, parser):
     paragraphs = []
 
     for child in xml.getchildren():
-
         if child.tag == "para":
             paragraph = parser.parse_element(xml=child)
             # skip empty
@@ -1288,7 +1257,6 @@ def parse(parser, log, xml):
     append_text(xml.text)
 
     for child in xml.getchildren():
-
         if match(xml=child, tag="verbatim"):
             paragraphs += parser.parse_element(xml=child)
 
