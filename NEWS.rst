@@ -6,6 +6,10 @@ of every change, see the Git log.
 
 Latest
 ------
+* tbd
+
+9.1.0
+-----
 * Minor: Added support for type aliases to have parameters documented. This is
   useful for documenting type aliased functions.
 * Patch: Fix issue with links in type aliases.
