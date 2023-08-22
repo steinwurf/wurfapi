@@ -8,7 +8,7 @@ name: Waf Python Tests
   push:
     branches:
     - master
-  pull_request:
+  pull_request: null
 jobs:
   waf:
     env:
@@ -37,3 +37,6 @@ jobs:
         os:
         - Windows
         - Linux
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
