@@ -36,7 +36,7 @@
 
 {# FORMAT_REF
 
-The escaped space is needed to that the inline markup ends with
+The escaped space is needed so that the inline markup ends with
 a non-character. Otherwise, rst will fail with an error.
 #}
 
@@ -51,7 +51,7 @@ a non-character. Otherwise, rst will fail with an error.
 
 {# FORMAT_LINK
 
-The escaped space is needed to that the inline markup ends with
+The escaped space is needed so that the inline markup ends with
 a non-character. Otherwise, rst will fail with an error.
 #}
 
@@ -159,7 +159,21 @@ a non-character. Otherwise, rst will fail with an error.
 {# FORMAT_TYPEDEF #}
 
 {%- macro format_typedef(alias) -%}
-typedef {{ format_type_list(alias["type"]) }} **{{ alias["name"] }}**
+{% set ns = namespace(name_printed=false) %}
+typedef {% for item in alias["type"] %}
+{% set value = item["value"] | replace(' *', '\\* ') | replace(' &', '& ') | replace('< ', '<\\ ')  %}
+{% if value == alias["name"] %}
+{% set ns.name_printed = true %}
+{{ " **" + value + "**" -}}
+{% elif "link" in item and not as_code %}
+{{ format_link(value, item["link"]) -}}
+{% else %}
+{{ value -}}
+{% endif %}
+{% endfor %}
+{% if not ns.name_printed %}
+{{ " **" + alias["name"] + "**" -}}
+{% endif %}
 {%- endmacro -%}
 
 

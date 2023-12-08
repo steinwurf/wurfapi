@@ -12,8 +12,6 @@ def test_doxygen_generator(testdirectory):
     output_dir = testdirectory.mkdir("output")
     coffee_dir = testdirectory.copy_dir("test/data/cpp_coffee")
 
-    runner = mock.Mock()
-
     doxygen_executable = wurfapi.doxygen_downloader.ensure_doxygen()
 
     generator = wurfapi.doxygen_generator.DoxygenGenerator(

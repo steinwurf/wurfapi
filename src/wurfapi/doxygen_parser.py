@@ -824,6 +824,13 @@ def parse(xml, parser, log):
 
     append_text(xml.text)
 
+    if len(result) != 0 and result[-1]["value"].endswith("(*"):
+        # This is a c-style function pointer so we need to extend
+        # the type with the name followed by the remaining part
+        p = xml.getparent()
+        result.append({"value": p.findtext("name").strip("\r\n")})
+        result.append({"value": p.findtext("argsstring").strip("\r\n")})
+
     for child in xml.getchildren():
         if match(xml=child, tag="ref"):
             link = {"url": False, "value": child.attrib["refid"]}
@@ -879,7 +886,7 @@ def parse(xml, parser, log, scope):
     result["kind"] = "function"
     result["scope"] = scope
 
-    location, body = parser.parse_element(xml=xml.find("location"))
+    location, _ = parser.parse_element(xml=xml.find("location"))
 
     result["location"] = location
     result["name"] = xml.findtext("name")

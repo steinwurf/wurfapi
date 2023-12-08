@@ -18,7 +18,7 @@ wurfapi
 .. |Pip Install| image:: https://github.com/steinwurf/wurfapi/actions/workflows/pip.yml/badge.svg
       :target: https://github.com/steinwurf/wurfapi/actions/workflows/pip.yml
 
-We wanted to have a configurable and easy to use Sphinx API documentation
+We wanted to have a configurable and easy-to-use Sphinx API documentation
 generator for our C++ projects. To achieve this we leaned on others for
 inspiration:
 
@@ -750,16 +750,16 @@ Dictionary representing a function parameter::
       Optional('description'): paragraphs
     }
 
-For the parameter the name is also included into the type list. The reason
+For the parameter, the name is also included in the type list. The reason
 is that some parameters can be pretty complex, with the name embedded
 inside the type e.g.::
 
     void function(int (*(*foo)())[3]);
 
-This is a function which takes one parameter `foo` which is pointer
-function returning pointer to array 3 of int - nice right? Anyway, in
+This is a function that takes one parameter `foo` which is a pointer
+function returning a pointer to array 3 of int - nice right? Anyway, in
 such cases the parameter name is embedded inside the type of the parameter.
-We therefore took the easy out and `wurfapi` will always include the
+We therefore took the easy way out and `wurfapi` will always include the
 parameter name in the type.
 
 As an example the parameter dictionary for a function `void test(int b)`
