@@ -18,7 +18,7 @@ wurfapi
 .. |Pip Install| image:: https://github.com/steinwurf/wurfapi/actions/workflows/pip.yml/badge.svg
       :target: https://github.com/steinwurf/wurfapi/actions/workflows/pip.yml
 
-We wanted to have a configurable and easy to use Sphinx API documentation
+We wanted to have a configurable and easy-to-use Sphinx API documentation
 generator for our C++ projects. To achieve this we leaned on others for
 inspiration:
 
