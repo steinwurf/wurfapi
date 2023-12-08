@@ -44,13 +44,9 @@
 {%- set variable = api[selector] %}
    * - {{ macros.format_type_list(variable["type"]) }}
      - .. wurfapitarget:: {{selector}}
-       {% if variable["scope"] is not none %}
-           :label: {{ variable["scope"] }}::{{variable["name"]}}()
-       {% else %}
-           :label: {{variable["name"]}}()
-       {% endif %}
+           :label: {{ variable["scope"] + "::" if "scope" in variable }}{{variable["name"]}}()
 
-       {{ variable["name"]}}
+       {{ variable["name"] }}
      - {{ variable["value"] }}
      - {{ macros.merge_description(variable) | indent(width=7) }}
 {% endfor %}

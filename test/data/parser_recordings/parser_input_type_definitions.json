@@ -16,7 +16,9 @@
       "path": "type_definitions.hpp"
     },
     "members": [
+      "type_definitions::c_callback",
       "type_definitions::callback",
+      "type_definitions::my_array",
       "type_definitions::my_bool",
       "type_definitions::really_a_string"
     ],
@@ -27,6 +29,36 @@
     "kind": "file",
     "name": "type_definitions.hpp",
     "path": "type_definitions.hpp"
+  },
+  "type_definitions::c_callback": {
+    "access": "public",
+    "briefdescription": [
+      [
+        {
+          "content": "This is a c-style callback.",
+          "kind": "text"
+        }
+      ]
+    ],
+    "detaileddescription": [],
+    "kind": "typedef",
+    "location": {
+      "line": 14,
+      "path": "type_definitions.hpp"
+    },
+    "name": "c_callback",
+    "scope": "type_definitions",
+    "type": [
+      {
+        "value": "void(*"
+      },
+      {
+        "value": "c_callback"
+      },
+      {
+        "value": ")(int times, int, uint8_t *data)"
+      }
+    ]
   },
   "type_definitions::callback": {
     "access": "public",
@@ -49,6 +81,30 @@
     "type": [
       {
         "value": "std::function< void(int times, int, uint8_t *data)>"
+      }
+    ]
+  },
+  "type_definitions::my_array": {
+    "access": "public",
+    "briefdescription": [
+      [
+        {
+          "content": "This is an array tyoedef.",
+          "kind": "text"
+        }
+      ]
+    ],
+    "detaileddescription": [],
+    "kind": "typedef",
+    "location": {
+      "line": 17,
+      "path": "type_definitions.hpp"
+    },
+    "name": "my_array",
+    "scope": "type_definitions",
+    "type": [
+      {
+        "value": "int"
       }
     ]
   },
