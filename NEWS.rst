@@ -6,6 +6,10 @@ of every change, see the Git log.
 
 Latest
 ------
+* tbd
+
+9.1.1
+-----
 * Patch: Fix the issue with c-style function pointers not being parsed correctly.
 
 9.1.0
