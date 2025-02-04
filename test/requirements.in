@@ -3,3 +3,7 @@ pytest-testdirectory
 mock
 rstcheck
 pytest-datarecorder
+
+# @todo temp
+tree-sitter
+git+https://github.com/sdoerner/tree-sitter-proto.git

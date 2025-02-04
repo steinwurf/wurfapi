@@ -68,6 +68,7 @@ def build(bld):
     # Make sure the virtualenv Python module is in path
     with bld.create_virtualenv(cwd=bld.path.abspath()) as venv:
         venv.run("pip install wheel")
+        venv.run("pip install setuptools")
         venv.run(cmd="python setup.py bdist_wheel --universal", cwd=bld.path)
 
     # Delete the egg-info directory, do not understand why this is created
@@ -151,6 +152,7 @@ def _pytest(bld):
     # Install the pytest-testdirectory plugin in the virtualenv
     wheel = _find_wheel(ctx=bld)
 
+    venv.run("pip install setuptools")
     venv.run(cmd="python -m pip install --force-reinstall {}".format(wheel))
 
     # We override the pytest temp folder with the basetemp option,

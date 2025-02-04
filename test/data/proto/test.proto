@@ -1,0 +1,96 @@
+syntax = "proto3";
+package abacus.protobuf;
+option go_package = "abacus/protobuf";
+
+enum Kind
+{
+    // Comment 0
+    COUNTER = 0;
+    CONSTANT = 1; // Comment 1
+    GAUGE = 2;
+}
+
+enum Type
+{
+    UINT64 = 0;
+    INT64 = 1;
+    FLOAT64 = 2;
+    BOOL = 3;
+}
+
+message Info
+{
+    string name = 1;
+    string description = 2;
+    Type type = 3;
+    Kind kind = 4;
+    string unit = 5;
+    oneof min
+    {
+        uint64 uint64_min = 6;
+        int64 int64_min = 7;
+        double float64_min = 8;
+    }
+    oneof max
+    {
+        uint64 uint64_max = 9;
+        int64 int64_max = 10;
+        double float64_max = 11;
+    }
+}
+
+message SearchResponse {
+  message Result {
+    string url = 1;
+    string title = 2;
+    repeated string snippets = 3;
+  }
+
+  enum PhoneType {
+    MOBILE = 0;
+    HOME = 1;
+    WORK = 2;
+  }
+
+  repeated Result results = 1;
+}
+
+message Metric
+{
+    optional Info info = 1;
+    oneof value
+    {
+        uint64 uint64_value = 2;
+        int64 int64_value = 3;
+        double float64_value = 4;
+        bool bool_value = 5;
+    }
+}
+
+message Metrics
+{
+    uint32 protocol_version = 1;
+    repeated Metric metric = 2;
+}
+
+message Chacha20Encrypt
+{
+    option (component_description) =
+        "Component to encrypt data using the ChaCha20 algorithm.";
+    option (component_tags) = {
+        tags : [ SECURITY ]
+    };
+
+    string input = 1 [ (link_type) = INPUT ];
+    string output = 2 [ (link_type) = OUTPUT ];
+
+    string magic_constant = 3
+        [ (description) =
+              "The magic constant used in the ChaCha20 algorithm." ];
+
+    string key = 4 [ (description) = "The key used for encryption." ];
+
+    string nonce = 5 [ (description) = "The nonce value for encryption." ];
+
+    int32 rounds = 6 [ (description) = "The number of rounds for encryption." ];
+}
