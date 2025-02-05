@@ -119,21 +119,6 @@ def has_child_by_node_type(node, type):
 
 @ProtoParser.register("syntax")
 def parse(parser, node, log):
-
-    print(f"Syntax: {node.text}")
-
-    # Example:
-    #   syntax = "proto3";
-    #     ^    ^    ^    ^
-    #     0    1    2    3
-
-    syntax = node.children[2].text.decode()
-
-    # Strip the quotes
-    syntax = syntax[1:-1]
-
-    parser.add_top_level("syntax", syntax)
-
     return {}
 
 
@@ -146,8 +131,14 @@ def parse(parser, node, log):
 
     package = child_by_node_type(node, "full_ident").text.decode()
 
+    result = {}
+    result["kind"] = "package"
+    result["name"] = package
+
+    unique_name = package
+
     parser.push_scope(package)
-    parser.add_top_level("package", package)
+    parser.add_top_level(unique_name, result)
 
     return {}
 
