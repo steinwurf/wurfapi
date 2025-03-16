@@ -49,8 +49,6 @@ class ProtoParser:
 
     def parse(self):
 
-        api = {}
-
         for proto_file in self.proto_files:
 
             # Read as bytes
@@ -60,9 +58,6 @@ class ProtoParser:
             language = tree_sitter.Language(tree_sitter_proto.language())
 
             parser = tree_sitter.Parser(language)
-
-            def extract(start_byte, end_byte):
-                return proto_content[start_byte:end_byte].decode()
 
             tree = parser.parse(proto_content)
 
@@ -144,24 +139,38 @@ def parse(parser, node, log):
 
 
 @ProtoParser.register("option")
+@ProtoParser.register("field_option")
+def parse(parser, node, log):
+    value = {}
+
+    name_node = node.child_by_field_name("name")
+    value_node = node.child_by_field_name("value")
+
+    value["name"] = name_node.text.decode()
+    value["value"] = value_node.text.decode()
+    value["kind"] = "option"
+
+    # Option names may have "open parenthesis" and "close parenthesis"
+    # Example:
+    #   int32 rounds = 6 [ (description) = "The number of rounds" ];
+    #
+    # We strip the parenthesis if they are present
+    if value["name"].startswith("(") and value["name"].endswith(")"):
+        value["name"] = value["name"][1:-1]
+
+    return value
+
+
+@ProtoParser.register("field_options")
 def parse(parser, node, log):
 
-    print(f"Option: {node.text}")
+    options = []
 
-    # Example:
-    #   option java_package = "com.example.tutorial";
-    #     ^         ^       ^         ^             ^
-    #     0         1       2         3             4
+    for child in node.children:
+        if child.type == "field_option":
+            options.append(parser.parse_node(child))
 
-    option_name = node.children[1].text.decode()
-    option_value = node.children[3].text.decode()
-
-    # Strip the quotes
-    option_value = option_value[1:-1]
-
-    parser.add_top_level(option_name, option_value)
-
-    return {}
+    return options
 
 
 @ProtoParser.register("enum")
@@ -239,6 +248,9 @@ def parse(parser, node, log):
     if comment is not None:
         member["comment"] = comment
 
+    if has_child_by_node_type(node, "field_options"):
+        member["options"] = parser.parse_node(child_by_node_type(node, "field_options"))
+
     return member
 
 
@@ -304,11 +316,34 @@ def parse(parser, node, log):
 
     print(type(parser))
 
+    result = {}
+    result["kind"] = "source_file"
+    result["name"] = "source_file"
+
     for child in node.children:
-        parser.parse_node(child)
+
+        if child.type == "syntax":
+            result["syntax"] = parser.parse_node(child)
+
+        if child.type == "package":
+            result["package"] = parser.parse_node(child)
+
+        if child.type == "option":
+
+            if "options" not in result:
+                result["options"] = []
+
+            result["options"].append(parser.parse_node(child))
+
+        if child.type == "message":
+            result["message"] = parser.parse_node(child)
 
     ##for child in node.children:
     #    api.update(parser.parse_node(child))
+
+    parser.api = result
+
+    print(parser.api)
 
     assert False
 
