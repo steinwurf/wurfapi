@@ -6,6 +6,10 @@ of every change, see the Git log.
 
 Latest
 ------
+* tbd
+
+9.1.2
+-----
 * Patch: Fix accidental dependency on cgi being removed in Python versions >= 3.13.
 
 9.1.1
