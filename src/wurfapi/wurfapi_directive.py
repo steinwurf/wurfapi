@@ -34,7 +34,6 @@ from . import check_api_schema
 from . import collapse_inline_namespaces
 import wurfapi
 
-
 VERSION = "9.1.1"
 
 # Having a "global" logger er .py file seems to be the Sphinx way of
@@ -45,7 +44,6 @@ logger = sphinx.util.logging.getLogger(__name__)
 
 
 class WurfapiTarget(sphinx.util.docutils.SphinxDirective):
-
     # The WurfapiTarget is used to generate named labels in the
     # documentation e.g. to member functions etc.
     # Solution adapted from here:
@@ -100,7 +98,6 @@ def map_wurfapi_named_target(app, doctree):
 
 
 class WurfapiDirective(sphinx.util.docutils.SphinxDirective):
-
     # The wurfapiDirective requires a single path argument, which is allowed to
     # contain whitepace. This is to allow for long paths which may span
     # multiple lines. The path argument should name a valid template.
@@ -236,10 +233,8 @@ def main():
 
 
 def generate_doxygen(app):
-
     source_paths = []
     for source_path in app.config.wurfapi["source_paths"]:
-
         source_path = os.path.join(app.srcdir, source_path)
 
         if not os.path.exists(source_path):
@@ -275,7 +270,6 @@ def generate_doxygen(app):
     assert parser_config["type"] == "doxygen"
 
     if parser_config["download"]:
-
         if "download_path" in parser_config:
             download_path = parser_config["download_path"]
         else:
