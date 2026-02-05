@@ -2,7 +2,7 @@ import os
 
 try:
     import pathlib
-except (ImportError):
+except ImportError:
     import pathlib2 as pathlib
 
 

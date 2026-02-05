@@ -63,11 +63,10 @@ def options(opt):
 
 
 def build(bld):
-
     # Create a virtualenv in the source folder and build universal wheel
     # Make sure the virtualenv Python module is in path
     with bld.create_virtualenv(cwd=bld.path.abspath()) as venv:
-        venv.run("pip install wheel")
+        venv.run("pip install wheel setuptools")
         venv.run(cmd="python setup.py bdist_wheel --universal", cwd=bld.path)
 
     # Delete the egg-info directory, do not understand why this is created
@@ -136,6 +135,7 @@ def _create_venv(ctx, location):
 
     # Crate the venv
     venv = ctx.create_virtualenv(name=name, overwrite=False)
+    venv.run("python -m pip install setuptools")
 
     if pip_install:
         venv.env["PIP_IGNORE_INSTALLED"] = ""

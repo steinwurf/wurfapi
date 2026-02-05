@@ -6,7 +6,7 @@ import wurfapi.location_mapper
 
 try:
     import pathlib
-except (ImportError):
+except ImportError:
     import pathlib2 as pathlib
 
 
