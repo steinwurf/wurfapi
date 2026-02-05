@@ -82,7 +82,6 @@ setup(
         "Environment :: Web Environment",
         "Framework :: Sphinx :: Extension",
         "Intended Audience :: Developers",
-        "License :: OSI Approved :: BSD License",
         "Natural Language :: English",
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 2.7",
