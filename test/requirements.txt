@@ -17,7 +17,7 @@ markdown-it-py==4.0.0
 mdurl==0.1.2
     # via markdown-it-py
 mock==5.2.0
-    # via -r test/requirements.in
+    # via -r requirements.in
 packaging==26.0
     # via pytest
 pluggy==1.6.0
@@ -30,19 +30,19 @@ pygments==2.19.2
     # via
     #   pytest
     #   rich
-pytest==9.0.2
+pytest==9.0.3
     # via
-    #   -r test/requirements.in
+    #   -r requirements.in
     #   pytest-datarecorder
     #   pytest-testdirectory
 pytest-datarecorder==2.0.0
-    # via -r test/requirements.in
+    # via -r requirements.in
 pytest-testdirectory==5.0.0
-    # via -r test/requirements.in
+    # via -r requirements.in
 rich==14.3.2
     # via typer
 rstcheck==6.2.5
-    # via -r test/requirements.in
+    # via -r requirements.in
 rstcheck-core==1.2.2
     # via rstcheck
 shellingham==1.5.4
@@ -57,6 +57,3 @@ typing-extensions==4.15.0
     #   typing-inspection
 typing-inspection==0.4.2
     # via pydantic
-
-# The following packages are considered to be unsafe in a requirements file:
-# setuptools
